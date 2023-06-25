@@ -12,10 +12,11 @@ using namespace std;
 class Piece {
 public:
     string name;
-    char x;
-    int32_t y;
+    ::int32_t x;
+    char y;
 
-    Piece(string name, char x, int32_t y);
+    Piece();
+    Piece(string name, int32_t x, char y);
 
     void setX(char x);
     void setY(int32_t y);

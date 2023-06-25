@@ -6,8 +6,13 @@
 
 #include "../Headers/Piece.h"
 
+Piece::Piece() {
+    this->name = "Piece";
+    this->x = 0;
+    this->y = '\0';
+}
 
-Piece::Piece(string name, char x, int32_t y) {
+Piece::Piece(string name, int32_t x, char y) {
     this->name=std::move(name);
     this->x=x;
     this->y=y;
