@@ -15,9 +15,10 @@ class Board {
     unordered_map<int32_t , array<Piece,8>> board;
 public:
     Board();
+    ~Board();
     Piece * getPieceAt(int32_t x, char y);
     int32_t charToInt(char y);
-    string toString();
+    void printBoard();
 };
 
 

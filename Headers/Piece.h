@@ -12,7 +12,8 @@ using namespace std;
 class Piece {
 public:
     string name;
-    ::int32_t x;
+    int32_t x;
+    char color;
     char y;
 
     Piece();

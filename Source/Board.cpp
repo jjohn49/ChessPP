@@ -18,8 +18,12 @@ Board::Board(){
 }
 
 
-string Board::toString() {
-    return "";
+void Board::printBoard() {
+    for(auto r: this->board){
+        for(Piece p: r.second){
+            printf("%c %s", p.color , (char *)p.name);
+        }
+    }
 }
 
 int32_t Board::charToInt(char y) {
