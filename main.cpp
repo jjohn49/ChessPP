@@ -1,9 +1,9 @@
 #include <iostream>
-#include "Headers/Piece.h"
+#include "Headers/Board.h"
 
 int main() {
 
-    Piece p{"piece", 'a', 1};
-    std::cout << p.toString() << std::endl;
+    Board b = Board();
+    b.printBoard();
     return 0;
 }

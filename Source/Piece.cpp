@@ -8,14 +8,16 @@
 
 Piece::Piece() {
     this->name = "Piece";
-    this->x = 0;
-    this->y = '\0';
+    this->x = '\0';
+    this->y = 0;
+    this->color = 'w';
 }
 
-Piece::Piece(string name, int32_t x, char y) {
+Piece::Piece(string name, char color, char x, int32_t y) {
     this->name=std::move(name);
     this->x=x;
     this->y=y;
+    this->color=color;
 }
 
 void Piece::setX(char x) {
