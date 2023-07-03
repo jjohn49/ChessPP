@@ -83,19 +83,19 @@ CMakeFiles/ChessPP.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessPP.dir/main.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hugh/Desktop/jj-git-repos/ChessPP/main.cpp -o CMakeFiles/ChessPP.dir/main.cpp.s
 
-CMakeFiles/ChessPP.dir/Source/Piece.cpp.o: CMakeFiles/ChessPP.dir/flags.make
-CMakeFiles/ChessPP.dir/Source/Piece.cpp.o: /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Piece.cpp
-CMakeFiles/ChessPP.dir/Source/Piece.cpp.o: CMakeFiles/ChessPP.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ChessPP.dir/Source/Piece.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ChessPP.dir/Source/Piece.cpp.o -MF CMakeFiles/ChessPP.dir/Source/Piece.cpp.o.d -o CMakeFiles/ChessPP.dir/Source/Piece.cpp.o -c /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Piece.cpp
+CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.o: CMakeFiles/ChessPP.dir/flags.make
+CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.o: /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pieces/Piece.cpp
+CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.o: CMakeFiles/ChessPP.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.o -MF CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.o.d -o CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.o -c /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pieces/Piece.cpp
 
-CMakeFiles/ChessPP.dir/Source/Piece.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessPP.dir/Source/Piece.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Piece.cpp > CMakeFiles/ChessPP.dir/Source/Piece.cpp.i
+CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pieces/Piece.cpp > CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.i
 
-CMakeFiles/ChessPP.dir/Source/Piece.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessPP.dir/Source/Piece.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Piece.cpp -o CMakeFiles/ChessPP.dir/Source/Piece.cpp.s
+CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pieces/Piece.cpp -o CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.s
 
 CMakeFiles/ChessPP.dir/Source/Board.cpp.o: CMakeFiles/ChessPP.dir/flags.make
 CMakeFiles/ChessPP.dir/Source/Board.cpp.o: /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Board.cpp
@@ -111,21 +111,53 @@ CMakeFiles/ChessPP.dir/Source/Board.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessPP.dir/Source/Board.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Board.cpp -o CMakeFiles/ChessPP.dir/Source/Board.cpp.s
 
+CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.o: CMakeFiles/ChessPP.dir/flags.make
+CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.o: /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pieces/Pawn.cpp
+CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.o: CMakeFiles/ChessPP.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.o -MF CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.o.d -o CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.o -c /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pieces/Pawn.cpp
+
+CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pieces/Pawn.cpp > CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.i
+
+CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pieces/Pawn.cpp -o CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.s
+
+CMakeFiles/ChessPP.dir/Headers/Move.cpp.o: CMakeFiles/ChessPP.dir/flags.make
+CMakeFiles/ChessPP.dir/Headers/Move.cpp.o: /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Move.cpp
+CMakeFiles/ChessPP.dir/Headers/Move.cpp.o: CMakeFiles/ChessPP.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ChessPP.dir/Headers/Move.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ChessPP.dir/Headers/Move.cpp.o -MF CMakeFiles/ChessPP.dir/Headers/Move.cpp.o.d -o CMakeFiles/ChessPP.dir/Headers/Move.cpp.o -c /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Move.cpp
+
+CMakeFiles/ChessPP.dir/Headers/Move.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessPP.dir/Headers/Move.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Move.cpp > CMakeFiles/ChessPP.dir/Headers/Move.cpp.i
+
+CMakeFiles/ChessPP.dir/Headers/Move.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessPP.dir/Headers/Move.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Move.cpp -o CMakeFiles/ChessPP.dir/Headers/Move.cpp.s
+
 # Object files for target ChessPP
 ChessPP_OBJECTS = \
 "CMakeFiles/ChessPP.dir/main.cpp.o" \
-"CMakeFiles/ChessPP.dir/Source/Piece.cpp.o" \
-"CMakeFiles/ChessPP.dir/Source/Board.cpp.o"
+"CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.o" \
+"CMakeFiles/ChessPP.dir/Source/Board.cpp.o" \
+"CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.o" \
+"CMakeFiles/ChessPP.dir/Headers/Move.cpp.o"
 
 # External object files for target ChessPP
 ChessPP_EXTERNAL_OBJECTS =
 
 ChessPP: CMakeFiles/ChessPP.dir/main.cpp.o
-ChessPP: CMakeFiles/ChessPP.dir/Source/Piece.cpp.o
+ChessPP: CMakeFiles/ChessPP.dir/Source/Pieces/Piece.cpp.o
 ChessPP: CMakeFiles/ChessPP.dir/Source/Board.cpp.o
+ChessPP: CMakeFiles/ChessPP.dir/Source/Pieces/Pawn.cpp.o
+ChessPP: CMakeFiles/ChessPP.dir/Headers/Move.cpp.o
 ChessPP: CMakeFiles/ChessPP.dir/build.make
 ChessPP: CMakeFiles/ChessPP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ChessPP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ChessPP"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ChessPP.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -7,7 +7,7 @@
 
 #include "string"
 #include <unordered_map>
-#include "Piece.h"
+#include "Pieces/Piece.h"
 #include "array"
 using namespace std;
 

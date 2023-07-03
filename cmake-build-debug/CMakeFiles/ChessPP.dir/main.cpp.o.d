@@ -732,4 +732,4 @@ CMakeFiles/ChessPP.dir/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Board.h \
-  /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Piece.h
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Pieces/Piece.h

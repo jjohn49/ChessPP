@@ -4,7 +4,7 @@
 
 #include <utility>
 
-#include "../Headers/Piece.h"
+#include "../../Headers/Pieces/Piece.h"
 
 Piece::Piece() {
     this->name = "Piece";
@@ -29,7 +29,7 @@ void Piece::setY(int32_t y) {
 }
 
 string Piece::toString() {
-    return this->name + " at location " + this->x + to_string(this->y);
+    return this->color + this->name + " at location " + this->x + to_string(this->y);
 }
 
 bool Piece::operator==(Piece piece) {
