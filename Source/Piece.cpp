@@ -32,3 +32,17 @@ string Piece::toString() {
     return this->name + " at location " + this->x + to_string(this->y);
 }
 
+bool Piece::operator==(Piece piece) {
+    return this->name==piece.name && this->color==piece.color && this->x==piece.x && this->y==piece.y;
+}
+
+bool Piece::operator==(optional<Piece> p) {
+    if(!p.has_value()){
+        return false;
+    }
+    return *this == p.value();
+}
+
+
+
+

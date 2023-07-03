@@ -12,11 +12,11 @@
 using namespace std;
 
 class Board {
-    unordered_map<int32_t , array<Piece,8>> board;
+    unordered_map<int32_t , array<optional<Piece>,8>>  board;
 public:
     Board();
     //~Board();
-    Piece getPieceAt(int32_t x, char y);
+    optional<Piece> getPieceAt(int32_t x, char y);
     void printBoard();
 };
 

@@ -22,6 +22,9 @@ public:
     void setX(char x);
     void setY(int32_t y);
     string toString();
+    //bool isEqualTo(optional<Piece> p);
+    bool operator == (Piece piece);
+    bool operator == (optional<Piece> p);
 
 
 
