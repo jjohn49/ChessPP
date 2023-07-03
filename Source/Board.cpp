@@ -21,18 +21,30 @@ Board::Board(){
 
 
 void Board::printBoard() {
-    for(int row = 0; row < 8; row++){
+    for(int row = 0; row < 9; row++){
         for(int col = 'a'; col< 'i'; col++){
-            if(!this->getPieceAt(row, col).has_value()){
-                cout << "Null";
+            if(row == 0){
+                cout << (char)col << "\t\t";
+                continue;
+            }
+
+            if(col == 'a'){
+                cout << row;
+                continue;
+            }
+            if(this->getPieceAt(row, (char)col).has_value()){
+                cout << this->getPieceAt(row, (char)col).value().toShortString() + "\t\t";
+            }else {
+                cout << "Null\t\t";
             }
         }
+        cout << "\n\n";
     }
 }
 
 
-optional<Piece> Board::getPieceAt(int32_t x, char y) {
-    return this->board.at(x)[y];
+optional<Piece> Board::getPieceAt(int32_t y, char x) {
+    return this->board.at(y)[x - 'a'];
 }
 
 

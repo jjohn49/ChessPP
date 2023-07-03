@@ -129,30 +129,6 @@ ChessPP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/build
 .PHONY : ChessPP/fast
 
-Headers/Move.o: Headers/Move.cpp.o
-.PHONY : Headers/Move.o
-
-# target to build an object file
-Headers/Move.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Headers/Move.cpp.o
-.PHONY : Headers/Move.cpp.o
-
-Headers/Move.i: Headers/Move.cpp.i
-.PHONY : Headers/Move.i
-
-# target to preprocess a source file
-Headers/Move.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Headers/Move.cpp.i
-.PHONY : Headers/Move.cpp.i
-
-Headers/Move.s: Headers/Move.cpp.s
-.PHONY : Headers/Move.s
-
-# target to generate assembly for a file
-Headers/Move.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Headers/Move.cpp.s
-.PHONY : Headers/Move.cpp.s
-
 Source/Board.o: Source/Board.cpp.o
 .PHONY : Source/Board.o
 
@@ -176,6 +152,30 @@ Source/Board.s: Source/Board.cpp.s
 Source/Board.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Board.cpp.s
 .PHONY : Source/Board.cpp.s
+
+Source/Move.o: Source/Move.cpp.o
+.PHONY : Source/Move.o
+
+# target to build an object file
+Source/Move.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Move.cpp.o
+.PHONY : Source/Move.cpp.o
+
+Source/Move.i: Source/Move.cpp.i
+.PHONY : Source/Move.i
+
+# target to preprocess a source file
+Source/Move.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Move.cpp.i
+.PHONY : Source/Move.cpp.i
+
+Source/Move.s: Source/Move.cpp.s
+.PHONY : Source/Move.s
+
+# target to generate assembly for a file
+Source/Move.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Move.cpp.s
+.PHONY : Source/Move.cpp.s
 
 Source/Pieces/Pawn.o: Source/Pieces/Pawn.cpp.o
 .PHONY : Source/Pieces/Pawn.o
@@ -258,12 +258,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ChessPP"
-	@echo "... Headers/Move.o"
-	@echo "... Headers/Move.i"
-	@echo "... Headers/Move.s"
 	@echo "... Source/Board.o"
 	@echo "... Source/Board.i"
 	@echo "... Source/Board.s"
+	@echo "... Source/Move.o"
+	@echo "... Source/Move.i"
+	@echo "... Source/Move.s"
 	@echo "... Source/Pieces/Pawn.o"
 	@echo "... Source/Pieces/Pawn.i"
 	@echo "... Source/Pieces/Pawn.s"

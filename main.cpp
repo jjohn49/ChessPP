@@ -3,11 +3,7 @@
 
 int main() {
 
-    Piece A = Piece("Pawn", 'b', 'a', 1);
-    Piece B = Piece("Pawn", 'b', 'a', 1);
-
-    optional<Piece> C = nullopt;
-
-    std::cout << (A == C) << endl;
+    Board b = Board();
+    b.printBoard();
     return 0;
 }
