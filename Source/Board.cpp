@@ -58,5 +58,11 @@ void Board::printMoves(){
     }
 }
 
+vector<Move> Board::getMovesFor(Piece piece){
+    if(piece.name == "Pawn"){
+        this->getMovesForPawn(piece);
+    }
+}
+
 
 

@@ -23,6 +23,7 @@ public:
     std::string toString();
     std::string oldPosition();
     std::string newPosition();
+
 };
 
 

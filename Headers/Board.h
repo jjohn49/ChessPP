@@ -11,6 +11,7 @@
 #include "array"
 #include <vector>
 #include "Move.h"
+#include "Pieces/Pawn.h"
 using namespace std;
 
 class Board {
@@ -23,6 +24,9 @@ public:
     void printBoard();
     void addMove(Move newMove);
     void printMoves();
+    vector<Move> getMovesFor(Piece piece);
+    vector<Move> getMovesForPawn(Pawn pawn);
+
 };
 
 

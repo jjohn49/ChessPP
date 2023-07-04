@@ -734,4 +734,7 @@ CMakeFiles/ChessPP.dir/Source/Board.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_fsfilcnt_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
-  /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/../Headers/./Pieces/Piece.h
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/../Headers/./Pieces/Piece.h \
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/../Headers/Pieces/Pawn.h \
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/../Headers/Pieces/./Piece.h \
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Source/../Headers/Pieces/../Move.h

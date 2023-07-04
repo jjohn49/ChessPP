@@ -734,4 +734,7 @@ CMakeFiles/ChessPP.dir/main.cpp.o: \
   /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Pieces/Piece.h \
   /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Board.h \
   /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Move.h \
-  /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/./Pieces/Piece.h
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/./Pieces/Piece.h \
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Pieces/Pawn.h \
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Pieces/./Piece.h \
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Pieces/../Move.h
