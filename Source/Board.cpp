@@ -44,6 +44,9 @@ void Board::printBoard() {
 
 
 optional<Piece> Board::getPieceAt(int32_t y, char x) {
+    if(y > 8 || y < 1 || x < 'a' || x > 'h'){
+        return nullopt;
+    }
     return this->board.at(y)[x - 'a'];
 }
 
@@ -62,6 +65,20 @@ vector<Move> Board::getMovesFor(Piece piece){
     if(piece.name == "Pawn"){
         this->getMovesForPawn(piece);
     }
+}
+
+vector<Move> Board::getMovesForPawn(Piece pawn){
+    vector<Move> pawnMoves;
+    if(!getPieceAt(pawn.y + 1, pawn.x)){
+        pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x, pawn.y+1);
+        if(!pawn.hasMoved && !getPieceAt(pawn.y + 2, pawn.x)){
+            pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x, pawn.y+2);
+        }
+    }
+
+    if(getPieceAt(pawn.x))
+
+
 }
 
 

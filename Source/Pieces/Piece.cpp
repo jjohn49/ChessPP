@@ -11,6 +11,7 @@ Piece::Piece() {
     this->x = '\0';
     this->y = 0;
     this->color = 'w';
+    this->hasMoved = false;
 }
 
 Piece::Piece(string name, char color, char x, int32_t y) {
@@ -18,6 +19,7 @@ Piece::Piece(string name, char color, char x, int32_t y) {
     this->x=x;
     this->y=y;
     this->color=color;
+    this->hasMoved=false;
 }
 
 void Piece::setX(char x) {

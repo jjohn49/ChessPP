@@ -15,6 +15,7 @@ public:
     char x;
     char color;
     int32_t y;
+    bool hasMoved;
 
     Piece();
     Piece(string name, char color, char x, int32_t y);
