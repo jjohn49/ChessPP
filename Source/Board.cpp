@@ -47,5 +47,16 @@ optional<Piece> Board::getPieceAt(int32_t y, char x) {
     return this->board.at(y)[x - 'a'];
 }
 
+void Board::addMove(Move newMove) {
+    moves.push_back(newMove);
+}
+
+void Board::printMoves(){
+    cout << "MOVES\n";
+    for(int x = 0; x < moves.size(); x++){
+        cout << x + 1 << ". " << moves[x].toString() << "\n";
+    }
+}
+
 
 

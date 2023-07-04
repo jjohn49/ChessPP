@@ -5,7 +5,8 @@
 #ifndef CHESSPP_PAWN_H
 #define CHESSPP_PAWN_H
 
-#include "Piece.h"
+#include "./Piece.h"
+#include "../Move.h"
 
 
 class Pawn: public Piece {

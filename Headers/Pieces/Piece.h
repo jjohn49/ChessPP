@@ -6,7 +6,6 @@
 #define CHESSPP_PIECE_H
 
 #include <string>
-#include "../Move.h"
 
 using namespace std;
 
@@ -16,7 +15,6 @@ public:
     char x;
     char color;
     int32_t y;
-    Move * moves;
 
     Piece();
     Piece(string name, char color, char x, int32_t y);
