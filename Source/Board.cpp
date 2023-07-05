@@ -63,6 +63,10 @@ bool Board::isLocationValid(char x, int32_t y) {
     return y <= 8 && y >= 1 && x >= 'a' && x <= 'h';
 }
 
+unordered_map<int32_t, array<optional<Piece>, 8>> Board::getBoard() {
+    return this->board;
+}
+
 
 
 

@@ -23,6 +23,7 @@ public:
     //~Board();
     optional<Piece> getPieceAt(char x, int32_t y);
     bool isLocationValid(char x, int32_t y);
+    unordered_map<int32_t , array<optional<Piece>,8>> getBoard();
     void printBoard();
     void addMove(Move newMove);
     void printMoves();
