@@ -42,12 +42,11 @@ void Board::printBoard() {
     }
 }
 
-
-optional<Piece> Board::getPieceAt(int32_t y, char x) {
+optional<Piece> Board::getPieceAt(char x, int32_t y) {
     if(y > 8 || y < 1 || x < 'a' || x > 'h'){
         return nullopt;
     }
-    return this->board.at(y)[x - 'a'];
+    return isLocationValid(x, y)?  this->board.at(y)[x - 'a'] : nullopt;
 }
 
 void Board::addMove(Move newMove) {
@@ -59,6 +58,10 @@ void Board::printMoves(){
     for(int x = 0; x < moves.size(); x++){
         cout << x + 1 << ". " << moves[x].toString() << "\n";
     }
+}
+
+bool Board::isLocationValid(char x, int32_t y) {
+    return y <= 8 && y >= 1 && x >= 'a' && x <= 'h';
 }
 
 

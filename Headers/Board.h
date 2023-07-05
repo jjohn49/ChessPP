@@ -20,12 +20,14 @@ class Board {
 public:
     Board();
     //~Board();
-    optional<Piece> getPieceAt(int32_t x, char y);
+    optional<Piece> getPieceAt(char x, int32_t y);
+    bool isLocationValid(char x, int32_t y);
     void printBoard();
     void addMove(Move newMove);
     void printMoves();
     vector<Move> getMovesFor(Piece piece);
     vector<Move> getMovesForPawn(Piece pawn);
+
 
 };
 

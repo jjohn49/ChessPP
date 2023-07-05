@@ -23,19 +23,35 @@ vector<Move> MovesForPieces::getMovesForPawn(Piece pawn){
 
 vector<Move> MovesForPieces::getRegularMovesForPawn(Piece pawn) {
     vector<Move> pawnMoves{};
+    int offset = (pawn.color == 'w')? 1 : -1;
     //need to change this to add offset
-    if(!board.getPieceAt(pawn.y + 1, pawn.x)){
+    if(board.isLocationValid(pawn.x,pawn.y + offset) && !board.getPieceAt(pawn.x , pawn.y + offset) ){
         //need to change this to add offset
-        pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x, pawn.y+1);
+        pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x, pawn.y + offset);
         //need to change this to add offset
-        if(!pawn.hasMoved && !board.getPieceAt(pawn.y + 2, pawn.x)){
+        if(!pawn.hasMoved && board.isLocationValid(pawn.x, pawn.y + (2 * offset)) && !board.getPieceAt(pawn.x, pawn.y + (2 * offset)) ){
             //need to change this to add offset
-            pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x, pawn.y+2);
+            pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x, pawn.y+(2 * offset));
         }
     }
     return pawnMoves;
 }
 
 vector<Move> MovesForPieces::getTakeMovesForPawn(Piece pawn) {
-    //if(board.getPieceAt(pawn.x))
+    int offset = (pawn.color == 'w')? 1 : -1;
+    vector<Move> pawnMoves{};
+    array<int, 2> leftAndRight{-1,1};
+    //need to change this to add offset
+    for(int &lr :leftAndRight){
+        if(board.isLocationValid((char)(pawn.x+lr),pawn.y + offset) && board.getPieceAt((char)(pawn.x+lr),pawn.y + offset)){
+            //need to change this to add offset
+            Piece p = board.getPieceAt((char)(pawn.x+lr),pawn.y + offset).value();
+            if(!pawn.isSameColor(p)){
+                //need to change this to add offset
+                pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x+lr, pawn.y + offset);
+            }
+        }
+    }
+    return pawnMoves;
+
 }
