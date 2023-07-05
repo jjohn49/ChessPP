@@ -61,25 +61,7 @@ void Board::printMoves(){
     }
 }
 
-vector<Move> Board::getMovesFor(Piece piece){
-    if(piece.name == "Pawn"){
-        this->getMovesForPawn(piece);
-    }
-}
 
-vector<Move> Board::getMovesForPawn(Piece pawn){
-    vector<Move> pawnMoves;
-    if(!getPieceAt(pawn.y + 1, pawn.x)){
-        pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x, pawn.y+1);
-        if(!pawn.hasMoved && !getPieceAt(pawn.y + 2, pawn.x)){
-            pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x, pawn.y+2);
-        }
-    }
-
-    if(getPieceAt(pawn.x))
-
-
-}
 
 
 
