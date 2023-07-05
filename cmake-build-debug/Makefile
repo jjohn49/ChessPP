@@ -129,30 +129,6 @@ ChessPP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/build
 .PHONY : ChessPP/fast
 
-Headers/MovesForPieces.o: Headers/MovesForPieces.cpp.o
-.PHONY : Headers/MovesForPieces.o
-
-# target to build an object file
-Headers/MovesForPieces.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Headers/MovesForPieces.cpp.o
-.PHONY : Headers/MovesForPieces.cpp.o
-
-Headers/MovesForPieces.i: Headers/MovesForPieces.cpp.i
-.PHONY : Headers/MovesForPieces.i
-
-# target to preprocess a source file
-Headers/MovesForPieces.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Headers/MovesForPieces.cpp.i
-.PHONY : Headers/MovesForPieces.cpp.i
-
-Headers/MovesForPieces.s: Headers/MovesForPieces.cpp.s
-.PHONY : Headers/MovesForPieces.s
-
-# target to generate assembly for a file
-Headers/MovesForPieces.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Headers/MovesForPieces.cpp.s
-.PHONY : Headers/MovesForPieces.cpp.s
-
 Source/Board.o: Source/Board.cpp.o
 .PHONY : Source/Board.o
 
@@ -200,6 +176,30 @@ Source/Move.s: Source/Move.cpp.s
 Source/Move.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Move.cpp.s
 .PHONY : Source/Move.cpp.s
+
+Source/MovesForPieces.o: Source/MovesForPieces.cpp.o
+.PHONY : Source/MovesForPieces.o
+
+# target to build an object file
+Source/MovesForPieces.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/MovesForPieces.cpp.o
+.PHONY : Source/MovesForPieces.cpp.o
+
+Source/MovesForPieces.i: Source/MovesForPieces.cpp.i
+.PHONY : Source/MovesForPieces.i
+
+# target to preprocess a source file
+Source/MovesForPieces.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/MovesForPieces.cpp.i
+.PHONY : Source/MovesForPieces.cpp.i
+
+Source/MovesForPieces.s: Source/MovesForPieces.cpp.s
+.PHONY : Source/MovesForPieces.s
+
+# target to generate assembly for a file
+Source/MovesForPieces.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/MovesForPieces.cpp.s
+.PHONY : Source/MovesForPieces.cpp.s
 
 Source/Pieces/Piece.o: Source/Pieces/Piece.cpp.o
 .PHONY : Source/Pieces/Piece.o
@@ -258,15 +258,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ChessPP"
-	@echo "... Headers/MovesForPieces.o"
-	@echo "... Headers/MovesForPieces.i"
-	@echo "... Headers/MovesForPieces.s"
 	@echo "... Source/Board.o"
 	@echo "... Source/Board.i"
 	@echo "... Source/Board.s"
 	@echo "... Source/Move.o"
 	@echo "... Source/Move.i"
 	@echo "... Source/Move.s"
+	@echo "... Source/MovesForPieces.o"
+	@echo "... Source/MovesForPieces.i"
+	@echo "... Source/MovesForPieces.s"
 	@echo "... Source/Pieces/Piece.o"
 	@echo "... Source/Pieces/Piece.i"
 	@echo "... Source/Pieces/Piece.s"

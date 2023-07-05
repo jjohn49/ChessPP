@@ -8,7 +8,7 @@
 
 Piece::Piece() {
     this->name = "Piece";
-    this->x = '\0';
+    this->x = 'i';
     this->y = 0;
     this->color = 'w';
     this->hasMoved = false;

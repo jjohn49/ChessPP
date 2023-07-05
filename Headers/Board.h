@@ -12,6 +12,7 @@
 #include <vector>
 #include "Move.h"
 
+
 using namespace std;
 
 class Board {

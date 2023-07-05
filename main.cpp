@@ -2,16 +2,17 @@
 #include "Headers/Pieces/Piece.h"
 #include "Headers/Board.h"
 #include "Headers/Move.h"
+#include "Headers/MovesForPieces.h"
 
 
 int main() {
 
-    Piece piece = Piece("Pawn", 'b', 'a', 1);
-    Move m = Move(piece, "a1", "b1");
+
     Board b = Board();
-    //b.printBoard();
-    b.addMove(m);
-    b.printMoves();
-    
+
+    if (b.getPieceAt('b', 2)){
+        cout << b.getPieceAt('b', 2).value().toString();
+    }
+
     return 0;
 }

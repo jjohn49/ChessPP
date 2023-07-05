@@ -9,7 +9,7 @@ Board::Board(){
     //maybe make a piece called empty
     board = {
             {1,{Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece()}},
-            {2,{Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece()}},
+            {2,{Piece("Pawn", 'w', 'a', 2),Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece()}},
             {3,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
             {4,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
             {5,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
@@ -22,18 +22,18 @@ Board::Board(){
 
 void Board::printBoard() {
     for(int row = 0; row < 9; row++){
-        for(int col = 'a'; col< 'i'; col++){
+        for(int col = 'a' - 1; col< 'i'; col++){
             if(row == 0){
                 cout << (char)col << "\t\t";
                 continue;
             }
 
-            if(col == 'a'){
+            if(col == 'a' - 1){
                 cout << row;
                 continue;
             }
-            if(this->getPieceAt(row, (char)col).has_value()){
-                cout << this->getPieceAt(row, (char)col).value().toShortString() + "\t\t";
+            if(this->getPieceAt((char)col, row).has_value()){
+                cout << this->getPieceAt(char(col), row).value().toShortString() + "\t\t";
             }else {
                 cout << "Null\t\t";
             }
@@ -43,9 +43,8 @@ void Board::printBoard() {
 }
 
 optional<Piece> Board::getPieceAt(char x, int32_t y) {
-    if(y > 8 || y < 1 || x < 'a' || x > 'h'){
-        return nullopt;
-    }
+    //cout << y << x - 'a' << "\n\n\n";
+
     return isLocationValid(x, y)?  this->board.at(y)[x - 'a'] : nullopt;
 }
 
