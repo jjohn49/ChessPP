@@ -27,8 +27,8 @@ Move::Move(Piece pieceMoved, string oldPosition, string newPosition): Move(std::
 }
 
 std::string Move::toString() {
-    return this->pieceMoved.color + this->pieceMoved.name + ": " + this->oldX + (char)this->oldY + " -> " + this->newX +
-            (char)this->newY;
+    return this->pieceMoved.color + this->pieceMoved.name + ": " + this->oldX + to_string(this->oldY) + " -> " + this->newX +
+            to_string(this->newY);
 }
 
 std::string Move::oldPosition() {

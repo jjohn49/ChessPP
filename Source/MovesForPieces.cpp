@@ -8,9 +8,12 @@ MovesForPieces::MovesForPieces(Board board){
     this->board = board;
 }
 vector<Move> MovesForPieces::getMovesFor(Piece piece){
+
     if(piece.name == "Pawn"){
-        this->getMovesForPawn(piece);
+       return this->getMovesForPawn(piece);
     }
+
+    return vector<Move>();
 }
 
 vector<Move> MovesForPieces::getMovesForPawn(Piece pawn){
@@ -24,7 +27,7 @@ vector<Move> MovesForPieces::getMovesForPawn(Piece pawn){
 vector<Move> MovesForPieces::getRegularMovesForPawn(Piece pawn) {
     vector<Move> pawnMoves{};
     int offset = (pawn.color == 'w')? 1 : -1;
-    //need to change this to add offset
+
     if(board.isLocationValid(pawn.x,pawn.y + offset) && !board.getPieceAt(pawn.x , pawn.y + offset) ){
         //need to change this to add offset
         pawnMoves.emplace_back(pawn, pawn.x, pawn.y, pawn.x, pawn.y + offset);

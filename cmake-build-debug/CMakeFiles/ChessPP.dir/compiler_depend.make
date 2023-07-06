@@ -3626,11 +3626,8 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /Users/hugh/Desktop/jj-git-repos/ChessPP/main
   /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Board.h \
   /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Move.h \
   /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/Pieces/Piece.h \
-  /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/MovesForPieces.h \
-  /Users/hugh/Desktop/jj-git-repos/ChessPP/HEaders/MovesForPieces.h
+  /Users/hugh/Desktop/jj-git-repos/ChessPP/Headers/MovesForPieces.h
 
-
-/Users/hugh/Desktop/jj-git-repos/ChessPP/HEaders/MovesForPieces.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h:
 

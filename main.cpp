@@ -3,7 +3,7 @@
 #include "Headers/Board.h"
 #include "Headers/Move.h"
 #include "Headers/MovesForPieces.h"
-#include "HEaders/MovesForPieces.h"
+#include "Headers/MovesForPieces.h"
 
 
 int main() {
@@ -12,9 +12,11 @@ int main() {
     Board b = Board();
     MovesForPieces mfp{b};
     Piece pawn = b.getPieceAt('a',2).value();
+    //cout << pawn.toString();
     vector<Move> moves =  mfp.getMovesFor(pawn);
+    cout << "MOVE \n";
     for(int x = 0; x < moves.size(); x++){
-        cout << moves.at(x).toString();
+        cout << moves.at(x).toString() << endl;
     }
 
     return 0;
