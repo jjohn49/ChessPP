@@ -10,7 +10,7 @@ Board::Board(){
     board = {
             {1,{Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece()}},
             {2,{Piece("Pawn", 'w', 'a', 2),Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece()}},
-            {3,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
+            {3,{nullopt, Piece("Pawn", 'b', 'b', 3), nullopt, nullopt, nullopt, nullopt, nullopt}},
             {4,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
             {5,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
             {6,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
