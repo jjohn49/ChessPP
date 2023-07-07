@@ -17,6 +17,7 @@ using namespace std;
 
 class Board {
     unordered_map<int32_t , array<optional<Piece>,8>>  board;
+
     vector<Move> moves;
 public:
     Board();
