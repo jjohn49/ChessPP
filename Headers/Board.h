@@ -16,14 +16,15 @@
 using namespace std;
 
 class Board {
-    unordered_map<int32_t , array<optional<Piece>,8>>  board;
+    array<Piece,8> pawns;
+    unordered_map<int32_t , array<Piece*,8>>  board;
     vector<Move> moves;
 public:
     Board();
     //~Board();
-    optional<Piece> getPieceAt(char x, int32_t y);
+    Piece* getPieceAt(char x, int32_t y);
     bool isLocationValid(char x, int32_t y);
-    unordered_map<int32_t , array<optional<Piece>,8>> getBoard();
+    unordered_map<int32_t , array<Piece *,8>> getBoard();
     void printBoard();
     void addMove(Move newMove);
     void printMoves();

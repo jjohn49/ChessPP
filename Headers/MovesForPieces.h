@@ -11,11 +11,11 @@ class MovesForPieces {
     Board board;
 public:
     MovesForPieces(Board board);
-    vector<Move> getMovesFor(Piece piece);
+    vector<Move> getMovesFor(Piece * piece);
 private:
-    vector<Move> getMovesForPawn(Piece pawn);
-    vector<Move> getRegularMovesForPawn(Piece pawn);
-    vector<Move> getTakeMovesForPawn(Piece pawn);
+    vector<Move> getMovesForPawn(Piece * pawn);
+    vector<Move> getRegularMovesForPawn(Piece * pawn);
+    vector<Move> getTakeMovesForPawn(Piece * pawn);
 };
 
 
