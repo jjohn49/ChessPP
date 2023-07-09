@@ -3,6 +3,8 @@
 //
 
 #include "../Headers/MovesForPieces.h"
+#include <array>
+
 
 
 MovesForPieces::MovesForPieces(Board board){
@@ -60,7 +62,9 @@ vector<Move> MovesForPieces::getTakeMovesForPawn(Piece * pawn) {
 
 }
 
-vector<Move> MovesForPieces::getMovesForKnight(Piece *Knight) {
-    //maybe do something with pairs for position?
+vector<Move> MovesForPieces::getMovesForKnight(Piece * knight) {
+    char x = knight->x;
+    int32_t y = knight->y;
+    array<pair<char, int32_t>, 8> positions{make_pair() }
     return vector<Move>();
 }
