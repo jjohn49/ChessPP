@@ -16,6 +16,8 @@ private:
     vector<Move> getMovesForPawn(Piece * pawn);
     vector<Move> getRegularMovesForPawn(Piece * pawn);
     vector<Move> getTakeMovesForPawn(Piece * pawn);
+
+    vector<Move> getMovesForKnight(Piece * Knight);
 };
 
 

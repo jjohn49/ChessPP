@@ -4,6 +4,7 @@
 
 #include "../Headers/MovesForPieces.h"
 
+
 MovesForPieces::MovesForPieces(Board board){
     this->board = board;
 }
@@ -57,4 +58,9 @@ vector<Move> MovesForPieces::getTakeMovesForPawn(Piece * pawn) {
     }
     return pawnMoves;
 
+}
+
+vector<Move> MovesForPieces::getMovesForKnight(Piece *Knight) {
+    //maybe do something with pairs for position?
+    return vector<Move>();
 }
