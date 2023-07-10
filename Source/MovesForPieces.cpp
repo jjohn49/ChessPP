@@ -20,6 +20,8 @@ vector<Move> MovesForPieces::getMovesFor(Piece * piece){
         return this->getMovesForKing(piece);
     }else if(piece->name == "Bishop"){
         return this->getMovesForBishop(piece);
+    }else if(piece->name == "Rook"){
+       return this->getMovesForRook(piece);
     }
 
     return vector<Move>();
@@ -161,57 +163,54 @@ vector<Move> MovesForPieces::getMovesForBishop(Piece *bishop) {
 }
 
 vector<Move> MovesForPieces::getMovesForRook(Piece *rook) {
-    vector<Move> moves{};
+    vector<Move> * moves = new vector<Move>();
     array<int, 2> charged{-1,1};
     Move newMove;
     int counter;
 
     for(int &charge: charged){
 
-        newMove = Move(rook, (char)(rook->x + (counter * charge)), rook->y);
-        char x{rook->x};
-        int32_t y{rook->y};
-
-        while(this->isValidMove(newMove)){
-
-            moves.emplace_back(newMove);
-            //edge case of when bishop meets opponent piece but not at end of the board
-            pair<char, int32_t> position{newMove.newPosition()};
-            if(board.getPieceAt(position.first, position.second ) && !rook->isSameColor(board.getPieceAt(position.first, position.second ))){
-                break;
-            }
-            counter++;
-            newMove = Move(rook, (char)(x + (charge * counter)), y );
-        }
-
-        counter = 1;
-        newMove = Move(rook, rook->x, y + (counter * charge));
-
-
+        newMove = Move(rook, (char)(rook->x + charge), rook->y);
+        this->validConsecutiveHorizontalMoves(moves, newMove, charge);
+        newMove = Move(rook, rook->x, rook->y + charge);
+        this->validConsecutiveVerticalMoves(moves, newMove, charge);
     }
 
-
-    return moves;
+    return *moves;
 }
 
-vector<Move> MovesForPieces::validConsecutiveMoves(Move move, int charge) {
-    vector<Move> moves{};
-    Piece * piece{move.getPiece()};
+void MovesForPieces::validConsecutiveHorizontalMoves(vector<Move> * moves, Move move, int charge) {
 
+    Piece * piece{move.getPiece()};
+    //cout<< move.toString() << this->isValidMove(move) << endl;
     if(this->isValidMove(move)){
 
-        moves.emplace_back(move);
+        moves->emplace_back(move);
         //edge case of when bishop meets opponent piece but not at end of the board
         pair<char, int32_t> position{move.newPosition()};
         if(board.getPieceAt(position.first, position.second ) && !piece->isSameColor(board.getPieceAt(position.first, position.second ))){
-            return moves;
+            
+            return;
         }
 
-        move = Move(piece, (char)(position.first + charge), piece->y );
-        vector<Move> newMoves{validConsecutiveMoves(move, charge)};
-        moves.insert(moves.end(), newMoves.begin(), newMoves.end());
+        Move newMove{piece, (char)(position.first + charge), piece->y};
+        validConsecutiveHorizontalMoves(moves, newMove, charge);
     }
+}
 
+void MovesForPieces::validConsecutiveVerticalMoves(vector<Move> *moves, Move move, int charge) {
+    Piece * piece{move.getPiece()};
+    //cout<< move.toString() << this->isValidMove(move) << endl;
+    if(this->isValidMove(move)){
 
-    return moves;
+        moves->emplace_back(move);
+        //edge case of when bishop meets opponent piece but not at end of the board
+        pair<char, int32_t> position{move.newPosition()};
+        if(board.getPieceAt(position.first, position.second ) && !piece->isSameColor(board.getPieceAt(position.first, position.second ))){
+            return;
+        }
+
+        Move newMove{piece, position.first, piece->y + charge};
+        validConsecutiveHorizontalMoves(moves, newMove, charge);
+    }
 }

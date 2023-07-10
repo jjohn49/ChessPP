@@ -27,7 +27,9 @@ private:
 
     vector<Move> getMovesForRook(Piece * rook);
 
-    vector<Move> validConsecutiveMoves(Move move, int charge);
+    void validConsecutiveHorizontalMoves(vector<Move> * moves, Move move, int charge);
+
+    void validConsecutiveVerticalMoves(vector<Move> * moves, Move move, int charge);
 };
 
 
