@@ -34,10 +34,11 @@ vector<Move> MovesForPieces::getMovesForPawn(Piece * pawn){
 vector<Move> MovesForPieces::getRegularMovesForPawn(Piece * pawn) {
     vector<Move> pawnMoves{};
     int offset = (pawn->color == 'w')? 1 : -1;
-
-    if(isValidMove(pawn, pawn->x, pawn->y + offset)){
+    Move newMove{pawn, pawn->x, pawn->y+offset};
+    if(isValidMove(newMove)){
         pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x, pawn->y + offset);
-        if(!pawn->hasMoved  && isValidMove(pawn, pawn->x, (pawn->y + (2 * offset)))){
+        newMove = Move(pawn, pawn->x, (pawn->y + (2 * offset)));
+        if(!pawn->hasMoved  && isValidMove(newMove)){
             pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x, pawn->y+(2 * offset));
         }
     }
@@ -49,9 +50,10 @@ vector<Move> MovesForPieces::getTakeMovesForPawn(Piece * pawn) {
     int offset = (pawn->color == 'w')? 1 : -1;
     vector<Move> pawnMoves{};
     array<int, 2> leftAndRight{-1,1};
-
+    Move newMove;
     for(int &lr :leftAndRight){
-        if(this->isValidMove(pawn, (char)(pawn->x+lr), pawn->y + offset) && board.getPieceAt((char)(pawn->x+lr), pawn->y + offset)){
+        newMove = Move(pawn, (char)(pawn->x+lr), pawn->y + offset);
+        if(this->isValidMove(newMove) && board.getPieceAt((char)(pawn->x+lr), pawn->y + offset)){
             pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x+lr, pawn->y + offset);
         }
     }
@@ -72,23 +74,25 @@ vector<Move> MovesForPieces::getMovesForKnight(Piece * knight) {
                                             make_pair(x-2,y-1)};
 
     for(pair<char, int32_t> &position:positions){
-
-        if(this->isValidMove(knight, position.first, position.second)){
+        Move newMove(knight, position.first, position.second);
+        if(this->isValidMove(newMove)){
             moves.emplace_back(knight, x,y, position.first, position.second);
         }
     }
     return moves;
 }
 
-bool MovesForPieces::isValidMove(Piece * piece, char x, int32_t y) {
-    if(board.isLocationValid(x,y)){
+bool MovesForPieces::isValidMove(Move move) {
+    pair<char, int32_t> newPosition{move.newPosition()};
+    if(board.isLocationValid(newPosition.first,newPosition.second)){
         //need to change this to add offset
-        Piece * p = board.getPieceAt(x,y);
+        Piece * p = board.getPieceAt(newPosition.first,newPosition.second);
+        Board newBoard = board.makeNewBoardWith(move);
         if(p == nullptr){
-            return true;//!isCheck()
-        }else if(!piece->isSameColor(p)){
+            return !isCheck(newBoard,move.getPiece()->color);
+        }else if(!move.getPiece()->isSameColor(p)){
             //need to change this to add offset
-            return true;//!isCheck()
+            return !isCheck(newBoard,move.getPiece()->color);
         }
     }
     return false;
@@ -108,9 +112,10 @@ vector<Move> MovesForPieces::getMovesForKing(Piece *king) {
             make_pair((char)x, y -1),
             make_pair((char)(x-1), y -1),
     };
-
+    Move newMove;
     for(pair<char, int32_t> &position: positions){
-        if(this->isValidMove(king, position.first, position.second)){
+        newMove = Move(king, position.first, position.second);
+        if(this->isValidMove(newMove)){
             moves.emplace_back(king, x, y, position.first, position.second);
         }
     }
@@ -118,7 +123,8 @@ vector<Move> MovesForPieces::getMovesForKing(Piece *king) {
     return moves;
 }
 
-bool MovesForPieces::isCheck(unordered_map<int32_t , array<Piece*,8>>  newBoard) {
+bool MovesForPieces::isCheck(Board newBoard, char color) {
+
     //maybe add multi-threading here
     return false;
 }

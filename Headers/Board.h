@@ -16,7 +16,7 @@
 using namespace std;
 
 class Board {
-    vector<Piece *> capturedPieces{};
+    vector<Piece *> capturedPieces;
     array<Piece,16> pawns;
     array<Piece,4> knights;
     array<Piece, 2> kings;
@@ -34,7 +34,7 @@ public:
     vector<Move> getMovesFor(Piece piece);
     vector<Move> getMovesForPawn(Piece pawn);
     void movePiece(Move move);
-    unordered_map<int32_t , array<Piece*,8>> makeNewBoardWith(Move move);
+    Board makeNewBoardWith(Move move);
 
 
 };

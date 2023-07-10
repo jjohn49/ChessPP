@@ -18,6 +18,7 @@ class Move {
 
 public:
     Move();
+    Move(Piece * piece, char newX, int32_t newY);
     Move(Piece * pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY);
     Move(Piece * pieceMoved, string oldPosition, string newPosition);
     std::string toString();

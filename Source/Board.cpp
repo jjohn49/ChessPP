@@ -107,14 +107,14 @@ void Board::movePiece(Move move){
     this->board[newPosition.second].at(newPosition.first - 'a') = piece;
 }
 
-unordered_map<int32_t , array<Piece*,8>> Board::makeNewBoardWith(Move move){
-    unordered_map<int32_t , array<Piece*,8>> newBoard = board;
+Board Board::makeNewBoardWith(Move move){
+    Board newBoard = *this;
     Piece * piece = move.getPiece();
     pair<char, int32_t> oldPosition{move.oldPosition()};
     pair<char, int32_t> newPosition{move.newPosition()};
 
-    newBoard[oldPosition.second].at(oldPosition.first - 'a') = nullptr;
-    newBoard[newPosition.second].at(newPosition.first - 'a') = piece;
+    newBoard.board[oldPosition.second].at(oldPosition.first - 'a') = nullptr;
+    newBoard.board[newPosition.second].at(newPosition.first - 'a') = piece;
 
     return newBoard;
 }

@@ -44,4 +44,8 @@ Piece *Move::getPiece() {
     return pieceMoved;
 }
 
+Move::Move(Piece * piece, char newX, int32_t newY): Move(piece, piece->x, piece->y, newX, newY) {
+//need nothing here
+}
+
 

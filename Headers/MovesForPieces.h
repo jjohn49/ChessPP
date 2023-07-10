@@ -13,8 +13,8 @@ public:
     MovesForPieces(Board board);
     vector<Move> getMovesFor(Piece * piece);
 private:
-    bool isValidMove(Piece * piece, char x, int32_t y);
-    bool isCheck(unordered_map<int32_t , array<Piece*,8>>  newBoard);
+    bool isValidMove(Move move);
+    bool isCheck(Board board, char color);
     vector<Move> getMovesForPawn(Piece * pawn);
     vector<Move> getRegularMovesForPawn(Piece * pawn);
     vector<Move> getTakeMovesForPawn(Piece * pawn);
