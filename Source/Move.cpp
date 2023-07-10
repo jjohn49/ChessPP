@@ -7,14 +7,15 @@
 #include "../Headers/Move.h"
 
 Move::Move() {
-    this->pieceMoved = Piece();
+    Piece p = Piece();
+    this->pieceMoved = &p;
     this->oldX = 'i';
     this->oldY = 9;
     this->newX = 'i';
     this->oldY = 9;
 }
 
-Move::Move(Piece pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY) {
+Move::Move(Piece * pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY) {
     this->pieceMoved = std::move(pieceMoved);
     this->oldX = oldX;
     this->oldY = oldY;
@@ -22,12 +23,12 @@ Move::Move(Piece pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY) {
     this->newY = newY;
 }
 
-Move::Move(Piece pieceMoved, string oldPosition, string newPosition): Move(std::move(pieceMoved), oldPosition.at(0), oldPosition.at(1), newPosition.at(0), newPosition.at(1)) {
+Move::Move(Piece * pieceMoved, string oldPosition, string newPosition): Move(std::move(pieceMoved), oldPosition.at(0), oldPosition.at(1), newPosition.at(0), newPosition.at(1)) {
     //Nothing is needed in this code block
 }
 
 std::string Move::toString() {
-    return this->pieceMoved.color + this->pieceMoved.name + ": " + this->oldX + to_string(this->oldY) + " -> " + this->newX +
+    return this->pieceMoved->color + this->pieceMoved->name + ": " + this->oldX + to_string(this->oldY) + " -> " + this->newX +
             to_string(this->newY);
 }
 

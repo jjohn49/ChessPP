@@ -7,15 +7,28 @@
 
 Board::Board(){
     //maybe make a piece called empty
+    pawns = {Piece("Pawn", 'w', 'a', 2),
+             Piece("Pawn", 'w', 'b', 2),
+             Piece("Pawn", 'w', 'c', 2),
+             Piece("Pawn", 'w', 'd', 2),
+             Piece("Pawn", 'w', 'e', 2),
+             Piece("Pawn", 'w', 'f', 2),
+             Piece("Pawn", 'w', 'g', 2),
+             Piece("Pawn", 'w', 'h', 2)};
+
+    knights = {
+            Piece("Knight", 'w', 'b', 1),
+            Piece("Knight", 'w', 'g', 1)
+    };
     board = {
-            {1,{Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece()}},
-            {2,{Piece("Pawn", 'w', 'a', 2),Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece()}},
-            {3,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
-            {4,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
-            {5,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
-            {6,{nullopt, nullopt, nullopt, nullopt, nullopt, nullopt, nullopt}},
-            {7,{Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece()}},
-            {8,{Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece(),Piece()}},
+            {1,{nullptr, &knights[0], nullptr, nullptr, nullptr, nullptr, &knights[1], nullptr}},
+            {2,{&pawns[0], &pawns[1], &pawns[2], &pawns[3], &pawns[4], &pawns[5], &pawns[6], &pawns[7]}},
+            {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {5,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {7,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {8,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
     };
 }
 
@@ -32,20 +45,21 @@ void Board::printBoard() {
                 cout << row;
                 continue;
             }
-            if(this->getPieceAt((char)col, row).has_value()){
-                cout << this->getPieceAt(char(col), row).value().toShortString() + "\t\t";
+            cout << "\t\t";
+            if(this->getPieceAt((char)col, row) != nullptr){
+                cout << this->getPieceAt(char(col), row)->toShortString();
             }else {
-                cout << "Null\t\t";
+                cout << "Null";
             }
         }
         cout << "\n\n";
     }
 }
 
-optional<Piece> Board::getPieceAt(char x, int32_t y) {
+Piece* Board::getPieceAt(char x, int32_t y) {
     //cout << y << x - 'a' << "\n\n\n";
 
-    return isLocationValid(x, y)?  this->board.at(y)[x - 'a'] : nullopt;
+    return isLocationValid(x, y) ?  this->board.at(y)[x - 'a'] : nullptr;
 }
 
 void Board::addMove(Move newMove) {
@@ -63,9 +77,13 @@ bool Board::isLocationValid(char x, int32_t y) {
     return y <= 8 && y >= 1 && x >= 'a' && x <= 'h';
 }
 
-unordered_map<int32_t, array<optional<Piece>, 8>> Board::getBoard() {
+unordered_map<int32_t, array<Piece*, 8>> Board::getBoard() {
     return this->board;
 }
+
+/*Board::~Board() {
+
+}*/
 
 
 
