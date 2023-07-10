@@ -32,12 +32,16 @@ std::string Move::toString() {
             to_string(this->newY);
 }
 
-std::string Move::oldPosition() {
-    return std::string() + this->oldX + (char)this->oldY;
+pair<char, int32_t> Move::oldPosition() {
+    return make_pair(this->oldX,(char)this->oldY);
 }
 
-std::string Move::newPosition() {
-    return std::string() + this->newX + (char)this->newY;
+pair<char, int32_t> Move::newPosition() {
+    return make_pair(this->newX,(char)this->newY);
+}
+
+Piece *Move::getPiece() {
+    return pieceMoved;
 }
 
 

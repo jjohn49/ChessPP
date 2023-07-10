@@ -21,8 +21,9 @@ public:
     Move(Piece * pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY);
     Move(Piece * pieceMoved, string oldPosition, string newPosition);
     std::string toString();
-    std::string oldPosition();
-    std::string newPosition();
+    pair<char, int32_t> oldPosition();
+    pair<char, int32_t> newPosition();
+    Piece * getPiece();
 
 };
 

@@ -53,6 +53,11 @@ bool Piece::isSameColor(Piece * piece) {
     return this->color == piece->color;
 }
 
+void Piece::setLocation(char x, int32_t y) {
+    this->x = x;
+    this-> y = y;
+}
+
 
 
 

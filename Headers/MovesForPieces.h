@@ -14,11 +14,14 @@ public:
     vector<Move> getMovesFor(Piece * piece);
 private:
     bool isValidMove(Piece * piece, char x, int32_t y);
+    bool isCheck(unordered_map<int32_t , array<Piece*,8>>  newBoard);
     vector<Move> getMovesForPawn(Piece * pawn);
     vector<Move> getRegularMovesForPawn(Piece * pawn);
     vector<Move> getTakeMovesForPawn(Piece * pawn);
 
-    vector<Move> getMovesForKnight(Piece * Knight);
+    vector<Move> getMovesForKnight(Piece * knight);
+
+    vector<Move> getMovesForKing(Piece * king);
 };
 
 

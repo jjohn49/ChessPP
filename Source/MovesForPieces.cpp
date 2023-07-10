@@ -16,6 +16,8 @@ vector<Move> MovesForPieces::getMovesFor(Piece * piece){
        return this->getMovesForPawn(piece);
     }else if(piece->name == "Knight"){
         return this->getMovesForKnight(piece);
+    }else if(piece->name == "King"){
+        return this->getMovesForKing(piece);
     }
 
     return vector<Move>();
@@ -70,7 +72,7 @@ vector<Move> MovesForPieces::getMovesForKnight(Piece * knight) {
                                             make_pair(x-2,y-1)};
 
     for(pair<char, int32_t> &position:positions){
-        
+
         if(this->isValidMove(knight, position.first, position.second)){
             moves.emplace_back(knight, x,y, position.first, position.second);
         }
@@ -83,11 +85,40 @@ bool MovesForPieces::isValidMove(Piece * piece, char x, int32_t y) {
         //need to change this to add offset
         Piece * p = board.getPieceAt(x,y);
         if(p == nullptr){
-            return true;
+            return true;//!isCheck()
         }else if(!piece->isSameColor(p)){
             //need to change this to add offset
-            return true;
+            return true;//!isCheck()
         }
     }
+    return false;
+}
+
+vector<Move> MovesForPieces::getMovesForKing(Piece *king) {
+    vector<Move> moves{};
+    char x{king->x};
+    int32_t y{king->y};
+    array<pair<char, int32_t>, 8> positions{
+            make_pair((char)(x+1), y +1),
+            make_pair((char)x, y +1),
+            make_pair((char)(x-1), y +1),
+            make_pair((char)(x+1), y),
+            make_pair((char)(x-1), y),
+            make_pair((char)(x+1), y -1),
+            make_pair((char)x, y -1),
+            make_pair((char)(x-1), y -1),
+    };
+
+    for(pair<char, int32_t> &position: positions){
+        if(this->isValidMove(king, position.first, position.second)){
+            moves.emplace_back(king, x, y, position.first, position.second);
+        }
+    }
+
+    return moves;
+}
+
+bool MovesForPieces::isCheck(unordered_map<int32_t , array<Piece*,8>>  newBoard) {
+    //maybe add multi-threading here
     return false;
 }

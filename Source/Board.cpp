@@ -30,15 +30,20 @@ Board::Board(){
             Piece("Knight", 'b', 'b', 8),
             Piece("Knight", 'b', 'g', 8)
     };
+
+    kings = {
+            Piece("King", 'w', 'e', 1),
+            Piece("King", 'b', 'e', 8),
+    };
     board = {
-            {1,{nullptr, &knights[0], nullptr, nullptr, nullptr, nullptr, &knights[1], nullptr}},
+            {1,{nullptr, &knights[0], nullptr, nullptr, &kings[0], nullptr, &knights[1], nullptr}},
             {2,{&pawns[0], &pawns[1], &pawns[2], &pawns[3], &pawns[4], &pawns[5], &pawns[6], &pawns[7]}},
             {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {5,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {7,{&pawns[8], &pawns[9], &pawns[10], &pawns[11], &pawns[12], &pawns[13], &pawns[14], &pawns[15]}},
-            {8,{nullptr, &knights[2], nullptr, nullptr, nullptr, nullptr, &knights[3], nullptr}},
+            {8,{nullptr, &knights[2], nullptr, nullptr, &kings[1], nullptr, &knights[3], nullptr}},
     };
 }
 
@@ -89,6 +94,29 @@ bool Board::isLocationValid(char x, int32_t y) {
 
 unordered_map<int32_t, array<Piece*, 8>> Board::getBoard() {
     return this->board;
+}
+
+void Board::movePiece(Move move){
+    Piece * piece = move.getPiece();
+    pair<char, int32_t> oldPosition{move.oldPosition()};
+    pair<char, int32_t> newPosition{move.newPosition()};
+    this->board[oldPosition.second].at(oldPosition.first - 'a') = nullptr;
+    if(Piece * captured{this->board[newPosition.second].at(newPosition.first - 'a')}){
+        capturedPieces.emplace_back(captured);
+    }
+    this->board[newPosition.second].at(newPosition.first - 'a') = piece;
+}
+
+unordered_map<int32_t , array<Piece*,8>> Board::makeNewBoardWith(Move move){
+    unordered_map<int32_t , array<Piece*,8>> newBoard = board;
+    Piece * piece = move.getPiece();
+    pair<char, int32_t> oldPosition{move.oldPosition()};
+    pair<char, int32_t> newPosition{move.newPosition()};
+
+    newBoard[oldPosition.second].at(oldPosition.first - 'a') = nullptr;
+    newBoard[newPosition.second].at(newPosition.first - 'a') = piece;
+
+    return newBoard;
 }
 
 /*Board::~Board() {
