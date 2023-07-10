@@ -14,11 +14,21 @@ Board::Board(){
              Piece("Pawn", 'w', 'e', 2),
              Piece("Pawn", 'w', 'f', 2),
              Piece("Pawn", 'w', 'g', 2),
-             Piece("Pawn", 'w', 'h', 2)};
+             Piece("Pawn", 'w', 'h', 2),
+             Piece("Pawn", 'b', 'a', 7),
+             Piece("Pawn", 'b', 'b', 7),
+             Piece("Pawn", 'b', 'c', 7),
+             Piece("Pawn", 'b', 'd', 7),
+             Piece("Pawn", 'b', 'e', 7),
+             Piece("Pawn", 'b', 'f', 7),
+             Piece("Pawn", 'b', 'g', 7),
+             Piece("Pawn", 'b', 'h', 7)};
 
     knights = {
             Piece("Knight", 'w', 'b', 1),
-            Piece("Knight", 'w', 'g', 1)
+            Piece("Knight", 'w', 'g', 1),
+            Piece("Knight", 'b', 'b', 8),
+            Piece("Knight", 'b', 'g', 8)
     };
     board = {
             {1,{nullptr, &knights[0], nullptr, nullptr, nullptr, nullptr, &knights[1], nullptr}},
@@ -27,8 +37,8 @@ Board::Board(){
             {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {5,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
-            {7,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
-            {8,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {7,{&pawns[8], &pawns[9], &pawns[10], &pawns[11], &pawns[12], &pawns[13], &pawns[14], &pawns[15]}},
+            {8,{nullptr, &knights[2], nullptr, nullptr, nullptr, nullptr, &knights[3], nullptr}},
     };
 }
 

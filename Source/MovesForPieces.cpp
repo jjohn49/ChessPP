@@ -70,8 +70,7 @@ vector<Move> MovesForPieces::getMovesForKnight(Piece * knight) {
                                             make_pair(x-2,y-1)};
 
     for(pair<char, int32_t> &position:positions){
-        cout << position.first << position.second << endl;
-        cout << this->isValidMove(knight, position.first, position.second) << endl;
+        
         if(this->isValidMove(knight, position.first, position.second)){
             moves.emplace_back(knight, x,y, position.first, position.second);
         }
