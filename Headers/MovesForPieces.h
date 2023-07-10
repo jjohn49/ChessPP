@@ -24,6 +24,10 @@ private:
     vector<Move> getMovesForKing(Piece * king);
 
     vector<Move> getMovesForBishop(Piece * bishop);
+
+    vector<Move> getMovesForRook(Piece * rook);
+
+    vector<Move> validConsecutiveMoves(Move move, int charge);
 };
 
 

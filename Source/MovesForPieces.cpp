@@ -159,3 +159,59 @@ vector<Move> MovesForPieces::getMovesForBishop(Piece *bishop) {
     }
     return moves;
 }
+
+vector<Move> MovesForPieces::getMovesForRook(Piece *rook) {
+    vector<Move> moves{};
+    array<int, 2> charged{-1,1};
+    Move newMove;
+    int counter;
+
+    for(int &charge: charged){
+
+        newMove = Move(rook, (char)(rook->x + (counter * charge)), rook->y);
+        char x{rook->x};
+        int32_t y{rook->y};
+
+        while(this->isValidMove(newMove)){
+
+            moves.emplace_back(newMove);
+            //edge case of when bishop meets opponent piece but not at end of the board
+            pair<char, int32_t> position{newMove.newPosition()};
+            if(board.getPieceAt(position.first, position.second ) && !rook->isSameColor(board.getPieceAt(position.first, position.second ))){
+                break;
+            }
+            counter++;
+            newMove = Move(rook, (char)(x + (charge * counter)), y );
+        }
+
+        counter = 1;
+        newMove = Move(rook, rook->x, y + (counter * charge));
+
+
+    }
+
+
+    return moves;
+}
+
+vector<Move> MovesForPieces::validConsecutiveMoves(Move move, int charge) {
+    vector<Move> moves{};
+    Piece * piece{move.getPiece()};
+
+    if(this->isValidMove(move)){
+
+        moves.emplace_back(move);
+        //edge case of when bishop meets opponent piece but not at end of the board
+        pair<char, int32_t> position{move.newPosition()};
+        if(board.getPieceAt(position.first, position.second ) && !piece->isSameColor(board.getPieceAt(position.first, position.second ))){
+            return moves;
+        }
+
+        move = Move(piece, (char)(position.first + charge), piece->y );
+        vector<Move> newMoves{validConsecutiveMoves(move, charge)};
+        moves.insert(moves.end(), newMoves.begin(), newMoves.end());
+    }
+
+
+    return moves;
+}
