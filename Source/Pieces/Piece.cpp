@@ -49,8 +49,8 @@ bool Piece::operator==(optional<Piece> p) {
     return *this == p.value();
 }
 
-bool Piece::isSameColor(Piece piece) {
-    return this->color == piece.color;
+bool Piece::isSameColor(Piece * piece) {
+    return this->color == piece->color;
 }
 
 
