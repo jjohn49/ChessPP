@@ -18,6 +18,8 @@ vector<Move> MovesForPieces::getMovesFor(Piece * piece){
         return this->getMovesForKnight(piece);
     }else if(piece->name == "King"){
         return this->getMovesForKing(piece);
+    }else if(piece->name == "Bishop"){
+        return this->getMovesForBishop(piece);
     }
 
     return vector<Move>();
@@ -127,4 +129,33 @@ bool MovesForPieces::isCheck(Board newBoard, char color) {
 
     //maybe add multi-threading here
     return false;
+}
+
+vector<Move> MovesForPieces::getMovesForBishop(Piece *bishop) {
+    //going to be used for both charges in x and y to find the diagnols
+    array<int, 2> charged{-1,1};
+    vector<Move> moves{};
+    char x = bishop->x;
+    int32_t y = bishop->y;
+    int counter;
+    Move newMove;
+    for(int &chargeY : charged){
+
+        for(int &chargeX : charged){
+            counter = 1;
+            newMove = Move(bishop, (char)(x + (chargeX * counter)), y + (chargeY * counter));
+
+            while(this->isValidMove(newMove)){
+
+                moves.emplace_back(bishop, (char)(x + (chargeX * counter)), y + (chargeY * counter));
+                //edge case of when bishop meets opponent piece but not at end of the board
+                if(board.getPieceAt((char)(x + (chargeX * counter)), y + (chargeY * counter)) && !bishop->isSameColor(board.getPieceAt((char)(x + (chargeX * counter)), y + (chargeY * counter)))){
+                    break;
+                }
+                counter++;
+                newMove = Move(bishop, (char)(x + (chargeX * counter)), y + (chargeY * counter));
+            }
+        }
+    }
+    return moves;
 }

@@ -22,6 +22,8 @@ private:
     vector<Move> getMovesForKnight(Piece * knight);
 
     vector<Move> getMovesForKing(Piece * king);
+
+    vector<Move> getMovesForBishop(Piece * bishop);
 };
 
 

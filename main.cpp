@@ -11,14 +11,11 @@ int main() {
 
     Board b = Board();
     MovesForPieces mfp{b};
-    Piece * pawn = b.getPieceAt('a',2);
+    Piece * pawn = b.getPieceAt('f',1);
     vector<Move> moves = mfp.getMovesFor(pawn);
     for(auto &move: moves){
         cout << move.toString() << endl;
     }
-    Move m{pawn, pawn->x, pawn->y, 'a', 3};
-    b.movePiece(m);
-    b.printBoard();
 
     return 0;
 }

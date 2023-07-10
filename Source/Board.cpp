@@ -35,15 +35,22 @@ Board::Board(){
             Piece("King", 'w', 'e', 1),
             Piece("King", 'b', 'e', 8),
     };
+
+    bishops = {
+            Piece("Bishop", 'w', 'c', 1),
+            Piece("Bishop", 'w', 'f', 1),
+            Piece("Bishop", 'b', 'c', 8),
+            Piece("Bishop", 'b', 'f', 8),
+    };
     board = {
-            {1,{nullptr, &knights[0], nullptr, nullptr, &kings[0], nullptr, &knights[1], nullptr}},
+            {1,{nullptr, &knights[0], &bishops[0], nullptr, &kings[0], &bishops[1], &knights[1], nullptr}},
             {2,{&pawns[0], &pawns[1], &pawns[2], &pawns[3], &pawns[4], &pawns[5], &pawns[6], &pawns[7]}},
             {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {5,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {7,{&pawns[8], &pawns[9], &pawns[10], &pawns[11], &pawns[12], &pawns[13], &pawns[14], &pawns[15]}},
-            {8,{nullptr, &knights[2], nullptr, nullptr, &kings[1], nullptr, &knights[3], nullptr}},
+            {8,{nullptr, &knights[2], &bishops[2], nullptr, &kings[1], &bishops[3], &knights[3], nullptr}},
     };
 }
 

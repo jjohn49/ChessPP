@@ -20,6 +20,7 @@ class Board {
     array<Piece,16> pawns;
     array<Piece,4> knights;
     array<Piece, 2> kings;
+    array<Piece, 4>bishops;
     unordered_map<int32_t , array<Piece*,8>>  board;
     vector<Move> moves;
 public:
