@@ -13,6 +13,7 @@ public:
     MovesForPieces(Board board);
     vector<Move> getMovesFor(Piece * piece);
 private:
+    bool isValidMove(Piece * piece, char x, int32_t y);
     vector<Move> getMovesForPawn(Piece * pawn);
     vector<Move> getRegularMovesForPawn(Piece * pawn);
     vector<Move> getTakeMovesForPawn(Piece * pawn);
