@@ -97,13 +97,13 @@ Piece* Board::getPieceAt(char x, int32_t y) {
 }
 
 void Board::addMove(Move newMove) {
-    moves.push_back(newMove);
+    previousMoves.push_back(newMove);
 }
 
 void Board::printMoves(){
     cout << "MOVES\n";
-    for(int x = 0; x < moves.size(); x++){
-        cout << x + 1 << ". " << moves[x].toString() << "\n";
+    for(int x = 0; x < currentMoves.size(); x++){
+        cout << x + 1 << ". " << previousMoves[x].toString() << "\n";
     }
 }
 
@@ -137,6 +137,8 @@ Board Board::makeNewBoardWith(Move move){
 
     return newBoard;
 }
+
+
 
 /*Board::~Board() {
 

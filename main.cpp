@@ -1,22 +1,16 @@
 #include <iostream>
-#include "Headers/Pieces/Piece.h"
-#include "Headers/Board.h"
-#include "Headers/Move.h"
-#include "Headers/MovesForPieces.h"
-#include "Headers/MovesForPieces.h"
+#include "Headers/Chess.h"
+
+
 
 
 int main() {
 
+    Chess chess{};
+    vector<Move> moves{chess.getAllMovesForColor('w')};
+    cout << moves.size();
 
-    Board b = Board();
-    MovesForPieces mfp{b};
-    Piece * pawn = b.getPieceAt('d',4);
-    vector<Move> moves = mfp.getMovesFor(pawn);
-    cout << "MOVES" << endl;
-    for(auto &move: moves){
-        cout << move.toString() << endl;
-    }
+
 
     return 0;
 }
