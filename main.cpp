@@ -11,8 +11,9 @@ int main() {
 
     Board b = Board();
     MovesForPieces mfp{b};
-    Piece * pawn = b.getPieceAt('e',4);
+    Piece * pawn = b.getPieceAt('d',4);
     vector<Move> moves = mfp.getMovesFor(pawn);
+    cout << "MOVES" << endl;
     for(auto &move: moves){
         cout << move.toString() << endl;
     }

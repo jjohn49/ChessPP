@@ -27,9 +27,20 @@ private:
 
     vector<Move> getMovesForRook(Piece * rook);
 
-    void validConsecutiveHorizontalMoves(vector<Move> * moves, Move move, int charge);
+    vector<Move> getMovesForQueen(Piece * queen);
 
-    void validConsecutiveVerticalMoves(vector<Move> * moves, Move move, int charge);
+    void
+    getConsecutiveMoves(vector<Move> *moves, Move newMove, bool vertical, bool horizontal, int chargeX, int chargeY);
+
+    Move
+    addToMovesandGetNextMove(vector<Move> *moves, Move newMove, bool horizontal, bool vertical, int chargeX,
+                             int chargeY);
+
+    vector<Move> &getVector(Piece *rook, vector<Move> &m);
+
+    vector<Move> &rookLogic(Piece *rook, vector<Move> *moves);
+
+    void bishopLogic(Piece *bishop, vector<Move> *moves);
 };
 
 

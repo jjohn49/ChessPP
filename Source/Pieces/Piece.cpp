@@ -42,12 +42,12 @@ bool Piece::operator==(Piece piece) {
     return this->name==piece.name && this->color==piece.color && this->x==piece.x && this->y==piece.y;
 }
 
-bool Piece::operator==(optional<Piece> p) {
+/*bool Piece::operator==(optional<Piece> p) {
     if(!p.has_value()){
         return false;
     }
     return *this == p.value();
-}
+}*/
 
 bool Piece::isSameColor(Piece * piece) {
     return this->color == piece->color;

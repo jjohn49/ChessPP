@@ -22,6 +22,8 @@ vector<Move> MovesForPieces::getMovesFor(Piece * piece){
         return this->getMovesForBishop(piece);
     }else if(piece->name == "Rook"){
        return this->getMovesForRook(piece);
+    }else if(piece->name =="Queen"){
+        return this->getMovesForQueen(piece);
     }
 
     return vector<Move>();
@@ -135,82 +137,87 @@ bool MovesForPieces::isCheck(Board newBoard, char color) {
 
 vector<Move> MovesForPieces::getMovesForBishop(Piece *bishop) {
     //going to be used for both charges in x and y to find the diagnols
-    array<int, 2> charged{-1,1};
-    vector<Move> moves{};
-    char x = bishop->x;
-    int32_t y = bishop->y;
-    int counter;
-    Move newMove;
-    for(int &chargeY : charged){
+    vector<Move> m{};
+    this->bishopLogic(bishop, &m);
+    return m;
+}
 
-        for(int &chargeX : charged){
-            counter = 1;
-            newMove = Move(bishop, (char)(x + (chargeX * counter)), y + (chargeY * counter));
+void MovesForPieces::bishopLogic(Piece * bishop, vector<Move> * moves){
+    array<int, 2> charge{-1,1};
 
-            while(this->isValidMove(newMove)){
-
-                moves.emplace_back(bishop, (char)(x + (chargeX * counter)), y + (chargeY * counter));
-                //edge case of when bishop meets opponent piece but not at end of the board
-                if(board.getPieceAt((char)(x + (chargeX * counter)), y + (chargeY * counter)) && !bishop->isSameColor(board.getPieceAt((char)(x + (chargeX * counter)), y + (chargeY * counter)))){
-                    break;
-                }
-                counter++;
-                newMove = Move(bishop, (char)(x + (chargeX * counter)), y + (chargeY * counter));
-            }
+    for(int &chargeX : charge){
+        for(int &chargeY : charge){
+            Move firstMove{bishop, (char)(bishop->x + chargeX), bishop->y+chargeY};
+            this->getConsecutiveMoves(moves, firstMove, true, true, chargeX, chargeY);
         }
     }
-    return moves;
+
 }
 
 vector<Move> MovesForPieces::getMovesForRook(Piece *rook) {
-    vector<Move> * moves = new vector<Move>();
+    vector<Move> m{};
+    this->rookLogic(rook, &m);
+
+    return m;
+}
+
+vector<Move> &MovesForPieces::rookLogic(Piece *rook, vector<Move> * moves) {
     array<int, 2> charged{-1,1};
     Move newMove;
-    int counter;
 
     for(int &charge: charged){
 
         newMove = Move(rook, (char)(rook->x + charge), rook->y);
-        this->validConsecutiveHorizontalMoves(moves, newMove, charge);
-        newMove = Move(rook, rook->x, rook->y + charge);
-        this->validConsecutiveVerticalMoves(moves, newMove, charge);
-    }
-
-    return *moves;
-}
-
-void MovesForPieces::validConsecutiveHorizontalMoves(vector<Move> * moves, Move move, int charge) {
-
-    Piece * piece{move.getPiece()};
-    //cout<< move.toString() << this->isValidMove(move) << endl;
-    if(this->isValidMove(move)){
-
-        moves->emplace_back(move);
-        //edge case of when bishop meets opponent piece but not at end of the board
-        pair<char, int32_t> position{move.newPosition()};
-        if(board.getPieceAt(position.first, position.second ) && !piece->isSameColor(board.getPieceAt(position.first, position.second ))){
-            
-            return;
-        }
-
-        Move newMove{piece, (char)(position.first + charge), piece->y};
-        validConsecutiveHorizontalMoves(moves, newMove, charge);
+        getConsecutiveMoves(moves, newMove, false, true, charge, charge);
+        newMove = Move(rook, rook->x, (rook->y + charge));
+        getConsecutiveMoves(moves, newMove, true, false, charge, charge);
     }
 }
 
-void MovesForPieces::validConsecutiveVerticalMoves(vector<Move> *moves, Move move, int charge) {
-    Piece * piece{move.getPiece()};
-    //cout<< move.toString() << this->isValidMove(move) << endl;
-    if(this->isValidMove(move)){
+void MovesForPieces::getConsecutiveMoves(vector<Move> * moves, Move newMove, bool vertical, bool horizontal, int chargeX, int chargeY){
+    //cout << newMove.toString() << endl;
+    if(!vertical && !horizontal){
+        cout << "GET CONSECUTIVE MOVES METHOD IS DOING NOTHING. BOTH VERTICAL AND HORIZONTAL ARE FALSE" <<  endl;
+        return;
+    }
+    pair<char, int> newPosition{newMove.newPosition()};
 
-        moves->emplace_back(move);
-        //edge case of when bishop meets opponent piece but not at end of the board
-        pair<char, int32_t> position{move.newPosition()};
-        if(board.getPieceAt(position.first, position.second ) && !piece->isSameColor(board.getPieceAt(position.first, position.second ))){
-            return;
-        }
+    if(!board.isLocationValid(newPosition.first, newPosition.second)){
+        //cout << "Failed 1" << endl;
+        return;
+    }
 
-        Move newMove{piece, position.first, piece->y + charge};
-        validConsecutiveHorizontalMoves(moves, newMove, charge);
+    if(board.getPieceAt(newPosition.first, newPosition.second) == nullptr ){
+        Move nextMove{this->addToMovesandGetNextMove(moves, newMove, horizontal, vertical, chargeX, chargeY)};
+        this->getConsecutiveMoves(moves, nextMove, vertical, horizontal, chargeX, chargeY);
+    }else if(!newMove.getPiece()->isSameColor(board.getPieceAt(newPosition.first, newPosition.second))){
+        moves->emplace_back(newMove);
     }
 }
+
+Move MovesForPieces::addToMovesandGetNextMove(vector<Move> * moves, Move newMove, bool horizontal, bool vertical, int chargeX, int chargeY){
+    moves->emplace_back(newMove);
+    pair<char, int> newPosition{newMove.newPosition()};
+    char newX{newPosition.first};
+    int newY{newPosition.second};
+
+    if(horizontal){
+        newX = (char)(newX + chargeX);
+    }
+
+    if(vertical){
+        newY = newY + chargeY;
+    }
+    Move nextMove{newMove.getPiece(), newX, newY};
+    return nextMove;
+}
+
+vector<Move> MovesForPieces::getMovesForQueen(Piece *queen) {
+    vector<Move> m{};
+    this->rookLogic(queen, &m);
+    this->bishopLogic(queen, &m);
+    //cout << m.at(0).toString() << endl;
+    return m;
+}
+
+

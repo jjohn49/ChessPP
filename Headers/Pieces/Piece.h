@@ -26,7 +26,7 @@ public:
     string toShortString();
     //bool isEqualTo(optional<Piece> p);
     bool operator == (Piece piece);
-    bool operator == (optional<Piece> p);
+    //bool operator == (optional<Piece> p);
     bool isSameColor(Piece * piece);
     void setLocation(char x, int32_t y);
 };

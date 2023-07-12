@@ -22,6 +22,7 @@ class Board {
     array<Piece, 2> kings;
     array<Piece, 4> rooks;
     array<Piece, 4>bishops;
+    array<Piece, 2> queens;
     unordered_map<int32_t , array<Piece*,8>>  board;
     vector<Move> moves;
 public:
