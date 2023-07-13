@@ -7,7 +7,7 @@
 #include "../../Headers/Pieces/Piece.h"
 
 Piece::Piece() {
-    this->name = "Piece";
+    this->name = "Piece\0";
     this->x = 'i';
     this->y = 0;
     this->color = 'w';
@@ -15,7 +15,7 @@ Piece::Piece() {
 }
 
 Piece::Piece(string name, char color, char x, int32_t y) {
-    this->name=std::move(name);
+    this->name=name;
     this->x=x;
     this->y=y;
     this->color=color;
@@ -35,6 +35,7 @@ string Piece::toString() {
 }
 
 string Piece::toShortString() {
+
     return this->color + this->name;
 }
 
@@ -56,6 +57,10 @@ bool Piece::isSameColor(Piece * piece) {
 void Piece::setLocation(char x, int32_t y) {
     this->x = x;
     this-> y = y;
+}
+
+string Piece::getName() {
+    return this->name;
 }
 
 

@@ -50,18 +50,18 @@ Board::Board(){
             Piece("Rook", 'b', 'g', 8),
     };
     queens = {
-            Piece("Queen", 'w', 'd', 4),
+            Piece("Queen", 'w', 'd', 1),
             Piece("Queen", 'b', 'd', 8)
     };
     board = {
-            {1,{&rooks[0], &knights[0], &bishops[0], &queens[0], &kings[0], &bishops[1], &knights[1], &rooks[1]}},
-            {2,{&pawns[0], &pawns[1], &pawns[2], &pawns[3], &pawns[4], &pawns[5], &pawns[6], &pawns[7]}},
+            {1,{new Piece(rooks[0]), new Piece(knights[0]), new Piece(bishops[0]), new Piece(queens[0]), new Piece(kings[0]), new Piece(bishops[1]), new Piece(knights[1]), new Piece(rooks[1])}},
+            {2,{new Piece(pawns[0]), new Piece(pawns[1]), new Piece(pawns[2]), new Piece(pawns[3]), new Piece(pawns[4]), new Piece(pawns[5]), new Piece(pawns[6]), new Piece(pawns[7])}},
             {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {5,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
-            {7,{&pawns[8], &pawns[9], &pawns[10], &pawns[11], &pawns[12], &pawns[13], &pawns[14], &pawns[15]}},
-            {8,{&rooks[2], &knights[2], &bishops[2], &queens[1], &kings[1], &bishops[3], &knights[3], &rooks[3]}},
+            {7,{new Piece(pawns[8]), new Piece(pawns[9]), new Piece(pawns[10]), new Piece(pawns[11]), new Piece(pawns[12]), new Piece(pawns[13]), new Piece(pawns[14]), new Piece(pawns[15])}},
+            {8,{new Piece(rooks[2]), new Piece(knights[2]), new Piece(bishops[2]), new Piece(queens[1]), new Piece(kings[1]), new Piece(bishops[3]), new Piece(knights[3]), new Piece(rooks[3])}},
     };
 
 }
@@ -93,7 +93,7 @@ void Board::printBoard() {
 Piece* Board::getPieceAt(char x, int32_t y) {
     //cout << y << x - 'a' << "\n\n\n";
 
-    return isLocationValid(x, y) ?  this->board.at(y)[x - 'a'] : nullptr;
+    return isLocationValid(x, y) ?  this->board.at(y).at(x - 'a') : nullptr;
 }
 
 void Board::addMove(Move newMove) {
@@ -108,7 +108,7 @@ void Board::printMoves(){
 }
 
 bool Board::isLocationValid(char x, int32_t y) {
-    return y <= 8 && y >= 1 && x >= 'a' && x <= 'h';
+    return (y <= 8 && y >= 1 && x >= 'a' && x <= 'h');
 }
 
 unordered_map<int32_t, array<Piece*, 8>> Board::getBoard() {

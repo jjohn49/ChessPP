@@ -1,16 +1,17 @@
 #include <iostream>
 #include "Headers/Chess.h"
-
+#include "Headers//Board.h"
 
 
 
 int main() {
 
-    Chess chess{};
-    vector<Move> moves{chess.getAllMovesForColor('w')};
-    cout << moves.size();
 
+    Chess chess{};
 
 
     return 0;
 }
+
+
+

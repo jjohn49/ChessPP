@@ -8,10 +8,10 @@
 
 
 class MovesForPieces {
-    Board * board;
+    Board board;
 public:
     MovesForPieces();
-    MovesForPieces(Board * board);
+    MovesForPieces(Board &board);
     vector<Move> getMovesFor(Piece * piece);
 private:
     bool isValidMove(Move move);

@@ -30,6 +30,7 @@ public:
     //bool operator == (optional<Piece> p);
     bool isSameColor(Piece * piece);
     void setLocation(char x, int32_t y);
+    string getName();
 };
 
 
