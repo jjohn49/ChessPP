@@ -8,9 +8,9 @@ int main() {
 
     Chess chess{};
     Move move{chess.getAllMovesForColor('w').at(0)};
-    cout << move.toString() << endl;
+
     chess.tryToMovePiece(move);
-    //chess.board.printBoard();
+    chess.board.printBoard();
 
 
     return 0;

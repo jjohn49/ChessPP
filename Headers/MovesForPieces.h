@@ -39,7 +39,7 @@ private:
 
     vector<Move> &getVector(Piece *rook, vector<Move> &m);
 
-    vector<Move> &rookLogic(Piece *rook, vector<Move> *moves);
+    void rookLogic(Piece *rook, vector<Move> *moves);
 
     void bishopLogic(Piece *bishop, vector<Move> *moves);
 };

@@ -167,7 +167,7 @@ vector<Move> MovesForPieces::getMovesForRook(Piece *rook) {
     return m;
 }
 
-vector<Move> &MovesForPieces::rookLogic(Piece *rook, vector<Move> * moves) {
+void MovesForPieces::rookLogic(Piece *rook, vector<Move> * moves) {
     array<int, 2> charged{-1,1};
     Move newMove;
 

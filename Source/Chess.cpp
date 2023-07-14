@@ -38,7 +38,7 @@ vector<Move> Chess::getAllMovesForColor(Board &board, char color) {
 vector<Move> Chess::getAllMovesForColor(char color) {
     vector<Move> moves{};
     vector<Move> m;
-    Piece * piece = new Piece();
+    Piece * piece;
     for(int row = 1; row <=8; row ++){
         for(int col = 'a'; col <= 'h'; col++){
             piece = board.getPieceAt((char)col,row);
@@ -49,7 +49,6 @@ vector<Move> Chess::getAllMovesForColor(char color) {
 
         }
     }
-    delete piece;
 
     return moves;
 }
