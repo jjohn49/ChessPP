@@ -23,11 +23,12 @@ class Board {
     array<Piece, 4> rooks;
     array<Piece, 4>bishops;
     array<Piece, 2> queens;
-    unordered_map<int32_t , array<Piece*,8>>  board;\
+    unordered_map<int32_t , array<Piece*,8>>  board;
     vector<Move> previousMoves;
     vector<Move> currentMoves;
 public:
     Board();
+
     //~Board();
     Piece* getPieceAt(char x, int32_t y);
     bool isLocationValid(char x, int32_t y);
@@ -37,8 +38,10 @@ public:
     void printMoves();
     vector<Move> getMovesFor(Piece piece);
     vector<Move> getMovesForPawn(Piece pawn);
-    void movePiece(Move move);
+
+    void movePieceLogic(Move move);
     Board makeNewBoardWith(Move move);
+    Piece &getKingForColor(char color);
 
 
 };

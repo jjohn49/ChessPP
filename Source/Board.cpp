@@ -67,6 +67,7 @@ Board::Board(){
 }
 
 
+
 void Board::printBoard() {
     for(int row = 0; row < 9; row++){
         for(int col = 'a' - 1; col< 'i'; col++){
@@ -115,7 +116,9 @@ unordered_map<int32_t, array<Piece*, 8>> Board::getBoard() {
     return this->board;
 }
 
-void Board::movePiece(Move move){
+
+
+void Board::movePieceLogic(Move move){
     Piece * piece = move.getPiece();
     pair<char, int32_t> oldPosition{move.oldPosition()};
     pair<char, int32_t> newPosition{move.newPosition()};
@@ -137,6 +140,14 @@ Board Board::makeNewBoardWith(Move move){
 
     return newBoard;
 }
+
+Piece & Board::getKingForColor(char color) {
+    return (color == 'w')? kings[0] : kings[1];
+}
+
+
+
+
 
 
 

@@ -48,4 +48,12 @@ Move::Move(Piece * piece, char newX, int32_t newY): Move(piece, piece->x, piece-
 //need nothing here
 }
 
+bool Move::contains(char x, int y) {
+    return this->newX == x && this->newY == y;
+}
+
+bool Move::operator==(Move move) {
+    return this->pieceMoved == move.pieceMoved && this->oldX == move.oldX && this->oldY == move.oldY && this->newX == move.newX && this->newY == move.newY;
+}
+
 
