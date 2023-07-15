@@ -115,7 +115,6 @@ vector<Move> Chess::getAllLegalMovesFor(char color){
     for(Move &move: this->getAllMovesForColor(color)){
         Board newBoard{board.makeNewBoardWith(move)};
         if(!this->isColorInCheck(newBoard,color)){
-            this->board.movePiece(move);
             legalMoves.emplace_back(move);
         }
     }

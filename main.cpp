@@ -11,9 +11,12 @@ int main() {
     int counter{0};
 
     array<char, 2> colors{'w','b'};
-    for(char &color: colors){
-        chess.colorMoveAPiece(color);
+    while(true){
+        for(char &color: colors){
+            chess.colorMoveAPiece(color);
+        }
     }
+
 
 
     chess.colorMoveAPiece('w');
