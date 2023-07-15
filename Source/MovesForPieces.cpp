@@ -7,15 +7,14 @@
 
 
 MovesForPieces::MovesForPieces() {
-    board = Board();
+    board = nullptr;
 }
 
 
-MovesForPieces::MovesForPieces(Board &board){
-    this->board =  board;
+MovesForPieces::MovesForPieces(Board * board){
+    this->board = board;
 }
 vector<Move> MovesForPieces::getMovesFor(Piece * piece){
-
 
     std::string name{piece->name};
     if(name == "Pawn"){
@@ -47,11 +46,12 @@ vector<Move> MovesForPieces::getRegularMovesForPawn(Piece * pawn) {
     vector<Move> pawnMoves{};
     int offset = (pawn->color == 'w')? 1 : -1;
     Move newMove{pawn, pawn->x, pawn->y+offset};
-    if(isValidMove(newMove)){
-        pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x, pawn->y + offset);
+
+    if(board->getPieceAt(pawn->x, pawn->y + offset) == nullptr){
+        pawnMoves.emplace_back(newMove);
         newMove = Move(pawn, pawn->x, (pawn->y + (2 * offset)));
-        if(!pawn->hasMoved  && isValidMove(newMove)){
-            pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x, pawn->y+(2 * offset));
+        if(!pawn->hasMoved  && board->getPieceAt(pawn->x, pawn->y + (2* offset)) == nullptr){
+            pawnMoves.emplace_back(newMove);
         }
     }
 
@@ -65,7 +65,7 @@ vector<Move> MovesForPieces::getTakeMovesForPawn(Piece * pawn) {
     Move newMove;
     for(int &lr :leftAndRight){
         newMove = Move(pawn, (char)(pawn->x+lr), pawn->y + offset);
-        if(this->isValidMove(newMove) && board.getPieceAt((char)(pawn->x+lr), pawn->y + offset)){
+        if(this->isValidMove(newMove) && board->getPieceAt((char)(pawn->x+lr), pawn->y + offset)){
             pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x+lr, pawn->y + offset);
         }
     }
@@ -96,19 +96,16 @@ vector<Move> MovesForPieces::getMovesForKnight(Piece * knight) {
 
 bool MovesForPieces::isValidMove(Move move) {
     pair<char, int32_t> newPosition{move.newPosition()};
-    if(board.isLocationValid(newPosition.first,newPosition.second)){
+    if(board->isLocationValid(newPosition.first,newPosition.second)){
         //need to change this to add offset
-        Piece * p = board.getPieceAt(newPosition.first,newPosition.second);
-        Board newBoard = board.makeNewBoardWith(move);
-        if(p == nullptr){
-            return !isCheck(newBoard,move.getPiece()->color);
-        }else if(!move.getPiece()->isSameColor(p)){
-            //need to change this to add offset
-            return !isCheck(newBoard,move.getPiece()->color);
+        Piece * p = board->getPieceAt(newPosition.first,newPosition.second);
+        if(p == nullptr || (!move.getPiece()->isSameColor(p))){
+            return true;
         }
     }
     return false;
 }
+
 
 vector<Move> MovesForPieces::getMovesForKing(Piece *king) {
     vector<Move> moves{};
@@ -133,12 +130,6 @@ vector<Move> MovesForPieces::getMovesForKing(Piece *king) {
     }
 
     return moves;
-}
-
-bool MovesForPieces::isCheck(Board newBoard, char color) {
-
-    //maybe add multi-threading here
-    return false;
 }
 
 vector<Move> MovesForPieces::getMovesForBishop(Piece *bishop) {
@@ -188,15 +179,15 @@ void MovesForPieces::getConsecutiveMoves(vector<Move> * moves, Move newMove, boo
     }
     pair<char, int> newPosition{newMove.newPosition()};
 
-    if(!board.isLocationValid(newPosition.first, newPosition.second)){
+    if(!board->isLocationValid(newPosition.first, newPosition.second)){
         //cout << "Failed 1" << endl;
         return;
     }
 
-    if(board.getPieceAt(newPosition.first, newPosition.second) == nullptr ){
+    if(board->getPieceAt(newPosition.first, newPosition.second) == nullptr ){
         Move nextMove{this->addToMovesandGetNextMove(moves, newMove, horizontal, vertical, chargeX, chargeY)};
         this->getConsecutiveMoves(moves, nextMove, vertical, horizontal, chargeX, chargeY);
-    }else if(!newMove.getPiece()->isSameColor(board.getPieceAt(newPosition.first, newPosition.second))){
+    }else if(!newMove.getPiece()->isSameColor(board->getPieceAt(newPosition.first, newPosition.second))){
         moves->emplace_back(newMove);
     }
 }
@@ -225,6 +216,8 @@ vector<Move> MovesForPieces::getMovesForQueen(Piece *queen) {
     //cout << m.at(0).toString() << endl;
     return m;
 }
+
+
 
 
 

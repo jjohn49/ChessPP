@@ -38,8 +38,8 @@ public:
     void printMoves();
     vector<Move> getMovesFor(Piece piece);
     vector<Move> getMovesForPawn(Piece pawn);
-
-    void movePieceLogic(Move move);
+    vector<Piece *> getCapturedPieces();
+    void movePiece(Move move);
     Board makeNewBoardWith(Move move);
     Piece &getKingForColor(char color);
 

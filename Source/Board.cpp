@@ -72,7 +72,7 @@ void Board::printBoard() {
     for(int row = 0; row < 9; row++){
         for(int col = 'a' - 1; col< 'i'; col++){
             if(row == 0){
-                cout << (char)col << "\t\t";
+                cout << (char)col << "\t\t\t";
                 continue;
             }
 
@@ -118,7 +118,7 @@ unordered_map<int32_t, array<Piece*, 8>> Board::getBoard() {
 
 
 
-void Board::movePieceLogic(Move move){
+void Board::movePiece(Move move){
     Piece * piece = move.getPiece();
     pair<char, int32_t> oldPosition{move.oldPosition()};
     pair<char, int32_t> newPosition{move.newPosition()};
@@ -126,7 +126,11 @@ void Board::movePieceLogic(Move move){
     if(Piece * captured{this->board[newPosition.second].at(newPosition.first - 'a')}){
         capturedPieces.emplace_back(captured);
     }
+    piece->setX(newPosition.first);
+    piece->setY(newPosition.second);
     this->board[newPosition.second].at(newPosition.first - 'a') = piece;
+
+
 }
 
 Board Board::makeNewBoardWith(Move move){
@@ -143,6 +147,10 @@ Board Board::makeNewBoardWith(Move move){
 
 Piece & Board::getKingForColor(char color) {
     return (color == 'w')? kings[0] : kings[1];
+}
+
+vector<Piece *> Board::getCapturedPieces() {
+    return this->capturedPieces;
 }
 
 

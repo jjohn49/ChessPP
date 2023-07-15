@@ -5,21 +5,21 @@
 #include "../Headers/Chess.h"
 
 Chess::Chess(){
-    this->board = Board();
-    movesForPieces = MovesForPieces(board);
+    board = Board();
+    movesForPieces = MovesForPieces(&board);
 }
 
 //for debugging purposes
 Chess::Chess(Board &board) {
     this->board = board;
-    movesForPieces = MovesForPieces(board);
+    movesForPieces = MovesForPieces(&board);
 }
 
-vector<Move> Chess::getAllMovesForColor(Board &board, char color) {
+vector<Move> Chess::getAllMovesForColor(Board board, char color) {
     vector<Move> moves{};
     vector<Move> m;
     Piece * piece = new Piece();
-    MovesForPieces mfp{board};
+    MovesForPieces mfp{&board};
     for(int row = 1; row <=8; row ++){
         for(int col = 'a'; col <= 'h'; col++){
             piece = board.getPieceAt((char)col,row);
@@ -96,13 +96,17 @@ bool Chess::tryToMovePiece(Move move) {
     if(isInLegalMoves){
         Board newBoard{board.makeNewBoardWith(move)};
         if(!this->isColorInCheck(newBoard,pieceMoved->color)){
-            this->board.movePieceLogic(move);
+            this->board.movePiece(move);
             return true;
         }
     }
 
     return false;
 }
+
+/*Chess::~Chess() {
+    delete this->board;
+}*/
 
 
 

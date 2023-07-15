@@ -7,10 +7,22 @@
 int main() {
 
     Chess chess{};
-    Move move{chess.getAllMovesForColor('w').at(0)};
+    Move move;
+    int counter{0};
 
-    chess.tryToMovePiece(move);
+    while(chess.board.getCapturedPieces().size() == 0){
+        cout << counter++ << endl;
+        move=chess.getAllMovesForColor('w').at(5);
+        cout << move.toString() << endl;
+        chess.tryToMovePiece(move);
+        chess.board.printBoard();
+    }
+
+    cout << move.toString() << endl;
+    cout << chess.board.getCapturedPieces().at(0)->toString() << endl;
     chess.board.printBoard();
+
+
 
 
     return 0;

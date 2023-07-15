@@ -18,8 +18,9 @@ public:
     Board board;
     MovesForPieces movesForPieces;
     Chess();
+    //~Chess();
     Chess(Board &board);
-    vector<Move> getAllMovesForColor(Board &board, char color);
+    vector<Move> getAllMovesForColor(Board board, char color);
     vector<Move> getAllMovesForColor(char color);
     bool isColorInCheck(Board &board, char color);
     bool isColorInCheck(char color);
