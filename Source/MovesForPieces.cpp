@@ -222,3 +222,4 @@ vector<Move> MovesForPieces::getMovesForQueen(Piece *queen) {
 
 
 
+

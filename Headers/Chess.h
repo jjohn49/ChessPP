@@ -24,8 +24,10 @@ public:
     vector<Move> getAllMovesForColor(char color);
     bool isColorInCheck(Board &board, char color);
     bool isColorInCheck(char color);
-    bool tryToMovePiece(Move move);
+    void movePiece(Move move);
+    void colorMoveAPiece(char color);
 
+    vector<Move> getAllLegalMovesFor(char color);
 };
 
 

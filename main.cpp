@@ -10,17 +10,14 @@ int main() {
     Move move;
     int counter{0};
 
-    while(chess.board.getCapturedPieces().size() == 0){
-        cout << counter++ << endl;
-        move=chess.getAllMovesForColor('w').at(5);
-        cout << move.toString() << endl;
-        chess.tryToMovePiece(move);
-        chess.board.printBoard();
+    array<char, 2> colors{'w','b'};
+    for(char &color: colors){
+        chess.colorMoveAPiece(color);
     }
 
-    cout << move.toString() << endl;
-    cout << chess.board.getCapturedPieces().at(0)->toString() << endl;
-    chess.board.printBoard();
+
+    chess.colorMoveAPiece('w');
+
 
 
 

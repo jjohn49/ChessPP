@@ -83,25 +83,44 @@ bool Chess::isColorInCheck(char color) {
     return false;
 }
 
-bool Chess::tryToMovePiece(Move move) {
+void Chess::movePiece(Move move) {
     Piece * pieceMoved{move.getPiece()};
-    vector<Move> allLegalMoves{this->getAllMovesForColor(pieceMoved->color)};
 
-    bool isInLegalMoves{false};
-    for(Move &legalMove: allLegalMoves){
-        if(move == legalMove ){}
-        isInLegalMoves = true;
+    Board newBoard{board.makeNewBoardWith(move)};
+
+    this->board.movePiece(move);
+
+}
+
+void Chess::colorMoveAPiece(char color) {
+    this->board.printBoard();
+    cout << "Valid Moves" << endl;
+    int counter = 0;
+    vector<Move> legalMoves{this->getAllLegalMovesFor(color)};
+    for(Move &move: legalMoves){
+        cout << "(" << counter++ << ") " << move.toString() << endl;
     }
 
-    if(isInLegalMoves){
+    std::string input;
+    cout << "Please pick a number to choose your move";
+    cin>>input;
+
+    Move moveChose{legalMoves.at(std::stoi(input))};
+    this->movePiece(moveChose);
+
+}
+
+vector<Move> Chess::getAllLegalMovesFor(char color){
+    vector<Move> legalMoves{};
+    for(Move &move: this->getAllMovesForColor(color)){
         Board newBoard{board.makeNewBoardWith(move)};
-        if(!this->isColorInCheck(newBoard,pieceMoved->color)){
+        if(!this->isColorInCheck(newBoard,color)){
             this->board.movePiece(move);
-            return true;
+            legalMoves.emplace_back(move);
         }
     }
 
-    return false;
+    return legalMoves;
 }
 
 /*Chess::~Chess() {
