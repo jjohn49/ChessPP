@@ -53,9 +53,9 @@ vector<Move> Chess::getAllMovesForColor(char color) {
     return moves;
 }
 
-bool Chess::isColorInCheck(Board &board, char color) {
+bool Chess::isColorInCheck(Board * board, char color) {
     vector<Move> opponentMoves{(color == 'w')? this->getAllMovesForColor('b') : this->getAllMovesForColor('w')};
-    Piece king{board.getKingForColor(color)};
+    Piece king{*board->getKingForColor(color)};
 
 
     for(Move &m: opponentMoves){
@@ -70,7 +70,7 @@ bool Chess::isColorInCheck(Board &board, char color) {
 
 bool Chess::isColorInCheck(char color) {
     vector<Move> opponentMoves{(color == 'w')? this->getAllMovesForColor('b') : this->getAllMovesForColor('w')};
-    Piece king{board.getKingForColor(color)};
+    Piece king{*board.getKingForColor(color)};
 
 
     for(Move &m: opponentMoves){
@@ -90,6 +90,7 @@ void Chess::movePiece(Move move) {
 
     this->board.movePiece(move);
 
+
 }
 
 void Chess::colorMoveAPiece(char color) {
@@ -107,22 +108,66 @@ void Chess::colorMoveAPiece(char color) {
 
     Move moveChose{legalMoves.at(std::stoi(input))};
     this->movePiece(moveChose);
+    if(moveChose.isMoveCastling()){
+        this->movePiece(legalMoves.at(std::stoi(input) + 1));
+    }
 
 }
 
 vector<Move> Chess::getAllLegalMovesFor(char color){
     vector<Move> legalMoves{};
     for(Move &move: this->getAllMovesForColor(color)){
-        Board newBoard{board.makeNewBoardWith(move)};
-        if(!this->isColorInCheck(newBoard,color)){
+        board.movePiece(move);
+        if(!this->isColorInCheck(color)){
             legalMoves.emplace_back(move);
         }
     }
+    this->checkForCastling(&legalMoves, color);
 
     return legalMoves;
 }
 
-void Chess::checkForEnPassant(vector<Move> *moves) {
+void Chess::checkForCastling(vector<Move> *moves, char color) {
+    Piece * king = this->board.getKingForColor(color);
+
+    if(king->hasMoved){
+        return;
+    }
+
+    Board newBoard{this->board};
+
+    if(color == 'w'){
+        if(board.getPieceAt('a', 1)!= nullptr && !board.getPieceAt('a', 1)->hasMoved && board.getPieceAt('b',1) == nullptr && board.getPieceAt('c', 1) == nullptr && board.getPieceAt('d',1)==
+                                                                                                                                                                     nullptr){
+            //check if anything is in the way of it the king ever goes into check in the process
+            vector<Move> opponentsMove{this->getAllMovesForColor((color == 'w')? 'b':'w')};
+
+            bool possible{true};
+            for(Move &move: opponentsMove){
+                if(move.contains((char)(king->x -1), king->y) || move.contains((char)(king->x -2), king->y) || move.contains(king->x, king->y)){
+                    possible = false;
+                    break;
+                }
+            }
+
+            if(possible){
+                moves->emplace_back(king, 'e', 1, 'c', 1, false, true);
+                moves->emplace_back(this->board.getPieceAt('a',1), 'a', 1, 'd', 1, false, true);
+            }
+        }
+/*
+        if(board.getPieceAt('h', 1)!= nullptr && !board.getPieceAt('a', 1)->hasMoved){
+            //check if anything is in the way of it the king ever goes into check in the process
+        }
+    }else{
+        if(board.getPieceAt('a', 8)!= nullptr && !board.getPieceAt('a', 1)->hasMoved){
+            //check if anything is in the way of it the king ever goes into check in the process
+        }
+
+        if(board.getPieceAt('h', 8)!= nullptr && !board.getPieceAt('a', 1)->hasMoved){
+            //check if anything is in the way of it the king ever goes into check in the process
+        }*/
+    }
 
 }
 

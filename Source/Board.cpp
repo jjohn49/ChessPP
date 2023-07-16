@@ -4,6 +4,7 @@
 
 #include "../Headers/Board.h"
 #include <iostream>
+#include <cstring>
 
 Board::Board(){
     //maybe make a piece called empty
@@ -53,8 +54,8 @@ Board::Board(){
             Piece("Queen", 'w', 'd', 1),
             Piece("Queen", 'b', 'd', 8)
     };
-    board = {
-            {1,{new Piece(rooks[0]), new Piece(knights[0]), new Piece(bishops[0]), new Piece(queens[0]), new Piece(kings[0]), new Piece(bishops[1]), new Piece(knights[1]), new Piece(rooks[1])}},
+    /*board = {
+            {1,{new Piece(rooks[0]), new Piece(knights[0]), new Piece(bishops[0]), new Piece(queens[0]),new Piece(kings[0]), new Piece(bishops[1]), new Piece(knights[1]), new Piece(rooks[1])}},
             {2,{new Piece(pawns[0]), new Piece(pawns[1]), new Piece(pawns[2]), new Piece(pawns[3]), new Piece(pawns[4]), new Piece(pawns[5]), new Piece(pawns[6]), new Piece(pawns[7])}},
             {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
@@ -62,6 +63,17 @@ Board::Board(){
             {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {7,{new Piece(pawns[8]), new Piece(pawns[9]), new Piece(pawns[10]), new Piece(pawns[11]), new Piece(pawns[12]), new Piece(pawns[13]), new Piece(pawns[14]), new Piece(pawns[15])}},
             {8,{new Piece(rooks[2]), new Piece(knights[2]), new Piece(bishops[2]), new Piece(queens[1]), new Piece(kings[1]), new Piece(bishops[3]), new Piece(knights[3]), new Piece(rooks[3])}},
+    };*/
+
+    board = {
+            {1,{nullptr, nullptr, nullptr, nullptr ,new Piece(kings[0]), nullptr, nullptr, nullptr}},
+            {2,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {5,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {7,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
+            {8,{nullptr, nullptr, nullptr, nullptr, new Piece(queens[1]), nullptr, nullptr, nullptr}},
     };
     previousMoves = vector<Move>();
 }
@@ -144,20 +156,40 @@ void Board::movePiece(Move move){
     piece->hasMoved = true;
 }
 
-Board Board::makeNewBoardWith(Move move){
-    Board newBoard = *this;
+void Board::revertMove(Move move) {
+    Piece * piece{move.getPiece()};
+    pair<char, int> oldPosition{move.oldPosition()};
+    pair<char, int> newPosition{move.newPosition()};
+
+    piece->setX(oldPosition.first);
+    piece->setY(oldPosition.second);
+    this->board.at(newPosition.second).at(newPosition.first) = nullptr;
+    this->board.at(oldPosition.second).at(oldPosition.first) = piece;
+
+    if(move.isMoveEnPessant() || move.didMoveCapture()){
+        Piece * capturedPiece{this->capturedPieces.back()};
+        this->board.at(capturedPiece->y).at(capturedPiece->x) = capturedPiece;
+        capturedPieces.erase(capturedPieces.end());
+    }
+}
+
+/*Board Board::makeNewBoardWith(Move move){
+    Board& newBoard = *this;
+
     Piece * piece = move.getPiece();
     pair<char, int32_t> oldPosition{move.oldPosition()};
     pair<char, int32_t> newPosition{move.newPosition()};
-
-    newBoard.board[oldPosition.second].at(oldPosition.first - 'a') = nullptr;
-    newBoard.board[newPosition.second].at(newPosition.first - 'a') = piece;
+    Piece * newPiece = newBoard.getPieceAt(oldPosition.first, oldPosition.second);
+    newPiece->setX(newPosition.first);
+    newPiece->setY(newPosition.second);
+    newBoard.board.at(oldPosition.second).at(oldPosition.first - 'a') = nullptr;
+    newBoard.board.at(newPosition.second).at(newPosition.first - 'a') = newPiece;
 
     return newBoard;
-}
+}*/
 
-Piece & Board::getKingForColor(char color) {
-    return (color == 'w')? kings[0] : kings[1];
+Piece * Board::getKingForColor(char color) {
+    return (color == 'w')? &kings[0] : &kings[1];
 }
 
 vector<Piece *> Board::getCapturedPieces() {
@@ -167,6 +199,8 @@ vector<Piece *> Board::getCapturedPieces() {
 vector<Move> Board::getAllPreviousMoves() {
     return this->previousMoves;
 }
+
+
 
 
 

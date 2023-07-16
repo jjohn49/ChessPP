@@ -40,8 +40,9 @@ public:
     vector<Move> getMovesForPawn(Piece pawn);
     vector<Piece *> getCapturedPieces();
     void movePiece(Move move);
-    Board makeNewBoardWith(Move move);
-    Piece &getKingForColor(char color);
+    void revertMove(Move move);
+    //Board makeNewBoardWith(Move move);
+    Piece * getKingForColor(char color);
     vector<Move> getAllPreviousMoves();
 
 

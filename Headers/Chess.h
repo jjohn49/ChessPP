@@ -22,13 +22,17 @@ public:
     Chess(Board &board);
     vector<Move> getAllMovesForColor(Board board, char color);
     vector<Move> getAllMovesForColor(char color);
-    bool isColorInCheck(Board &board, char color);
+    bool isColorInCheck(Board * board, char color);
     bool isColorInCheck(char color);
     void movePiece(Move move);
     void colorMoveAPiece(char color);
     void checkForEnPassant(vector<Move> * moves);
 
     vector<Move> getAllLegalMovesFor(char color);
+
+    void checkForCastling(vector<Move> *moves);
+
+    void checkForCastling(vector<Move> *moves, char color);
 };
 
 
