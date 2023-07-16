@@ -15,6 +15,7 @@ Move::Move() {
     this->oldY = 9;
     this->isEnPessant = false;
     this->isCastling = false;
+    this->didCapture = false;
 }
 
 Move::Move(Piece * pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY) {
@@ -25,6 +26,7 @@ Move::Move(Piece * pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY)
     this->newY = newY;
     this->isEnPessant = false;
     this->isCastling = false;
+    this->didCapture = false;
 }
 
 Move::Move(Piece * pieceMoved, string oldPosition, string newPosition): Move(std::move(pieceMoved), oldPosition.at(0), oldPosition.at(1), newPosition.at(0), newPosition.at(1)) {
@@ -40,6 +42,7 @@ Move::Move(Piece *pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, 
     this->newY = newY;
     this->isEnPessant = isEnPessant;
     this->isCastling = false;
+    this->didCapture = false;
 }
 Move::Move(Piece *pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, bool isEnPessant, bool isCastling) {
     this->pieceMoved = std::move(pieceMoved);
@@ -49,6 +52,7 @@ Move::Move(Piece *pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, 
     this->newY = newY;
     this->isEnPessant = isEnPessant;
     this->isCastling = isCastling;
+    this->didCapture = false;
 }
 
 Move::Move(Piece *pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, bool isEnPessant, bool isCastling,

@@ -17,12 +17,12 @@ using namespace std;
 
 class Board {
     vector<Piece *> capturedPieces;
-    array<Piece,16> pawns;
-    array<Piece,4> knights;
-    array<Piece, 2> kings;
-    array<Piece, 4> rooks;
-    array<Piece, 4>bishops;
-    array<Piece, 2> queens;
+    array<Piece *,16> pawns;
+    array<Piece *,4> knights;
+    array<Piece *, 2> kings;
+    array<Piece *, 4> rooks;
+    array<Piece *, 4>bishops;
+    array<Piece *, 2> queens;
     unordered_map<int32_t , array<Piece*,8>>  board;
     vector<Move> previousMoves;
     vector<Move> currentMoves;

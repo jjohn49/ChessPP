@@ -16,7 +16,7 @@ public:
     //~MovesForPieces();
     vector<Move> getMovesFor(Piece * piece);
 private:
-    bool isValidMove(Move move);
+
     bool isCheck(Board board, char color);
     vector<Move> getMovesForPawn(Piece * pawn);
     vector<Move> getRegularMovesForPawn(Piece * pawn);
@@ -47,6 +47,8 @@ private:
     void rookLogic(Piece *rook, vector<Move> *moves);
 
     void bishopLogic(Piece *bishop, vector<Move> *moves);
+
+    bool isValidMove(vector<Move> *moves, Move move);
 };
 
 

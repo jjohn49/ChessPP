@@ -70,12 +70,12 @@ bool Chess::isColorInCheck(Board * board, char color) {
 
 bool Chess::isColorInCheck(char color) {
     vector<Move> opponentMoves{(color == 'w')? this->getAllMovesForColor('b') : this->getAllMovesForColor('w')};
-    Piece king{*board.getKingForColor(color)};
+    Piece * king{this->board.getKingForColor(color)};
 
 
     for(Move &m: opponentMoves){
-        cout << m.toString() << endl;
-        if(m.contains(king.x, king.y)){
+        //cout << m.toString() << endl;
+        if(m.contains(king->x, king->y)){
             return true;
         }
     }
@@ -86,8 +86,7 @@ bool Chess::isColorInCheck(char color) {
 void Chess::movePiece(Move move) {
     Piece * pieceMoved{move.getPiece()};
 
-    Board newBoard{board.makeNewBoardWith(move)};
-
+    //Board newBoard{board.makeNewBoardWith(move)};
     this->board.movePiece(move);
 
 
@@ -121,6 +120,7 @@ vector<Move> Chess::getAllLegalMovesFor(char color){
         if(!this->isColorInCheck(color)){
             legalMoves.emplace_back(move);
         }
+        board.revertMove(move);
     }
     this->checkForCastling(&legalMoves, color);
 

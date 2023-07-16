@@ -8,73 +8,74 @@
 
 Board::Board(){
     //maybe make a piece called empty
-    pawns = {Piece("Pawn", 'w', 'a', 2),
-             Piece("Pawn", 'w', 'b', 2),
-             Piece("Pawn", 'w', 'c', 2),
-             Piece("Pawn", 'w', 'd', 2),
-             Piece("Pawn", 'w', 'e', 2),
-             Piece("Pawn", 'w', 'f', 2),
-             Piece("Pawn", 'w', 'g', 2),
-             Piece("Pawn", 'w', 'h', 2),
-             Piece("Pawn", 'b', 'a', 7),
-             Piece("Pawn", 'b', 'b', 7),
-             Piece("Pawn", 'b', 'c', 7),
-             Piece("Pawn", 'b', 'd', 7),
-             Piece("Pawn", 'b', 'e', 7),
-             Piece("Pawn", 'b', 'f', 7),
-             Piece("Pawn", 'b', 'g', 7),
-             Piece("Pawn", 'b', 'h', 7)};
+    pawns = {new Piece("Pawn", 'w', 'a', 2),
+             new Piece("Pawn", 'w', 'b', 2),
+             new Piece("Pawn", 'w', 'c', 2),
+             new Piece("Pawn", 'w', 'd', 2),
+             new Piece("Pawn", 'w', 'e', 2),
+             new Piece("Pawn", 'w', 'f', 2),
+             new Piece("Pawn", 'w', 'g', 2),
+             new Piece("Pawn", 'w', 'h', 2),
+             new Piece("Pawn", 'b', 'a', 7),
+             new Piece("Pawn", 'b', 'b', 7),
+             new Piece("Pawn", 'b', 'c', 7),
+             new Piece("Pawn", 'b', 'd', 7),
+             new Piece("Pawn", 'b', 'e', 7),
+             new Piece("Pawn", 'b', 'f', 7),
+             new Piece("Pawn", 'b', 'g', 7),
+             new Piece("Pawn", 'b', 'h', 7)};
 
     knights = {
-            Piece("Knight", 'w', 'b', 1),
-            Piece("Knight", 'w', 'g', 1),
-            Piece("Knight", 'b', 'b', 8),
-            Piece("Knight", 'b', 'g', 8)
+            new Piece("Knight", 'w', 'b', 1),
+            new Piece("Knight", 'w', 'g', 1),
+            new Piece("Knight", 'b', 'b', 8),
+            new Piece("Knight", 'b', 'g', 8)
     };
 
     kings = {
-            Piece("King", 'w', 'e', 1),
-            Piece("King", 'b', 'e', 8),
+            new Piece("King", 'w', 'e', 1),
+            new Piece("King", 'b', 'e', 8),
     };
 
     bishops = {
-            Piece("Bishop", 'w', 'c', 1),
-            Piece("Bishop", 'w', 'f', 1),
-            Piece("Bishop", 'b', 'c', 8),
-            Piece("Bishop", 'b', 'f', 8),
+            new Piece("Bishop", 'w', 'c', 1),
+            new Piece("Bishop", 'w', 'f', 1),
+            new Piece("Bishop", 'b', 'c', 8),
+            new Piece("Bishop", 'b', 'f', 8),
     };
 
     rooks = {
-            Piece("Rook", 'w', 'a', 1),
-            Piece("Rook", 'w', 'g', 1),
-            Piece("Rook", 'b', 'a', 8),
-            Piece("Rook", 'b', 'g', 8),
+            new Piece("Rook", 'w', 'a', 1),
+            new Piece("Rook", 'w', 'g', 1),
+            new Piece("Rook", 'b', 'a', 8),
+            new Piece("Rook", 'b', 'g', 8),
     };
     queens = {
-            Piece("Queen", 'w', 'd', 1),
-            Piece("Queen", 'b', 'd', 8)
+            new Piece("Queen", 'w', 'd', 1),
+            //Piece("Queen", 'b', 'd', 8)
+            new Piece("Queen", 'b', 'e', 8)
     };
-    /*board = {
-            {1,{new Piece(rooks[0]), new Piece(knights[0]), new Piece(bishops[0]), new Piece(queens[0]),new Piece(kings[0]), new Piece(bishops[1]), new Piece(knights[1]), new Piece(rooks[1])}},
-            {2,{new Piece(pawns[0]), new Piece(pawns[1]), new Piece(pawns[2]), new Piece(pawns[3]), new Piece(pawns[4]), new Piece(pawns[5]), new Piece(pawns[6]), new Piece(pawns[7])}},
+    board = {
+            {1,{rooks[0], knights[0], bishops[0], queens[0],kings[0], bishops[1], knights[1], rooks[1]}},
+            {2,{pawns[0], pawns[1], pawns[2], pawns[3], pawns[4], pawns[5], pawns[6], pawns[7]}},
             {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {5,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
-            {7,{new Piece(pawns[8]), new Piece(pawns[9]), new Piece(pawns[10]), new Piece(pawns[11]), new Piece(pawns[12]), new Piece(pawns[13]), new Piece(pawns[14]), new Piece(pawns[15])}},
-            {8,{new Piece(rooks[2]), new Piece(knights[2]), new Piece(bishops[2]), new Piece(queens[1]), new Piece(kings[1]), new Piece(bishops[3]), new Piece(knights[3]), new Piece(rooks[3])}},
-    };*/
+            {7,{pawns[8], pawns[9], pawns[10], pawns[11], pawns[12], pawns[13], pawns[14], pawns[15]}},
+            {8,{rooks[2], knights[2], bishops[2], queens[1], kings[1], bishops[3], knights[3], rooks[3]}},
+    };
 
-    board = {
-            {1,{nullptr, nullptr, nullptr, nullptr ,new Piece(kings[0]), nullptr, nullptr, nullptr}},
+    /*board = {
+            {1,{nullptr, nullptr, nullptr, nullptr ,kings[0], nullptr, nullptr, nullptr}},
             {2,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {5,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {7,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
-            {8,{nullptr, nullptr, nullptr, nullptr, new Piece(queens[1]), nullptr, nullptr, nullptr}},
-    };
+            {8,{nullptr, nullptr, nullptr, nullptr, queens[1], nullptr, nullptr, nullptr}},
+    };*/
     previousMoves = vector<Move>();
 }
 
@@ -136,14 +137,12 @@ void Board::movePiece(Move move){
     pair<char, int32_t> newPosition{move.newPosition()};
 
     this->board[oldPosition.second].at(oldPosition.first - 'a') = nullptr;
-    if(Piece * captured{this->board[newPosition.second].at(newPosition.first - 'a')}){
+    if(Piece * captured{this->board.at(newPosition.second).at(newPosition.first - 'a')}){
         capturedPieces.emplace_back(captured);
     }
 
-
-
-    piece->setX(newPosition.first);
-    piece->setY(newPosition.second);
+    piece->x = newPosition.first;
+    piece->y = newPosition.second;
     this->board[newPosition.second].at(newPosition.first - 'a') = piece;
 
     if(move.isMoveEnPessant()){
@@ -163,12 +162,12 @@ void Board::revertMove(Move move) {
 
     piece->setX(oldPosition.first);
     piece->setY(oldPosition.second);
-    this->board.at(newPosition.second).at(newPosition.first) = nullptr;
-    this->board.at(oldPosition.second).at(oldPosition.first) = piece;
+    this->board.at(newPosition.second).at(newPosition.first - 'a') = nullptr;
+    this->board.at(oldPosition.second).at(oldPosition.first - 'a') = piece;
 
     if(move.isMoveEnPessant() || move.didMoveCapture()){
         Piece * capturedPiece{this->capturedPieces.back()};
-        this->board.at(capturedPiece->y).at(capturedPiece->x) = capturedPiece;
+        this->board.at(capturedPiece->y).at(capturedPiece->x - 'a') = capturedPiece;
         capturedPieces.erase(capturedPieces.end());
     }
 }
@@ -189,7 +188,7 @@ void Board::revertMove(Move move) {
 }*/
 
 Piece * Board::getKingForColor(char color) {
-    return (color == 'w')? &kings[0] : &kings[1];
+    return (color == 'w')? kings[0] : kings[1];
 }
 
 vector<Piece *> Board::getCapturedPieces() {

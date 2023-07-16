@@ -65,8 +65,8 @@ vector<Move> MovesForPieces::getTakeMovesForPawn(Piece * pawn) {
     Move newMove;
     for(int &lr :leftAndRight){
         newMove = Move(pawn, (char)(pawn->x+lr), pawn->y + offset);
-        if(this->isValidMove(newMove) && board->getPieceAt((char)(pawn->x+lr), pawn->y + offset)){
-            pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x+lr, pawn->y + offset);
+        if(this->isValidMove(&pawnMoves, newMove)){
+            //pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x+lr, pawn->y + offset, false, false, true);
         }
     }
     if(board->getAllPreviousMoves().size() > 0){
@@ -122,19 +122,25 @@ vector<Move> MovesForPieces::getMovesForKnight(Piece * knight) {
 
     for(pair<char, int32_t> &position:positions){
         Move newMove(knight, position.first, position.second);
-        if(this->isValidMove(newMove)){
-            moves.emplace_back(knight, x,y, position.first, position.second);
+        if(this->isValidMove(&moves, newMove)){
+            //moves.emplace_back(knight, x,y, position.first, position.second);
         }
     }
     return moves;
 }
 
-bool MovesForPieces::isValidMove(Move move) {
+bool MovesForPieces::isValidMove(vector<Move> * moves, Move move) {
     pair<char, int32_t> newPosition{move.newPosition()};
     if(board->isLocationValid(newPosition.first,newPosition.second)){
         //need to change this to add offset
+        Piece * piece{move.getPiece()};
         Piece * p = board->getPieceAt(newPosition.first,newPosition.second);
-        if(p == nullptr || (!move.getPiece()->isSameColor(p))){
+        if(p == nullptr){
+            moves->emplace_back(move);
+            return true;
+        }else if((!move.getPiece()->isSameColor(p))){
+            moves->emplace_back(piece, piece->x, piece->y, newPosition.first, newPosition.second, false, false, true);
+            board->getCapturedPieces().emplace_back(p);
             return true;
         }
     }
@@ -159,8 +165,8 @@ vector<Move> MovesForPieces::getMovesForKing(Piece *king) {
     Move newMove;
     for(pair<char, int32_t> &position: positions){
         newMove = Move(king, position.first, position.second);
-        if(this->isValidMove(newMove)){
-            moves.emplace_back(king, x, y, position.first, position.second);
+        if(this->isValidMove(&moves, newMove)){
+            //moves.emplace_back(king, x, y, position.first, position.second);
         }
     }
 
@@ -228,7 +234,7 @@ void MovesForPieces::getConsecutiveMoves(vector<Move> * moves, Move newMove, boo
 }
 
 Move MovesForPieces::addToMovesandGetNextMove(vector<Move> * moves, Move newMove, bool horizontal, bool vertical, int chargeX, int chargeY){
-    moves->emplace_back(newMove);
+    this->isValidMove(moves, newMove);
     pair<char, int> newPosition{newMove.newPosition()};
     char newX{newPosition.first};
     int newY{newPosition.second};
