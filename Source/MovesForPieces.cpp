@@ -252,6 +252,30 @@ vector<Move> MovesForPieces::getMovesForQueen(Piece *queen) {
     return m;
 }
 
+void MovesForPieces::checkForCastling(Piece * king) {
+    if(king->hasMoved){
+        return;
+    }
+
+    if(king->color == 'w'){
+        if(!board->getPieceAt('a', 1)->hasMoved){
+            //check if anything is in the way of it the king ever goes into check in the process
+        }
+
+        if(!board->getPieceAt('h', 1)->hasMoved){
+            //check if anything is in the way of it the king ever goes into check in the process
+        }
+    }else{
+        if(!board->getPieceAt('a', 8)->hasMoved){
+            //check if anything is in the way of it the king ever goes into check in the process
+        }
+
+        if(!board->getPieceAt('h', 8)->hasMoved){
+            //check if anything is in the way of it the king ever goes into check in the process
+        }
+    }
+}
+
 
 
 

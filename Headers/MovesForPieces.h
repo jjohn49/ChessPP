@@ -27,6 +27,8 @@ private:
 
     vector<Move> getMovesForKing(Piece * king);
 
+    void checkForCastling(Piece * king);
+
     vector<Move> getMovesForBishop(Piece * bishop);
 
     vector<Move> getMovesForRook(Piece * rook);
