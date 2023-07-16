@@ -42,6 +42,7 @@ public:
     void movePiece(Move move);
     Board makeNewBoardWith(Move move);
     Piece &getKingForColor(char color);
+    vector<Move> getAllPreviousMoves();
 
 
 };

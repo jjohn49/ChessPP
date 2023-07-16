@@ -69,7 +69,42 @@ vector<Move> MovesForPieces::getTakeMovesForPawn(Piece * pawn) {
             pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x+lr, pawn->y + offset);
         }
     }
+    if(board->getAllPreviousMoves().size() > 0){
+        this->checkForEnPessant(&pawnMoves, pawn);
+    }
+
     return pawnMoves;
+}
+
+void MovesForPieces::checkForEnPessant(vector<Move> *move, Piece *pawn) {
+    Move lastMove{board->getAllPreviousMoves().back()};
+    Piece lastMovePiece{*lastMove.getPiece()};
+    if((pawn->color=='w' && pawn->y == 5)){
+
+
+        if(lastMovePiece.getName() == "Pawn" && lastMove.oldPosition() == make_pair((char)(pawn->x + 1), pawn->y+2) && lastMove.newPosition() ==
+                                                                                                                               make_pair((char)(pawn->x + 1), pawn->y)){
+            move->emplace_back(pawn, pawn->x, pawn->y, (char)(pawn->x + 1), pawn->y + 1, true);
+        }
+
+
+        if(lastMovePiece.getName() == "Pawn" && lastMove.oldPosition() == make_pair((char)(pawn->x - 1), pawn->y+2) && lastMove.newPosition() ==
+                                                                                                                       make_pair((char)(pawn->x - 1), pawn->y)){
+            move->emplace_back(pawn, pawn->x, pawn->y, (char)(pawn->x - 1), pawn->y + 1, true);
+        }
+    }else if((pawn->color == 'b' && pawn->y == 4)){
+
+        if(lastMovePiece.getName() == "Pawn" && lastMove.oldPosition() == make_pair((char)(pawn->x + 1), pawn->y-2) && lastMove.newPosition() ==
+                                                                                                                       make_pair((char)(pawn->x + 1), pawn->y)){
+            move->emplace_back(pawn, pawn->x, pawn->y, (char)(pawn->x + 1), pawn->y - 1, true);
+        }
+
+
+        if(lastMovePiece.getName() == "Pawn" && lastMove.oldPosition() == make_pair((char)(pawn->x - 1), pawn->y-2) && lastMove.newPosition() ==
+                                                                                                                       make_pair((char)(pawn->x - 1), pawn->y)){
+            move->emplace_back(pawn, pawn->x, pawn->y, (char)(pawn->x - 1), pawn->y - 1, true);
+        }
+    }
 }
 
 vector<Move> MovesForPieces::getMovesForKnight(Piece * knight) {
@@ -216,6 +251,8 @@ vector<Move> MovesForPieces::getMovesForQueen(Piece *queen) {
     //cout << m.at(0).toString() << endl;
     return m;
 }
+
+
 
 
 

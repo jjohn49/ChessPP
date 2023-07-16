@@ -63,7 +63,7 @@ Board::Board(){
             {7,{new Piece(pawns[8]), new Piece(pawns[9]), new Piece(pawns[10]), new Piece(pawns[11]), new Piece(pawns[12]), new Piece(pawns[13]), new Piece(pawns[14]), new Piece(pawns[15])}},
             {8,{new Piece(rooks[2]), new Piece(knights[2]), new Piece(bishops[2]), new Piece(queens[1]), new Piece(kings[1]), new Piece(bishops[3]), new Piece(knights[3]), new Piece(rooks[3])}},
     };
-
+    previousMoves = vector<Move>();
 }
 
 
@@ -122,15 +122,26 @@ void Board::movePiece(Move move){
     Piece * piece = move.getPiece();
     pair<char, int32_t> oldPosition{move.oldPosition()};
     pair<char, int32_t> newPosition{move.newPosition()};
+
     this->board[oldPosition.second].at(oldPosition.first - 'a') = nullptr;
     if(Piece * captured{this->board[newPosition.second].at(newPosition.first - 'a')}){
         capturedPieces.emplace_back(captured);
     }
+
+
+
     piece->setX(newPosition.first);
     piece->setY(newPosition.second);
     this->board[newPosition.second].at(newPosition.first - 'a') = piece;
 
+    if(move.isMoveEnPessant()){
+        int offset{(move.getPiece()->color=='w')? -1:1};
+        capturedPieces.emplace_back(this->getPieceAt(move.getPiece()->x, move.getPiece()->y + offset));
+        board.at(newPosition.second+offset).at(newPosition.first - 'a') = nullptr;
+    }
 
+    previousMoves.emplace_back(move);
+    piece->hasMoved = true;
 }
 
 Board Board::makeNewBoardWith(Move move){
@@ -151,6 +162,10 @@ Piece & Board::getKingForColor(char color) {
 
 vector<Piece *> Board::getCapturedPieces() {
     return this->capturedPieces;
+}
+
+vector<Move> Board::getAllPreviousMoves() {
+    return this->previousMoves;
 }
 
 

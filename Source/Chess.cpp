@@ -122,6 +122,10 @@ vector<Move> Chess::getAllLegalMovesFor(char color){
     return legalMoves;
 }
 
+void Chess::checkForEnPassant(vector<Move> *moves) {
+
+}
+
 /*Chess::~Chess() {
     delete this->board;
 }*/

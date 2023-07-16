@@ -5,6 +5,7 @@
 #ifndef CHESSPP_MOVESFORPIECES_H
 #define CHESSPP_MOVESFORPIECES_H
 #include "Board.h"
+#include "Move.h"
 
 
 class MovesForPieces {
@@ -20,6 +21,7 @@ private:
     vector<Move> getMovesForPawn(Piece * pawn);
     vector<Move> getRegularMovesForPawn(Piece * pawn);
     vector<Move> getTakeMovesForPawn(Piece * pawn);
+    void checkForEnPessant(vector<Move> * move, Piece * Pawn);
 
     vector<Move> getMovesForKnight(Piece * knight);
 

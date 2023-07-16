@@ -26,6 +26,7 @@ public:
     bool isColorInCheck(char color);
     void movePiece(Move move);
     void colorMoveAPiece(char color);
+    void checkForEnPassant(vector<Move> * moves);
 
     vector<Move> getAllLegalMovesFor(char color);
 };
