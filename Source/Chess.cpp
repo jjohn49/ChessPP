@@ -116,7 +116,7 @@ void Chess::colorMoveAPiece(char color) {
 vector<Move> Chess::getAllLegalMovesFor(char color){
     vector<Move> legalMoves{};
     for(Move &move: this->getAllMovesForColor(color)){
-        board.movePiece(move);
+        board.movePiece(move, true);
         if(!this->isColorInCheck(color)){
             legalMoves.emplace_back(move);
         }
@@ -130,51 +130,53 @@ vector<Move> Chess::getAllLegalMovesFor(char color){
 void Chess::checkForCastling(vector<Move> *moves, char color) {
     Piece * king = this->board.getKingForColor(color);
 
-    if(king->hasMoved){
-        return;
-    }
-
-    Board newBoard{this->board};
-
     if(color == 'w'){
-        if(board.getPieceAt('a', 1)!= nullptr && !board.getPieceAt('a', 1)->hasMoved && board.getPieceAt('b',1) == nullptr && board.getPieceAt('c', 1) == nullptr && board.getPieceAt('d',1)==
-                                                                                                                                                                     nullptr){
-            //check if anything is in the way of it the king ever goes into check in the process
-            vector<Move> opponentsMove{this->getAllMovesForColor((color == 'w')? 'b':'w')};
+        this->castlingLogic(moves, king, this->board.getPieceAt('a', 1));
+        this->castlingLogic(moves, king, this->board.getPieceAt('h', 1));
+    }else{
+        this->castlingLogic(moves, king, this->board.getPieceAt('a', 8));
+        this->castlingLogic(moves, king, this->board.getPieceAt('h', 8));
+    }
+}
 
-            bool possible{true};
-            for(Move &move: opponentsMove){
-                if(move.contains((char)(king->x -1), king->y) || move.contains((char)(king->x -2), king->y) || move.contains(king->x, king->y)){
+void Chess::castlingLogic(vector<Move> * moves, Piece * king, Piece * rook){
+
+    if(!king->hasMoved || !rook->hasMoved){
+        bool isQueenSide{king->x > rook->x};
+        //check if anything is in the way of it the king ever goes into check in the process
+        vector<Move> opponentsMove{this->getAllMovesForColor((king->color == 'w')? 'b':'w')};
+
+        bool possible{true};
+        for(Move &move: opponentsMove){
+            int counter = king->x;
+            while((isQueenSide && counter >= 'c') || (!isQueenSide && counter <= 'g')){
+                if(move.contains((char)counter, king->y) || ((char)counter != 'e' && this->board.getPieceAt((char)counter, king->y) != nullptr)){
                     possible = false;
                     break;
                 }
-            }
 
-            if(possible){
-                moves->emplace_back(king, 'e', 1, 'c', 1, false, true);
-                moves->emplace_back(this->board.getPieceAt('a',1), 'a', 1, 'd', 1, false, true);
+                if((char)counter == 'c' || (char)counter == 'g'){
+                    break;
+                }
+
+                if(isQueenSide){
+                    counter--;
+                }else{
+                    counter++;
+                }
             }
-        }
-/*
-        if(board.getPieceAt('h', 1)!= nullptr && !board.getPieceAt('a', 1)->hasMoved){
-            //check if anything is in the way of it the king ever goes into check in the process
-        }
-    }else{
-        if(board.getPieceAt('a', 8)!= nullptr && !board.getPieceAt('a', 1)->hasMoved){
-            //check if anything is in the way of it the king ever goes into check in the process
         }
 
-        if(board.getPieceAt('h', 8)!= nullptr && !board.getPieceAt('a', 1)->hasMoved){
-            //check if anything is in the way of it the king ever goes into check in the process
-        }*/
+        if(possible && isQueenSide){
+            moves->emplace_back(king, king->x, king->y, 'c', king->y, false, true);
+            moves->emplace_back(rook, rook->x, rook->y, 'd', rook->y, false, true);
+        }else if(possible){
+            moves->emplace_back(king, king->x, king->y, 'g', king->y, false, true);
+            moves->emplace_back(rook, rook->x, rook->y, 'f', king->y, false, true);
+        }
     }
-
-}
+};
 
 /*Chess::~Chess() {
     delete this->board;
 }*/
-
-
-
-

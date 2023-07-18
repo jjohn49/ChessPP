@@ -33,6 +33,8 @@ public:
     void checkForCastling(vector<Move> *moves);
 
     void checkForCastling(vector<Move> *moves, char color);
+
+    void castlingLogic(vector<Move> *moves, Piece *king, Piece *rook);
 };
 
 

@@ -46,16 +46,16 @@ Board::Board(){
 
     rooks = {
             new Piece("Rook", 'w', 'a', 1),
-            new Piece("Rook", 'w', 'g', 1),
+            new Piece("Rook", 'w', 'h', 1),
             new Piece("Rook", 'b', 'a', 8),
-            new Piece("Rook", 'b', 'g', 8),
+            new Piece("Rook", 'b', 'h', 8),
     };
     queens = {
             new Piece("Queen", 'w', 'd', 1),
             //Piece("Queen", 'b', 'd', 8)
             new Piece("Queen", 'b', 'e', 8)
     };
-    board = {
+    /*board = {
             {1,{rooks[0], knights[0], bishops[0], queens[0],kings[0], bishops[1], knights[1], rooks[1]}},
             {2,{pawns[0], pawns[1], pawns[2], pawns[3], pawns[4], pawns[5], pawns[6], pawns[7]}},
             {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
@@ -64,18 +64,18 @@ Board::Board(){
             {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {7,{pawns[8], pawns[9], pawns[10], pawns[11], pawns[12], pawns[13], pawns[14], pawns[15]}},
             {8,{rooks[2], knights[2], bishops[2], queens[1], kings[1], bishops[3], knights[3], rooks[3]}},
-    };
+    };*/
 
-    /*board = {
-            {1,{nullptr, nullptr, nullptr, nullptr ,kings[0], nullptr, nullptr, nullptr}},
+    board = {
+            {1,{rooks[0], nullptr, nullptr, nullptr ,kings[0], nullptr, nullptr, rooks[1]}},
             {2,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {3,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {4,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {5,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {6,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
             {7,{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}},
-            {8,{nullptr, nullptr, nullptr, nullptr, queens[1], nullptr, nullptr, nullptr}},
-    };*/
+            {8,{rooks[2], nullptr, nullptr, nullptr, kings[1], nullptr, nullptr, rooks[3]}},
+    };
     previousMoves = vector<Move>();
 }
 
@@ -129,9 +129,7 @@ unordered_map<int32_t, array<Piece*, 8>> Board::getBoard() {
     return this->board;
 }
 
-
-
-void Board::movePiece(Move move){
+void Board::movePiece(Move move, bool isTest){
     Piece * piece = move.getPiece();
     pair<char, int32_t> oldPosition{move.oldPosition()};
     pair<char, int32_t> newPosition{move.newPosition()};
@@ -152,7 +150,14 @@ void Board::movePiece(Move move){
     }
 
     previousMoves.emplace_back(move);
-    piece->hasMoved = true;
+    if(!isTest){
+        piece->hasMoved = true;
+    }
+}
+
+void Board::movePiece(Move move){
+    this->movePiece(move, false);
+
 }
 
 void Board::revertMove(Move move) {

@@ -46,6 +46,7 @@ public:
     vector<Move> getAllPreviousMoves();
 
 
+    void movePiece(Move move, bool isTest);
 };
 
 
