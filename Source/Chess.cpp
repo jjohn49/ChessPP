@@ -131,11 +131,22 @@ void Chess::checkForCastling(vector<Move> *moves, char color) {
     Piece * king = this->board.getKingForColor(color);
 
     if(color == 'w'){
-        this->castlingLogic(moves, king, this->board.getPieceAt('a', 1));
-        this->castlingLogic(moves, king, this->board.getPieceAt('h', 1));
+        if(Piece * rook{this->board.getPieceAt('a',1)}){
+            this->castlingLogic(moves, king, rook);
+        }
+
+        if(Piece * rook{this->board.getPieceAt('h',1)}){
+            this->castlingLogic(moves, king, rook);
+        }
+
     }else{
-        this->castlingLogic(moves, king, this->board.getPieceAt('a', 8));
-        this->castlingLogic(moves, king, this->board.getPieceAt('h', 8));
+        if(Piece * rook{this->board.getPieceAt('a',8)}){
+            this->castlingLogic(moves, king, rook);
+        }
+
+        if(Piece * rook{this->board.getPieceAt('h',8)}){
+            this->castlingLogic(moves, king, rook);
+        }
     }
 }
 
