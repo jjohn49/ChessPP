@@ -49,8 +49,9 @@ vector<Move> Chess::getAllMovesForColor(char color) {
 
         }
     }
-
-    return *moves;
+    vector<Move> ret{*moves};
+    free(moves);
+    return ret;
 }
 
 bool Chess::isColorInCheck(Board * board, char color) {
@@ -92,7 +93,12 @@ void Chess::movePiece(Move move) {
 
 }
 
-void Chess::colorMoveAPiece(char color) {
+bool Chess::colorTryToMovePiece(char color) {
+    //Game is won
+    if(this->isCheckMate(color)){
+        return 0;
+    }
+
     this->board.printBoard();
     cout << "Valid Moves" << endl;
     int counter = 0;
@@ -111,6 +117,7 @@ void Chess::colorMoveAPiece(char color) {
         this->movePiece(legalMoves.at(std::stoi(input) + 1));
     }
 
+    return 1;
 }
 
 vector<Move> Chess::getAllLegalMovesFor(char color){
@@ -186,8 +193,35 @@ void Chess::castlingLogic(vector<Move> * moves, Piece * king, Piece * rook){
             moves->emplace_back(rook, rook->x, rook->y, 'f', king->y, false, true);
         }
     }
+}
+
+bool Chess::isCheckMate(char color) {
+    return this->getAllLegalMovesFor(color).empty();
+}
+
+void Chess::play() {
+    array<char, 2> colors{'w','b'};
+    bool isGameOver = false;
+    bool didWhiteWin = false;
+
+    while(!isGameOver){
+        for(char &color: colors){
+            if(this->colorTryToMovePiece(color) == 0){
+                isGameOver = true;
+                didWhiteWin = (color == 'b');
+                break;
+            }
+        }
+    }
+
+    if(didWhiteWin){
+        cout << "\n\n\nWHITE WON\n\n\n";
+    }else{
+        cout << "\n\n\nBLACK WON\n\n\n";
+    }
 };
 
 /*Chess::~Chess() {
     delete this->board;
 }*/
+

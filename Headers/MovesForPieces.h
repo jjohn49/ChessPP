@@ -17,24 +17,7 @@ public:
 
     void getMovesFor(vector<Move> *moves, Piece *piece);
 private:
-
-    bool isCheck(Board board, char color);
-    vector<Move> getMovesForPawn(Piece * pawn);
-    vector<Move> getRegularMovesForPawn(Piece * pawn);
-    vector<Move> getTakeMovesForPawn(Piece * pawn);
     void checkForEnPessant(vector<Move> * move, Piece * Pawn);
-
-    vector<Move> getMovesForKnight(Piece * knight);
-
-    vector<Move> getMovesForKing(Piece * king);
-
-    void checkForCastling(Piece * king);
-
-    vector<Move> getMovesForBishop(Piece * bishop);
-
-    vector<Move> getMovesForRook(Piece * rook);
-
-    vector<Move> getMovesForQueen(Piece * queen);
 
     void
     getConsecutiveMoves(vector<Move> *moves, Move newMove, bool vertical, bool horizontal, int chargeX, int chargeY);
@@ -43,7 +26,6 @@ private:
     addToMovesandGetNextMove(vector<Move> *moves, Move newMove, bool horizontal, bool vertical, int chargeX,
                              int chargeY);
 
-    vector<Move> &getVector(Piece *rook, vector<Move> &m);
 
     void rookLogic(Piece *rook, vector<Move> *moves);
 

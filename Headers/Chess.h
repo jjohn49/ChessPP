@@ -19,6 +19,7 @@ public:
     MovesForPieces movesForPieces;
     Chess();
     //~Chess();
+    void play();
     Chess(Board &board);
     vector<Move> getAllMovesForColor(Board board, char color);
     vector<Move> getAllMovesForColor(char color);
@@ -28,6 +29,8 @@ public:
     void colorMoveAPiece(char color);
     void checkForEnPassant(vector<Move> * moves);
 
+    bool isCheckMate(char color);
+
     vector<Move> getAllLegalMovesFor(char color);
 
     void checkForCastling(vector<Move> *moves);
@@ -35,6 +38,8 @@ public:
     void checkForCastling(vector<Move> *moves, char color);
 
     void castlingLogic(vector<Move> *moves, Piece *king, Piece *rook);
+
+    bool colorTryToMovePiece(char color);
 };
 
 
