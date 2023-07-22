@@ -16,7 +16,7 @@ Chess::Chess(Board &board) {
 }
 
 vector<Move> Chess::getAllMovesForColor(Board board, char color) {
-    vector<Move> moves{};
+    vector<Move> * moves = new vector<Move>();
     vector<Move> m;
     Piece * piece = new Piece();
     MovesForPieces mfp{&board};
@@ -24,33 +24,33 @@ vector<Move> Chess::getAllMovesForColor(Board board, char color) {
         for(int col = 'a'; col <= 'h'; col++){
             piece = board.getPieceAt((char)col,row);
             if(piece != nullptr && piece->color == color){
-                vector<Move> m{mfp.getMovesFor(piece)};
-                moves.insert(moves.end(), m.begin(), m.end());
+                mfp.getMovesFor(moves, piece);
+
             }
 
         }
     }
     delete piece;
 
-    return moves;
+    return *moves;
 }
 
 vector<Move> Chess::getAllMovesForColor(char color) {
-    vector<Move> moves{};
+    vector<Move> * moves = new vector<Move>();
     vector<Move> m;
     Piece * piece;
     for(int row = 1; row <=8; row ++){
         for(int col = 'a'; col <= 'h'; col++){
             piece = board.getPieceAt((char)col,row);
             if(piece != nullptr && piece->color == color){
-                vector<Move> m{this->movesForPieces.getMovesFor(piece)};
-                moves.insert(moves.end(), m.begin(), m.end());
+                this->movesForPieces.getMovesFor(moves, piece);
+
             }
 
         }
     }
 
-    return moves;
+    return *moves;
 }
 
 bool Chess::isColorInCheck(Board * board, char color) {

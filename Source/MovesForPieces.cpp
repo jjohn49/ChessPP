@@ -14,66 +14,59 @@ MovesForPieces::MovesForPieces() {
 MovesForPieces::MovesForPieces(Board * board){
     this->board = board;
 }
-vector<Move> MovesForPieces::getMovesFor(Piece * piece){
+void MovesForPieces::getMovesFor(vector<Move> * moves, Piece * piece){
 
     std::string name{piece->name};
     if(name == "Pawn"){
-       return this->getMovesForPawn(piece);
+       this->getMovesForPawn(moves, piece);
     }else if(name == "Knight"){
-        return this->getMovesForKnight(piece);
+        this->getMovesForKnight(moves, piece);
     }else if(name == "King"){
-        return this->getMovesForKing(piece);
+        this->getMovesForKing(moves, piece);
     }else if(name == "Bishop"){
-        return this->getMovesForBishop(piece);
+        this->getMovesForBishop(moves, piece);
     }else if(name == "Rook"){
-       return this->getMovesForRook(piece);
+       this->getMovesForRook(moves, piece);
     }else if(name =="Queen"){
-        return this->getMovesForQueen(piece);
+        this->getMovesForQueen(moves, piece);
     }
 
-    return vector<Move>();
 }
 
-vector<Move> MovesForPieces::getMovesForPawn(Piece * pawn){
-    vector<Move> regMoves = this->getRegularMovesForPawn(pawn);
-    vector<Move> takeMoves = this->getTakeMovesForPawn(pawn);
-    //appends take moves to reg moves
-    regMoves.insert(regMoves.end(), takeMoves.begin(), takeMoves.end());
-    return regMoves;
+void MovesForPieces::getMovesForPawn(vector<Move> * moves, Piece * pawn){
+
+    this->getRegularMovesForPawn(moves, pawn);
+    this->getTakeMovesForPawn(moves, pawn);
 }
 
-vector<Move> MovesForPieces::getRegularMovesForPawn(Piece * pawn) {
-    vector<Move> pawnMoves{};
+void MovesForPieces::getRegularMovesForPawn(vector<Move> * pawnMoves, Piece * pawn) {
     int offset = (pawn->color == 'w')? 1 : -1;
     Move newMove{pawn, pawn->x, pawn->y+offset};
 
     if(board->getPieceAt(pawn->x, pawn->y + offset) == nullptr){
-        pawnMoves.emplace_back(newMove);
+        pawnMoves->emplace_back(newMove);
         newMove = Move(pawn, pawn->x, (pawn->y + (2 * offset)));
         if(!pawn->hasMoved  && board->getPieceAt(pawn->x, pawn->y + (2* offset)) == nullptr){
-            pawnMoves.emplace_back(newMove);
+            pawnMoves->emplace_back(newMove);
         }
     }
-
-    return pawnMoves;
 }
 
-vector<Move> MovesForPieces::getTakeMovesForPawn(Piece * pawn) {
+void MovesForPieces::getTakeMovesForPawn(vector<Move> * pawnMoves, Piece * pawn) {
     int offset = (pawn->color == 'w')? 1 : -1;
-    vector<Move> pawnMoves{};
+
     array<int, 2> leftAndRight{-1,1};
     Move newMove;
     for(int &lr :leftAndRight){
         newMove = Move(pawn, (char)(pawn->x+lr), pawn->y + offset);
-        if(this->isValidMove(&pawnMoves, newMove)){
+        if(this->isValidMove(pawnMoves, newMove)){
             //pawnMoves.emplace_back(pawn, pawn->x, pawn->y, pawn->x+lr, pawn->y + offset, false, false, true);
         }
     }
     if(board->getAllPreviousMoves().size() > 0){
-        this->checkForEnPessant(&pawnMoves, pawn);
+        this->checkForEnPessant(pawnMoves, pawn);
     }
 
-    return pawnMoves;
 }
 
 void MovesForPieces::checkForEnPessant(vector<Move> *move, Piece *pawn) {
@@ -107,8 +100,7 @@ void MovesForPieces::checkForEnPessant(vector<Move> *move, Piece *pawn) {
     }
 }
 
-vector<Move> MovesForPieces::getMovesForKnight(Piece * knight) {
-    vector<Move> moves{};
+void MovesForPieces::getMovesForKnight(vector<Move> * moves, Piece * knight) {
     char x = knight->x;
     int32_t y = knight->y;
     array<pair<char, int32_t>, 8> positions{make_pair(x+1, y+2),
@@ -122,11 +114,10 @@ vector<Move> MovesForPieces::getMovesForKnight(Piece * knight) {
 
     for(pair<char, int32_t> &position:positions){
         Move newMove(knight, position.first, position.second);
-        if(this->isValidMove(&moves, newMove)){
+        if(this->isValidMove(moves, newMove)){
             //moves.emplace_back(knight, x,y, position.first, position.second);
         }
     }
-    return moves;
 }
 
 bool MovesForPieces::isValidMove(vector<Move> * moves, Move move) {
@@ -140,7 +131,7 @@ bool MovesForPieces::isValidMove(vector<Move> * moves, Move move) {
             return true;
         }else if((!move.getPiece()->isSameColor(p))){
             moves->emplace_back(piece, piece->x, piece->y, newPosition.first, newPosition.second, false, false, true);
-            board->getCapturedPieces().emplace_back(p);
+            //board->getCapturedPieces().emplace_back(p);
             return true;
         }
     }
@@ -148,8 +139,7 @@ bool MovesForPieces::isValidMove(vector<Move> * moves, Move move) {
 }
 
 
-vector<Move> MovesForPieces::getMovesForKing(Piece *king) {
-    vector<Move> moves{};
+void MovesForPieces::getMovesForKing(vector<Move> * moves, Piece *king) {
     char x{king->x};
     int32_t y{king->y};
     array<pair<char, int32_t>, 8> positions{
@@ -165,19 +155,17 @@ vector<Move> MovesForPieces::getMovesForKing(Piece *king) {
     Move newMove;
     for(pair<char, int32_t> &position: positions){
         newMove = Move(king, position.first, position.second);
-        if(this->isValidMove(&moves, newMove)){
+        if(this->isValidMove(moves, newMove)){
             //moves.emplace_back(king, x, y, position.first, position.second);
         }
     }
-
-    return moves;
 }
 
-vector<Move> MovesForPieces::getMovesForBishop(Piece *bishop) {
+void MovesForPieces::getMovesForBishop(vector<Move> * moves, Piece *bishop) {
     //going to be used for both charges in x and y to find the diagnols
-    vector<Move> m{};
-    this->bishopLogic(bishop, &m);
-    return m;
+
+    this->bishopLogic(bishop, moves);
+
 }
 
 void MovesForPieces::bishopLogic(Piece * bishop, vector<Move> * moves){
@@ -192,11 +180,9 @@ void MovesForPieces::bishopLogic(Piece * bishop, vector<Move> * moves){
 
 }
 
-vector<Move> MovesForPieces::getMovesForRook(Piece *rook) {
-    vector<Move> m{};
-    this->rookLogic(rook, &m);
+void MovesForPieces::getMovesForRook(vector<Move> * moves, Piece *rook) {
+    this->rookLogic(rook, moves);
 
-    return m;
 }
 
 void MovesForPieces::rookLogic(Piece *rook, vector<Move> * moves) {
@@ -229,7 +215,7 @@ void MovesForPieces::getConsecutiveMoves(vector<Move> * moves, Move newMove, boo
         Move nextMove{this->addToMovesandGetNextMove(moves, newMove, horizontal, vertical, chargeX, chargeY)};
         this->getConsecutiveMoves(moves, nextMove, vertical, horizontal, chargeX, chargeY);
     }else if(!newMove.getPiece()->isSameColor(board->getPieceAt(newPosition.first, newPosition.second))){
-        moves->emplace_back(newMove);
+        this->isValidMove(moves, newMove);
     }
 }
 
@@ -250,37 +236,13 @@ Move MovesForPieces::addToMovesandGetNextMove(vector<Move> * moves, Move newMove
     return nextMove;
 }
 
-vector<Move> MovesForPieces::getMovesForQueen(Piece *queen) {
-    vector<Move> m{};
-    this->rookLogic(queen, &m);
-    this->bishopLogic(queen, &m);
-    //cout << m.at(0).toString() << endl;
-    return m;
+void MovesForPieces::getMovesForQueen(vector<Move> * moves, Piece *queen) {
+    this->rookLogic(queen, moves);
+    this->bishopLogic(queen, moves);
+
 }
 
-void MovesForPieces::checkForCastling(Piece * king) {
-    if(king->hasMoved){
-        return;
-    }
 
-    if(king->color == 'w'){
-        if(!board->getPieceAt('a', 1)->hasMoved){
-            //check if anything is in the way of it the king ever goes into check in the process
-        }
-
-        if(!board->getPieceAt('h', 1)->hasMoved){
-            //check if anything is in the way of it the king ever goes into check in the process
-        }
-    }else{
-        if(!board->getPieceAt('a', 8)->hasMoved){
-            //check if anything is in the way of it the king ever goes into check in the process
-        }
-
-        if(!board->getPieceAt('h', 8)->hasMoved){
-            //check if anything is in the way of it the king ever goes into check in the process
-        }
-    }
-}
 
 
 
