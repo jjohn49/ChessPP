@@ -15,39 +15,39 @@ public:
     MovesForPieces(Board * board);
     //~MovesForPieces();
 
-    void getMovesFor(vector<Move> *moves, Piece *piece);
+    void getMovesFor(vector<Move> &moves, Piece &piece);
 private:
-    void checkForEnPessant(vector<Move> * move, Piece * Pawn);
+    void checkForEnPessant(vector<Move> & move, Piece & Pawn);
 
     void
-    getConsecutiveMoves(vector<Move> *moves, Move newMove, bool vertical, bool horizontal, int chargeX, int chargeY);
+    getConsecutiveMoves(vector<Move> &moves, Move newMove, bool vertical, bool horizontal, int chargeX, int chargeY);
 
     Move
-    addToMovesandGetNextMove(vector<Move> *moves, Move newMove, bool horizontal, bool vertical, int chargeX,
+    addToMovesandGetNextMove(vector<Move> &moves, Move newMove, bool horizontal, bool vertical, int chargeX,
                              int chargeY);
 
 
-    void rookLogic(Piece *rook, vector<Move> *moves);
+    void rookLogic(Piece &rook, vector<Move> &moves);
 
-    void bishopLogic(Piece *bishop, vector<Move> *moves);
+    void bishopLogic(Piece &bishop, vector<Move> &moves);
 
-    bool isValidMove(vector<Move> *moves, Move move);
+    bool isValidMove(vector<Move> &moves, Move move);
 
-    void getMovesForQueen(vector<Move> *moves, Piece *queen);
+    void getMovesForQueen(vector<Move> &moves, Piece &queen);
 
-    void getMovesForRook(vector<Move> *moves, Piece *rook);
+    void getMovesForRook(vector<Move> &moves, Piece &rook);
 
-    void getMovesForBishop(vector<Move> *moves, Piece *bishop);
+    void getMovesForBishop(vector<Move> &moves, Piece &bishop);
 
-    void getMovesForKing(vector<Move> *moves, Piece *king);
+    void getMovesForKing(vector<Move> &moves, Piece &king);
 
-    void getMovesForKnight(vector<Move> *moves, Piece *knight);
+    void getMovesForKnight(vector<Move> &moves, Piece &knight);
 
-    void getTakeMovesForPawn(vector<Move> *pawnMoves, Piece *pawn);
+    void getTakeMovesForPawn(vector<Move> &pawnMoves, Piece &pawn);
 
-    void getRegularMovesForPawn(vector<Move> *pawnMoves, Piece *pawn);
+    void getRegularMovesForPawn(vector<Move> &pawnMoves, Piece &pawn);
 
-    void getMovesForPawn(vector<Move> *moves, Piece *pawn);
+    void getMovesForPawn(vector<Move> &moves, Piece &pawn);
 
 
 };

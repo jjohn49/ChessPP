@@ -15,10 +15,10 @@
 
 class Chess {
 public:
-    Board board;
-    MovesForPieces movesForPieces;
+    Board * board;
+    MovesForPieces * movesForPieces;
     Chess();
-    //~Chess();
+    ~Chess();
     void play();
     Chess(Board &board);
     vector<Move> getAllMovesForColor(Board board, char color);
@@ -27,17 +27,17 @@ public:
     bool isColorInCheck(char color);
     void movePiece(Move move);
     void colorMoveAPiece(char color);
-    void checkForEnPassant(vector<Move> * moves);
+    void checkForEnPassant(vector<Move> & moves);
 
     bool isCheckMate(char color);
 
     vector<Move> getAllLegalMovesFor(char color);
 
-    void checkForCastling(vector<Move> *moves);
+    void checkForCastling(vector<Move> &moves);
 
-    void checkForCastling(vector<Move> *moves, char color);
+    void checkForCastling(vector<Move> &moves, char color);
 
-    void castlingLogic(vector<Move> *moves, Piece *king, Piece *rook);
+    void castlingLogic(vector<Move> &moves, Piece &king, Piece &rook);
 
     bool colorTryToMovePiece(char color);
 };

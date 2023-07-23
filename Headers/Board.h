@@ -17,19 +17,19 @@ using namespace std;
 
 class Board {
     vector<Piece *> capturedPieces;
-    array<Piece *,16> pawns;
-    array<Piece *,4> knights;
-    array<Piece *, 2> kings;
-    array<Piece *, 4> rooks;
-    array<Piece *, 4>bishops;
-    array<Piece *, 2> queens;
-    unordered_map<int32_t , array<Piece*,8>>  board;
+    array<Piece,16> pawns;
+    array<Piece,4> knights;
+    array<Piece, 2> kings;
+    array<Piece, 4> rooks;
+    array<Piece, 4>bishops;
+    array<Piece, 2> queens;
+
     vector<Move> previousMoves;
-    vector<Move> currentMoves;
+
 public:
     Board();
-
-    //~Board();
+    unordered_map<int32_t , array<Piece*,8>>  board;
+    ~Board();
     Piece* getPieceAt(char x, int32_t y);
     bool isLocationValid(char x, int32_t y);
     unordered_map<int32_t , array<Piece *,8>> getBoard();
@@ -42,7 +42,7 @@ public:
     void movePiece(Move move);
     void revertMove(Move move);
     //Board makeNewBoardWith(Move move);
-    Piece * getKingForColor(char color);
+    Piece & getKingForColor(char color);
     vector<Move> getAllPreviousMoves();
 
 

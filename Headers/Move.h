@@ -10,7 +10,7 @@
 
 
 class Move {
-    Piece * pieceMoved;
+    Piece pieceMoved;
     char oldX;
     int32_t oldY;
     char newX;
@@ -21,18 +21,18 @@ class Move {
 
 public:
     Move();
-    Move(Piece * piece, char newX, int32_t newY);
-    Move(Piece * pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY);
-    Move(Piece * pieceMoved, string oldPosition, string newPosition);
-    Move(Piece * pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, bool isEnPessant);
-    Move(Piece * pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, bool isEnPessant, bool isCastling);
-    Move(Piece * pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, bool isEnPessant, bool isCastling, bool didCapture);
+    Move(Piece & piece, char newX, int32_t newY);
+    Move(Piece & pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY);
+    Move(Piece & pieceMoved, string oldPosition, string newPosition);
+    Move(Piece & pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, bool isEnPessant);
+    Move(Piece & pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, bool isEnPessant, bool isCastling);
+    Move(Piece & pieceMoved, char oldX, int32_t oldY, char newX, int32_t newY, bool isEnPessant, bool isCastling, bool didCapture);
     bool operator==(Move move);
     std::string toString();
     pair<char, int32_t> oldPosition();
     pair<char, int32_t> newPosition();
     bool contains(char x, int y);
-    Piece * getPiece();
+    Piece & getPiece();
     bool isMoveEnPessant();
     bool isMoveCastling();
     bool didMoveCapture();

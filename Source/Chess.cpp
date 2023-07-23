@@ -5,58 +5,63 @@
 #include "../Headers/Chess.h"
 
 Chess::Chess(){
-    board = Board();
-    movesForPieces = MovesForPieces(&board);
+    cout << "Created Chess Object" << endl;
+    board = new Board();
+    movesForPieces = new MovesForPieces(board);
 }
 
 //for debugging purposes
 Chess::Chess(Board &board) {
-    this->board = board;
-    movesForPieces = MovesForPieces(&board);
+    this->board = new Board(board);
+    movesForPieces = new MovesForPieces(this->board);
 }
 
 vector<Move> Chess::getAllMovesForColor(Board board, char color) {
-    vector<Move> * moves = new vector<Move>();
+    vector<Move> moves{};
     vector<Move> m;
-    Piece * piece = new Piece();
+
     MovesForPieces mfp{&board};
     for(int row = 1; row <=8; row ++){
         for(int col = 'a'; col <= 'h'; col++){
-            piece = board.getPieceAt((char)col,row);
-            if(piece != nullptr && piece->color == color){
-                mfp.getMovesFor(moves, piece);
+            if (board.getPieceAt((char)col,row) != nullptr){
+                Piece piece{*board.getPieceAt((char)col,row)};
+                if(piece.color == color){
+                    mfp.getMovesFor(moves, piece);
 
+                }
             }
 
         }
     }
-    delete piece;
 
-    return *moves;
+
+    return moves;
 }
 
 vector<Move> Chess::getAllMovesForColor(char color) {
-    vector<Move> * moves = new vector<Move>();
+    vector<Move> moves{};
     vector<Move> m;
-    Piece * piece;
+
     for(int row = 1; row <=8; row ++){
         for(int col = 'a'; col <= 'h'; col++){
-            piece = board.getPieceAt((char)col,row);
-            if(piece != nullptr && piece->color == color){
-                this->movesForPieces.getMovesFor(moves, piece);
+            if(board->getPieceAt((char)col,row) != nullptr) {
 
+                Piece piece{*board->getPieceAt((char) col, row)};
+                if (piece.color == color) {
+                    this->movesForPieces->getMovesFor(moves, piece);
+
+                }
             }
 
         }
     }
-    vector<Move> ret{*moves};
-    free(moves);
-    return ret;
+
+    return moves;
 }
 
 bool Chess::isColorInCheck(Board * board, char color) {
     vector<Move> opponentMoves{(color == 'w')? this->getAllMovesForColor('b') : this->getAllMovesForColor('w')};
-    Piece king{*board->getKingForColor(color)};
+    Piece king{board->getKingForColor(color)};
 
 
     for(Move &m: opponentMoves){
@@ -71,12 +76,12 @@ bool Chess::isColorInCheck(Board * board, char color) {
 
 bool Chess::isColorInCheck(char color) {
     vector<Move> opponentMoves{(color == 'w')? this->getAllMovesForColor('b') : this->getAllMovesForColor('w')};
-    Piece * king{this->board.getKingForColor(color)};
+    Piece king{this->board->getKingForColor(color)};
 
 
     for(Move &m: opponentMoves){
         //cout << m.toString() << endl;
-        if(m.contains(king->x, king->y)){
+        if(m.contains(king.x, king.y)){
             return true;
         }
     }
@@ -85,10 +90,10 @@ bool Chess::isColorInCheck(char color) {
 }
 
 void Chess::movePiece(Move move) {
-    Piece * pieceMoved{move.getPiece()};
+    Piece pieceMoved{move.getPiece()};
 
     //Board newBoard{board.makeNewBoardWith(move)};
-    this->board.movePiece(move);
+    this->board->movePiece(move);
 
 
 }
@@ -99,7 +104,7 @@ bool Chess::colorTryToMovePiece(char color) {
         return 0;
     }
 
-    this->board.printBoard();
+    this->board->printBoard();
     cout << "Valid Moves" << endl;
     int counter = 0;
     vector<Move> legalMoves{this->getAllLegalMovesFor(color)};
@@ -123,52 +128,52 @@ bool Chess::colorTryToMovePiece(char color) {
 vector<Move> Chess::getAllLegalMovesFor(char color){
     vector<Move> legalMoves{};
     for(Move &move: this->getAllMovesForColor(color)){
-        board.movePiece(move, true);
+        board->movePiece(move, true);
         if(!this->isColorInCheck(color)){
             legalMoves.emplace_back(move);
         }
-        board.revertMove(move);
+        board->revertMove(move);
     }
-    this->checkForCastling(&legalMoves, color);
+    this->checkForCastling(legalMoves, color);
 
     return legalMoves;
 }
 
-void Chess::checkForCastling(vector<Move> *moves, char color) {
-    Piece * king = this->board.getKingForColor(color);
+void Chess::checkForCastling(vector<Move> &moves, char color) {
+    Piece king = this->board->getKingForColor(color);
 
     if(color == 'w'){
-        if(Piece * rook{this->board.getPieceAt('a',1)}){
-            this->castlingLogic(moves, king, rook);
+        if(Piece * rook{this->board->getPieceAt('a',1)}){
+            this->castlingLogic(moves, king, *rook);
         }
 
-        if(Piece * rook{this->board.getPieceAt('h',1)}){
-            this->castlingLogic(moves, king, rook);
+        if(Piece * rook{this->board->getPieceAt('h',1)}){
+            this->castlingLogic(moves, king, *rook);
         }
 
     }else{
-        if(Piece * rook{this->board.getPieceAt('a',8)}){
-            this->castlingLogic(moves, king, rook);
+        if(Piece * rook{this->board->getPieceAt('a',8)}){
+            this->castlingLogic(moves, king, *rook);
         }
 
-        if(Piece * rook{this->board.getPieceAt('h',8)}){
-            this->castlingLogic(moves, king, rook);
+        if(Piece * rook{this->board->getPieceAt('h',8)}){
+            this->castlingLogic(moves, king, *rook);
         }
     }
 }
 
-void Chess::castlingLogic(vector<Move> * moves, Piece * king, Piece * rook){
+void Chess::castlingLogic(vector<Move> & moves, Piece & king, Piece & rook){
 
-    if(!king->hasMoved || !rook->hasMoved){
-        bool isQueenSide{king->x > rook->x};
+    if(!king.hasMoved || !rook.hasMoved){
+        bool isQueenSide{king.x > rook.x};
         //check if anything is in the way of it the king ever goes into check in the process
-        vector<Move> opponentsMove{this->getAllMovesForColor((king->color == 'w')? 'b':'w')};
+        vector<Move> opponentsMove{this->getAllMovesForColor((king.color == 'w')? 'b':'w')};
 
         bool possible{true};
         for(Move &move: opponentsMove){
-            int counter = king->x;
+            int counter = king.x;
             while((isQueenSide && counter >= 'c') || (!isQueenSide && counter <= 'g')){
-                if(move.contains((char)counter, king->y) || ((char)counter != 'e' && this->board.getPieceAt((char)counter, king->y) != nullptr)){
+                if(move.contains((char)counter, king.y) || ((char)counter != 'e' && this->board->getPieceAt((char)counter, king.y) != nullptr)){
                     possible = false;
                     break;
                 }
@@ -186,11 +191,11 @@ void Chess::castlingLogic(vector<Move> * moves, Piece * king, Piece * rook){
         }
 
         if(possible && isQueenSide){
-            moves->emplace_back(king, king->x, king->y, 'c', king->y, false, true);
-            moves->emplace_back(rook, rook->x, rook->y, 'd', rook->y, false, true);
+            moves.emplace_back(king, king.x, king.y, 'c', king.y, false, true);
+            moves.emplace_back(rook, rook.x, rook.y, 'd', rook.y, false, true);
         }else if(possible){
-            moves->emplace_back(king, king->x, king->y, 'g', king->y, false, true);
-            moves->emplace_back(rook, rook->x, rook->y, 'f', king->y, false, true);
+            moves.emplace_back(king, king.x, king.y, 'g', king.y, false, true);
+            moves.emplace_back(rook, rook.x, rook.y, 'f', king.y, false, true);
         }
     }
 }
@@ -221,7 +226,9 @@ void Chess::play() {
     }
 };
 
-/*Chess::~Chess() {
-    delete this->board;
-}*/
+Chess::~Chess() {
+    delete board;
+    delete movesForPieces;
+    cout << "Deleting Chess Object" << endl;
+}
 
