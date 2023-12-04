@@ -2,8 +2,6 @@
 #include "Headers/Chess.h"
 #include "Headers//Board.h"
 
-
-
 int main() {
 
     Chess chess{};
