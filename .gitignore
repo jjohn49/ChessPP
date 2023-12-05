@@ -1,6 +1,0 @@
-./.idea/*
-*.json
-./cmake-build-debug/*
-./CMakeFiles/*
-./Testing/*
-*.txt
