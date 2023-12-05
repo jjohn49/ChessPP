@@ -3,6 +3,7 @@
 //
 
 #include "../Header/Piece.h"
+#include "../Header/Move.h"
 
 Piece::Piece() {
     this->type = Typeless;
@@ -12,4 +13,8 @@ Piece::Piece() {
 Piece::Piece(Piece::Type type, Piece::Color color) {
     this->type = type;
     this->color = color;
+}
+
+std::vector<Move> Piece::getMoves(std::shared_ptr<Piece> board[8][8]) {
+    return {std::enable_shared_from_this<Piece>}
 }

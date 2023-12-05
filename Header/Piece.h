@@ -5,6 +5,9 @@
 #ifndef CHESSPP_PIECE_H
 #define CHESSPP_PIECE_H
 #include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <memory>
 
 class Move;
 
@@ -31,14 +34,29 @@ public:
     Piece();
     Piece(Type type, Color color);
     std::string toString(){
-        return this->type + "" + this->color;
+        return this->colorToString.at(this->color) + " " + this->typeToString.at(this->type);
     };
 
-    std::vector<Move> getMoves(std::vector<std::vector<Piece *>> *);
+    std::vector<Move> getMoves(std::shared_ptr<Piece> board[8][8]);
 
 protected:
     Type type;
     Color color;
+    std::unordered_map<Type, std::string> typeToString{
+            {Typeless,"Typeless"},
+            {Pawn,"Pawn"},
+            {Bishop,"Bishop"},
+            {Rook,"Rook"},
+            {Knight,"Knight"},
+            {Queen,"Queen"},
+            {King,"King"}
+    };
+
+    std::unordered_map<Color,std::string> colorToString{
+            {Colorless,"Colorless"},
+            {White,"White"},
+            {Black,"Black"}
+    };
 
 };
 

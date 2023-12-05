@@ -8,20 +8,15 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/1.0/Source/Board.cpp" "CMakeFiles/ChessPP.dir/1.0/Source/Board.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/1.0/Source/Board.cpp.o.d"
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/1.0/Source/Chess.cpp" "CMakeFiles/ChessPP.dir/1.0/Source/Chess.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/1.0/Source/Chess.cpp.o.d"
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/1.0/Source/Move.cpp" "CMakeFiles/ChessPP.dir/1.0/Source/Move.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/1.0/Source/Move.cpp.o.d"
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/1.0/Source/MovesForPieces.cpp" "CMakeFiles/ChessPP.dir/1.0/Source/MovesForPieces.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/1.0/Source/MovesForPieces.cpp.o.d"
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/1.0/Source/Pieces/Piece.cpp" "CMakeFiles/ChessPP.dir/1.0/Source/Pieces/Piece.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/1.0/Source/Pieces/Piece.cpp.o.d"
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Chess.cpp" "CMakeFiles/ChessPP.dir/Source/Chess.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Chess.cpp.o.d"
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Move.cpp" "CMakeFiles/ChessPP.dir/Source/Move.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Move.cpp.o.d"
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pawn.cpp" "CMakeFiles/ChessPP.dir/Source/Pawn.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Pawn.cpp.o.d"
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Piece.cpp" "CMakeFiles/ChessPP.dir/Source/Piece.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Piece.cpp.o.d"
-  "/Users/hugh/Desktop/jj-git-repos/ChessPP/main.cpp" "CMakeFiles/ChessPP.dir/main.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/main.cpp.o.d"
+  "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Chess.cpp" "CMakeFiles/ChessPP.dir/Source/Chess.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Chess.cpp.o.d"
+  "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Move.cpp" "CMakeFiles/ChessPP.dir/Source/Move.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Move.cpp.o.d"
+  "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Pawn.cpp" "CMakeFiles/ChessPP.dir/Source/Pawn.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Pawn.cpp.o.d"
+  "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Piece.cpp" "CMakeFiles/ChessPP.dir/Source/Piece.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Piece.cpp.o.d"
+  "/home/hugh/Projects/jj-git-repos/ChessPP/main.cpp" "CMakeFiles/ChessPP.dir/main.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/main.cpp.o.d"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.
