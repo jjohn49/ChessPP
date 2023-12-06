@@ -21,3 +21,14 @@ void Chess::printBoard() {
         std::cout<<rowStr<<"\n";
     }
 }
+
+void Chess::movePiece(std::pair<int, int> oldPos, std::pair<int, int> newPos) {
+    std::shared_ptr<Piece> piece = this->board[oldPos.first][oldPos.second];
+    board[oldPos.first][oldPos.second] = nullptr;
+    board[newPos.first][newPos.second] = piece;
+    piece->setNewPosition(newPos);
+}
+
+std::shared_ptr<Piece> Chess::getPieceAt(std::pair<int, int> pos) {
+    return this->board[pos.first][pos.second];
+}

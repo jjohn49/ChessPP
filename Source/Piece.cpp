@@ -10,6 +10,7 @@ Piece::Piece() {
     this->color = Colorless;
     this->row = -1;
     this->col = -1;
+    this->hasMoved = false;
 }
 
 Piece::Piece(Piece::Type type, Piece::Color color, int row, int col) {
@@ -17,8 +18,7 @@ Piece::Piece(Piece::Type type, Piece::Color color, int row, int col) {
     this->color = color;
     this->row = row;
     this->col = col;
+    this->hasMoved = false;
 }
 
-std::vector<Move> Piece::getMoves(std::shared_ptr<Piece> board[8][8]) {
-    return {std::enable_shared_from_this<Piece>}
-}
+std::vector<Move> Piece::getMoves(std::shared_ptr<Piece> board[8][8]){};
