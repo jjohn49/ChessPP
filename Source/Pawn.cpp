@@ -15,13 +15,28 @@ std::vector<Move> Pawn::getMoves(std::shared_ptr<Piece> board[8][8]) {
 
     int offset = (this->color == White)? 1 : -1;
 
+    //lambda func to get all passing moves
     auto getPassingMoves = [&](){
         if(board[row + offset][col] == nullptr){
             moves.push_back(Move(std::make_pair(row,col), std::make_pair(row+offset,col)));
         }
+        if(!this->hasMoved && board[row + (2*offset)][col] == nullptr){
+            moves.push_back(Move(std::make_pair(row,col), std::make_pair(row+(2*offset),col)));
+        }
+    };
+
+    auto getTakeMoves = [&](){
+        int lrOffset[2] = {-1,1};
+        for(int & lr: lrOffset){
+            if(board[row + offset][col + lr] != nullptr && board[row + offset][col + lr]->getColor() != this->color){
+                moves.push_back(Move(std::make_pair(row,col),std::make_pair(row + offset, col + lr)));
+            }
+        }
     };
 
     getPassingMoves();
+    getTakeMoves();
+    
     for(Move & move: moves){
         std::cout << move.toString();
     }

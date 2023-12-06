@@ -16,7 +16,7 @@ void Chess::printBoard() {
             if(square != nullptr){
                 rowStr += square->toString() + "\t";
             }else{
-                rowStr+= "|\t\t\t|";
+                rowStr+= "|\t\t|";
             }
         }
         std::cout<<rowStr<<"\n";

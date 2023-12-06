@@ -34,7 +34,7 @@ public:
     Piece();
     Piece(Type type, Color color, int row, int col);
     std::string toString(){
-        return this->colorToString.at(this->color) + " " + this->typeToString.at(this->type) + char(this->row + 48) + char(this->col+48);
+        return this->colorToString.at(this->color) + " " + this->typeToString.at(this->type) + " " + char(this->row + 48) + char(this->col+48);
     };
 
     virtual std::vector<Move> getMoves(std::shared_ptr<Piece> board[8][8]) { return {}; };
@@ -42,6 +42,8 @@ public:
     std::pair<int,int> getPosition(){ return std::make_pair(this->row, this->col); };
 
     void setNewPosition(std::pair<int,int> newPos) {this->row = newPos.first; this->col = newPos.second;};
+
+    Color getColor() {return this->color; };
 
 
 protected:
