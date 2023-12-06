@@ -43,6 +43,8 @@ public:
 
     void setNewPosition(std::pair<int,int> newPos) {this->row = newPos.first; this->col = newPos.second;};
 
+    virtual std::string pieceName(){return "Piece";};
+
 protected:
     Type type;
     Color color;

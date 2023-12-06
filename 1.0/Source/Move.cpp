@@ -6,6 +6,8 @@
 
 #include "../Headers/Move.h"
 
+
+
 Move::Move() {
     Piece p = Piece();
     this->pieceMoved = &p;
@@ -107,11 +109,6 @@ bool Move::isMoveCastling() {
 bool Move::didMoveCapture() {
     return this->didCapture;
 }
-
-
-
-
-
 
 
 

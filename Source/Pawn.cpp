@@ -7,7 +7,7 @@
 
 
 std::vector<Move> Pawn::getMoves(std::shared_ptr<Piece> board[8][8]) {
-    std::cout<<"hit";
+    //std::cout<<"hit";
     std::vector<Move> moves{};
     std::pair<int, int> currentPosition = this->getPosition();
     int row = currentPosition.first;

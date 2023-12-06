@@ -18,9 +18,7 @@ public:
         this->newPosition = newPosition;
     }
 
-    std::string toString(){
-      return char(oldPosition.first + 97) + "->" + char(oldPosition.second);
-    };
+    std::string toString();
 };
 
 

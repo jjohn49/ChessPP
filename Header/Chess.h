@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <vector>
-#include "Piece.h"
 #include "Pawn.h"
 #include <memory>
 #include <optional>
@@ -15,7 +14,7 @@
 
 class Chess {
 protected:
-    std::vector<Piece> whitePieces{Pawn(Piece::White,1,0),
+    std::vector<Pawn> whitePieces{Pawn(Piece::White,1,0),
                                    Pawn(Piece::White,1,1),
                                    Pawn(Piece::White,1,2),
                                    Pawn(Piece::White,1,3),
@@ -35,7 +34,7 @@ protected:
 
      std::shared_ptr<Piece> board[8][8]{
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
-            {std::make_shared<Piece>(std::move(whitePieces[0])),std::make_shared<Piece>(std::move(whitePieces[1])),std::make_shared<Piece>(std::move(whitePieces[2])),std::make_shared<Piece>(std::move(whitePieces[3])),std::make_shared<Piece>(std::move(whitePieces[4])),std::make_shared<Piece>(std::move(whitePieces[5])),std::make_shared<Piece>(std::move(whitePieces[6])),std::make_shared<Piece>(std::move(whitePieces[7]))},
+            {std::make_shared<Pawn>(whitePieces[0]),std::make_shared<Pawn>(whitePieces[1]),std::make_shared<Pawn>(whitePieces[2]),std::make_shared<Pawn>(whitePieces[3]),std::make_shared<Pawn>(whitePieces[4]),std::make_shared<Pawn>(whitePieces[5]),std::make_shared<Pawn>(whitePieces[6]),std::make_shared<Pawn>(whitePieces[7])},
             //{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},

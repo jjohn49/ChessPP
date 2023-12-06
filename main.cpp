@@ -4,6 +4,7 @@
 int main() {
     Chess chess{};
     chess.printAllMoves();
+
     return 0;
 }
 
