@@ -175,9 +175,7 @@ CMakeFiles/ChessPP.dir/main.cpp.o: \
  /usr/include/c++/13.2.0/ext/aligned_buffer.h \
  /usr/include/c++/13.2.0/bits/enable_special_members.h \
  /usr/include/c++/13.2.0/bits/node_handle.h \
- /usr/include/c++/13.2.0/bits/erase_if.h \
- /home/hugh/Projects/jj-git-repos/ChessPP/Header/Pawn.h \
- /usr/include/c++/13.2.0/memory \
+ /usr/include/c++/13.2.0/bits/erase_if.h /usr/include/c++/13.2.0/memory \
  /usr/include/c++/13.2.0/bits/stl_tempbuf.h \
  /usr/include/c++/13.2.0/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13.2.0/bits/align.h \
@@ -194,4 +192,5 @@ CMakeFiles/ChessPP.dir/main.cpp.o: \
  /usr/include/c++/13.2.0/backward/auto_ptr.h \
  /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
  /usr/include/c++/13.2.0/pstl/execution_defs.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Header/Pawn.h \
  /usr/include/c++/13.2.0/optional
