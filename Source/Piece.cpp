@@ -21,4 +21,3 @@ Piece::Piece(Piece::Type type, Piece::Color color, int row, int col) {
     this->hasMoved = false;
 }
 
-std::vector<Move> Piece::getMoves(std::shared_ptr<Piece> board[8][8]){};

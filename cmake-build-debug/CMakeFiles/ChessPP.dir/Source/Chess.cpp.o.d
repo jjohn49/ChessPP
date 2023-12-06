@@ -192,5 +192,7 @@ CMakeFiles/ChessPP.dir/Source/Chess.cpp.o: \
  /usr/include/c++/13.2.0/backward/auto_ptr.h \
  /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
  /usr/include/c++/13.2.0/pstl/execution_defs.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Move.h \
  /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Pawn.h \
- /usr/include/c++/13.2.0/optional
+ /usr/include/c++/13.2.0/optional \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Move.h

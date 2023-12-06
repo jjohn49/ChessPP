@@ -7,20 +7,24 @@
 
 
 std::vector<Move> Pawn::getMoves(std::shared_ptr<Piece> board[8][8]) {
+    std::cout<<"hit";
     std::vector<Move> moves{};
     std::pair<int, int> currentPosition = this->getPosition();
     int row = currentPosition.first;
     int col = currentPosition.second;
 
-    int offset = (this->type == White)? 1 : -1;
+    int offset = (this->color == White)? 1 : -1;
 
     auto getPassingMoves = [&](){
         if(board[row + offset][col] == nullptr){
-            moves.push_back(Move(board[row][col], std::make_pair(row,col), std::make_pair(row+offset,col)));
+            moves.push_back(Move(std::make_pair(row,col), std::make_pair(row+offset,col)));
         }
     };
 
-
+    getPassingMoves();
+    for(Move & move: moves){
+        std::cout << move.toString();
+    }
     return moves;
 
 }

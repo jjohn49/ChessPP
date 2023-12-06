@@ -50,6 +50,8 @@ public:
     void printBoard();
     std::shared_ptr<Piece> getPieceAt(std::pair<int,int> pos);
     void movePiece(std::pair<int,int> oldPos, std::pair<int,int> newPos);
+    std::vector<Move> getAllMoves();
+    void printAllMoves();
 
 };
 

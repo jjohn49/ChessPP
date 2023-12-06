@@ -8,8 +8,8 @@
 #include <vector>
 #include <unordered_map>
 #include <memory>
+#include "Move.h"
 
-class Move;
 
 class Piece {
 
@@ -37,7 +37,7 @@ public:
         return this->colorToString.at(this->color) + " " + this->typeToString.at(this->type) + char(this->row + 48) + char(this->col+48);
     };
 
-    virtual std::vector<Move> getMoves(std::shared_ptr<Piece> board[8][8]);
+    virtual std::vector<Move> getMoves(std::shared_ptr<Piece> board[8][8]) { return {}; };
 
     std::pair<int,int> getPosition(){ return std::make_pair(this->row, this->col); };
 
