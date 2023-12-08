@@ -129,6 +129,30 @@ ChessPP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/build
 .PHONY : ChessPP/fast
 
+Source/Bishop.o: Source/Bishop.cpp.o
+.PHONY : Source/Bishop.o
+
+# target to build an object file
+Source/Bishop.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Bishop.cpp.o
+.PHONY : Source/Bishop.cpp.o
+
+Source/Bishop.i: Source/Bishop.cpp.i
+.PHONY : Source/Bishop.i
+
+# target to preprocess a source file
+Source/Bishop.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Bishop.cpp.i
+.PHONY : Source/Bishop.cpp.i
+
+Source/Bishop.s: Source/Bishop.cpp.s
+.PHONY : Source/Bishop.s
+
+# target to generate assembly for a file
+Source/Bishop.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Bishop.cpp.s
+.PHONY : Source/Bishop.cpp.s
+
 Source/Chess.o: Source/Chess.cpp.o
 .PHONY : Source/Chess.o
 
@@ -258,6 +282,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ChessPP"
+	@echo "... Source/Bishop.o"
+	@echo "... Source/Bishop.i"
+	@echo "... Source/Bishop.s"
 	@echo "... Source/Chess.o"
 	@echo "... Source/Chess.i"
 	@echo "... Source/Chess.s"

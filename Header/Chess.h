@@ -14,7 +14,7 @@
 
 class Chess {
 protected:
-    std::vector<Pawn> whitePawns{Pawn(Piece::White, 1, 0),
+    Pawn whitePawns[8]{Pawn(Piece::White, 1, 0),
                                  Pawn(Piece::White,1,1),
                                  Pawn(Piece::White,1,2),
                                  Pawn(Piece::White,1,3),
@@ -23,7 +23,7 @@ protected:
                                  Pawn(Piece::White,1,6),
                                  Pawn(Piece::White,1,7)};
 
-    std::vector<Pawn> blackPawns{Pawn(Piece::Black, 6, 0),
+    Pawn blackPawns[8]{Pawn(Piece::Black, 6, 0),
                                  Pawn(Piece::Black,6,1),
                                  Pawn(Piece::Black,6,2),
                                  Pawn(Piece::Black,6,3),
@@ -31,6 +31,8 @@ protected:
                                  Pawn(Piece::Black,6,5),
                                  Pawn(Piece::Black,6,6),
                                  Pawn(Piece::Black,6,7)};
+
+
 
      std::shared_ptr<Piece> board[8][8]{
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},

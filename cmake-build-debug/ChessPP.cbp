@@ -78,6 +78,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Header/Bishop.h">
+			<Option target="ChessPP"/>
+		</Unit>
 		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Header/Chess.h">
 			<Option target="ChessPP"/>
 		</Unit>
@@ -88,6 +91,9 @@
 			<Option target="ChessPP"/>
 		</Unit>
 		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Header/Piece.h">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Bishop.cpp">
 			<Option target="ChessPP"/>
 		</Unit>
 		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Chess.cpp">
