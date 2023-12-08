@@ -3,7 +3,7 @@
 
 int main() {
     Chess chess{};
-    //chess.printAllMoves();
+    chess.printAllMoves();
     chess.printBoard();
 
     return 0;

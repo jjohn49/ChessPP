@@ -19,9 +19,9 @@ std::vector<Move> Pawn::getMoves(std::shared_ptr<Piece> board[8][8]) {
     auto getPassingMoves = [&](){
         if(board[row + offset][col] == nullptr){
             moves.push_back(Move(std::make_pair(row,col), std::make_pair(row+offset,col)));
-        }
-        if(!this->hasMoved && board[row + (2*offset)][col] == nullptr){
-            moves.push_back(Move(std::make_pair(row,col), std::make_pair(row+(2*offset),col)));
+            if(!this->hasMoved && board[row + (2*offset)][col] == nullptr){
+                moves.push_back(Move(std::make_pair(row,col), std::make_pair(row+(2*offset),col)));
+            }
         }
     };
 
@@ -36,10 +36,7 @@ std::vector<Move> Pawn::getMoves(std::shared_ptr<Piece> board[8][8]) {
 
     getPassingMoves();
     getTakeMoves();
-    
-    for(Move & move: moves){
-        std::cout << move.toString();
-    }
+
     return moves;
 
 }

@@ -16,7 +16,10 @@ public:
     Move(std::pair<int,int> oldPosition, std::pair<int,int> newPosition){
         this->oldPosition = oldPosition;
         this->newPosition = newPosition;
-    }
+    };
+
+    std::pair<int,int> getOldPosition() {return this->oldPosition;};
+    std::pair<int,int> getNewPosition() {return this->newPosition;};
 
     std::string toString();
 };

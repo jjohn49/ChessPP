@@ -35,8 +35,7 @@ protected:
      std::shared_ptr<Piece> board[8][8]{
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {std::make_shared<Pawn>(whitePawns[0]), std::make_shared<Pawn>(whitePawns[1]), std::make_shared<Pawn>(whitePawns[2]), std::make_shared<Pawn>(whitePawns[3]), std::make_shared<Pawn>(whitePawns[4]), std::make_shared<Pawn>(whitePawns[5]), std::make_shared<Pawn>(whitePawns[6]), std::make_shared<Pawn>(whitePawns[7])},
-            //{nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
-            {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
+            {std::make_shared<Pawn>(Pawn(Piece::Black, 2, 0)),                               nullptr,                               std::make_shared<Pawn>(Pawn(Piece::Black, 2, 2)),                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
@@ -48,7 +47,7 @@ public:
     void play();
     void printBoard();
     std::shared_ptr<Piece> getPieceAt(std::pair<int,int> pos);
-    void movePiece(std::pair<int,int> oldPos, std::pair<int,int> newPos);
+    void movePiece(Move move);
     std::vector<Move> getAllMoves();
     void printAllMoves();
 
