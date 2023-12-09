@@ -3,6 +3,7 @@
 //
 
 #include "../Headers/Board.h"
+
 #include <iostream>
 #include <cstring>
 
@@ -217,6 +218,7 @@ vector<Move> Board::getAllPreviousMoves() {
 /*Board::~Board() {
 
 }*/
+
 
 
 

@@ -153,6 +153,30 @@ Source/Bishop.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Bishop.cpp.s
 .PHONY : Source/Bishop.cpp.s
 
+Source/Board.o: Source/Board.cpp.o
+.PHONY : Source/Board.o
+
+# target to build an object file
+Source/Board.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Board.cpp.o
+.PHONY : Source/Board.cpp.o
+
+Source/Board.i: Source/Board.cpp.i
+.PHONY : Source/Board.i
+
+# target to preprocess a source file
+Source/Board.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Board.cpp.i
+.PHONY : Source/Board.cpp.i
+
+Source/Board.s: Source/Board.cpp.s
+.PHONY : Source/Board.s
+
+# target to generate assembly for a file
+Source/Board.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Board.cpp.s
+.PHONY : Source/Board.cpp.s
+
 Source/Chess.o: Source/Chess.cpp.o
 .PHONY : Source/Chess.o
 
@@ -381,6 +405,9 @@ help:
 	@echo "... Source/Bishop.o"
 	@echo "... Source/Bishop.i"
 	@echo "... Source/Bishop.s"
+	@echo "... Source/Board.o"
+	@echo "... Source/Board.i"
+	@echo "... Source/Board.s"
 	@echo "... Source/Chess.o"
 	@echo "... Source/Chess.i"
 	@echo "... Source/Chess.s"

@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Bishop.cpp" "CMakeFiles/ChessPP.dir/Source/Bishop.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Bishop.cpp.o.d"
+  "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Board.cpp" "CMakeFiles/ChessPP.dir/Source/Board.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Board.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Chess.cpp" "CMakeFiles/ChessPP.dir/Source/Chess.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Chess.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/King.cpp" "CMakeFiles/ChessPP.dir/Source/King.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/King.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Knight.cpp" "CMakeFiles/ChessPP.dir/Source/Knight.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Knight.cpp.o.d"

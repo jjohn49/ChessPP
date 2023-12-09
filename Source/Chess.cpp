@@ -67,3 +67,14 @@ void Chess::printAllMoves() {
         std::cout << move.toString();
     }
 }
+
+bool Chess::isCheck() {
+    std::vector<Move> allMoves{this->getAllMoves()};
+
+    for(Move &move: allMoves){
+        if(move.getNewPosition() == whiteKing.getPosition() || move.getNewPosition() == blackKing.getPosition()){
+            return true;
+        }
+    }
+    return false;
+}

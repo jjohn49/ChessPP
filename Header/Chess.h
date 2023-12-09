@@ -95,7 +95,7 @@ public:
     void movePiece(Move move);
     std::vector<Move> getAllMoves();
     void printAllMoves();
-
+    bool isCheck();
 };
 
 
