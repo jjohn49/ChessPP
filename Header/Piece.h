@@ -45,6 +45,8 @@ public:
 
     Color getColor() {return this->color; };
 
+    std::shared_ptr<Piece> getPieceAt(int x, int y, std::shared_ptr<Piece> board[8][8] );
+
 
 protected:
     Type type;

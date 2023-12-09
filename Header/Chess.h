@@ -10,7 +10,7 @@
 #include "Pawn.h"
 #include <memory>
 #include <optional>
-
+#include "Bishop.h"
 
 class Chess {
 protected:
@@ -32,12 +32,18 @@ protected:
                                  Pawn(Piece::Black,6,6),
                                  Pawn(Piece::Black,6,7)};
 
+    Bishop whiteBishops[2]{
+            Bishop(Piece::White, 0,2),
+            Bishop(Piece::White, 0,5)
+    };
 
+    std::vector<std::shared_ptr<Piece>> captureWhitePieces{};
+    std::vector<std::shared_ptr<Piece>> captureBlackPieces{};
 
      std::shared_ptr<Piece> board[8][8]{
-            {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
+            {nullptr,                               nullptr,                               std::make_shared<Bishop>(whiteBishops[0]),                               nullptr,                               nullptr,                               std::make_shared<Bishop>(whiteBishops[1]),                               nullptr,                               nullptr},
             {std::make_shared<Pawn>(whitePawns[0]), std::make_shared<Pawn>(whitePawns[1]), std::make_shared<Pawn>(whitePawns[2]), std::make_shared<Pawn>(whitePawns[3]), std::make_shared<Pawn>(whitePawns[4]), std::make_shared<Pawn>(whitePawns[5]), std::make_shared<Pawn>(whitePawns[6]), std::make_shared<Pawn>(whitePawns[7])},
-            {std::make_shared<Pawn>(Pawn(Piece::Black, 2, 0)),                               nullptr,                               std::make_shared<Pawn>(Pawn(Piece::Black, 2, 2)),                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
+            {nullptr,                               nullptr, nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},

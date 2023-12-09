@@ -16,7 +16,7 @@ void Chess::printBoard() {
             if(square != nullptr){
                 rowStr += square->toString() + "\t";
             }else{
-                rowStr+= "|\t\t|";
+                rowStr+= "|\t\t\t\t|";
             }
         }
         std::cout<<rowStr<<"\n";
@@ -27,6 +27,15 @@ void Chess::movePiece(Move move) {
     std::pair<int,int> oldPos{move.getNewPosition()};
     std::pair<int,int> newPos{move.getNewPosition()};
     std::shared_ptr<Piece> piece = this->board[oldPos.first][oldPos.second];
+
+    //checvks if there was a piece on the square and adds it to the correct capturePieces vector
+    if(this->getPieceAt(move.getNewPosition()) != nullptr){
+        if(this->getPieceAt(move.getNewPosition())->getColor() == Piece::Black){
+            this->captureBlackPieces.push_back(this->getPieceAt(move.getNewPosition()));
+        }else{
+            this->captureWhitePieces.push_back(this->getPieceAt(move.getNewPosition()));
+        }
+    }
     this->board[oldPos.first][oldPos.second] = nullptr;
     this->board[newPos.first][newPos.second] = piece;
     piece->setNewPosition(newPos);

@@ -21,3 +21,8 @@ Piece::Piece(Piece::Type type, Piece::Color color, int row, int col) {
     this->hasMoved = false;
 }
 
+std::shared_ptr<Piece> Piece::getPieceAt(int x, int y, std::shared_ptr<Piece> (*board)[8]) {
+    return board[x][y];
+}
+
+
