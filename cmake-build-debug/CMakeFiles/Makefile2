@@ -81,12 +81,12 @@ clean: CMakeFiles/ChessPP.dir/clean
 CMakeFiles/ChessPP.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target ChessPP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target ChessPP"
 .PHONY : CMakeFiles/ChessPP.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ChessPP.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ChessPP.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/ChessPP.dir/rule

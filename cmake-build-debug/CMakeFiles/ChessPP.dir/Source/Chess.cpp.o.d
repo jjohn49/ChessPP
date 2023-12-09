@@ -198,4 +198,6 @@ CMakeFiles/ChessPP.dir/Source/Chess.cpp.o: \
  /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Bishop.h \
  /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Rook.h \
  /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Queen.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Knight.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/King.h \
  /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Move.h

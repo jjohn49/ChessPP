@@ -7,4 +7,8 @@ add_executable(ChessPP main.cpp Source/Chess.cpp Header/Chess.h Source/Piece.cpp
         Source/Rook.cpp
         Header/Rook.h
         Source/Queen.cpp
-        Header/Queen.h)
+        Header/Queen.h
+        Source/Knight.cpp
+        Header/Knight.h
+        Source/King.cpp
+        Header/King.h)

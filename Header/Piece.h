@@ -19,7 +19,7 @@ public:
         Typeless = 0,
         Pawn = 1,
         Bishop = 3,
-        Knight = 3,
+        Knight = 4,
         Rook = 5,
         Queen = 7,
         King = 10

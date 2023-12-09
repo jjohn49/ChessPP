@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Bishop.cpp" "CMakeFiles/ChessPP.dir/Source/Bishop.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Bishop.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Chess.cpp" "CMakeFiles/ChessPP.dir/Source/Chess.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Chess.cpp.o.d"
+  "/home/hugh/Projects/jj-git-repos/ChessPP/Source/King.cpp" "CMakeFiles/ChessPP.dir/Source/King.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/King.cpp.o.d"
+  "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Knight.cpp" "CMakeFiles/ChessPP.dir/Source/Knight.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Knight.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Move.cpp" "CMakeFiles/ChessPP.dir/Source/Move.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Move.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Pawn.cpp" "CMakeFiles/ChessPP.dir/Source/Pawn.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Pawn.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Piece.cpp" "CMakeFiles/ChessPP.dir/Source/Piece.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Piece.cpp.o.d"

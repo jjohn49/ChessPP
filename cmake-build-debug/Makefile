@@ -177,6 +177,54 @@ Source/Chess.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Chess.cpp.s
 .PHONY : Source/Chess.cpp.s
 
+Source/King.o: Source/King.cpp.o
+.PHONY : Source/King.o
+
+# target to build an object file
+Source/King.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/King.cpp.o
+.PHONY : Source/King.cpp.o
+
+Source/King.i: Source/King.cpp.i
+.PHONY : Source/King.i
+
+# target to preprocess a source file
+Source/King.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/King.cpp.i
+.PHONY : Source/King.cpp.i
+
+Source/King.s: Source/King.cpp.s
+.PHONY : Source/King.s
+
+# target to generate assembly for a file
+Source/King.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/King.cpp.s
+.PHONY : Source/King.cpp.s
+
+Source/Knight.o: Source/Knight.cpp.o
+.PHONY : Source/Knight.o
+
+# target to build an object file
+Source/Knight.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Knight.cpp.o
+.PHONY : Source/Knight.cpp.o
+
+Source/Knight.i: Source/Knight.cpp.i
+.PHONY : Source/Knight.i
+
+# target to preprocess a source file
+Source/Knight.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Knight.cpp.i
+.PHONY : Source/Knight.cpp.i
+
+Source/Knight.s: Source/Knight.cpp.s
+.PHONY : Source/Knight.s
+
+# target to generate assembly for a file
+Source/Knight.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Knight.cpp.s
+.PHONY : Source/Knight.cpp.s
+
 Source/Move.o: Source/Move.cpp.o
 .PHONY : Source/Move.o
 
@@ -336,6 +384,12 @@ help:
 	@echo "... Source/Chess.o"
 	@echo "... Source/Chess.i"
 	@echo "... Source/Chess.s"
+	@echo "... Source/King.o"
+	@echo "... Source/King.i"
+	@echo "... Source/King.s"
+	@echo "... Source/Knight.o"
+	@echo "... Source/Knight.i"
+	@echo "... Source/Knight.s"
 	@echo "... Source/Move.o"
 	@echo "... Source/Move.i"
 	@echo "... Source/Move.s"

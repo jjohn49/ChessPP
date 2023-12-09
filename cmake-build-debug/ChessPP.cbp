@@ -88,6 +88,12 @@
 		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Chess.h">
 			<Option target="ChessPP"/>
 		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/King.h">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Knight.h">
+			<Option target="ChessPP"/>
+		</Unit>
 		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h">
 			<Option target="ChessPP"/>
 		</Unit>
@@ -107,6 +113,12 @@
 			<Option target="ChessPP"/>
 		</Unit>
 		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Chess.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/King.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Knight.cpp">
 			<Option target="ChessPP"/>
 		</Unit>
 		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Move.cpp">
