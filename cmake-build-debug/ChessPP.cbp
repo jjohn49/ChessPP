@@ -97,6 +97,9 @@
 		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Piece.h">
 			<Option target="ChessPP"/>
 		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Rook.h">
+			<Option target="ChessPP"/>
+		</Unit>
 		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Bishop.cpp">
 			<Option target="ChessPP"/>
 		</Unit>
@@ -110,6 +113,9 @@
 			<Option target="ChessPP"/>
 		</Unit>
 		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Piece.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Rook.cpp">
 			<Option target="ChessPP"/>
 		</Unit>
 		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/main.cpp">

@@ -195,4 +195,5 @@ CMakeFiles/ChessPP.dir/main.cpp.o: \
  /usr/include/c++/13.2.0/pstl/execution_defs.h \
  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
  /usr/include/c++/13.2.0/optional \
- /home/hugh/Projects/jj-git-repos/ChessPP/Header/Bishop.h
+ /home/hugh/Projects/jj-git-repos/ChessPP/Header/Bishop.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Header/Rook.h

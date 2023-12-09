@@ -249,6 +249,30 @@ Source/Piece.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Piece.cpp.s
 .PHONY : Source/Piece.cpp.s
 
+Source/Rook.o: Source/Rook.cpp.o
+.PHONY : Source/Rook.o
+
+# target to build an object file
+Source/Rook.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Rook.cpp.o
+.PHONY : Source/Rook.cpp.o
+
+Source/Rook.i: Source/Rook.cpp.i
+.PHONY : Source/Rook.i
+
+# target to preprocess a source file
+Source/Rook.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Rook.cpp.i
+.PHONY : Source/Rook.cpp.i
+
+Source/Rook.s: Source/Rook.cpp.s
+.PHONY : Source/Rook.s
+
+# target to generate assembly for a file
+Source/Rook.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/Source/Rook.cpp.s
+.PHONY : Source/Rook.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -297,6 +321,9 @@ help:
 	@echo "... Source/Piece.o"
 	@echo "... Source/Piece.i"
 	@echo "... Source/Piece.s"
+	@echo "... Source/Rook.o"
+	@echo "... Source/Rook.i"
+	@echo "... Source/Rook.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

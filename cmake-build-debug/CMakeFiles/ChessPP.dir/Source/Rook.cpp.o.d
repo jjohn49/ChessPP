@@ -1,7 +1,8 @@
-CMakeFiles/ChessPP.dir/Source/Chess.cpp.o: \
- /home/hugh/Projects/jj-git-repos/ChessPP/Source/Chess.cpp \
+CMakeFiles/ChessPP.dir/Source/Rook.cpp.o: \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/Rook.cpp \
  /usr/include/stdc-predef.h \
- /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Chess.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Rook.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Piece.h \
  /usr/include/c++/13.2.0/iostream \
  /usr/include/c++/13.2.0/bits/requires_hosted.h \
  /usr/include/c++/13.2.0/x86_64-unknown-linux-gnu/bits/c++config.h \
@@ -167,8 +168,6 @@ CMakeFiles/ChessPP.dir/Source/Chess.cpp.o: \
  /usr/include/c++/13.2.0/bits/stl_vector.h \
  /usr/include/c++/13.2.0/bits/stl_bvector.h \
  /usr/include/c++/13.2.0/bits/vector.tcc \
- /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Pawn.h \
- /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Piece.h \
  /usr/include/c++/13.2.0/unordered_map \
  /usr/include/c++/13.2.0/bits/unordered_map.h \
  /usr/include/c++/13.2.0/bits/hashtable.h \
@@ -193,8 +192,4 @@ CMakeFiles/ChessPP.dir/Source/Chess.cpp.o: \
  /usr/include/c++/13.2.0/backward/auto_ptr.h \
  /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
  /usr/include/c++/13.2.0/pstl/execution_defs.h \
- /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Move.h \
- /usr/include/c++/13.2.0/optional \
- /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Bishop.h \
- /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Rook.h \
  /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Move.h
