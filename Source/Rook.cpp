@@ -31,3 +31,8 @@ std::vector<Move> Rook::getMoves(std::shared_ptr<Piece> (*board)[8]) {
 
     return moves;
 }
+
+std::vector<Move> Rook::getRookMoves(Piece::Color color, int curX, int curY, std::shared_ptr<Piece> (*board)[8]) {
+    Rook temp{color, curX, curY};
+    return temp.getMoves(board);
+}

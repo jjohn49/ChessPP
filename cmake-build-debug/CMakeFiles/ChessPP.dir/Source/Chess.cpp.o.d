@@ -197,4 +197,5 @@ CMakeFiles/ChessPP.dir/Source/Chess.cpp.o: \
  /usr/include/c++/13.2.0/optional \
  /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Bishop.h \
  /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Rook.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Queen.h \
  /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Move.h

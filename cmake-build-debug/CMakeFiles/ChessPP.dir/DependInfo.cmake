@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Move.cpp" "CMakeFiles/ChessPP.dir/Source/Move.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Move.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Pawn.cpp" "CMakeFiles/ChessPP.dir/Source/Pawn.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Pawn.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Piece.cpp" "CMakeFiles/ChessPP.dir/Source/Piece.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Piece.cpp.o.d"
+  "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Queen.cpp" "CMakeFiles/ChessPP.dir/Source/Queen.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Queen.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/Source/Rook.cpp" "CMakeFiles/ChessPP.dir/Source/Rook.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/Source/Rook.cpp.o.d"
   "/home/hugh/Projects/jj-git-repos/ChessPP/main.cpp" "CMakeFiles/ChessPP.dir/main.cpp.o" "gcc" "CMakeFiles/ChessPP.dir/main.cpp.o.d"
   )

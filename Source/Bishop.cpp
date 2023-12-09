@@ -33,3 +33,8 @@ std::vector<Move> Bishop::getMoves(std::shared_ptr<Piece> (*board)[8]) {
 
     return moves;
 }
+
+std::vector<Move> Bishop::getBishopMoves(Piece::Color color, int curX, int curY, std::shared_ptr<Piece> (*board)[8]) {
+    Bishop temp{color, curX, curY};
+    return temp.getMoves(board);
+}

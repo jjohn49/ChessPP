@@ -1,6 +1,10 @@
-CMakeFiles/ChessPP.dir/main.cpp.o: \
- /home/hugh/Projects/jj-git-repos/ChessPP/main.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/13.2.0/iostream \
+CMakeFiles/ChessPP.dir/Source/Queen.cpp.o: \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/Queen.cpp \
+ /usr/include/stdc-predef.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Queen.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Rook.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Piece.h \
+ /usr/include/c++/13.2.0/iostream \
  /usr/include/c++/13.2.0/bits/requires_hosted.h \
  /usr/include/c++/13.2.0/x86_64-unknown-linux-gnu/bits/c++config.h \
  /usr/include/c++/13.2.0/x86_64-unknown-linux-gnu/bits/os_defines.h \
@@ -160,15 +164,11 @@ CMakeFiles/ChessPP.dir/main.cpp.o: \
  /usr/include/c++/13.2.0/bits/locale_facets.tcc \
  /usr/include/c++/13.2.0/bits/basic_ios.tcc \
  /usr/include/c++/13.2.0/bits/ostream.tcc /usr/include/c++/13.2.0/istream \
- /usr/include/c++/13.2.0/bits/istream.tcc \
- /home/hugh/Projects/jj-git-repos/ChessPP/Header/Chess.h \
- /usr/include/c++/13.2.0/vector \
+ /usr/include/c++/13.2.0/bits/istream.tcc /usr/include/c++/13.2.0/vector \
  /usr/include/c++/13.2.0/bits/stl_uninitialized.h \
  /usr/include/c++/13.2.0/bits/stl_vector.h \
  /usr/include/c++/13.2.0/bits/stl_bvector.h \
  /usr/include/c++/13.2.0/bits/vector.tcc \
- /home/hugh/Projects/jj-git-repos/ChessPP/Header/Pawn.h \
- /home/hugh/Projects/jj-git-repos/ChessPP/Header/Piece.h \
  /usr/include/c++/13.2.0/unordered_map \
  /usr/include/c++/13.2.0/bits/unordered_map.h \
  /usr/include/c++/13.2.0/bits/hashtable.h \
@@ -193,8 +193,7 @@ CMakeFiles/ChessPP.dir/main.cpp.o: \
  /usr/include/c++/13.2.0/backward/auto_ptr.h \
  /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
  /usr/include/c++/13.2.0/pstl/execution_defs.h \
- /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
- /usr/include/c++/13.2.0/optional \
- /home/hugh/Projects/jj-git-repos/ChessPP/Header/Bishop.h \
- /home/hugh/Projects/jj-git-repos/ChessPP/Header/Rook.h \
- /home/hugh/Projects/jj-git-repos/ChessPP/Header/Queen.h
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Move.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Bishop.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Bishop.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Rook.h
