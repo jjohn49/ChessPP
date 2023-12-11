@@ -10,7 +10,11 @@
 #include "Pawn.h"
 #include <memory>
 #include <optional>
-
+#include "Bishop.h"
+#include "Rook.h"
+#include "Queen.h"
+#include "Knight.h"
+#include "King.h"
 
 class Chess {
 protected:
@@ -32,17 +36,56 @@ protected:
                                  Pawn(Piece::Black,6,6),
                                  Pawn(Piece::Black,6,7)};
 
+    std::vector<Bishop> whiteBishops{
+            Bishop(Piece::White, 0,2),
+            Bishop(Piece::White, 0,5)
+    };
 
+    std::vector<Bishop> blackBishops{
+            Bishop(Piece::Black, 7,2),
+            Bishop(Piece::Black, 7,5)
+    };
+
+    std::vector<Rook> whiteRooks{
+            Rook(Piece::White, 0,0),
+            Rook(Piece::White, 0,7)
+    };
+
+    std::vector<Rook> blackRooks{
+            Rook(Piece::Black, 7,0),
+            Rook(Piece::Black, 7,7)
+    };
+
+    std::vector<Knight> whiteKnights{
+        Knight(Piece::White, 0,1),
+        Knight(Piece::White,0,6)
+    };
+
+    std::vector<Knight> blackKnights{
+            Knight(Piece::Black, 7,1),
+            Knight(Piece::Black,7, 6)
+    };
+
+    King whiteKing{Piece::White, 0, 4};
+    King blackKing{Piece::Black, 7, 4};
+
+
+    //making these arrays because more can be added, probs should make these vectors
+    std::vector<Queen> whiteQueens{Queen(Piece::White, 0,3)};
+    std::vector<Queen> blackQueens{Queen(Piece::Black, 7, 3)};
+
+    std::vector<std::shared_ptr<Piece>> captureWhitePieces{};
+    std::vector<std::shared_ptr<Piece>> captureBlackPieces{};
 
      std::shared_ptr<Piece> board[8][8]{
-            {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
+            {std::make_shared<Rook>(whiteRooks[0]),                               std::make_shared<Knight>(whiteKnights[0]),                               std::make_shared<Bishop>(whiteBishops[0]),                               std::make_shared<Queen>(whiteQueens[0]),                               std::make_shared<King>(whiteKing),                               std::make_shared<Bishop>(whiteBishops[1]),                               std::make_shared<Knight>(whiteKnights[1]),                               std::make_shared<Rook>(whiteRooks[1])},
             {std::make_shared<Pawn>(whitePawns[0]), std::make_shared<Pawn>(whitePawns[1]), std::make_shared<Pawn>(whitePawns[2]), std::make_shared<Pawn>(whitePawns[3]), std::make_shared<Pawn>(whitePawns[4]), std::make_shared<Pawn>(whitePawns[5]), std::make_shared<Pawn>(whitePawns[6]), std::make_shared<Pawn>(whitePawns[7])},
-            {std::make_shared<Pawn>(Pawn(Piece::Black, 2, 0)),                               nullptr,                               std::make_shared<Pawn>(Pawn(Piece::Black, 2, 2)),                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
+            {nullptr,                               nullptr, nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr},
             {std::make_shared<Pawn>(blackPawns[0]), std::make_shared<Pawn>(blackPawns[1]), std::make_shared<Pawn>(blackPawns[2]), std::make_shared<Pawn>(blackPawns[3]), std::make_shared<Pawn>(blackPawns[4]), std::make_shared<Pawn>(blackPawns[5]), std::make_shared<Pawn>(blackPawns[6]), std::make_shared<Pawn>(blackPawns[7])},
-            {nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr,                               nullptr}
+            {std::make_shared<Rook>(blackRooks[0]),                               std::make_shared<Knight>(blackKnights[0]),                               std::make_shared<Bishop>(blackBishops[0]),                               std::make_shared<Queen>(blackQueens[0]),                               std::make_shared<King>(whiteKing),                               std::make_shared<Bishop>(blackBishops[1]),                               std::make_shared<Knight>(blackKnights[1]),                               std::make_shared<Rook>(blackRooks[1])}
     };
 public:
     Chess();

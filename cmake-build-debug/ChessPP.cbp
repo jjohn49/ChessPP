@@ -8,110 +8,138 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug"/>
+				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ChessPP">
-				<Option output="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/ChessPP" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug"/>
+				<Option output="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/ChessPP" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/x86_64-unknown-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 ChessPP"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 ChessPP"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ChessPP/fast">
-				<Option output="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/ChessPP" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug"/>
+				<Option output="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/ChessPP" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/x86_64-unknown-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 ChessPP/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 ChessPP/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug"/>
+				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug"/>
+				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Header/Bishop.h">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Bishop.h">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Header/Chess.h">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Chess.h">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Header/Move.h">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/King.h">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Header/Pawn.h">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Knight.h">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Header/Piece.h">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Bishop.cpp">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Pawn.h">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Chess.cpp">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Piece.h">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Move.cpp">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Queen.h">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Pawn.cpp">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Header/Rook.h">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/Source/Piece.cpp">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Bishop.cpp">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/main.cpp">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Chess.cpp">
 			<Option target="ChessPP"/>
 		</Unit>
-		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/CMakeLists.txt">
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/King.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Knight.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Move.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Pawn.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Piece.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Queen.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/Source/Rook.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/main.cpp">
+			<Option target="ChessPP"/>
+		</Unit>
+		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

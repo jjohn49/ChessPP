@@ -19,7 +19,7 @@ public:
         Typeless = 0,
         Pawn = 1,
         Bishop = 3,
-        Knight = 3,
+        Knight = 4,
         Rook = 5,
         Queen = 7,
         King = 10
@@ -44,6 +44,8 @@ public:
     void setNewPosition(std::pair<int,int> newPos) {this->row = newPos.first; this->col = newPos.second;};
 
     Color getColor() {return this->color; };
+
+    std::shared_ptr<Piece> getPieceAt(int x, int y, std::shared_ptr<Piece> board[8][8] );
 
 
 protected:

@@ -5,8 +5,14 @@
 #ifndef CHESSPP_BISHOP_H
 #define CHESSPP_BISHOP_H
 
+#include "Piece.h"
 
-class Bishop {
+class Bishop: public Piece{
+public:
+    Bishop(): Piece(Piece::Type::Bishop, Piece::Color::Colorless, -1, -1){};
+    Bishop(Piece::Color color, int row, int col) : Piece(Piece::Type::Bishop,color,row,col){};
+    std::vector<Move> getMoves(std::shared_ptr<Piece> board[8][8]) override;
+    static std::vector<Move> getBishopMoves(Piece::Color color, int curX,  int curY, std::shared_ptr<Piece> board[8][8]);
 
 };
 
