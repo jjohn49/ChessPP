@@ -7,8 +7,9 @@
 
 
 Board::Board(){
-    screen = NULL;
-    this->running = true;
+    screen = nullptr;
+    running = true;
+    renderer = nullptr;
 }
 
 int Board::onExecute() {
@@ -23,7 +24,12 @@ int Board::onExecute() {
         while(SDL_PollEvent(&Event)) {
 
             OnEvent(&Event);
+
         }
+
+        drawBoard();
+        SDL_UpdateWindowSurface(screen);
+
 
         //OnLoop();
         //OnRender();
@@ -42,6 +48,12 @@ bool Board::OnInit() {
     screen = SDL_CreateWindow("ChessPP", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_OPENGL);
 
     if(screen == nullptr){
+        return false;
+    }
+
+    renderer = SDL_CreateSoftwareRenderer(SDL_GetWindowSurface(screen));
+
+    if (renderer == nullptr){
         return false;
     }
     return true;
@@ -63,6 +75,29 @@ void Board::OnRender() {
 
 void Board::OnCleanup() {
     SDL_Quit();
+}
+
+void Board::drawBoard()  {
+    int row = 0, column = 0, x = 0;
+    SDL_Rect rect, darea;
+
+    /* Get the Size of drawing surface */
+    SDL_RenderGetViewport(renderer, &darea);
+
+    for (; row < 8; row++) {
+         column = row % 2;
+         x = column;
+         for (; column < 4 + (row % 2); column++) {
+                 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0xFF);
+
+                 rect.w = darea.w / 8;
+                 rect.h = darea.h / 8;
+                 rect.x = x * rect.w;
+                 rect.y = row * rect.h;
+                 x = x + 2;
+                 SDL_RenderFillRect(renderer, &rect);
+         }
+     }
 }
 
 

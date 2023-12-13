@@ -12,6 +12,7 @@ class Board {
 private:
     bool running;
     SDL_Window * screen;
+    SDL_Renderer * renderer;
 
 public:
     Board();
@@ -21,6 +22,7 @@ public:
     void OnLoop();
     void OnRender();
     void OnCleanup();
+    void drawBoard();
 };
 
 
