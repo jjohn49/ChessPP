@@ -21,6 +21,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake"
   "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake"
   "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake"
+  "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/FeatureSummary.cmake"
   "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-C.cmake"
   "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-CXX.cmake"
   "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake"
@@ -31,6 +32,15 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.26.4/CMakeCCompiler.cmake"
   "CMakeFiles/3.26.4/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.26.4/CMakeSystem.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/SDL2Config.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/SDL2ConfigVersion.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/SDL2Targets-noconfig.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/SDL2Targets.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/SDL2mainTargets-noconfig.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/SDL2mainTargets.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/SDL2testTargets-noconfig.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/SDL2testTargets.cmake"
+  "/usr/lib/x86_64-linux-gnu/cmake/SDL2/sdlfind.cmake"
   )
 
 # The corresponding makefile is:

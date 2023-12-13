@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/hugh/Projects/jj-git-repos/ChessPP/ChessPP -isystem /usr/include/SDL2
 
 CXX_FLAGS = -g -fdiagnostics-color=always
 

@@ -252,6 +252,8 @@ ChessPP: CMakeFiles/ChessPP.dir/Source/Knight.cpp.o
 ChessPP: CMakeFiles/ChessPP.dir/Source/King.cpp.o
 ChessPP: CMakeFiles/ChessPP.dir/Source/Board.cpp.o
 ChessPP: CMakeFiles/ChessPP.dir/build.make
+ChessPP: /usr/lib/x86_64-linux-gnu/libSDL2main.a
+ChessPP: /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.2800.5
 ChessPP: CMakeFiles/ChessPP.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable ChessPP"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ChessPP.dir/link.txt --verbose=$(VERBOSE)

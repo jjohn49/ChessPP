@@ -503,3 +503,247 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CheckCSourceCompiles.cmake:76 (cmake_check_source_compiles)"
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "external/glfw/CMakeLists.txt:56 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-naRleA"
+      binary: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-naRleA"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/hugh/Projects/jj-git-repos/ChessPP/external/glfw/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-naRleA
+        
+        Run Build Command(s):/app/extra/clion/bin/cmake/linux/x64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_43a06/fast && make[1]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-naRleA'
+        /usr/bin/make  -f CMakeFiles/cmTC_43a06.dir/build.make CMakeFiles/cmTC_43a06.dir/build
+        make[2]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-naRleA'
+        Building C object CMakeFiles/cmTC_43a06.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_43a06.dir/src.c.o -c /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-naRleA/src.c
+        Linking C executable cmTC_43a06
+        /app/extra/clion/bin/cmake/linux/x64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_43a06.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_43a06.dir/src.c.o -o cmTC_43a06 
+        make[2]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-naRleA'
+        make[1]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-naRleA'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CheckLibraryExists.cmake:71 (try_compile)"
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindX11.cmake:498 (check_library_exists)"
+      - "external/glfw/src/CMakeLists.txt:188 (find_package)"
+    checks:
+      - "Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so"
+    directories:
+      source: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-KvNdW9"
+      binary: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-KvNdW9"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/hugh/Projects/jj-git-repos/ChessPP/external/glfw/CMake/modules"
+    buildResult:
+      variable: "X11_LIB_X11_SOLO"
+      cached: true
+      stdout: |
+        Change Dir: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-KvNdW9
+        
+        Run Build Command(s):/app/extra/clion/bin/cmake/linux/x64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_49d5c/fast && make[1]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-KvNdW9'
+        /usr/bin/make  -f CMakeFiles/cmTC_49d5c.dir/build.make CMakeFiles/cmTC_49d5c.dir/build
+        make[2]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-KvNdW9'
+        Building C object CMakeFiles/cmTC_49d5c.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay -o CMakeFiles/cmTC_49d5c.dir/CheckFunctionExists.c.o -c /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-KvNdW9/CheckFunctionExists.c
+        Linking C executable cmTC_49d5c
+        /app/extra/clion/bin/cmake/linux/x64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_49d5c.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=XOpenDisplay CMakeFiles/cmTC_49d5c.dir/CheckFunctionExists.c.o -o cmTC_49d5c  /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so 
+        make[2]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-KvNdW9'
+        make[1]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-KvNdW9'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindX11.cmake:513 (check_function_exists)"
+      - "external/glfw/src/CMakeLists.txt:188 (find_package)"
+    checks:
+      - "Looking for gethostbyname"
+    directories:
+      source: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7MNHwZ"
+      binary: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7MNHwZ"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/hugh/Projects/jj-git-repos/ChessPP/external/glfw/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_GETHOSTBYNAME"
+      cached: true
+      stdout: |
+        Change Dir: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7MNHwZ
+        
+        Run Build Command(s):/app/extra/clion/bin/cmake/linux/x64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_1c5cf/fast && make[1]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7MNHwZ'
+        /usr/bin/make  -f CMakeFiles/cmTC_1c5cf.dir/build.make CMakeFiles/cmTC_1c5cf.dir/build
+        make[2]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7MNHwZ'
+        Building C object CMakeFiles/cmTC_1c5cf.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname -o CMakeFiles/cmTC_1c5cf.dir/CheckFunctionExists.c.o -c /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7MNHwZ/CheckFunctionExists.c
+        Linking C executable cmTC_1c5cf
+        /app/extra/clion/bin/cmake/linux/x64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1c5cf.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=gethostbyname CMakeFiles/cmTC_1c5cf.dir/CheckFunctionExists.c.o -o cmTC_1c5cf 
+        make[2]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7MNHwZ'
+        make[1]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7MNHwZ'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindX11.cmake:527 (check_function_exists)"
+      - "external/glfw/src/CMakeLists.txt:188 (find_package)"
+    checks:
+      - "Looking for connect"
+    directories:
+      source: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-J1cebw"
+      binary: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-J1cebw"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/hugh/Projects/jj-git-repos/ChessPP/external/glfw/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_CONNECT"
+      cached: true
+      stdout: |
+        Change Dir: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-J1cebw
+        
+        Run Build Command(s):/app/extra/clion/bin/cmake/linux/x64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_4e47e/fast && make[1]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-J1cebw'
+        /usr/bin/make  -f CMakeFiles/cmTC_4e47e.dir/build.make CMakeFiles/cmTC_4e47e.dir/build
+        make[2]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-J1cebw'
+        Building C object CMakeFiles/cmTC_4e47e.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect -o CMakeFiles/cmTC_4e47e.dir/CheckFunctionExists.c.o -c /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-J1cebw/CheckFunctionExists.c
+        Linking C executable cmTC_4e47e
+        /app/extra/clion/bin/cmake/linux/x64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4e47e.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=connect CMakeFiles/cmTC_4e47e.dir/CheckFunctionExists.c.o -o cmTC_4e47e 
+        make[2]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-J1cebw'
+        make[1]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-J1cebw'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindX11.cmake:536 (check_function_exists)"
+      - "external/glfw/src/CMakeLists.txt:188 (find_package)"
+    checks:
+      - "Looking for remove"
+    directories:
+      source: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-Jbcf8U"
+      binary: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-Jbcf8U"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/hugh/Projects/jj-git-repos/ChessPP/external/glfw/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_REMOVE"
+      cached: true
+      stdout: |
+        Change Dir: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-Jbcf8U
+        
+        Run Build Command(s):/app/extra/clion/bin/cmake/linux/x64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_1f37c/fast && make[1]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-Jbcf8U'
+        /usr/bin/make  -f CMakeFiles/cmTC_1f37c.dir/build.make CMakeFiles/cmTC_1f37c.dir/build
+        make[2]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-Jbcf8U'
+        Building C object CMakeFiles/cmTC_1f37c.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove -o CMakeFiles/cmTC_1f37c.dir/CheckFunctionExists.c.o -c /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-Jbcf8U/CheckFunctionExists.c
+        Linking C executable cmTC_1f37c
+        /app/extra/clion/bin/cmake/linux/x64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1f37c.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=remove CMakeFiles/cmTC_1f37c.dir/CheckFunctionExists.c.o -o cmTC_1f37c 
+        make[2]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-Jbcf8U'
+        make[1]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-Jbcf8U'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindX11.cmake:545 (check_function_exists)"
+      - "external/glfw/src/CMakeLists.txt:188 (find_package)"
+    checks:
+      - "Looking for shmat"
+    directories:
+      source: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-SRl6mT"
+      binary: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-SRl6mT"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/hugh/Projects/jj-git-repos/ChessPP/external/glfw/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_SHMAT"
+      cached: true
+      stdout: |
+        Change Dir: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-SRl6mT
+        
+        Run Build Command(s):/app/extra/clion/bin/cmake/linux/x64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0b00f/fast && make[1]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-SRl6mT'
+        /usr/bin/make  -f CMakeFiles/cmTC_0b00f.dir/build.make CMakeFiles/cmTC_0b00f.dir/build
+        make[2]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-SRl6mT'
+        Building C object CMakeFiles/cmTC_0b00f.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat -o CMakeFiles/cmTC_0b00f.dir/CheckFunctionExists.c.o -c /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-SRl6mT/CheckFunctionExists.c
+        Linking C executable cmTC_0b00f
+        /app/extra/clion/bin/cmake/linux/x64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0b00f.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=shmat CMakeFiles/cmTC_0b00f.dir/CheckFunctionExists.c.o -o cmTC_0b00f 
+        make[2]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-SRl6mT'
+        make[1]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-SRl6mT'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/CheckLibraryExists.cmake:71 (try_compile)"
+      - "/app/extra/clion/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindX11.cmake:555 (check_library_exists)"
+      - "external/glfw/src/CMakeLists.txt:188 (find_package)"
+    checks:
+      - "Looking for IceConnectionNumber in ICE"
+    directories:
+      source: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-BnHczO"
+      binary: "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-BnHczO"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/hugh/Projects/jj-git-repos/ChessPP/external/glfw/CMake/modules"
+    buildResult:
+      variable: "CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER"
+      cached: true
+      stdout: |
+        Change Dir: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-BnHczO
+        
+        Run Build Command(s):/app/extra/clion/bin/cmake/linux/x64/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_94756/fast && make[1]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-BnHczO'
+        /usr/bin/make  -f CMakeFiles/cmTC_94756.dir/build.make CMakeFiles/cmTC_94756.dir/build
+        make[2]: Entering directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-BnHczO'
+        Building C object CMakeFiles/cmTC_94756.dir/CheckFunctionExists.c.o
+        /usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber -o CMakeFiles/cmTC_94756.dir/CheckFunctionExists.c.o -c /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-BnHczO/CheckFunctionExists.c
+        Linking C executable cmTC_94756
+        /app/extra/clion/bin/cmake/linux/x64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_94756.dir/link.txt --verbose=1
+        /usr/bin/cc  -DCHECK_FUNCTION_EXISTS=IceConnectionNumber CMakeFiles/cmTC_94756.dir/CheckFunctionExists.c.o -o cmTC_94756  -lICE 
+        make[2]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-BnHczO'
+        make[1]: Leaving directory '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-BnHczO'
+        
+      exitCode: 0
+...

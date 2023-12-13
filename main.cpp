@@ -1,10 +1,11 @@
 #include <iostream>
 #include "Header/Chess.h"
+#include "Header/Board.h"
 
 int main() {
-    Chess chess{};
-    chess.printAllMoves();
-    chess.printBoard();
+
+    Board board{};
+    board.onExecute();
 
     return 0;
 }
