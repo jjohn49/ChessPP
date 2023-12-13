@@ -7,6 +7,8 @@
 #include <iostream>
 #include <memory>
 #include <SDL2/SDL.h>
+#include "Piece.h"
+
 
 class Board {
 private:

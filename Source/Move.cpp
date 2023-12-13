@@ -15,3 +15,7 @@ std::string Move::toString(){
     ret += "\n";
     return ret;
 }
+
+Move Move::getReverseMove() {
+    return Move(this->newPosition, this->oldPosition);
+}

@@ -327,4 +327,16 @@ CMakeFiles/ChessPP.dir/Source/Board.cpp.o: \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h
+ /usr/include/SDL2/SDL_misc.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Piece.h \
+ /usr/include/c++/13.2.0/vector /usr/include/c++/13.2.0/bits/stl_vector.h \
+ /usr/include/c++/13.2.0/bits/stl_bvector.h \
+ /usr/include/c++/13.2.0/bits/vector.tcc \
+ /usr/include/c++/13.2.0/unordered_map \
+ /usr/include/c++/13.2.0/bits/unordered_map.h \
+ /usr/include/c++/13.2.0/bits/hashtable.h \
+ /usr/include/c++/13.2.0/bits/hashtable_policy.h \
+ /usr/include/c++/13.2.0/bits/enable_special_members.h \
+ /usr/include/c++/13.2.0/bits/node_handle.h \
+ /usr/include/c++/13.2.0/bits/erase_if.h \
+ /home/hugh/Projects/jj-git-repos/ChessPP/Source/../Header/Move.h

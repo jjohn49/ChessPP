@@ -34,9 +34,26 @@ std::vector<Move> Pawn::getMoves(std::shared_ptr<Piece> board[8][8]) {
         }
     };
 
+
     getPassingMoves();
     getTakeMoves();
 
     return moves;
 
 }
+
+//NOT FINISHED YET
+std::vector<Move> Pawn::getEnPessant(std::shared_ptr<Piece> board[8][8], std::vector<Move> allGameMoves){
+    std::vector<Move> moves{};
+    int r = row;
+    int c = col;
+
+    if( (getColor() == Piece::White && r == 4) || (getColor()==Piece::Black && r == 3)){
+        Move lastMove{allGameMoves.back()};
+        std::pair<int,int> lastPos{lastMove.getNewPosition()};
+        std::shared_ptr<Piece> lastPieceMoved{board[lastPos.first][lastPos.second]};
+
+    }
+
+    return moves;
+};

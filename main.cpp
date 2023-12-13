@@ -3,10 +3,9 @@
 #include "Header/Board.h"
 
 int main() {
-
-    Board board{};
-    board.onExecute();
-
+    Chess chess{};
+    chess.printBoard();
+    std::vector<Move> moves = chess.getMovesFor(Piece::White);
     return 0;
 }
 

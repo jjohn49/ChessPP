@@ -2,9 +2,9 @@
 // Created by hugh on 12/9/23.
 //
 
+#include <utility>
+
 #include "../Header/Board.h"
-
-
 
 Board::Board(){
     screen = nullptr;
@@ -45,7 +45,7 @@ bool Board::OnInit() {
         return false;
     }
 
-    screen = SDL_CreateWindow("ChessPP", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_OPENGL);
+    screen = SDL_CreateWindow("ChessPP", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 700, 700, SDL_WINDOW_OPENGL);
 
     if(screen == nullptr){
         return false;
@@ -88,7 +88,7 @@ void Board::drawBoard()  {
          column = row % 2;
          x = column;
          for (; column < 4 + (row % 2); column++) {
-                 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0xFF);
+                 SDL_SetRenderDrawColor(renderer, 1, 55, 32, 0xFF);
 
                  rect.w = darea.w / 8;
                  rect.h = darea.h / 8;

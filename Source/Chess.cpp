@@ -24,9 +24,9 @@ void Chess::printBoard() {
 }
 
 void Chess::movePiece(Move move) {
-    std::pair<int,int> oldPos{move.getNewPosition()};
+    std::pair<int,int> oldPos{move.getOldPosition()};
     std::pair<int,int> newPos{move.getNewPosition()};
-    std::shared_ptr<Piece> piece = this->board[oldPos.first][oldPos.second];
+    std::shared_ptr<Piece> piece = getPieceAt(oldPos);
 
     //checvks if there was a piece on the square and adds it to the correct capturePieces vector
     if(this->getPieceAt(move.getNewPosition()) != nullptr){
@@ -39,7 +39,11 @@ void Chess::movePiece(Move move) {
     this->board[oldPos.first][oldPos.second] = nullptr;
     this->board[newPos.first][newPos.second] = piece;
     piece->setNewPosition(newPos);
+
+    this->allGameMoves.push_back(move);
 }
+
+
 
 std::shared_ptr<Piece> Chess::getPieceAt(std::pair<int, int> pos) {
     return this->board[pos.first][pos.second];
@@ -68,13 +72,42 @@ void Chess::printAllMoves() {
     }
 }
 
-bool Chess::isCheck() {
+bool Chess::isCheckFor(Piece::Color color) {
     std::vector<Move> allMoves{this->getAllMoves()};
 
+    std::shared_ptr<King> targetKing = (color == Piece::White) ? std::make_shared<King>(whiteKing) : std::make_shared<King>(blackKing);
+
     for(Move &move: allMoves){
-        if(move.getNewPosition() == whiteKing.getPosition() || move.getNewPosition() == blackKing.getPosition()){
+        if(move.getNewPosition() == targetKing->getPosition()){
+            //free(targetKing);
             return true;
         }
     }
+
+    //free(targetKing);
     return false;
 }
+
+//Gets all possible moves, makes a copy of the board before any move
+//Then modifies board with each move, checking if they are still in check
+//resets to original board after each move
+std::vector<Move> Chess::getMovesFor(Piece::Color color) {
+    std::vector<Move> allMoves{getAllMoves()};
+    std::vector<Move> movesForColor{};
+    for(Move & move: allMoves){
+        if(getPieceAt(move.getOldPosition())->getColor() == color){
+            std::shared_ptr<Piece> copy[8][8];
+            std::vector<Move> copyAllGameMoves = this->allGameMoves;
+            std::copy(&board[0][0], &board[0][0]+64, &copy[0][0]);
+            movePiece(move);
+            if(!isCheckFor(color)){
+                movesForColor.push_back(move);
+            }
+            std::copy(&copy[0][0], &copy[0][0]+64, &board[0][0]);
+            this->allGameMoves = copyAllGameMoves;
+        }
+    }
+
+    return movesForColor;
+}
+
