@@ -13,6 +13,7 @@ public:
     King(): Piece(Piece::King, Piece::Colorless, -1, -1){};
     King(Piece::Color color, int row, int col): Piece(Piece::King, color, row, col){};
     std::vector<Move> getMoves(std::shared_ptr<Piece> board[8][8]) override;
+    std::string getImagePath() override;
 
 };
 

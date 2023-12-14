@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/hugh/Projects/jj-git-repos/ChessPP/ChessPP -isystem /usr/include/SDL2
+CXX_INCLUDES = -I/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include -I/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug -I/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src
 
-CXX_FLAGS = -g -fdiagnostics-color=always
+CXX_FLAGS = -g -fPIE -fdiagnostics-color=always
 

@@ -36,3 +36,7 @@ std::vector<Move> Rook::getRookMoves(Piece::Color color, int curX, int curY, std
     Rook temp{color, curX, curY};
     return temp.getMoves(board);
 }
+
+std::string Rook::getImagePath() {
+    return (getColor() == Piece::White) ?  "../assets/PNGs/With Shadow/1x/w_rook_1x.png" : "../assets/PNGs/With Shadow/1x/b_rook_1x.png";
+}

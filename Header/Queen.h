@@ -13,6 +13,7 @@ public:
     Queen(): Piece(Piece::Type::Queen, Piece::Color::Colorless, -1, -1){};
     Queen(Piece::Color color, int row, int col) : Piece(Piece::Type::Queen,color,row,col){};
     std::vector<Move> getMoves(std::shared_ptr<Piece> board[8][8]) override;
+    std::string getImagePath() override;
 };
 
 

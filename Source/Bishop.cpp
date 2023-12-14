@@ -38,3 +38,7 @@ std::vector<Move> Bishop::getBishopMoves(Piece::Color color, int curX, int curY,
     Bishop temp{color, curX, curY};
     return temp.getMoves(board);
 }
+
+std::string Bishop::getImagePath() {
+    return (getColor() == Piece::White) ?  "../assets/PNGs/With Shadow/1x/w_bishop_1x.png" : "../assets/PNGs/With Shadow/1x/b_bishop_1x.png";
+}

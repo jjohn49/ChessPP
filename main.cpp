@@ -4,8 +4,7 @@
 
 int main() {
     Chess chess{};
-    chess.printBoard();
-    std::vector<Move> moves = chess.getMovesFor(Piece::White);
+    chess.drawBoard();
     return 0;
 }
 

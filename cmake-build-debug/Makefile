@@ -129,6 +129,110 @@ ChessPP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/build
 .PHONY : ChessPP/fast
 
+#=============================================================================
+# Target rules for targets named sdl_headers_copy
+
+# Build rule for target.
+sdl_headers_copy: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sdl_headers_copy
+.PHONY : sdl_headers_copy
+
+# fast build rule for target.
+sdl_headers_copy/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/build.make _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/build
+.PHONY : sdl_headers_copy/fast
+
+#=============================================================================
+# Target rules for targets named SDL2main
+
+# Build rule for target.
+SDL2main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2main
+.PHONY : SDL2main
+
+# fast build rule for target.
+SDL2main/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main.dir/build
+.PHONY : SDL2main/fast
+
+#=============================================================================
+# Target rules for targets named SDL2-static
+
+# Build rule for target.
+SDL2-static: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2-static
+.PHONY : SDL2-static
+
+# fast build rule for target.
+SDL2-static/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static.dir/build
+.PHONY : SDL2-static/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_test
+
+# Build rule for target.
+SDL2_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_test
+.PHONY : SDL2_test
+
+# fast build rule for target.
+SDL2_test/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test.dir/build
+.PHONY : SDL2_test/fast
+
+#=============================================================================
+# Target rules for targets named uninstall
+
+# Build rule for target.
+uninstall: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
+.PHONY : uninstall
+
+# fast build rule for target.
+uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/uninstall.dir/build.make _deps/sdl2-build/CMakeFiles/uninstall.dir/build
+.PHONY : uninstall/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_image
+
+# Build rule for target.
+SDL2_image: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_image
+.PHONY : SDL2_image
+
+# fast build rule for target.
+SDL2_image/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/build.make _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/build
+.PHONY : SDL2_image/fast
+
+#=============================================================================
+# Target rules for targets named showanim
+
+# Build rule for target.
+showanim: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 showanim
+.PHONY : showanim
+
+# fast build rule for target.
+showanim/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/showanim.dir/build.make _deps/sdl2_image-build/CMakeFiles/showanim.dir/build
+.PHONY : showanim/fast
+
+#=============================================================================
+# Target rules for targets named showimage
+
+# Build rule for target.
+showimage: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 showimage
+.PHONY : showimage
+
+# fast build rule for target.
+showimage/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/showimage.dir/build.make _deps/sdl2_image-build/CMakeFiles/showimage.dir/build
+.PHONY : showimage/fast
+
 Source/Bishop.o: Source/Bishop.cpp.o
 .PHONY : Source/Bishop.o
 
@@ -401,7 +505,15 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... sdl_headers_copy"
+	@echo "... uninstall"
 	@echo "... ChessPP"
+	@echo "... SDL2-static"
+	@echo "... SDL2_image"
+	@echo "... SDL2_test"
+	@echo "... SDL2main"
+	@echo "... showanim"
+	@echo "... showimage"
 	@echo "... Source/Bishop.o"
 	@echo "... Source/Bishop.i"
 	@echo "... Source/Bishop.s"

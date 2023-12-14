@@ -29,3 +29,7 @@ std::vector<Move> King::getMoves(std::shared_ptr<Piece> (*board)[8]) {
     }
     return moves;
 }
+
+std::string King::getImagePath() {
+    return (getColor() == Piece::White) ?  "../assets/PNGs/With Shadow/1x/w_king_1x.png" : "../assets/PNGs/With Shadow/1x/b_king_1x.png";
+}

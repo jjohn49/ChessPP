@@ -27,3 +27,7 @@ std::vector<Move> Knight::getMoves(std::shared_ptr<Piece> (*board)[8]) {
 
     return moves;
 }
+
+std::string Knight::getImagePath() {
+    return (getColor() == Piece::White) ?  "../assets/PNGs/With Shadow/1x/w_knight_1x.png" : "../assets/PNGs/With Shadow/1x/b_knight_1x.png";
+}

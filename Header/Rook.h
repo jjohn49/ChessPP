@@ -11,6 +11,7 @@ public:
     Rook(): Piece(Piece::Type::Rook, Piece::Color::Colorless, -1, -1){};
     Rook(Piece::Color color, int row, int col) : Piece(Piece::Type::Rook,color,row,col){};
     std::vector<Move> getMoves(std::shared_ptr<Piece> board[8][8]) override;
+    std::string getImagePath() override;
     static std::vector<Move> getRookMoves(Piece::Color color, int curX,  int curY, std::shared_ptr<Piece> board[8][8]);
 
 };

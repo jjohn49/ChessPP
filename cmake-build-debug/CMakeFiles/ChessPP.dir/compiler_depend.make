@@ -224,9 +224,7 @@ CMakeFiles/ChessPP.dir/Source/Bishop.cpp.o: /home/hugh/Projects/jj-git-repos/Che
 
 CMakeFiles/ChessPP.dir/Source/Board.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/Source/Board.cpp \
   /usr/include/stdc-predef.h \
-  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Board.h \
-  /usr/include/c++/13.2.0/iostream \
-  /usr/include/c++/13.2.0/bits/requires_hosted.h \
+  /usr/include/c++/13.2.0/utility \
   /usr/include/c++/13.2.0/x86_64-unknown-linux-gnu/bits/c++config.h \
   /usr/include/c++/13.2.0/x86_64-unknown-linux-gnu/bits/os_defines.h \
   /usr/include/features.h \
@@ -239,6 +237,15 @@ CMakeFiles/ChessPP.dir/Source/Board.cpp.o: /home/hugh/Projects/jj-git-repos/Ches
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/c++/13.2.0/x86_64-unknown-linux-gnu/bits/cpu_defines.h \
   /usr/include/c++/13.2.0/pstl/pstl_config.h \
+  /usr/include/c++/13.2.0/bits/stl_relops.h \
+  /usr/include/c++/13.2.0/bits/stl_pair.h \
+  /usr/include/c++/13.2.0/type_traits \
+  /usr/include/c++/13.2.0/bits/move.h \
+  /usr/include/c++/13.2.0/bits/utility.h \
+  /usr/include/c++/13.2.0/initializer_list \
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Board.h \
+  /usr/include/c++/13.2.0/iostream \
+  /usr/include/c++/13.2.0/bits/requires_hosted.h \
   /usr/include/c++/13.2.0/ostream \
   /usr/include/c++/13.2.0/ios \
   /usr/include/c++/13.2.0/iosfwd \
@@ -268,8 +275,6 @@ CMakeFiles/ChessPP.dir/Source/Board.cpp.o: /home/hugh/Projects/jj-git-repos/Ches
   /usr/include/c++/13.2.0/typeinfo \
   /usr/include/c++/13.2.0/bits/hash_bytes.h \
   /usr/include/c++/13.2.0/new \
-  /usr/include/c++/13.2.0/bits/move.h \
-  /usr/include/c++/13.2.0/type_traits \
   /usr/include/c++/13.2.0/bits/nested_exception.h \
   /usr/include/c++/13.2.0/bits/char_traits.h \
   /usr/include/c++/13.2.0/bits/localefwd.h \
@@ -336,15 +341,12 @@ CMakeFiles/ChessPP.dir/Source/Board.cpp.o: /home/hugh/Projects/jj-git-repos/Ches
   /usr/include/c++/13.2.0/backward/binders.h \
   /usr/include/c++/13.2.0/ext/numeric_traits.h \
   /usr/include/c++/13.2.0/bits/stl_algobase.h \
-  /usr/include/c++/13.2.0/bits/stl_pair.h \
-  /usr/include/c++/13.2.0/bits/utility.h \
   /usr/include/c++/13.2.0/debug/debug.h \
   /usr/include/c++/13.2.0/bits/predefined_ops.h \
   /usr/include/c++/13.2.0/bit \
   /usr/include/c++/13.2.0/bits/refwrap.h \
   /usr/include/c++/13.2.0/bits/invoke.h \
   /usr/include/c++/13.2.0/bits/range_access.h \
-  /usr/include/c++/13.2.0/initializer_list \
   /usr/include/c++/13.2.0/bits/basic_string.h \
   /usr/include/c++/13.2.0/ext/alloc_traits.h \
   /usr/include/c++/13.2.0/bits/alloc_traits.h \
@@ -605,7 +607,28 @@ CMakeFiles/ChessPP.dir/Source/Board.cpp.o: /home/hugh/Projects/jj-git-repos/Ches
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
-  /usr/include/SDL2/SDL_misc.h
+  /usr/include/SDL2/SDL_misc.h \
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Piece.h \
+  /usr/include/c++/13.2.0/vector \
+  /usr/include/c++/13.2.0/bits/stl_vector.h \
+  /usr/include/c++/13.2.0/bits/stl_bvector.h \
+  /usr/include/c++/13.2.0/bits/vector.tcc \
+  /usr/include/c++/13.2.0/unordered_map \
+  /usr/include/c++/13.2.0/bits/unordered_map.h \
+  /usr/include/c++/13.2.0/bits/hashtable.h \
+  /usr/include/c++/13.2.0/bits/hashtable_policy.h \
+  /usr/include/c++/13.2.0/bits/enable_special_members.h \
+  /usr/include/c++/13.2.0/bits/node_handle.h \
+  /usr/include/c++/13.2.0/bits/erase_if.h \
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Pawn.h \
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Rook.h \
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Knight.h \
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Bishop.h \
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Queen.h \
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/King.h \
+  /usr/include/SDL2/SDL_image.h \
+  /usr/include/SDL2/SDL.h
 
 CMakeFiles/ChessPP.dir/Source/Chess.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/Source/Chess.cpp \
   /usr/include/stdc-predef.h \
@@ -2949,17 +2972,19 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 
 /home/hugh/Projects/jj-git-repos/ChessPP/Source/King.cpp:
 
-/home/hugh/Projects/jj-git-repos/ChessPP/Header/Knight.h:
-
-/home/hugh/Projects/jj-git-repos/ChessPP/Header/Queen.h:
-
 /usr/include/c++/13.2.0/optional:
-
-/home/hugh/Projects/jj-git-repos/ChessPP/Header/Pawn.h:
 
 /home/hugh/Projects/jj-git-repos/ChessPP/Header/Chess.h:
 
 /home/hugh/Projects/jj-git-repos/ChessPP/Source/Chess.cpp:
+
+/usr/include/SDL2/SDL_image.h:
+
+/home/hugh/Projects/jj-git-repos/ChessPP/Header/Queen.h:
+
+/home/hugh/Projects/jj-git-repos/ChessPP/Header/Knight.h:
+
+/home/hugh/Projects/jj-git-repos/ChessPP/Header/Pawn.h:
 
 /usr/include/SDL2/SDL_misc.h:
 
@@ -2978,8 +3003,6 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 /usr/include/SDL2/SDL_filesystem.h:
 
 /usr/include/SDL2/SDL_quit.h:
-
-/usr/include/SDL2/SDL_gamecontroller.h:
 
 /usr/include/SDL2/SDL_guid.h:
 
@@ -3030,6 +3053,8 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 /usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512vpopcntdqintrin.h:
 
 /usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx5124fmapsintrin.h:
+
+/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512vbmivlintrin.h:
 
 /usr/include/c++/13.2.0/bits/memory_resource.h:
 
@@ -3165,6 +3190,8 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 
 /usr/include/c++/13.2.0/bits/locale_facets.h:
 
+/usr/include/c++/13.2.0/bits/stl_relops.h:
+
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
@@ -3221,9 +3248,19 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 
 /usr/include/c++/13.2.0/bits/functional_hash.h:
 
+/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512vbmiintrin.h:
+
+/home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h:
+
+/usr/include/c++/13.2.0/bits/basic_ios.h:
+
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/SDL2/SDL_gamecontroller.h:
+
+/usr/include/c++/13.2.0/utility:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
@@ -3737,12 +3774,6 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 
 /usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx2intrin.h:
 
-/home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h:
-
-/usr/include/c++/13.2.0/bits/basic_ios.h:
-
-/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512vbmiintrin.h:
-
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
 /usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512erintrin.h:
@@ -3766,5 +3797,3 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512vlbwintrin.h:
-
-/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512vbmivlintrin.h:

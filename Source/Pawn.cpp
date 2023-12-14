@@ -56,4 +56,8 @@ std::vector<Move> Pawn::getEnPessant(std::shared_ptr<Piece> board[8][8], std::ve
     }
 
     return moves;
+}
+
+std::string Pawn::getImagePath() {
+    return (getColor() == Piece::White) ?  "../assets/PNGs/With Shadow/1x/w_pawn_1x.png" : "../assets/PNGs/With Shadow/1x/b_pawn_1x.png";
 };

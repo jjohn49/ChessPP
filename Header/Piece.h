@@ -48,6 +48,8 @@ public:
 
     std::shared_ptr<Piece> getPieceAt(int x, int y, std::shared_ptr<Piece> board[8][8] );
 
+    virtual std::string getImagePath(){return "";};
+
 
 protected:
     Type type;
