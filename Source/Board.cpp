@@ -3,15 +3,18 @@
 //
 
 #include <utility>
-
 #include "../Header/Board.h"
 #include <SDL2/SDL_image.h>
+#include <cmath>
+
+#define HEIGHT 800
+#define WIDTH 800
 
 Board::Board(){
     screen = nullptr;
     running = true;
     renderer = nullptr;
-    dragging = false;
+    pieceDragging = nullptr;
 
 }
 
@@ -63,9 +66,7 @@ int Board::onExecute() {
             OnEvent(&Event);
 
         }
-
         drawBoard();
-
         //OnLoop();
         //OnRender();
     }
@@ -101,7 +102,7 @@ bool Board::OnInit() {
         return false;
     }
 
-    screen = SDL_CreateWindow("ChessPP", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 700, 700, SDL_WINDOW_OPENGL);
+    screen = SDL_CreateWindow("ChessPP", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
 
     if(screen == nullptr){
         return false;
@@ -116,14 +117,25 @@ bool Board::OnInit() {
 }
 
 void Board::OnEvent(SDL_Event *Event) {
-    if(Event->type == SDL_MOUSEBUTTONDOWN){
-        //std::cout<<"Mouse Click"<<std::endl;
+    std::shared_ptr<Piece> copyBoard[8][8];
+    if(Event->type == SDL_MOUSEBUTTONDOWN) {
+        std::copy(&board[0][0], &board[0][0] + 64, &copyBoard[0][0]);
+        setPieceClicked(Event);
+        //std::cout<< pieceDragging->toString()<<std::endl;
     }else if(Event->type ==SDL_MOUSEBUTTONUP){
-        //std::cout<<"Mouse Click Released"<<std::endl;
+        pieceDragging = nullptr;
     }
     else if(Event->type == SDL_QUIT) {
         running = false;
     }
+}
+
+void Board::setPieceClicked(SDL_Event *event) {
+    int x, y;
+    SDL_GetMouseState(&y, &x);
+    std::pair<int,int> pos = std::make_pair(floor(x/100), floor(y/100));
+    pieceDragging = getPieceAt(pos);
+    board[pos.first][pos.second] = nullptr;
 }
 
 void Board::OnLoop() {
@@ -171,7 +183,7 @@ void Board::drawBoard()  {
              rect.h = darea.h / 8;
              rect.x = column * rect.w;
              rect.y = row * rect.h;
-             //x = x + 2;
+
              SDL_RenderFillRect(renderer, &rect);
 
              std::shared_ptr<Piece> piece = getPieceAt(std::make_pair(row,column));
@@ -179,13 +191,25 @@ void Board::drawBoard()  {
                  img = IMG_LoadTexture(renderer, piece->getImagePath().c_str());
                  SDL_QueryTexture(img, NULL, NULL, &w, &h);
                  SDL_RenderCopy(renderer, img,NULL,&rect);
-                 SDL_RenderPresent(renderer);
              }
          }
 
      }
-    SDL_UpdateWindowSurface(screen);
 
+    if(pieceDragging != nullptr){
+        int x,y;
+        SDL_GetMouseState(&x,&y);
+        img = IMG_LoadTexture(renderer, pieceDragging->getImagePath().c_str());
+        SDL_QueryTexture(img, NULL, NULL, &w, &h);
+        rect.x = x - 50;
+        rect.y = y - 50;
+        SDL_RenderCopy(renderer, img,NULL,&rect);
+
+        //SDL_UpdateWindowSurface(screen);
+
+    }
+    SDL_RenderPresent(renderer);
+    SDL_UpdateWindowSurface(screen);
 }
 
 bool Board::isCheckFor(Piece::Color color) {
@@ -230,5 +254,7 @@ std::vector<Move> Board::getMovesFor(Piece::Color color, std::vector<std::shared
 void Board::dragPiece() {
     
 }
+
+
 
 

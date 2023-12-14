@@ -28,12 +28,6 @@ public:
     void play();
     void printBoard();
     void drawBoard();
-    std::shared_ptr<Piece> getPieceAt(std::pair<int,int> pos);
-    std::vector<Move> getAllMoves();
-    std::vector<Move> getMovesFor(Piece::Color color);
-    void printAllMoves();
-    bool isCheckFor(Piece::Color color);
-
     void movePiece(Move move);
 };
 

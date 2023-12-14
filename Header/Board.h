@@ -18,7 +18,7 @@
 
 class Board {
 private:
-    bool dragging;
+    std::shared_ptr<Piece> pieceDragging;
     Pawn whitePawns[8]{Pawn(Piece::White, 1, 0),
                        Pawn(Piece::White,1,1),
                        Pawn(Piece::White,1,2),
@@ -101,6 +101,7 @@ public:
     void OnRender();
     void OnCleanup();
     void drawBoard();
+    void setPieceClicked(SDL_Event * event);
 
     std::vector<Move> getAllMoves();
 

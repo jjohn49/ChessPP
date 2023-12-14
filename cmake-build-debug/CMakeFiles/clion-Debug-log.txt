@@ -1,4 +1,192 @@
 /app/extra/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/hugh/Projects/jj-git-repos/ChessPP -B /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug
+-- Populating sdl2
 -- Configuring done (0.0s)
 -- Generating done (0.0s)
+-- Build files have been written to: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild
+[ 11%] Performing update step for 'sdl2-populate'
+[ 22%] No patch step for 'sdl2-populate'
+[ 33%] No configure step for 'sdl2-populate'
+[ 44%] No build step for 'sdl2-populate'
+[ 55%] No install step for 'sdl2-populate'
+[ 66%] No test step for 'sdl2-populate'
+[ 77%] Completed 'sdl2-populate'
+[100%] Built target sdl2-populate
+-- dynamic libasound -> libasound.so.2
+-- dynamic libjack -> libjack.so.0
+-- dynamic libpipewire-0.3 -> libpipewire-0.3.so.0
+-- dynamic libpulse-simple -> libpulse-simple.so.0
+-- Checking for module 'esound'
+--   Package 'esound', required by 'virtual:world', not found
+-- Checking for module 'sndio'
+--   Package 'sndio', required by 'virtual:world', not found
+-- Checking for modules 'bcm_host;brcmegl'
+--   Package 'bcm_host', required by 'virtual:world', not found
+--   Package 'brcmegl', required by 'virtual:world', not found
+-- dynamic libX11 -> libX11.so.6
+-- dynamic libXext -> libXext.so.6
+-- dynamic libXcursor -> libXcursor.so.1
+-- dynamic libXi -> libXi.so.6
+-- dynamic libXfixes -> libXfixes.so.3
+-- dynamic libXrandr -> libXrandr.so.2
+-- dynamic libXrender -> libXrender.so.1
+-- dynamic libXss -> libXss.so.1
+-- dynamic libdrm -> libdrm.so.2
+-- dynamic libgbm -> libgbm.so.1
+-- dynamic libwayland-client -> libwayland-client.so.0
+-- dynamic libwayland-egl -> libwayland-egl.so.1
+-- dynamic libwayland-cursor -> libwayland-cursor.so.0
+-- dynamic libxkbcommon -> libxkbcommon.so.0
+-- dynamic libdecor-0 -> libdecor-0.so.0
+-- dynamic libsamplerate -> libsamplerate.so.0
+-- 
+-- SDL2 was configured with the following options:
+-- 
+-- Platform: Linux-6.6.3-arch1-1
+-- 64-bit:   TRUE
+-- Compiler: /usr/bin/cc
+-- Revision: SDL-release-2.26.3-0-gadf31f6e
+-- 
+-- Subsystems:
+--   Atomic:	ON
+--   Audio:	ON
+--   Video:	ON
+--   Render:	ON
+--   Events:	ON
+--   Joystick:	ON
+--   Haptic:	ON
+--   Hidapi:	ON
+--   Power:	ON
+--   Threads:	ON
+--   Timers:	ON
+--   File:	ON
+--   Loadso:	ON
+--   CPUinfo:	ON
+--   Filesystem:	ON
+--   Sensor:	ON
+--   Locale:	ON
+--   Misc:	ON
+-- 
+-- Options:
+--   SDL2_DISABLE_INSTALL        (Wanted: ON): OFF
+--   SDL2_DISABLE_SDL2MAIN       (Wanted: OFF): OFF
+--   SDL2_DISABLE_UNINSTALL      (Wanted: OFF): OFF
+--   SDL_3DNOW                   (Wanted: ON): ON
+--   SDL_ALSA                    (Wanted: ON): ON
+--   SDL_ALSA_SHARED             (Wanted: ON): ON
+--   SDL_ALTIVEC                 (Wanted: ON): OFF
+--   SDL_ARMNEON                 (Wanted: OFF): OFF
+--   SDL_ARMSIMD                 (Wanted: OFF): OFF
+--   SDL_ARTS                    (Wanted: ON): OFF
+--   SDL_ARTS_SHARED             (Wanted: ON): OFF
+--   SDL_ASAN                    (Wanted: OFF): OFF
+--   SDL_ASSEMBLY                (Wanted: ON): ON
+--   SDL_ASSERTIONS              (Wanted: auto): auto
+--   SDL_BACKGROUNDING_SIGNAL    (Wanted: OFF): OFF
+--   SDL_CCACHE                  (Wanted: ON): ON
+--   SDL_CLOCK_GETTIME           (Wanted: ON): ON
+--   SDL_COCOA                   (Wanted: OFF): OFF
+--   SDL_DBUS                    (Wanted: ON): ON
+--   SDL_DIRECTFB                (Wanted: OFF): OFF
+--   SDL_DIRECTFB_SHARED         (Wanted: OFF): OFF
+--   SDL_DIRECTX                 (Wanted: OFF): OFF
+--   SDL_DISKAUDIO               (Wanted: ON): ON
+--   SDL_DUMMYAUDIO              (Wanted: ON): ON
+--   SDL_DUMMYVIDEO              (Wanted: ON): ON
+--   SDL_ESD                     (Wanted: ON): OFF
+--   SDL_ESD_SHARED              (Wanted: ON): OFF
+--   SDL_FOREGROUNDING_SIGNAL    (Wanted: OFF): OFF
+--   SDL_FUSIONSOUND             (Wanted: OFF): OFF
+--   SDL_FUSIONSOUND_SHARED      (Wanted: OFF): OFF
+--   SDL_GCC_ATOMICS             (Wanted: ON): ON
+--   SDL_HIDAPI                  (Wanted: ON): ON
+--   SDL_HIDAPI_JOYSTICK         (Wanted: ON): ON
+--   SDL_HIDAPI_LIBUSB           (Wanted: OFF): OFF
+--   SDL_IBUS                    (Wanted: ON): ON
+--   SDL_INSTALL_TESTS           (Wanted: OFF): OFF
+--   SDL_JACK                    (Wanted: ON): ON
+--   SDL_JACK_SHARED             (Wanted: ON): ON
+--   SDL_KMSDRM                  (Wanted: ON): ON
+--   SDL_KMSDRM_SHARED           (Wanted: ON): ON
+--   SDL_LIBC                    (Wanted: ON): ON
+--   SDL_LIBSAMPLERATE           (Wanted: ON): ON
+--   SDL_LIBSAMPLERATE_SHARED    (Wanted: ON): ON
+--   SDL_METAL                   (Wanted: OFF): OFF
+--   SDL_MMX                     (Wanted: ON): ON
+--   SDL_NAS                     (Wanted: ON): OFF
+--   SDL_NAS_SHARED              (Wanted: ON): OFF
+--   SDL_OFFSCREEN               (Wanted: ON): ON
+--   SDL_OPENGL                  (Wanted: ON): ON
+--   SDL_OPENGLES                (Wanted: ON): ON
+--   SDL_OSS                     (Wanted: ON): ON
+--   SDL_PIPEWIRE                (Wanted: ON): ON
+--   SDL_PIPEWIRE_SHARED         (Wanted: ON): ON
+--   SDL_PTHREADS                (Wanted: ON): ON
+--   SDL_PTHREADS_SEM            (Wanted: ON): ON
+--   SDL_PULSEAUDIO              (Wanted: ON): ON
+--   SDL_PULSEAUDIO_SHARED       (Wanted: ON): ON
+--   SDL_RENDER_D3D              (Wanted: OFF): OFF
+--   SDL_RENDER_METAL            (Wanted: OFF): OFF
+--   SDL_RPATH                   (Wanted: ON): OFF
+--   SDL_RPI                     (Wanted: ON): OFF
+--   SDL_SNDIO                   (Wanted: ON): OFF
+--   SDL_SNDIO_SHARED            (Wanted: ON): OFF
+--   SDL_SSE                     (Wanted: ON): ON
+--   SDL_SSE2                    (Wanted: ON): ON
+--   SDL_SSE3                    (Wanted: ON): ON
+--   SDL_SSEMATH                 (Wanted: ON): ON
+--   SDL_STATIC_PIC              (Wanted: OFF): OFF
+--   SDL_SYSTEM_ICONV            (Wanted: ON): ON
+--   SDL_TESTS                   (Wanted: OFF): OFF
+--   SDL_VENDOR_INFO             (Wanted: ): OFF
+--   SDL_VIRTUAL_JOYSTICK        (Wanted: ON): ON
+--   SDL_VIVANTE                 (Wanted: ON): OFF
+--   SDL_VULKAN                  (Wanted: ON): ON
+--   SDL_WASAPI                  (Wanted: OFF): OFF
+--   SDL_WAYLAND                 (Wanted: ON): ON
+--   SDL_WAYLAND_LIBDECOR        (Wanted: ON): ON
+--   SDL_WAYLAND_LIBDECOR_SHARED (Wanted: ON): ON
+--   SDL_WAYLAND_QT_TOUCH        (Wanted: ON): ON
+--   SDL_WAYLAND_SHARED          (Wanted: ON): ON
+--   SDL_X11                     (Wanted: ON): ON
+--   SDL_X11_SHARED              (Wanted: ON): ON
+--   SDL_X11_XCURSOR             (Wanted: ON): ON
+--   SDL_X11_XDBE                (Wanted: ON): ON
+--   SDL_X11_XFIXES              (Wanted: ON): ON
+--   SDL_X11_XINPUT              (Wanted: ON): ON
+--   SDL_X11_XRANDR              (Wanted: ON): ON
+--   SDL_X11_XSCRNSAVER          (Wanted: ON): ON
+--   SDL_X11_XSHAPE              (Wanted: ON): ON
+--   SDL_XINPUT                  (Wanted: OFF): OFF
+-- 
+--  CMAKE_C_FLAGS_DEBUG:   -g
+--  CMAKE_CXX_FLAGS_DEBUG: -g
+-- 
+--  CFLAGS:         -idirafter "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/src/video/khronos" -DHAVE_LINUX_VERSION_H
+--  EXTRA_CFLAGS:   -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -mmmx -m3dnow -msse -msse2 -msse3 -D_REENTRANT -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -I/usr/include -I/usr/include/libdrm
+--  EXTRA_LDFLAGS: -pthread -Wl,--no-undefined
+--  EXTRA_LIBS:    m;rt
+-- 
+--  Build Shared Library: OFF
+--  Build Static Library: ON
+--  Build Static Library with Position Independent Code: OFF
+-- 
+-- If something was not detected, although the libraries
+-- were installed, then make sure you have set the
+-- CFLAGS and LDFLAGS environment variables correctly.
+-- 
+-- Populating sdl2_image
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild
+[ 11%] Performing update step for 'sdl2_image-populate'
+[ 22%] No patch step for 'sdl2_image-populate'
+[ 33%] No configure step for 'sdl2_image-populate'
+[ 44%] No build step for 'sdl2_image-populate'
+[ 55%] No install step for 'sdl2_image-populate'
+[ 66%] No test step for 'sdl2_image-populate'
+[ 77%] Completed 'sdl2_image-populate'
+[100%] Built target sdl2_image-populate
+-- Configuring SDL2_image 2.6.3
+-- Configuring done (0.9s)
+-- Generating done (0.2s)
 -- Build files have been written to: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug
