@@ -19,3 +19,9 @@ std::string Move::toString(){
 Move Move::getReverseMove() {
     return Move(this->newPosition, this->oldPosition);
 }
+
+bool Move::operator==(Move move) {
+    return this->oldPosition == move.oldPosition && this->newPosition == move.newPosition;
+}
+
+

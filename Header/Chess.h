@@ -21,8 +21,9 @@ class Chess {
 protected:
     std::vector<std::shared_ptr<Piece>> captureWhitePieces{};
     std::vector<std::shared_ptr<Piece>> captureBlackPieces{};
-    Board board{};
     std::vector<Move> allGameMoves{};
+    Board board{captureWhitePieces, captureBlackPieces, allGameMoves};
+
 public:
     Chess();
     void play();

@@ -19,6 +19,9 @@
 class Board {
 private:
     std::shared_ptr<Piece> pieceDragging;
+    std::vector<std::shared_ptr<Piece>> & captureWhitePieces;
+    std::vector<std::shared_ptr<Piece>> & captureBlackPieces;
+    std::vector<Move> & allGameMoves;
     Pawn whitePawns[8]{Pawn(Piece::White, 1, 0),
                        Pawn(Piece::White,1,1),
                        Pawn(Piece::White,1,2),
@@ -91,8 +94,9 @@ private:
 
 public:
     Board();
+    Board(std::vector<std::shared_ptr<Piece>> & captureWhitePieces, std::vector<std::shared_ptr<Piece>> & captureBlackPieces, std::vector<Move> & allGameMoves);
     void printBoard();
-    void movePiece(Move move, std::vector<std::shared_ptr<Piece>> & capturedWhitePieces, std::vector<std::shared_ptr<Piece>> & capturedBlackPieces,std::vector<Move> & allGameMoves);
+    void movePiece(Move move);
     void dragPiece();
     int onExecute();
     bool OnInit();
@@ -102,6 +106,7 @@ public:
     void OnCleanup();
     void drawBoard();
     void setPieceClicked(SDL_Event * event);
+    void placePiece(SDL_Event * event, std::shared_ptr<Piece>  copyBoard[8][8]);
 
     std::vector<Move> getAllMoves();
 
@@ -109,9 +114,9 @@ public:
 
     bool isCheckFor(Piece::Color color);
 
-    std::vector<Move> getMovesFor(Piece::Color color, std::vector<std::shared_ptr<Piece>> &capturedWhitePieces,
-                                  std::vector<std::shared_ptr<Piece>> &capturedBlackPieces,
-                                  std::vector<Move> &allGameMoves);
+    std::vector<Move> getMovesFor(Piece::Color color);
+
+    bool contains(std::vector<Move> list, Move val);
 };
 
 

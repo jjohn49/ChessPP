@@ -22,6 +22,7 @@ public:
     std::pair<int,int> getNewPosition() {return this->newPosition;};
     std::string toString();
     Move getReverseMove();
+    bool operator==(Move move);
 };
 
 

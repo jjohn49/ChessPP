@@ -48,12 +48,12 @@ while test $# -gt 0; do
     --cflags)
       echo -I${prefix}/include/SDL2  -D_REENTRANT
       ;;
-#    --libs)
-#      echo -L${exec_prefix}/lib64   -lSDL2 
-#      ;;
-#    --static-libs)
-    --libs|--static-libs)
-      sdl_static_libs=$(echo " -lSDL2   -lSDL2 -pthread  -lm -lrt" | sed -E "s#-lSDL2[ $]#$libdir/libSDL2.a #g")
+    --libs)
+      echo -L${exec_prefix}/lib64 -Wl,-rpath,${libdir} -Wl,--enable-new-dtags  -lSDL2
+      ;;
+    --static-libs)
+#    --libs|--static-libs)
+      sdl_static_libs=$(echo " -lSDL2  -lSDL2 -pthread  -lm -lrt" | sed -E "s#-lSDL2[ $]#$libdir/libSDL2.a #g")
       echo -L${exec_prefix}/lib64 $sdl_static_libs
       ;;
     *)

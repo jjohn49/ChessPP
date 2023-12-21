@@ -156,6 +156,19 @@ SDL2main/fast:
 .PHONY : SDL2main/fast
 
 #=============================================================================
+# Target rules for targets named SDL2
+
+# Build rule for target.
+SDL2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2
+.PHONY : SDL2
+
+# fast build rule for target.
+SDL2/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2.dir/build
+.PHONY : SDL2/fast
+
+#=============================================================================
 # Target rules for targets named SDL2-static
 
 # Build rule for target.
@@ -508,6 +521,7 @@ help:
 	@echo "... sdl_headers_copy"
 	@echo "... uninstall"
 	@echo "... ChessPP"
+	@echo "... SDL2"
 	@echo "... SDL2-static"
 	@echo "... SDL2_image"
 	@echo "... SDL2_test"

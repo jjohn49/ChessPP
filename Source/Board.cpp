@@ -6,16 +6,17 @@
 #include "../Header/Board.h"
 #include <SDL2/SDL_image.h>
 #include <cmath>
+#include <algorithm>
 
 #define HEIGHT 800
 #define WIDTH 800
 
-Board::Board(){
+
+Board::Board(std::vector<std::shared_ptr<Piece>> & captureWhitePieces, std::vector<std::shared_ptr<Piece>> & captureBlackPieces, std::vector<Move> & allGameMoves): captureWhitePieces(captureWhitePieces), captureBlackPieces(captureBlackPieces), allGameMoves(allGameMoves){
     screen = nullptr;
     running = true;
     renderer = nullptr;
     pieceDragging = nullptr;
-
 }
 
 void Board::printBoard() {
@@ -32,17 +33,17 @@ void Board::printBoard() {
     }
 }
 
-void Board::movePiece(Move move, std::vector<std::shared_ptr<Piece>> & capturedWhitePieces, std::vector<std::shared_ptr<Piece>> & capturedBlackPieces, std::vector<Move> & allGameMoves) {
+void Board::movePiece(Move move) {
     std::pair<int,int> oldPos{move.getOldPosition()};
     std::pair<int,int> newPos{move.getNewPosition()};
-    std::shared_ptr<Piece> piece = getPieceAt(oldPos);
+    std::shared_ptr<Piece> piece = pieceDragging;
 
     //checvks if there was a piece on the square and adds it to the correct capturePieces vector
     if(this->getPieceAt(move.getNewPosition()) != nullptr){
         if(this->getPieceAt(move.getNewPosition())->getColor() == Piece::Black){
-            capturedBlackPieces.push_back(this->getPieceAt(move.getNewPosition()));
+            this->captureBlackPieces.push_back(this->getPieceAt(move.getNewPosition()));
         }else{
-            capturedWhitePieces.push_back(this->getPieceAt(move.getNewPosition()));
+            this->captureWhitePieces.push_back(this->getPieceAt(move.getNewPosition()));
         }
     }
     this->board[oldPos.first][oldPos.second] = nullptr;
@@ -90,8 +91,12 @@ std::vector<Move> Board::getAllMoves() {
                 std::vector<Move> pieceMoves = piece->getMoves(this->board);
                 moves.insert(moves.end(), pieceMoves.begin(), pieceMoves.end());
             }
-
         }
+    }
+
+    if(pieceDragging != nullptr){
+        std::vector<Move> draggingMoves{pieceDragging->getMoves(board)};
+        moves.insert(moves.end(), draggingMoves.begin(), draggingMoves.end());
     }
 
     return moves;
@@ -117,13 +122,13 @@ bool Board::OnInit() {
 }
 
 void Board::OnEvent(SDL_Event *Event) {
-    std::shared_ptr<Piece> copyBoard[8][8];
+    
     if(Event->type == SDL_MOUSEBUTTONDOWN) {
         std::copy(&board[0][0], &board[0][0] + 64, &copyBoard[0][0]);
         setPieceClicked(Event);
         //std::cout<< pieceDragging->toString()<<std::endl;
     }else if(Event->type ==SDL_MOUSEBUTTONUP){
-        pieceDragging = nullptr;
+        placePiece(Event, copyBoard);
     }
     else if(Event->type == SDL_QUIT) {
         running = false;
@@ -136,6 +141,20 @@ void Board::setPieceClicked(SDL_Event *event) {
     std::pair<int,int> pos = std::make_pair(floor(x/100), floor(y/100));
     pieceDragging = getPieceAt(pos);
     board[pos.first][pos.second] = nullptr;
+}
+
+void Board::placePiece(SDL_Event *event, std::shared_ptr<Piece> copyBoard[8][8]) {
+    int x, y;
+    SDL_GetMouseState(&y, &x);
+    std::pair<int,int> newPos = std::make_pair(floor(x/100), floor(y/100));
+    Move attemptedMove{pieceDragging->getPosition(), newPos};
+    std::vector<Move> moves = getMovesFor(pieceDragging->getColor());
+    if(contains(moves, attemptedMove)){
+        movePiece(attemptedMove);
+    }else{
+        std::copy(&copyBoard[0][0], &copyBoard[0][0] + 64, &board[0][0]);
+    }
+    pieceDragging = nullptr;
 }
 
 void Board::OnLoop() {
@@ -231,15 +250,21 @@ bool Board::isCheckFor(Piece::Color color) {
 //Gets all possible moves, makes a copy of the board before any move
 //Then modifies board with each move, checking if they are still in check
 //resets to original board after each move
-std::vector<Move> Board::getMovesFor(Piece::Color color, std::vector<std::shared_ptr<Piece>> & capturedWhitePieces, std::vector<std::shared_ptr<Piece>> & capturedBlackPieces, std::vector<Move> & allGameMoves) {
+std::vector<Move> Board::getMovesFor(Piece::Color color) {
     std::vector<Move> allMoves{getAllMoves()};
     std::vector<Move> movesForColor{};
     for(Move & move: allMoves){
-        if(getPieceAt(move.getOldPosition())->getColor() == color){
+        std::shared_ptr<Piece> p;
+        if(getPieceAt(move.getOldPosition()) == nullptr){
+            p = pieceDragging;
+        }else{
+            p = getPieceAt(move.getOldPosition());
+        }
+        if(p->getColor() == color){
             std::shared_ptr<Piece> copy[8][8];
             std::vector<Move> copyAllGameMoves = allGameMoves;
             std::copy(&board[0][0], &board[0][0]+64, &copy[0][0]);
-            movePiece(move, capturedWhitePieces, capturedBlackPieces, allGameMoves);
+            movePiece(move);
             if(!isCheckFor(color)){
                 movesForColor.push_back(move);
             }
@@ -254,6 +279,18 @@ std::vector<Move> Board::getMovesFor(Piece::Color color, std::vector<std::shared
 void Board::dragPiece() {
     
 }
+
+bool Board::contains(std::vector<Move> list, Move val) {
+    for(Move & move: list){
+        if(val == move){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
 
 
 

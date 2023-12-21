@@ -14,7 +14,7 @@ void Chess::printBoard() {
 }
 
 void Chess::movePiece(Move move) {
-    board.movePiece(move, captureWhitePieces, captureBlackPieces, allGameMoves);
+    board.movePiece(move);
 }
 
 void Chess::play() {
