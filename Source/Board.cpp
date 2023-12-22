@@ -36,7 +36,8 @@ void Board::printBoard() {
 void Board::movePiece(Move move) {
     std::pair<int,int> oldPos{move.getOldPosition()};
     std::pair<int,int> newPos{move.getNewPosition()};
-    std::shared_ptr<Piece> piece = pieceDragging;
+    //std::shared_ptr<Piece> piece = pieceDragging;
+    std::shared_ptr<Piece> p = (this->getPieceAt(move.getOldPosition()) != nullptr)? getPieceAt(move.getOldPosition()) : pieceDragging;
 
     //checvks if there was a piece on the square and adds it to the correct capturePieces vector
     if(this->getPieceAt(move.getNewPosition()) != nullptr){
@@ -47,8 +48,8 @@ void Board::movePiece(Move move) {
         }
     }
     this->board[oldPos.first][oldPos.second] = nullptr;
-    this->board[newPos.first][newPos.second] = piece;
-    piece->setNewPosition(newPos);
+    this->board[newPos.first][newPos.second] = p;
+    p->setNewPosition(newPos);
 
     allGameMoves.push_back(move);
 }
@@ -122,13 +123,13 @@ bool Board::OnInit() {
 }
 
 void Board::OnEvent(SDL_Event *Event) {
-    
+
     if(Event->type == SDL_MOUSEBUTTONDOWN) {
         std::copy(&board[0][0], &board[0][0] + 64, &copyBoard[0][0]);
         setPieceClicked(Event);
         //std::cout<< pieceDragging->toString()<<std::endl;
     }else if(Event->type ==SDL_MOUSEBUTTONUP){
-        placePiece(Event, copyBoard);
+        placePiece(Event);
     }
     else if(Event->type == SDL_QUIT) {
         running = false;
@@ -143,7 +144,7 @@ void Board::setPieceClicked(SDL_Event *event) {
     board[pos.first][pos.second] = nullptr;
 }
 
-void Board::placePiece(SDL_Event *event, std::shared_ptr<Piece> copyBoard[8][8]) {
+void Board::placePiece(SDL_Event *event) {
     int x, y;
     SDL_GetMouseState(&y, &x);
     std::pair<int,int> newPos = std::make_pair(floor(x/100), floor(y/100));
@@ -254,23 +255,22 @@ std::vector<Move> Board::getMovesFor(Piece::Color color) {
     std::vector<Move> allMoves{getAllMoves()};
     std::vector<Move> movesForColor{};
     for(Move & move: allMoves){
-        std::shared_ptr<Piece> p;
-        if(getPieceAt(move.getOldPosition()) == nullptr){
-            p = pieceDragging;
-        }else{
-            p = getPieceAt(move.getOldPosition());
+        std::shared_ptr<Piece> p = (this->getPieceAt(move.getOldPosition()) != nullptr)? getPieceAt(move.getOldPosition()) : pieceDragging;
+        std::shared_ptr<Piece> copy[8][8];
+        std::vector<Move> copyAllGameMoves = allGameMoves;
+        std::copy(&board[0][0], &board[0][0]+64, &copy[0][0]);
+        std::pair<int,int> oldPosition{p->getPosition()};
+        movePiece(move);
+        if(!isCheckFor(color)){
+            movesForColor.push_back(move);
         }
-        if(p->getColor() == color){
-            std::shared_ptr<Piece> copy[8][8];
-            std::vector<Move> copyAllGameMoves = allGameMoves;
-            std::copy(&board[0][0], &board[0][0]+64, &copy[0][0]);
-            movePiece(move);
-            if(!isCheckFor(color)){
-                movesForColor.push_back(move);
-            }
-            std::copy(&copy[0][0], &copy[0][0]+64, &board[0][0]);
-            allGameMoves = copyAllGameMoves;
-        }
+        p->setNewPosition(oldPosition);
+        std::copy(&copy[0][0], &copy[0][0]+64, &board[0][0]);
+
+
+
+        allGameMoves = copyAllGameMoves;
+
     }
 
     return movesForColor;

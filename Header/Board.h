@@ -88,6 +88,8 @@ private:
             {std::make_shared<Pawn>(blackPawns[0]), std::make_shared<Pawn>(blackPawns[1]), std::make_shared<Pawn>(blackPawns[2]), std::make_shared<Pawn>(blackPawns[3]), std::make_shared<Pawn>(blackPawns[4]), std::make_shared<Pawn>(blackPawns[5]), std::make_shared<Pawn>(blackPawns[6]), std::make_shared<Pawn>(blackPawns[7])},
             {std::make_shared<Rook>(blackRooks[0]),                               std::make_shared<Knight>(blackKnights[0]),                               std::make_shared<Bishop>(blackBishops[0]),                               std::make_shared<Queen>(blackQueens[0]),                               std::make_shared<King>(blackKing),                               std::make_shared<Bishop>(blackBishops[1]),                               std::make_shared<Knight>(blackKnights[1]),                               std::make_shared<Rook>(blackRooks[1])}
     };
+
+    std::shared_ptr<Piece> copyBoard[8][8]{};
     bool running;
     SDL_Window * screen;
     SDL_Renderer * renderer;
@@ -106,7 +108,7 @@ public:
     void OnCleanup();
     void drawBoard();
     void setPieceClicked(SDL_Event * event);
-    void placePiece(SDL_Event * event, std::shared_ptr<Piece>  copyBoard[8][8]);
+    void placePiece(SDL_Event * event);
 
     std::vector<Move> getAllMoves();
 
