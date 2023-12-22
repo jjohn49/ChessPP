@@ -220,7 +220,8 @@ CMakeFiles/ChessPP.dir/Source/Bishop.cpp.o: /home/hugh/Projects/jj-git-repos/Che
   /usr/include/c++/13.2.0/backward/auto_ptr.h \
   /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
   /usr/include/c++/13.2.0/pstl/execution_defs.h \
-  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
+  /usr/include/c++/13.2.0/optional
 
 CMakeFiles/ChessPP.dir/Source/Board.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/Source/Board.cpp \
   /usr/include/stdc-predef.h \
@@ -621,6 +622,7 @@ CMakeFiles/ChessPP.dir/Source/Board.cpp.o: /home/hugh/Projects/jj-git-repos/Ches
   /usr/include/c++/13.2.0/bits/node_handle.h \
   /usr/include/c++/13.2.0/bits/erase_if.h \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
+  /usr/include/c++/13.2.0/optional \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Pawn.h \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Rook.h \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Knight.h \
@@ -1262,7 +1264,8 @@ CMakeFiles/ChessPP.dir/Source/King.cpp.o: /home/hugh/Projects/jj-git-repos/Chess
   /usr/include/c++/13.2.0/backward/auto_ptr.h \
   /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
   /usr/include/c++/13.2.0/pstl/execution_defs.h \
-  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
+  /usr/include/c++/13.2.0/optional
 
 CMakeFiles/ChessPP.dir/Source/Knight.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/Source/Knight.cpp \
   /usr/include/stdc-predef.h \
@@ -1483,7 +1486,8 @@ CMakeFiles/ChessPP.dir/Source/Knight.cpp.o: /home/hugh/Projects/jj-git-repos/Che
   /usr/include/c++/13.2.0/backward/auto_ptr.h \
   /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
   /usr/include/c++/13.2.0/pstl/execution_defs.h \
-  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
+  /usr/include/c++/13.2.0/optional
 
 CMakeFiles/ChessPP.dir/Source/Move.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/Source/Move.cpp \
   /usr/include/stdc-predef.h \
@@ -1893,6 +1897,7 @@ CMakeFiles/ChessPP.dir/Source/Pawn.cpp.o: /home/hugh/Projects/jj-git-repos/Chess
   /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
   /usr/include/c++/13.2.0/pstl/execution_defs.h \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
+  /usr/include/c++/13.2.0/optional \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h
 
 CMakeFiles/ChessPP.dir/Source/Piece.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/Source/Piece.cpp \
@@ -2114,6 +2119,7 @@ CMakeFiles/ChessPP.dir/Source/Piece.cpp.o: /home/hugh/Projects/jj-git-repos/Ches
   /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
   /usr/include/c++/13.2.0/pstl/execution_defs.h \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
+  /usr/include/c++/13.2.0/optional \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h
 
 CMakeFiles/ChessPP.dir/Source/Queen.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/Source/Queen.cpp \
@@ -2337,6 +2343,7 @@ CMakeFiles/ChessPP.dir/Source/Queen.cpp.o: /home/hugh/Projects/jj-git-repos/Ches
   /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
   /usr/include/c++/13.2.0/pstl/execution_defs.h \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
+  /usr/include/c++/13.2.0/optional \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Bishop.h \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Bishop.h \
   /home/hugh/Projects/jj-git-repos/ChessPP/Header/Rook.h
@@ -2560,7 +2567,8 @@ CMakeFiles/ChessPP.dir/Source/Rook.cpp.o: /home/hugh/Projects/jj-git-repos/Chess
   /usr/include/c++/13.2.0/backward/auto_ptr.h \
   /usr/include/c++/13.2.0/pstl/glue_memory_defs.h \
   /usr/include/c++/13.2.0/pstl/execution_defs.h \
-  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h
+  /home/hugh/Projects/jj-git-repos/ChessPP/Header/Move.h \
+  /usr/include/c++/13.2.0/optional
 
 CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main.cpp \
   /usr/include/stdc-predef.h \
@@ -2978,8 +2986,6 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 
 /home/hugh/Projects/jj-git-repos/ChessPP/Source/King.cpp:
 
-/usr/include/c++/13.2.0/optional:
-
 /home/hugh/Projects/jj-git-repos/ChessPP/Header/Chess.h:
 
 /home/hugh/Projects/jj-git-repos/ChessPP/Source/Chess.cpp:
@@ -3066,6 +3072,10 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 
 /usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512vbmivlintrin.h:
 
+/usr/include/SDL2/SDL_rect.h:
+
+/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512ifmavlintrin.h:
+
 /usr/include/c++/13.2.0/bits/memory_resource.h:
 
 /usr/include/asm-generic/errno-base.h:
@@ -3095,10 +3105,6 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 /usr/include/c++/13.2.0/bits/exception.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
-
-/usr/include/SDL2/SDL_rect.h:
-
-/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include/avx512ifmavlintrin.h:
 
 /usr/include/c++/13.2.0/ostream:
 
@@ -3620,6 +3626,10 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 
 /usr/include/c++/13.2.0/pstl/glue_memory_defs.h:
 
+/usr/include/c++/13.2.0/optional:
+
+/usr/include/c++/13.2.0/cmath:
+
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /home/hugh/Projects/jj-git-repos/ChessPP/Source/Board.cpp:
@@ -3651,8 +3661,6 @@ CMakeFiles/ChessPP.dir/main.cpp.o: /home/hugh/Projects/jj-git-repos/ChessPP/main
 /usr/include/inttypes.h:
 
 /usr/include/c++/13.2.0/math.h:
-
-/usr/include/c++/13.2.0/cmath:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 

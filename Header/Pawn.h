@@ -7,6 +7,7 @@
 
 
 #include "Piece.h"
+#include <optional>
 
 
 class Pawn: public Piece {
@@ -15,7 +16,7 @@ public:
     Pawn(Piece::Color color, int row, int col) : Piece(Piece::Type::Pawn,color,row,col){};
     std::vector<Move> getMoves(std::shared_ptr<Piece> board[8][8]) override;
     std::string getImagePath() override;
-    std::vector<Move> getEnPessant(std::shared_ptr<Piece> board[8][8], std::vector<Move> allGameMoves);
+    std::optional<Move> getEnPessant(std::shared_ptr<Piece> (&board)[8][8], std::vector<Move> & allGameMoves) override;
 };
 
 

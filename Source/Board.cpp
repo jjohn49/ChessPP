@@ -91,12 +91,24 @@ std::vector<Move> Board::getAllMoves() {
                 std::shared_ptr<Piece> piece = this->getPieceAt(std::make_pair(i,j));
                 std::vector<Move> pieceMoves = piece->getMoves(this->board);
                 moves.insert(moves.end(), pieceMoves.begin(), pieceMoves.end());
+                if(piece->getType() == Piece::Pawn){
+                    std::optional<Move> enPessant{piece->getEnPessant(board, allGameMoves)};
+                    if(enPessant){
+                        moves.push_back(enPessant.value());
+                    }
+                }
             }
         }
     }
 
     if(pieceDragging != nullptr){
         std::vector<Move> draggingMoves{pieceDragging->getMoves(board)};
+        if(pieceDragging->getType() == Piece::Pawn){
+            std::optional<Move> enPessant{pieceDragging->getEnPessant(board, allGameMoves)};
+            if(enPessant){
+                draggingMoves.push_back(enPessant.value());
+            }
+        }
         moves.insert(moves.end(), draggingMoves.begin(), draggingMoves.end());
     }
 
@@ -156,14 +168,6 @@ void Board::placePiece(SDL_Event *event) {
         std::copy(&copyBoard[0][0], &copyBoard[0][0] + 64, &board[0][0]);
     }
     pieceDragging = nullptr;
-}
-
-void Board::OnLoop() {
-
-}
-
-void Board::OnRender() {
-
 }
 
 void Board::OnCleanup() {
@@ -276,17 +280,12 @@ std::vector<Move> Board::getMovesFor(Piece::Color color) {
     return movesForColor;
 }
 
-void Board::dragPiece() {
-    
-}
-
 bool Board::contains(std::vector<Move> list, Move val) {
     for(Move & move: list){
         if(val == move){
             return true;
         }
     }
-
     return false;
 }
 

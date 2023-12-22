@@ -99,12 +99,9 @@ public:
     Board(std::vector<std::shared_ptr<Piece>> & captureWhitePieces, std::vector<std::shared_ptr<Piece>> & captureBlackPieces, std::vector<Move> & allGameMoves);
     void printBoard();
     void movePiece(Move move);
-    void dragPiece();
     int onExecute();
     bool OnInit();
     void OnEvent(SDL_Event* Event);
-    void OnLoop();
-    void OnRender();
     void OnCleanup();
     void drawBoard();
     void setPieceClicked(SDL_Event * event);
@@ -119,6 +116,7 @@ public:
     std::vector<Move> getMovesFor(Piece::Color color);
 
     bool contains(std::vector<Move> list, Move val);
+
 };
 
 

@@ -11,12 +11,20 @@ class Move {
 protected:
     std::pair<int,int> oldPosition;
     std::pair<int,int> newPosition;
+    bool isEnPessant;
 
 public:
     Move(std::pair<int,int> oldPosition, std::pair<int,int> newPosition){
         this->oldPosition = oldPosition;
         this->newPosition = newPosition;
+        this->isEnPessant = false;
     };
+
+    Move(std::pair<int,int> oldPosition, std::pair<int,int> newPosition, bool isEnPessant){
+        this->oldPosition = oldPosition;
+        this->newPosition = newPosition;
+        this->isEnPessant = isEnPessant;
+    }
 
     std::pair<int,int> getOldPosition() {return this->oldPosition;};
     std::pair<int,int> getNewPosition() {return this->newPosition;};

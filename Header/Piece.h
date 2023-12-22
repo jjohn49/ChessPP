@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <memory>
 #include "Move.h"
+#include <optional>
 
 
 class Piece {
@@ -49,6 +50,7 @@ public:
     std::shared_ptr<Piece> getPieceAt(int x, int y, std::shared_ptr<Piece> board[8][8] );
 
     virtual std::string getImagePath(){return "";};
+    virtual std::optional<Move> getEnPessant(std::shared_ptr<Piece> (&board)[8][8], std::vector<Move> & allGameMoves){return std::nullopt;};
 
 
 protected:

@@ -43,19 +43,28 @@ std::vector<Move> Pawn::getMoves(std::shared_ptr<Piece> board[8][8]) {
 }
 
 //NOT FINISHED YET
-std::vector<Move> Pawn::getEnPessant(std::shared_ptr<Piece> board[8][8], std::vector<Move> allGameMoves){
-    std::vector<Move> moves{};
+std::optional<Move> Pawn::getEnPessant(std::shared_ptr<Piece> (&board)[8][8], std::vector<Move> & allGameMoves){
+    if(allGameMoves.empty() || board[allGameMoves.back().getNewPosition().first][allGameMoves.back().getNewPosition().second]->getType() != Piece::Pawn){
+        return std::nullopt;
+    }
+
+    Move lastMove{allGameMoves.back()};
     int r = row;
     int c = col;
 
-    if( (getColor() == Piece::White && r == 4) || (getColor()==Piece::Black && r == 3)){
-        Move lastMove{allGameMoves.back()};
-        std::pair<int,int> lastPos{lastMove.getNewPosition()};
-        std::shared_ptr<Piece> lastPieceMoved{board[lastPos.first][lastPos.second]};
-
+    //Know it's a black pawn because white pawns cannot go from row 6 -> row 4
+    if(getColor() == Piece::White && r == 4){
+        if(lastMove.getOldPosition().first == 6 && lastMove.getNewPosition().first == 4){
+            return Move(this->getPosition(),std::make_pair(5,lastMove.getNewPosition().second), true);
+        }
+    }
+    else if(getColor() == Piece::Black && r == 3){
+        if(lastMove.getOldPosition().first == 1 && lastMove.getNewPosition().first == 3){
+            return Move(this->getPosition(),std::make_pair(2,lastMove.getNewPosition().second), true);
+        }
     }
 
-    return moves;
+    return std::nullopt;
 }
 
 std::string Pawn::getImagePath() {
