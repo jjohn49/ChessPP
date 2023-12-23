@@ -47,6 +47,17 @@ void Board::movePiece(Move move) {
             this->captureWhitePieces.push_back(this->getPieceAt(move.getNewPosition()));
         }
     }
+
+    if(move.getIsEnPessant()){
+        if(p->getColor()==Piece::White) {
+            this->captureBlackPieces.push_back(this->getPieceAt(std::make_pair(newPos.first - 1, newPos.second)));
+            this->board[newPos.first-1][newPos.second] = nullptr;
+        }else{
+            this->captureWhitePieces.push_back(this->getPieceAt(std::make_pair(newPos.first + 1, newPos.second)));
+            this->board[newPos.first+1][newPos.second] = nullptr;
+        }
+    }
+
     this->board[oldPos.first][oldPos.second] = nullptr;
     this->board[newPos.first][newPos.second] = p;
     p->setNewPosition(newPos);
