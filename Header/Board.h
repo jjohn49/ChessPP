@@ -106,6 +106,7 @@ public:
     void drawBoard();
     void setPieceClicked(SDL_Event * event);
     void placePiece(SDL_Event * event);
+    std::vector<Move> getCastlingMoves(Piece::Color color);
 
     std::vector<Move> getAllMoves();
 
@@ -116,6 +117,7 @@ public:
     std::vector<Move> getMovesFor(Piece::Color color);
 
     bool contains(std::vector<Move> list, Move val);
+    bool contains(std::vector<Move> list, std::pair<int,int> position);
 
 };
 

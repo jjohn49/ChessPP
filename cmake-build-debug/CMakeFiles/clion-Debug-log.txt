@@ -1,390 +1,37 @@
 /app/extra/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/hugh/Projects/jj-git-repos/ChessPP -B /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug
--- The C compiler identification is GNU 13.2.0
--- The CXX compiler identification is GNU 13.2.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
 -- Populating sdl2
 -- Configuring done (0.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild
-[ 11%] Performing update step for 'sdl2-populate'
-[ 22%] No patch step for 'sdl2-populate'
-[ 33%] No configure step for 'sdl2-populate'
-[ 44%] No build step for 'sdl2-populate'
-[ 55%] No install step for 'sdl2-populate'
-[ 66%] No test step for 'sdl2-populate'
-[ 77%] Completed 'sdl2-populate'
+[ 11%] Creating directories for 'sdl2-populate'
+[ 22%] Performing download step (git clone) for 'sdl2-populate'
+Cloning into 'sdl2-src'...
+remote: Enumerating objects: 23300, done.        
+remote: Counting objects: 100% (23300/23300), done.        
+remote: Compressing objects: 100% (10522/10522), done.        
+remote: Total 23300 (delta 17083), reused 16303 (delta 11263), pack-reused 0        
+Receiving objects: 100% (23300/23300), 22.58 MiB | 14.22 MiB/s, done.
+Resolving deltas: 100% (17083/17083), done.
+HEAD is now at adf31f6e Updated to version 2.26.3 for release
+[ 33%] Performing update step for 'sdl2-populate'
+[ 44%] No patch step for 'sdl2-populate'
+[ 55%] No configure step for 'sdl2-populate'
+[ 66%] No build step for 'sdl2-populate'
+[ 77%] No install step for 'sdl2-populate'
+[ 88%] No test step for 'sdl2-populate'
+[100%] Completed 'sdl2-populate'
 [100%] Built target sdl2-populate
--- Found PkgConfig: /usr/bin/pkg-config (found version "2.0.2") 
--- Looking for __GLIBC__
--- Looking for __GLIBC__ - found
--- Performing Test HAVE_GCC_WALL
--- Performing Test HAVE_GCC_WALL - Success
--- Performing Test HAVE_GCC_NO_STRICT_ALIASING
--- Performing Test HAVE_GCC_NO_STRICT_ALIASING - Success
--- Performing Test HAVE_GCC_WDECLARATION_AFTER_STATEMENT
--- Performing Test HAVE_GCC_WDECLARATION_AFTER_STATEMENT - Success
--- Performing Test HAVE_GCC_ATOMICS
--- Performing Test HAVE_GCC_ATOMICS - Success
--- Performing Test HAVE_GCC_PREFERRED_STACK_BOUNDARY
--- Performing Test HAVE_GCC_PREFERRED_STACK_BOUNDARY - Failed
--- Performing Test HAVE_GCC_FVISIBILITY
--- Performing Test HAVE_GCC_FVISIBILITY - Success
--- Performing Test HAVE_GCC_WSHADOW
--- Performing Test HAVE_GCC_WSHADOW - Success
--- Performing Test HAVE_NO_UNDEFINED
--- Performing Test HAVE_NO_UNDEFINED - Success
--- Performing Test HAVE_MMX
--- Performing Test HAVE_MMX - Success
--- Performing Test HAVE_3DNOW
--- Performing Test HAVE_3DNOW - Success
--- Performing Test HAVE_SSE
--- Performing Test HAVE_SSE - Success
--- Performing Test HAVE_SSE2
--- Performing Test HAVE_SSE2 - Success
--- Performing Test HAVE_SSE3
--- Performing Test HAVE_SSE3 - Success
--- Looking for immintrin.h
--- Looking for immintrin.h - found
--- Performing Test HAVE_ALTIVEC_H_HDR
--- Performing Test HAVE_ALTIVEC_H_HDR - Failed
--- Performing Test HAVE_ALTIVEC
--- Performing Test HAVE_ALTIVEC - Failed
--- Looking for ctype.h
--- Looking for ctype.h - found
--- Looking for float.h
--- Looking for float.h - found
--- Looking for iconv.h
--- Looking for iconv.h - found
--- Looking for inttypes.h
--- Looking for inttypes.h - found
--- Looking for limits.h
--- Looking for limits.h - found
--- Looking for malloc.h
--- Looking for malloc.h - found
--- Looking for math.h
--- Looking for math.h - found
--- Looking for memory.h
--- Looking for memory.h - found
--- Looking for signal.h
--- Looking for signal.h - found
--- Looking for stdarg.h
--- Looking for stdarg.h - found
--- Looking for stddef.h
--- Looking for stddef.h - found
--- Looking for stdint.h
--- Looking for stdint.h - found
--- Looking for stdio.h
--- Looking for stdio.h - found
--- Looking for stdlib.h
--- Looking for stdlib.h - found
--- Looking for string.h
--- Looking for string.h - found
--- Looking for strings.h
--- Looking for strings.h - found
--- Looking for sys/types.h
--- Looking for sys/types.h - found
--- Looking for wchar.h
--- Looking for wchar.h - found
--- Looking for libunwind.h
--- Looking for libunwind.h - found
--- Looking for linux/input.h
--- Looking for linux/input.h - found
--- Looking for 7 include files stddef.h, ..., float.h
--- Looking for 7 include files stddef.h, ..., float.h - found
--- Looking for M_PI
--- Looking for M_PI - found
--- Performing Test HAVE_MPROTECT
--- Performing Test HAVE_MPROTECT - Success
--- Looking for strtod
--- Looking for strtod - found
--- Looking for malloc
--- Looking for malloc - found
--- Looking for calloc
--- Looking for calloc - found
--- Looking for realloc
--- Looking for realloc - found
--- Looking for free
--- Looking for free - found
--- Looking for getenv
--- Looking for getenv - found
--- Looking for setenv
--- Looking for setenv - found
--- Looking for putenv
--- Looking for putenv - found
--- Looking for unsetenv
--- Looking for unsetenv - found
--- Looking for bsearch
--- Looking for bsearch - found
--- Looking for qsort
--- Looking for qsort - found
--- Looking for abs
--- Looking for abs - found
--- Looking for bcopy
--- Looking for bcopy - found
--- Looking for memset
--- Looking for memset - found
--- Looking for memcpy
--- Looking for memcpy - found
--- Looking for memmove
--- Looking for memmove - found
--- Looking for memcmp
--- Looking for memcmp - found
--- Looking for strlen
--- Looking for strlen - found
--- Looking for strlcpy
--- Looking for strlcpy - found
--- Looking for strlcat
--- Looking for strlcat - found
--- Looking for _strrev
--- Looking for _strrev - not found
--- Looking for _strupr
--- Looking for _strupr - not found
--- Looking for _strlwr
--- Looking for _strlwr - not found
--- Looking for index
--- Looking for index - found
--- Looking for rindex
--- Looking for rindex - found
--- Looking for strchr
--- Looking for strchr - found
--- Looking for strrchr
--- Looking for strrchr - found
--- Looking for strstr
--- Looking for strstr - found
--- Looking for strtok_r
--- Looking for strtok_r - found
--- Looking for itoa
--- Looking for itoa - not found
--- Looking for _ltoa
--- Looking for _ltoa - not found
--- Looking for _uitoa
--- Looking for _uitoa - not found
--- Looking for _ultoa
--- Looking for _ultoa - not found
--- Looking for strtol
--- Looking for strtol - found
--- Looking for strtoul
--- Looking for strtoul - found
--- Looking for _i64toa
--- Looking for _i64toa - not found
--- Looking for _ui64toa
--- Looking for _ui64toa - not found
--- Looking for strtoll
--- Looking for strtoll - found
--- Looking for strtoull
--- Looking for strtoull - found
--- Looking for atoi
--- Looking for atoi - found
--- Looking for atof
--- Looking for atof - found
--- Looking for strcmp
--- Looking for strcmp - found
--- Looking for strncmp
--- Looking for strncmp - found
--- Looking for _stricmp
--- Looking for _stricmp - not found
--- Looking for strcasecmp
--- Looking for strcasecmp - found
--- Looking for _strnicmp
--- Looking for _strnicmp - not found
--- Looking for strncasecmp
--- Looking for strncasecmp - found
--- Looking for strcasestr
--- Looking for strcasestr - found
--- Looking for wcscmp
--- Looking for wcscmp - found
--- Looking for _wcsdup
--- Looking for _wcsdup - not found
--- Looking for wcsdup
--- Looking for wcsdup - found
--- Looking for wcslcat
--- Looking for wcslcat - found
--- Looking for wcslcpy
--- Looking for wcslcpy - found
--- Looking for wcslen
--- Looking for wcslen - found
--- Looking for wcsncmp
--- Looking for wcsncmp - found
--- Looking for wcsstr
--- Looking for wcsstr - found
--- Looking for wcscasecmp
--- Looking for wcscasecmp - found
--- Looking for _wcsicmp
--- Looking for _wcsicmp - not found
--- Looking for wcsncasecmp
--- Looking for wcsncasecmp - found
--- Looking for _wcsnicmp
--- Looking for _wcsnicmp - not found
--- Looking for sscanf
--- Looking for sscanf - found
--- Looking for vsscanf
--- Looking for vsscanf - found
--- Looking for vsnprintf
--- Looking for vsnprintf - found
--- Looking for fopen64
--- Looking for fopen64 - found
--- Looking for fseeko
--- Looking for fseeko - found
--- Looking for fseeko64
--- Looking for fseeko64 - found
--- Looking for _Exit
--- Looking for _Exit - found
--- Looking for sigaction
--- Looking for sigaction - found
--- Looking for setjmp
--- Looking for setjmp - found
--- Looking for nanosleep
--- Looking for nanosleep - found
--- Looking for sysconf
--- Looking for sysconf - found
--- Looking for sysctlbyname
--- Looking for sysctlbyname - not found
--- Looking for getauxval
--- Looking for getauxval - found
--- Looking for elf_aux_info
--- Looking for elf_aux_info - not found
--- Looking for poll
--- Looking for poll - found
--- Looking for pow in m
--- Looking for pow in m - found
--- Looking for atan
--- Looking for atan - found
--- Looking for atan2
--- Looking for atan2 - found
--- Looking for atanf
--- Looking for atanf - found
--- Looking for atan2f
--- Looking for atan2f - found
--- Looking for ceil
--- Looking for ceil - found
--- Looking for ceilf
--- Looking for ceilf - found
--- Looking for copysign
--- Looking for copysign - found
--- Looking for copysignf
--- Looking for copysignf - found
--- Looking for cos
--- Looking for cos - found
--- Looking for cosf
--- Looking for cosf - found
--- Looking for exp
--- Looking for exp - found
--- Looking for expf
--- Looking for expf - found
--- Looking for fabs
--- Looking for fabs - found
--- Looking for fabsf
--- Looking for fabsf - found
--- Looking for floor
--- Looking for floor - found
--- Looking for floorf
--- Looking for floorf - found
--- Looking for fmod
--- Looking for fmod - found
--- Looking for fmodf
--- Looking for fmodf - found
--- Looking for log
--- Looking for log - found
--- Looking for logf
--- Looking for logf - found
--- Looking for log10
--- Looking for log10 - found
--- Looking for log10f
--- Looking for log10f - found
--- Looking for lround
--- Looking for lround - found
--- Looking for lroundf
--- Looking for lroundf - found
--- Looking for pow
--- Looking for pow - found
--- Looking for powf
--- Looking for powf - found
--- Looking for round
--- Looking for round - found
--- Looking for roundf
--- Looking for roundf - found
--- Looking for scalbn
--- Looking for scalbn - found
--- Looking for scalbnf
--- Looking for scalbnf - found
--- Looking for sin
--- Looking for sin - found
--- Looking for sinf
--- Looking for sinf - found
--- Looking for sqrt
--- Looking for sqrt - found
--- Looking for sqrtf
--- Looking for sqrtf - found
--- Looking for tan
--- Looking for tan - found
--- Looking for tanf
--- Looking for tanf - found
--- Looking for acos
--- Looking for acos - found
--- Looking for acosf
--- Looking for acosf - found
--- Looking for asin
--- Looking for asin - found
--- Looking for asinf
--- Looking for asinf - found
--- Looking for trunc
--- Looking for trunc - found
--- Looking for truncf
--- Looking for truncf - found
--- Looking for iconv_open in iconv
--- Looking for iconv_open in iconv - not found
--- Looking for iconv_open in c
--- Looking for iconv_open in c - found
--- Looking for alloca.h
--- Looking for alloca.h - found
--- Looking for alloca
--- Looking for alloca - found
--- Looking for alloca
--- Looking for alloca - found
--- Looking for alloca
--- Looking for alloca - not found
--- Performing Test HAVE_SA_SIGACTION
--- Performing Test HAVE_SA_SIGACTION - Success
--- Looking for dlopen
--- Looking for dlopen - found
--- Performing Test HAVE_O_CLOEXEC
--- Performing Test HAVE_O_CLOEXEC - Success
--- Performing Test HAVE_OSS_SYS_SOUNDCARD_H
--- Performing Test HAVE_OSS_SYS_SOUNDCARD_H - Success
--- Looking for alsa/asoundlib.h
--- Looking for alsa/asoundlib.h - found
--- Looking for snd_pcm_recover in asound
--- Looking for snd_pcm_recover in asound - found
 -- dynamic libasound -> libasound.so.2
--- Checking for module 'jack'
---   Found jack, version 1.9.17
 -- dynamic libjack -> libjack.so.0
--- Checking for module 'libpipewire-0.3>=0.3.20'
---   Found libpipewire-0.3, version 0.3.83
 -- dynamic libpipewire-0.3 -> libpipewire-0.3.so.0
--- Checking for module 'libpulse-simple'
---   Found libpulse-simple, version 16.1-dirty
 -- dynamic libpulse-simple -> libpulse-simple.so.0
 -- Checking for module 'esound'
 --   Package 'esound', required by 'virtual:world', not found
--- Looking for audio/audiolib.h
--- Looking for audio/audiolib.h - not found
 -- Checking for module 'sndio'
 --   Package 'sndio', required by 'virtual:world', not found
 -- Checking for modules 'bcm_host;brcmegl'
 --   Package 'bcm_host', required by 'virtual:world', not found
 --   Package 'brcmegl', required by 'virtual:world', not found
--- Performing Test HAVE_RPI
--- Performing Test HAVE_RPI - Failed
 -- dynamic libX11 -> libX11.so.6
 -- dynamic libXext -> libXext.so.6
 -- dynamic libXcursor -> libXcursor.so.1
@@ -393,91 +40,14 @@
 -- dynamic libXrandr -> libXrandr.so.2
 -- dynamic libXrender -> libXrender.so.1
 -- dynamic libXss -> libXss.so.1
--- Looking for shmat
--- Looking for shmat - found
--- Performing Test HAVE_XGENERICEVENT
--- Performing Test HAVE_XGENERICEVENT - Success
--- Looking for XkbKeycodeToKeysym
--- Looking for XkbKeycodeToKeysym - found
--- Performing Test HAVE_XINPUT2_MULTITOUCH
--- Performing Test HAVE_XINPUT2_MULTITOUCH - Success
--- Performing Test HAVE_XFIXES_H
--- Performing Test HAVE_XFIXES_H - Success
--- Checking for module 'egl'
---   Found egl, version 23.3.0
--- Performing Test HAVE_OPENGL_EGL
--- Performing Test HAVE_OPENGL_EGL - Success
--- Checking for modules 'libdrm;gbm;egl'
---   Found libdrm, version 2.4.117
---   Found gbm, version 23.3.0
---   Found egl, version 23.3.0
 -- dynamic libdrm -> libdrm.so.2
 -- dynamic libgbm -> libgbm.so.1
--- Performing Test HAVE_OPENGL_GLX
--- Performing Test HAVE_OPENGL_GLX - Success
--- Performing Test HAVE_OPENGL
--- Performing Test HAVE_OPENGL - Success
--- Performing Test HAVE_OPENGLES_V1
--- Performing Test HAVE_OPENGLES_V1 - Failed
--- Performing Test HAVE_OPENGLES_V2
--- Performing Test HAVE_OPENGLES_V2 - Success
--- Checking for modules 'wayland-client>=1.18;wayland-egl;wayland-cursor;egl;xkbcommon>=0.5.0'
---   Found wayland-client, version 1.22.0
---   Found wayland-egl, version 18.1.0
---   Found wayland-cursor, version 1.22.0
---   Found egl, version 23.3.0
---   Found xkbcommon, version 1.5.0
 -- dynamic libwayland-client -> libwayland-client.so.0
 -- dynamic libwayland-egl -> libwayland-egl.so.1
 -- dynamic libwayland-cursor -> libwayland-cursor.so.0
 -- dynamic libxkbcommon -> libxkbcommon.so.0
--- Checking for module 'libdecor-0'
---   Found libdecor-0, version 0.2.0
 -- dynamic libdecor-0 -> libdecor-0.so.0
--- Performing Test HAVE_VIVANTE_VDK
--- Performing Test HAVE_VIVANTE_VDK - Failed
--- Performing Test HAVE_VIVANTE_EGL_FB
--- Performing Test HAVE_VIVANTE_EGL_FB - Failed
--- Performing Test HAVE_INPUT_EVENTS
--- Performing Test HAVE_INPUT_EVENTS - Success
--- Performing Test HAVE_INPUT_KD
--- Performing Test HAVE_INPUT_KD - Success
--- Looking for libudev.h
--- Looking for libudev.h - found
--- Looking for sys/inotify.h
--- Looking for sys/inotify.h - found
--- Looking for inotify_init
--- Looking for inotify_init - found
--- Looking for inotify_init1
--- Looking for inotify_init1 - found
--- Checking for one of the modules 'dbus-1;dbus'
--- Checking for one of the modules 'ibus-1.0;ibus'
--- Checking for one of the modules 'libunwind'
--- Checking for one of the modules 'libunwind-generic'
--- Performing Test HAVE_PTHREADS
--- Performing Test HAVE_PTHREADS - Success
--- Performing Test HAVE_RECURSIVE_MUTEXES
--- Performing Test HAVE_RECURSIVE_MUTEXES - Success
--- Performing Test HAVE_PTHREADS_SEM
--- Performing Test HAVE_PTHREADS_SEM - Success
--- Performing Test HAVE_SEM_TIMEDWAIT
--- Performing Test HAVE_SEM_TIMEDWAIT - Success
--- Looking for include file pthread.h
--- Looking for include file pthread.h - found
--- Looking for include file pthread_np.h
--- Looking for include file pthread_np.h - not found
--- Performing Test HAVE_PTHREAD_SETNAME_NP
--- Performing Test HAVE_PTHREAD_SETNAME_NP - Success
--- Looking for clock_gettime in rt
--- Looking for clock_gettime in rt - found
--- Looking for linux/version.h
--- Looking for linux/version.h - found
--- Performing Test HAVE_ENABLE_NEW_DTAGS
--- Performing Test HAVE_ENABLE_NEW_DTAGS - Success
--- Looking for samplerate.h
--- Looking for samplerate.h - found
 -- dynamic libsamplerate -> libsamplerate.so.0
--- Found Git: /usr/bin/git (found version "2.43.0") 
 -- 
 -- SDL2 was configured with the following options:
 -- 
@@ -618,16 +188,87 @@
 -- Configuring done (0.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild
-[ 11%] Performing update step for 'sdl2_image-populate'
-[ 22%] No patch step for 'sdl2_image-populate'
-[ 33%] No configure step for 'sdl2_image-populate'
-[ 44%] No build step for 'sdl2_image-populate'
-[ 55%] No install step for 'sdl2_image-populate'
-[ 66%] No test step for 'sdl2_image-populate'
-[ 77%] Completed 'sdl2_image-populate'
+[ 11%] Creating directories for 'sdl2_image-populate'
+[ 22%] Performing download step (git clone) for 'sdl2_image-populate'
+Cloning into 'sdl2_image-src'...
+remote: Enumerating objects: 5976, done.        
+remote: Counting objects: 100% (5976/5976), done.        
+remote: Compressing objects: 100% (2966/2966), done.        
+remote: Total 5976 (delta 3680), reused 4779 (delta 2816), pack-reused 0        
+Receiving objects: 100% (5976/5976), 29.66 MiB | 16.72 MiB/s, done.
+Resolving deltas: 100% (3680/3680), done.
+HEAD is now at d3c6d59 Fixed Xcode DYLIB_CURRENT_VERSION
+Submodule 'external/dav1d' (https://github.com/libsdl-org/dav1d.git) registered for path 'external/dav1d'
+Submodule 'external/jpeg' (https://github.com/libsdl-org/jpeg.git) registered for path 'external/jpeg'
+Submodule 'external/libavif' (https://github.com/libsdl-org/libavif.git) registered for path 'external/libavif'
+Submodule 'external/libjxl' (https://github.com/libsdl-org/libjxl.git) registered for path 'external/libjxl'
+Submodule 'external/libpng' (https://github.com/libsdl-org/libpng.git) registered for path 'external/libpng'
+Submodule 'external/libtiff' (https://github.com/libsdl-org/libtiff.git) registered for path 'external/libtiff'
+Submodule 'external/libwebp' (https://github.com/libsdl-org/libwebp.git) registered for path 'external/libwebp'
+Submodule 'external/zlib' (https://github.com/libsdl-org/zlib.git) registered for path 'external/zlib'
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/dav1d'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/jpeg'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libavif'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libpng'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libtiff'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libwebp'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/zlib'...
+Submodule path 'external/dav1d': checked out '52d0c1f44eff76c3773636a9805f69ec26633037'
+Submodule path 'external/jpeg': checked out 'bc27d050625f126dcba73ae5b731272de1a89dc1'
+Submodule path 'external/libavif': checked out 'a3e9315474deb60e39b6e3aad88798eee26dadea'
+Submodule path 'external/libjxl': checked out 'd456eedef27d3587191f35f918c3ca2821c5a6c4'
+Submodule 'third_party/brotli' (https://github.com/libsdl-org/brotli.git) registered for path 'external/libjxl/third_party/brotli'
+Submodule 'third_party/googletest' (https://github.com/google/googletest) registered for path 'external/libjxl/third_party/googletest'
+Submodule 'third_party/highway' (https://github.com/libsdl-org/highway.git) registered for path 'external/libjxl/third_party/highway'
+Submodule 'third_party/lcms' (https://github.com/mm2/Little-CMS) registered for path 'external/libjxl/third_party/lcms'
+Submodule 'third_party/lodepng' (https://github.com/lvandeve/lodepng) registered for path 'external/libjxl/third_party/lodepng'
+Submodule 'third_party/sjpeg' (https://github.com/webmproject/sjpeg.git) registered for path 'external/libjxl/third_party/sjpeg'
+Submodule 'third_party/skcms' (https://skia.googlesource.com/skcms) registered for path 'external/libjxl/third_party/skcms'
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl/third_party/brotli'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl/third_party/googletest'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl/third_party/highway'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl/third_party/lcms'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl/third_party/lodepng'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl/third_party/sjpeg'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl/third_party/skcms'...
+Submodule path 'external/libjxl/third_party/brotli': checked out '2ae7ff838d1a7ba9726ef0f9b3e42d9eadc5d252'
+Submodule 'research/esaxx' (https://github.com/hillbig/esaxx) registered for path 'external/libjxl/third_party/brotli/research/esaxx'
+Submodule 'research/libdivsufsort' (https://github.com/y-256/libdivsufsort.git) registered for path 'external/libjxl/third_party/brotli/research/libdivsufsort'
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl/third_party/brotli/research/esaxx'...
+Cloning into '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/external/libjxl/third_party/brotli/research/libdivsufsort'...
+Submodule path 'external/libjxl/third_party/brotli/research/esaxx': checked out 'ca7cb332011ec37a8436487f210f396b84bd8273'
+Submodule path 'external/libjxl/third_party/brotli/research/libdivsufsort': checked out '5f60d6f026c30fb4ac296f696b3c8b0eb71bd428'
+Submodule path 'external/libjxl/third_party/googletest': checked out '0ea2d8f8fa1601abb9ce713b7414e7b86f90bc61'
+Submodule path 'external/libjxl/third_party/highway': checked out 'a2104044ca0717cc571e4a7570b6e8900d4f8c13'
+Submodule path 'external/libjxl/third_party/lcms': checked out '65c63bf549d78253c14b30b3d62cb668bbbe612c'
+Submodule path 'external/libjxl/third_party/lodepng': checked out '48e5364ef48ec2408f44c727657ac1b6703185f8'
+Submodule path 'external/libjxl/third_party/sjpeg': checked out '868ab558fad70fcbe8863ba4e85179eeb81cc840'
+Submodule path 'external/libjxl/third_party/skcms': checked out '64374756e03700d649f897dbd98c95e78c30c7da'
+Submodule path 'external/libpng': checked out '999173059e2651fab2a0102eeba18748c4bd9827'
+Submodule path 'external/libtiff': checked out 'dad25b3f71cfd7f4fcb089a5881a31e65ae92c0a'
+Submodule path 'external/libwebp': checked out '12cf7b315fb7a9df56fa6b8ee30e36312659d63c'
+Submodule path 'external/zlib': checked out 'aeb146673f65fe6755d9aae05579c944d6572d20'
+[ 33%] Performing update step for 'sdl2_image-populate'
+[ 44%] No patch step for 'sdl2_image-populate'
+[ 55%] No configure step for 'sdl2_image-populate'
+[ 66%] No build step for 'sdl2_image-populate'
+[ 77%] No install step for 'sdl2_image-populate'
+[ 88%] No test step for 'sdl2_image-populate'
+[100%] Completed 'sdl2_image-populate'
 [100%] Built target sdl2_image-populate
 -- Configuring SDL2_image 2.6.3
--- Found SDL2main: /usr/lib/x86_64-linux-gnu/libSDL2main.a  
--- Configuring done (10.8s)
+-- Configuring done (47.1s)
+CMake Warning at CMakeLists.txt:45 (target_link_libraries):
+  Target "ChessPP" requests linking to directory "/usr/include/dbus-1.0".
+  Targets may link only to libraries.  CMake is dropping the item.
+
+
+CMake Warning at CMakeLists.txt:45 (target_link_libraries):
+  Target "ChessPP" requests linking to directory
+  "/usr/lib/x86_64-linux-gnu/dbus-1.0/include".  Targets may link only to
+  libraries.  CMake is dropping the item.
+
+
 -- Generating done (0.1s)
 -- Build files have been written to: /home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug

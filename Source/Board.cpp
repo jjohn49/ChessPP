@@ -173,8 +173,14 @@ void Board::placePiece(SDL_Event *event) {
     std::pair<int,int> newPos = std::make_pair(floor(x/100), floor(y/100));
     Move attemptedMove{pieceDragging->getPosition(), newPos};
     std::vector<Move> moves = getMovesFor(pieceDragging->getColor());
+
     if(contains(moves, attemptedMove)){
-        movePiece(attemptedMove);
+        //need to find the exact move because of enpessant
+        for(Move & move: moves){
+            if(attemptedMove == move){
+                movePiece(move);
+            }
+        }
     }else{
         std::copy(&copyBoard[0][0], &copyBoard[0][0] + 64, &board[0][0]);
     }
@@ -282,8 +288,6 @@ std::vector<Move> Board::getMovesFor(Piece::Color color) {
         p->setNewPosition(oldPosition);
         std::copy(&copy[0][0], &copy[0][0]+64, &board[0][0]);
 
-
-
         allGameMoves = copyAllGameMoves;
 
     }
@@ -299,6 +303,61 @@ bool Board::contains(std::vector<Move> list, Move val) {
     }
     return false;
 }
+
+bool Board::contains(std::vector<Move> list, std::pair<int, int> position) {
+    for(Move & move: list){
+        if(move.getNewPosition() == position){
+            return true;
+        }
+    }
+    return false;
+}
+
+std::vector<Move> Board::getCastlingMoves(Piece::Color color) {
+    std::vector<Move> moves{};
+
+    int x = (color == Piece::White)? 0 : 7;
+    std::shared_ptr<King> targetKing = (color == Piece::White)? std::make_shared<King>(whiteKing) : std::make_shared<King>(blackKing);
+    std::shared_ptr<Rook> targetRookKS = (color == Piece::White)? std::make_shared<Rook>(whiteRooks[0]) : std::make_shared<Rook>(blackRooks[0]);
+    std::shared_ptr<Rook> targetRookQS = (color == Piece::White)? std::make_shared<Rook>(whiteRooks[1]) : std::make_shared<Rook>(blackRooks[1]);
+
+    std::vector<Move> opponentMoves{getMovesFor((color == Piece::White)? Piece::Black: Piece::White)};
+
+
+    //checking if all necessary pieces have moved yet
+    if(!(targetKing->moved() && targetRookKS->moved() && targetRookQS->moved())){
+        //now checking if there is anything between them or if they ever go into check
+        //QS
+        for(int y = 3; y >= 0; y --){
+            if(board[x][y] != nullptr || ( y >= 2 && contains(opponentMoves, std::make_pair(x,y)))){
+                break;
+            }
+
+            if(y == 0){
+                Move qsCastling{targetKing->getPosition(), std::make_pair(x,2)};
+                qsCastling.setCastling("QS");
+                moves.push_back(qsCastling);
+            }
+        }
+
+        //KS
+        for(int y = 5; y <= 7; y++){
+            if(board[x][y] != nullptr || ( y <= 6 && contains(opponentMoves, std::make_pair(x,y)))){
+                break;
+            }
+
+            if(y == 7){
+                Move ksCastling{targetKing->getPosition(), std::make_pair(x,6)};
+                ksCastling.setCastling("KS");
+                moves.push_back(ksCastling);
+            }
+        }
+    }
+
+    return moves;
+}
+
+
 
 
 

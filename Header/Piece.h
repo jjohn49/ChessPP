@@ -51,7 +51,7 @@ public:
 
     virtual std::string getImagePath(){return "";};
     virtual std::optional<Move> getEnPessant(std::shared_ptr<Piece> (&board)[8][8], std::vector<Move> & allGameMoves){return std::nullopt;};
-
+    bool moved(){return this->hasMoved;};
 
 protected:
     Type type;

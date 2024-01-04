@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include -I/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug
 
-C_FLAGS =  -idirafter "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/src/video/khronos" -DHAVE_LINUX_VERSION_H  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -mmmx -m3dnow -msse -msse2 -msse3 -D_REENTRANT -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -I/usr/include -I/usr/include/libdrm  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=3 -g -fdiagnostics-color=always
+C_FLAGS =  -idirafter "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/src/video/khronos" -DHAVE_LINUX_VERSION_H  -Wall -fno-strict-aliasing -Wdeclaration-after-statement -fvisibility=hidden -Wshadow -mmmx -m3dnow -msse -msse2 -msse3 -D_REENTRANT -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -I/usr/include -I/usr/include/libdrm  -DSDL_BUILD_MAJOR_VERSION=2 -DSDL_BUILD_MINOR_VERSION=26 -DSDL_BUILD_MICRO_VERSION=3 -g -fPIC -fdiagnostics-color=always
 

@@ -125,8 +125,8 @@ _deps/sdl2_image-build/clean: _deps/sdl2_image-build/CMakeFiles/showimage.dir/cl
 # Target rules for target CMakeFiles/ChessPP.dir
 
 # All Build rule for target.
-CMakeFiles/ChessPP.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all
 CMakeFiles/ChessPP.dir/all: _deps/sdl2-build/CMakeFiles/SDL2main.dir/all
+CMakeFiles/ChessPP.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all
 CMakeFiles/ChessPP.dir/all: _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessPP.dir/build.make CMakeFiles/ChessPP.dir/build
@@ -335,8 +335,8 @@ _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/clean:
 # Target rules for target _deps/sdl2_image-build/CMakeFiles/showanim.dir
 
 # All Build rule for target.
-_deps/sdl2_image-build/CMakeFiles/showanim.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all
 _deps/sdl2_image-build/CMakeFiles/showanim.dir/all: _deps/sdl2-build/CMakeFiles/SDL2main.dir/all
+_deps/sdl2_image-build/CMakeFiles/showanim.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all
 _deps/sdl2_image-build/CMakeFiles/showanim.dir/all: _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/showanim.dir/build.make _deps/sdl2_image-build/CMakeFiles/showanim.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/showanim.dir/build.make _deps/sdl2_image-build/CMakeFiles/showanim.dir/build
@@ -363,8 +363,8 @@ _deps/sdl2_image-build/CMakeFiles/showanim.dir/clean:
 # Target rules for target _deps/sdl2_image-build/CMakeFiles/showimage.dir
 
 # All Build rule for target.
-_deps/sdl2_image-build/CMakeFiles/showimage.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all
 _deps/sdl2_image-build/CMakeFiles/showimage.dir/all: _deps/sdl2-build/CMakeFiles/SDL2main.dir/all
+_deps/sdl2_image-build/CMakeFiles/showimage.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all
 _deps/sdl2_image-build/CMakeFiles/showimage.dir/all: _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/showimage.dir/build.make _deps/sdl2_image-build/CMakeFiles/showimage.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/showimage.dir/build.make _deps/sdl2_image-build/CMakeFiles/showimage.dir/build

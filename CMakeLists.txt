@@ -42,7 +42,7 @@ add_executable(ChessPP main.cpp Source/Chess.cpp Header/Chess.h Source/Piece.cpp
         Source/Board.cpp
         Header/Board.h)
 
-target_link_libraries(ChessPP SDL2::SDL2main SDL2::SDL2-static SDL2_image::SDL2_image-static)
+target_link_libraries(ChessPP SDL2::SDL2main SDL2::SDL2-static SDL2_image::SDL2_image-static ${DBUS_INCLUDE_DIRS})
 
 
 
