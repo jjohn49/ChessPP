@@ -2,9 +2,9 @@
 // Created by hugh on 12/8/23.
 //
 
-#include "../Header/Queen.h"
-#include "../Header/Bishop.h"
-#include "../Header/Rook.h"
+#include "../../Header/Pieces/Queen.h"
+#include "../../Header/Pieces/Bishop.h"
+#include "../../Header/Pieces/Rook.h"
 
 std::vector<Move> Queen::getMoves(std::shared_ptr<Piece> (*board)[8]) {
     std::pair<int,int> curPos{this->getPosition()};

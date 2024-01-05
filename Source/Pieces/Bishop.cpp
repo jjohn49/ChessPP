@@ -2,7 +2,7 @@
 // Created by John Johnston on 12/8/23.
 //
 
-#include "../Header/Bishop.h"
+#include "../../Header/Pieces/Bishop.h"
 
 std::vector<Move> Bishop::getMoves(std::shared_ptr<Piece> (*board)[8]) {
     std::vector<Move> moves{};

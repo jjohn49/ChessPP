@@ -2,8 +2,8 @@
 // Created by John Johnston on 12/4/23.
 //
 
-#include "../Header/Pawn.h"
-#include "../Header/Move.h"
+#include "../../Header/Pieces/Pawn.h"
+#include "../../Header/Move.h"
 
 
 std::vector<Move> Pawn::getMoves(std::shared_ptr<Piece> board[8][8]) {

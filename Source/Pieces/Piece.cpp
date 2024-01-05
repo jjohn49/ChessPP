@@ -2,8 +2,8 @@
 // Created by John Johnston on 12/4/23.
 //
 
-#include "../Header/Piece.h"
-#include "../Header/Move.h"
+#include "../../Header/Pieces/Piece.h"
+#include "../../Header/Move.h"
 
 Piece::Piece() {
     this->type = Typeless;

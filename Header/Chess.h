@@ -7,14 +7,14 @@
 
 #include <iostream>
 #include <vector>
-#include "Pawn.h"
+#include "Pieces/Pawn.h"
 #include <memory>
 #include <optional>
-#include "Bishop.h"
-#include "Rook.h"
-#include "Queen.h"
-#include "Knight.h"
-#include "King.h"
+#include "Pieces/Bishop.h"
+#include "Pieces/Rook.h"
+#include "Pieces/Queen.h"
+#include "Pieces/Knight.h"
+#include "Pieces/King.h"
 #include "Board.h"
 
 class Chess {

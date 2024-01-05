@@ -30,15 +30,15 @@ set(BUILD_SHARED_LIBS FALSE)
 
 FetchContent_MakeAvailable(SDL2_image)
 
-add_executable(ChessPP main.cpp Source/Chess.cpp Header/Chess.h Source/Piece.cpp Header/Piece.h Source/Pawn.cpp Header/Pawn.h Source/Move.cpp Header/Move.h Source/Bishop.cpp Header/Bishop.h
-        Source/Rook.cpp
-        Header/Rook.h
-        Source/Queen.cpp
-        Header/Queen.h
-        Source/Knight.cpp
-        Header/Knight.h
-        Source/King.cpp
-        Header/King.h
+add_executable(ChessPP main.cpp Source/Chess.cpp Header/Chess.h Source/Pieces/Piece.cpp Header/Pieces/Piece.h Source/Pieces/Pawn.cpp Header/Pieces/Pawn.h Source/Move.cpp Header/Move.h Source/Pieces/Bishop.cpp Header/Pieces/Bishop.h
+        Source/Pieces/Rook.cpp
+        Header/Pieces/Rook.h
+        Source/Pieces/Queen.cpp
+        Header/Pieces/Queen.h
+        Source/Pieces/Knight.cpp
+        Header/Pieces/Knight.h
+        Source/Pieces/King.cpp
+        Header/Pieces/King.h
         Source/Board.cpp
         Header/Board.h)
 

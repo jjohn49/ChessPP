@@ -2,7 +2,7 @@
 // Created by hugh on 12/9/23.
 //
 
-#include "../Header/Knight.h"
+#include "../../Header/Pieces/Knight.h"
 
 std::vector<Move> Knight::getMoves(std::shared_ptr<Piece> (*board)[8]) {
     std::vector<Move> moves{};

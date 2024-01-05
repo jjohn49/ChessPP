@@ -2,7 +2,7 @@
 // Created by hugh on 12/9/23.
 //
 
-#include "../Header/King.h"
+#include "../../Header/Pieces/King.h"
 
 std::vector<Move> King::getMoves(std::shared_ptr<Piece> (*board)[8]) {
     std::vector<Move> moves{};

@@ -2,7 +2,7 @@
 // Created by hugh on 12/8/23.
 //
 
-#include "../Header/Rook.h"
+#include "../../Header/Pieces/Rook.h"
 
 std::vector<Move> Rook::getMoves(std::shared_ptr<Piece> (*board)[8]) {
     std::vector<Move> moves{};
