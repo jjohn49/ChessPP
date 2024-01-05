@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/SDL2_image.dir/IMG.c.o"
   "CMakeFiles/SDL2_image.dir/IMG.c.o.d"
+  "CMakeFiles/SDL2_image.dir/IMG_ImageIO.m.o"
+  "CMakeFiles/SDL2_image.dir/IMG_ImageIO.m.o.d"
   "CMakeFiles/SDL2_image.dir/IMG_WIC.c.o"
   "CMakeFiles/SDL2_image.dir/IMG_WIC.c.o.d"
   "CMakeFiles/SDL2_image.dir/IMG_avif.c.o"

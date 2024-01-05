@@ -8,31 +8,33 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_WIC.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_WIC.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_WIC.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_avif.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_avif.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_avif.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_bmp.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_bmp.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_bmp.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_gif.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_gif.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_gif.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_jpg.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_jpg.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_jpg.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_jxl.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_jxl.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_jxl.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_lbm.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_lbm.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_lbm.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_pcx.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_pcx.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_pcx.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_png.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_png.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_png.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_pnm.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_pnm.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_pnm.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_qoi.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_qoi.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_qoi.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_stb.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_stb.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_stb.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_svg.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_svg.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_svg.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_tga.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_tga.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_tga.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_tif.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_tif.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_tif.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_webp.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_webp.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_webp.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xcf.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xcf.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xcf.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xpm.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xpm.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xpm.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xv.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xv.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xv.c.o.d"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xxx.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xxx.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xxx.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_ImageIO.m" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_ImageIO.m.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_ImageIO.m.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_WIC.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_WIC.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_WIC.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_avif.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_avif.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_avif.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_bmp.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_bmp.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_bmp.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_gif.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_gif.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_gif.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_jpg.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_jpg.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_jpg.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_jxl.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_jxl.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_jxl.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_lbm.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_lbm.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_lbm.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_pcx.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_pcx.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_pcx.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_png.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_png.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_png.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_pnm.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_pnm.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_pnm.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_qoi.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_qoi.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_qoi.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_stb.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_stb.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_stb.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_svg.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_svg.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_svg.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_tga.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_tga.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_tga.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_tif.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_tif.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_tif.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_webp.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_webp.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_webp.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xcf.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xcf.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xcf.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xpm.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xpm.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xpm.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xv.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xv.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xv.c.o.d"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xxx.c" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xxx.c.o" "gcc" "_deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/IMG_xxx.c.o.d"
   )
 
-# Targets to which this target links which contain Fortran sources.
-set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/CMakeFiles/SDL2-static.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

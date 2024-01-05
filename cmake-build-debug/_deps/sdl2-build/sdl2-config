@@ -7,7 +7,7 @@ bindir=$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)")
 prefix=$(cd -P -- "$bindir/../" && printf '%s\n' "$(pwd -P)")
 exec_prefix=${prefix}
 exec_prefix_set=no
-libdir=${exec_prefix}/lib64
+libdir=${exec_prefix}/lib
 
 #usage="\
 #Usage: $0 [--prefix[=DIR]] [--exec-prefix[=DIR]] [--version] [--cflags] [--libs]"
@@ -46,15 +46,15 @@ while test $# -gt 0; do
       echo 2.26.3
       ;;
     --cflags)
-      echo -I${prefix}/include/SDL2  -D_REENTRANT
+      echo -I${prefix}/include/SDL2  -D_THREAD_SAFE
       ;;
     --libs)
-      echo -L${exec_prefix}/lib64 -Wl,-rpath,${libdir} -Wl,--enable-new-dtags  -lSDL2
+      echo -L${exec_prefix}/lib   -lSDL2
       ;;
     --static-libs)
 #    --libs|--static-libs)
-      sdl_static_libs=$(echo " -lSDL2  -lSDL2 -pthread  -lm -lrt" | sed -E "s#-lSDL2[ $]#$libdir/libSDL2.a #g")
-      echo -L${exec_prefix}/lib64 $sdl_static_libs
+      sdl_static_libs=$(echo " -lSDL2  -lSDL2 -Wl,-framework,CoreVideo -Wl,-framework,Cocoa -Wl,-framework,IOKit -Wl,-framework,ForceFeedback -Wl,-framework,Carbon -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,AVFoundation -Wl,-framework,Foundation -Wl,-weak_framework,GameController -Wl,-weak_framework,Metal -Wl,-weak_framework,QuartzCore -Wl,-weak_framework,CoreHaptics  -lm -liconv" | sed -E "s#-lSDL2[ $]#$libdir/libSDL2.a #g")
+      echo -L${exec_prefix}/lib $sdl_static_libs
       ;;
     *)
       echo "${usage}" 1>&2

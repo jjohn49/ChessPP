@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\_deps\;CMake Files\cmake-build-debug\_deps\sdl2-src\;CMake Files\cmake-build-debug\_deps\sdl2-src\cmake\;CMake Files\cmake-build-debug\_deps\sdl2-src\include\;CMake Files\cmake-build-debug\_deps\sdl2-build\;CMake Files\cmake-build-debug\_deps\sdl2_image-src\;CMake Files\cmake-build-debug\_deps\sdl2_image-src\cmake\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="SDL2_image">
-				<Option output="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/libSDL2_imaged.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option output="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/libSDL2_imaged.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -44,27 +44,25 @@
 					<Add option="-DLOAD_XCF"/>
 					<Add option="-DLOAD_XPM"/>
 					<Add option="-DLOAD_XV"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/x86_64-unknown-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 SDL2_image"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 SDL2_image"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="SDL2_image/fast">
-				<Option output="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/libSDL2_imaged.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option output="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/libSDL2_imaged.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -89,240 +87,233 @@
 					<Add option="-DLOAD_XCF"/>
 					<Add option="-DLOAD_XPM"/>
 					<Add option="-DLOAD_XV"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/x86_64-unknown-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 SDL2_image/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 SDL2_image/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="showanim">
-				<Option output="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/showanim" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option output="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/showanim" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/x86_64-unknown-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showanim"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showanim"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="showanim/fast">
-				<Option output="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/showanim" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option output="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/showanim" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/x86_64-unknown-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showanim/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showanim/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="showimage">
-				<Option output="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/showimage" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option output="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/showimage" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/x86_64-unknown-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showimage"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showimage"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="showimage/fast">
-				<Option output="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/showimage" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
+				<Option output="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/showimage" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
-					<Add directory="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/x86_64-unknown-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/../../../../include/c++/13.2.0/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-unknown-linux-gnu/13.2.0/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include"/>
+					<Add directory="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/include-config-debug"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showimage/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 showimage/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-build/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_WIC.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_ImageIO.m">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_avif.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_WIC.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_bmp.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_avif.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_gif.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_bmp.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_jpg.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_gif.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_jxl.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_jpg.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_lbm.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_jxl.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_pcx.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_lbm.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_png.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_pcx.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_pnm.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_png.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_qoi.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_pnm.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_stb.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_qoi.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_svg.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_stb.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_tga.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_svg.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_tif.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_tga.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_webp.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_tif.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xcf.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_webp.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xpm.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xcf.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xv.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xpm.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xxx.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xv.c">
 			<Option target="SDL2_image"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/showanim.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/IMG_xxx.c">
+			<Option target="SDL2_image"/>
+		</Unit>
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/showanim.c">
 			<Option target="showanim"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/showimage.c">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/showimage.c">
 			<Option target="showimage"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/CMakeLists.txt">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/CMakeLists.txt">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/SDL2.spec.in">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/SDL2.spec.in">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/cmake_uninstall.cmake.in">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/cmake_uninstall.cmake.in">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/sdl2-config.in">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/sdl2-config.in">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/sdl2.pc.in">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/sdl2.pc.in">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/cmake/CheckCPUArchitecture.cmake">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/cmake/CheckCPUArchitecture.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\cmake\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/cmake/macros.cmake">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/cmake/macros.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\cmake\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/cmake/sdlchecks.cmake">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/cmake/sdlchecks.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\cmake\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/include/SDL_config.h.cmake">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/include/SDL_config.h.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\include\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/include/SDL_revision.h.cmake">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src/include/SDL_revision.h.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-src\include\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/SDL_config.h.intermediate">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build/SDL_config.h.intermediate">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2-build\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/CMakeLists.txt">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2_image-src\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/cmake/CommonFindSDL2.cmake">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/cmake/CommonFindSDL2.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2_image-src\cmake\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/cmake/FindSDL2main.cmake">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/cmake/FindSDL2main.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2_image-src\cmake\"/>
 		</Unit>
-		<Unit filename="/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/cmake/PrivateSdlFunctions.cmake">
+		<Unit filename="/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src/cmake/PrivateSdlFunctions.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\_deps\sdl2_image-src\cmake\"/>
 		</Unit>
 	</Project>

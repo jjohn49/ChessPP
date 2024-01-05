@@ -1,13 +1,13 @@
-if (NOT EXISTS "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/install_manifest.txt")
-    message(FATAL_ERROR "Cannot find install manifest: \"/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/install_manifest.txt\"")
-endif(NOT EXISTS "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/install_manifest.txt")
+if (NOT EXISTS "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/install_manifest.txt")
+    message(FATAL_ERROR "Cannot find install manifest: \"/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/install_manifest.txt\"")
+endif(NOT EXISTS "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/install_manifest.txt")
 
-file(READ "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/install_manifest.txt" files)
+file(READ "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach (file ${files})
     message(STATUS "Uninstalling \"$ENV{DESTDIR}${file}\"")
     execute_process(
-        COMMAND /app/extra/clion/bin/cmake/linux/x64/bin/cmake -E remove "$ENV{DESTDIR}${file}"
+        COMMAND /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove "$ENV{DESTDIR}${file}"
         OUTPUT_VARIABLE rm_out
         RESULT_VARIABLE rm_retval
     )

@@ -3,21 +3,21 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-if(EXISTS "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt" AND EXISTS "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitinfo.txt" AND
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt" IS_NEWER_THAN "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitinfo.txt")
+if(EXISTS "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt" AND EXISTS "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitinfo.txt" AND
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt" IS_NEWER_THAN "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitinfo.txt")
   message(STATUS
     "Avoiding repeated git clone, stamp file is up to date: "
-    "'/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt'"
+    "'/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt'"
   )
   return()
 endif()
 
 execute_process(
-  COMMAND ${CMAKE_COMMAND} -E rm -rf "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"
+  COMMAND ${CMAKE_COMMAND} -E rm -rf "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"
   RESULT_VARIABLE error_code
 )
 if(error_code)
-  message(FATAL_ERROR "Failed to remove directory: '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src'")
+  message(FATAL_ERROR "Failed to remove directory: '/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src'")
 endif()
 
 # try the clone 3 times in case there is an odd git clone issue
@@ -25,9 +25,9 @@ set(error_code 1)
 set(number_of_tries 0)
 while(error_code AND number_of_tries LESS 3)
   execute_process(
-    COMMAND "/usr/bin/git" 
+    COMMAND "/opt/homebrew/bin/git" 
             clone --no-checkout --depth 1 --no-single-branch --progress --config "advice.detachedHead=false" "https://github.com/libsdl-org/SDL_image.git" "sdl2_image-src"
-    WORKING_DIRECTORY "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps"
+    WORKING_DIRECTORY "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps"
     RESULT_VARIABLE error_code
   )
   math(EXPR number_of_tries "${number_of_tries} + 1")
@@ -40,9 +40,9 @@ if(error_code)
 endif()
 
 execute_process(
-  COMMAND "/usr/bin/git" 
+  COMMAND "/opt/homebrew/bin/git" 
           checkout "release-2.6.3" --
-  WORKING_DIRECTORY "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"
+  WORKING_DIRECTORY "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"
   RESULT_VARIABLE error_code
 )
 if(error_code)
@@ -52,22 +52,22 @@ endif()
 set(init_submodules TRUE)
 if(init_submodules)
   execute_process(
-    COMMAND "/usr/bin/git" 
+    COMMAND "/opt/homebrew/bin/git" 
             submodule update --recursive --init 
-    WORKING_DIRECTORY "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"
+    WORKING_DIRECTORY "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src"
     RESULT_VARIABLE error_code
   )
 endif()
 if(error_code)
-  message(FATAL_ERROR "Failed to update submodules in: '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src'")
+  message(FATAL_ERROR "Failed to update submodules in: '/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-src'")
 endif()
 
 # Complete success, update the script-last-run stamp file:
 #
 execute_process(
-  COMMAND ${CMAKE_COMMAND} -E copy "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitinfo.txt" "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt"
+  COMMAND ${CMAKE_COMMAND} -E copy "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitinfo.txt" "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt"
   RESULT_VARIABLE error_code
 )
 if(error_code)
-  message(FATAL_ERROR "Failed to copy script-last-run stamp file: '/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt'")
+  message(FATAL_ERROR "Failed to copy script-last-run stamp file: '/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2_image-subbuild/sdl2_image-populate-prefix/src/sdl2_image-populate-stamp/sdl2_image-populate-gitclone-lastrun.txt'")
 endif()

@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/tmp"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src"
-  "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-src"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-build"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/tmp"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src"
+  "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/home/hugh/Projects/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/hugh/Desktop/jj-git-repos/ChessPP/cmake-build-debug/_deps/sdl2-subbuild/sdl2-populate-prefix/src/sdl2-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

@@ -4,9 +4,17 @@
 
 #include <utility>
 #include "../Header/Board.h"
-#include <SDL2/SDL_image.h>
 #include <cmath>
 #include <algorithm>
+
+//OS Specific Imports
+#ifdef __linux__
+    #include <SDL2/SDL_image.h>
+#elif __APPLE__
+    #include <SDL_image.h>
+#endif
+
+
 
 #define HEIGHT 800
 #define WIDTH 800

@@ -6,7 +6,6 @@
 #define CHESSPP_BOARD_H
 #include <iostream>
 #include <memory>
-#include <SDL2/SDL.h>
 #include "Piece.h"
 #include "Pawn.h"
 #include "Rook.h"
@@ -14,6 +13,12 @@
 #include "Bishop.h"
 #include "Queen.h"
 #include "King.h"
+
+#ifdef __linux__
+    #include <SDL2/SDL.h>
+#elif __APPLE__
+    #include <SDL.h>
+#endif
 
 
 class Board {
