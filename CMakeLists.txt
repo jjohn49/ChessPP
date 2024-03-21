@@ -32,14 +32,16 @@ FetchContent_MakeAvailable(SDL2_image)
 
 add_executable(ChessPP
         main.cpp
-        src/Piece.cpp
-        src/Piece.h
-        src/Board.cpp
-        src/Board.h
-        src/Move.cpp
-        src/Move.h
-        src/Chess.cpp
-        src/Chess.h
+        src/Sources/Piece.cpp
+        src/Headers/Piece.h
+        src/Sources/Board.cpp
+        src/Headers/Board.h
+        src/Sources/Move.cpp
+        src/Headers/Move.h
+        src/Sources/Chess.cpp
+        src/Headers/Chess.h
+        src/Sources/Pawn.cpp
+        src/Headers/Pawn.h
 
 
 )

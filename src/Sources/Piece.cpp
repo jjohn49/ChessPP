@@ -2,7 +2,7 @@
 // Created by hugh on 3/21/24.
 //
 
-#include "Piece.h"
+#include "../Headers/Piece.h"
 
 
 

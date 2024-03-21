@@ -11,8 +11,9 @@
 
 using namespace std;
 
+class Board;
 class Piece {
-
+public:
     enum Type{
         NoType,
         Pawn,
@@ -28,6 +29,7 @@ class Piece {
         White,
         Black
     };
+
 protected:
     int row;
     int col;
@@ -35,6 +37,8 @@ protected:
     Color color;
     Type type;
 public:
+
+
     Piece();
     Piece(int row, int col, Color color, Type type);
 
@@ -43,7 +47,7 @@ public:
     Type getType(){return type;};
     bool getHasMoved(){return hasMoved;};
 
-    virtual vector<Move> getMoves();
+    virtual vector<Move> getMoves(Board * board){return  {};};
 
 };
 

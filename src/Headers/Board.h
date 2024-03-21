@@ -16,13 +16,14 @@ class Board {
 
 protected:
     vector<vector<shared_ptr<Piece>>> board;
-    vector<Piece> pieces;
+    vector<Piece> pawns;
 public:
 
     Board();
 
     Piece * getPieceAt(pair<int,int> position);
     Piece * getPieceAt(int row, int col);
+    void print();
 };
 
 
