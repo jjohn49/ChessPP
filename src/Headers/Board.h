@@ -9,6 +9,7 @@
 #include <vector>
 #include <memory>
 #include "Piece.h"
+#include "Pawn.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ class Board {
 
 protected:
     vector<vector<shared_ptr<Piece>>> board;
-    vector<Piece> pawns;
+    vector<Pawn> pawns;
 public:
 
     Board();

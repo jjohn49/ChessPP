@@ -9,16 +9,16 @@ Board::Board() {
     pawns = {
             Pawn(1,0,Piece::White),Pawn(1,1,Piece::White),Pawn(1,2,Piece::White),Pawn(1,3,Piece::White),Pawn(1,4,Piece::White),Pawn(1,5,Piece::White),Pawn(1,6,Piece::White),Pawn(1,7,Piece::White),
             Pawn(6,0,Piece::Black),Pawn(6,1,Piece::Black),Pawn(6,2,Piece::Black),Pawn(6,3,Piece::Black),Pawn(6,4,Piece::Black),Pawn(6,5,Piece::Black),Pawn(6,6,Piece::Black),Pawn(6,7,Piece::Black),
-
     };
+
     board = {
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
-            {make_shared<Piece>(pawns[0]), make_shared<Piece>(pawns[1]), make_shared<Piece>(pawns[2]), make_shared<Piece>(pawns[3]), make_shared<Piece>(pawns[4]), make_shared<Piece>(pawns[5]), make_shared<Piece>(pawns[6]), make_shared<Piece>(pawns[7])},
+            {make_shared<Pawn>(pawns[0]), make_shared<Pawn>(pawns[1]), make_shared<Pawn>(pawns[2]), make_shared<Pawn>(pawns[3]), make_shared<Pawn>(pawns[4]), make_shared<Pawn>(pawns[5]), make_shared<Pawn>(pawns[6]), make_shared<Pawn>(pawns[7])},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
-            {make_shared<Piece>(pawns[8]), make_shared<Piece>(pawns[9]), make_shared<Piece>(pawns[10]), make_shared<Piece>(pawns[11]), make_shared<Piece>(pawns[12]), make_shared<Piece>(pawns[13]), make_shared<Piece>(pawns[14]), make_shared<Piece>(pawns[15])},
+            {make_shared<Pawn>(pawns[8]), make_shared<Pawn>(pawns[9]), make_shared<Pawn>(pawns[10]), make_shared<Pawn>(pawns[11]), make_shared<Pawn>(pawns[12]), make_shared<Pawn>(pawns[13]), make_shared<Pawn>(pawns[14]), make_shared<Pawn>(pawns[15])},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}
     };
 }

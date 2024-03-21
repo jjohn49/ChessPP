@@ -15,6 +15,7 @@ class Pawn: public Piece{
 public:
     Pawn(int row, int col, Piece::Color color);
     vector<Move> getMoves(Board * board) override;
+    string getImagePath() override;
 };
 
 

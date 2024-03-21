@@ -48,6 +48,7 @@ public:
     bool getHasMoved(){return hasMoved;};
 
     virtual vector<Move> getMoves(Board * board){return  {};};
+    virtual string getImagePath(){return "";};
 
 };
 
