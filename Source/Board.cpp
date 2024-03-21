@@ -208,7 +208,7 @@ void Board::drawBoard()  {
     SDL_RenderGetViewport(renderer, &darea);
     bool blackStart = false;
 
-    for (int row = 0; row < 8; row++) {
+    for (int row = 7; row >= 0; row--) {
         blackStart = !blackStart;
          for (int column = 0; column < 8; column++) {
 
