@@ -13,4 +13,9 @@ Piece::Piece(int row, int col, Piece::Color color, Piece::Type type) {
     this->type = type;
 }
 
-Piece::Piece(): Piece(-1,-1,NoColor,NoType){};
+Piece::Piece(): Piece(-1,-1,NoColor,NoType){}
+
+void Piece::setNewPosition(int row, int col) {
+    this->row = row;
+    this->col = col;
+};

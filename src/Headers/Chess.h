@@ -20,12 +20,15 @@ protected:
     bool running;
     SDL_Window * screen;
     SDL_Renderer * renderer;
+    bool isWhitesTurn;
+    Piece * pieceDragging;
 
     void drawBoard();
     bool onInit();
     bool onExecute();
     void onEvent(SDL_Event * event);
     static void onCleanup();
+    void setPieceDragging(SDL_Event * event);
 
 public:
     Chess();

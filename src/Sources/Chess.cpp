@@ -23,9 +23,15 @@ Chess::Chess() {
     screen = nullptr;
     running = true;
     renderer = nullptr;
+    isWhitesTurn = true;
+    pieceDragging = nullptr;
 }
 
 void Chess::play() {
+    board.print();
+    Move move = Move(1,1,6,1,board.getPieceAt(1,1).get());
+    board.movePiece(Move(1,1,6,1,board.getPieceAt(1,1).get()));
+    std::cout<< move.toString();
     board.print();
     onExecute();
 }
@@ -66,14 +72,12 @@ void Chess::drawBoard() {
 
             SDL_RenderFillRect(renderer, &rect);
 
-            Piece * piece = board.getPieceAt(row,column);
+            std::shared_ptr piece = board.getPieceAt(row,column);
             if(piece != nullptr){
                 img = IMG_LoadTexture(renderer, piece->getImagePath().c_str());
                 SDL_QueryTexture(img, NULL, NULL, &w, &h);
                 SDL_RenderCopy(renderer, img,NULL,&rect);
             }
-
-
         }
 
     }
@@ -99,7 +103,6 @@ bool Chess::onInit() {
     }
     return true;
 }
-
 
 bool Chess::onExecute() {
     if(!onInit()) {
@@ -136,4 +139,12 @@ void Chess::onEvent(SDL_Event *event) {
     else if(event->type == SDL_QUIT) {
         running = false;
     }
+}
+
+void Chess::setPieceDragging(SDL_Event *event) {
+    int x, y;
+    SDL_GetMouseState(&y, &x);
+    std::pair<int,int> pos = std::make_pair(floor(x/100), floor(y/100));
+    pieceDragging = board.getPieceAt(pos).get();
+
 }

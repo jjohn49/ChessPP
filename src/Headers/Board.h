@@ -10,6 +10,7 @@
 #include <memory>
 #include "Piece.h"
 #include "Pawn.h"
+#include "Move.h"
 
 using namespace std;
 
@@ -22,8 +23,11 @@ public:
 
     Board();
 
-    Piece * getPieceAt(pair<int,int> position);
-    Piece * getPieceAt(int row, int col);
+    shared_ptr<Piece> getPieceAt(int row, int col);
+    shared_ptr<Piece> getPieceAt(pair<int, int> position);
+
+    void movePiece(Move move);
+
     void print();
 };
 

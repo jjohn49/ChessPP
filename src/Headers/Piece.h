@@ -11,7 +11,9 @@
 
 using namespace std;
 
+//Forward Declaration of Board
 class Board;
+
 class Piece {
 public:
     enum Type{
@@ -46,9 +48,12 @@ public:
     Color getColor(){return color;};
     Type getType(){return type;};
     bool getHasMoved(){return hasMoved;};
+    void setHasMoved(bool value){this->hasMoved = value;};
+    void setNewPosition(int row, int col);
 
     virtual vector<Move> getMoves(Board * board){return  {};};
     virtual string getImagePath(){return "";};
+
 
 };
 

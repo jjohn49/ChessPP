@@ -10,7 +10,7 @@
 
 using namespace std;
 
-//forward declare
+//forward declare Piece
 class Piece;
 
 class Move {
@@ -19,8 +19,9 @@ protected:
     pair<int, int> oldPosition;
     pair<int, int> newPosition;
     Piece * movingPiece;
+    std::shared_ptr<Piece> pieceCaptured;
+
     bool isEnPessant;
-    bool isCastling;
 
 public:
     Move();
@@ -28,6 +29,11 @@ public:
     Move(pair<int,int> oldPosition, pair<int,int> newPosition, Piece * movingPiece);
     pair<int,int> getOldPosition(){return oldPosition;};
     pair<int, int> getNewPosition(){return newPosition;};
+
+    Piece & getMovingPiece(){return *movingPiece;};
+    std::shared_ptr<Piece> getCapturedPiece(){return pieceCaptured;};
+    bool getIsEnPessant(){return isEnPessant;};
+    std::string toString();
 };
 
 
