@@ -50,6 +50,7 @@ public:
     bool getHasMoved(){return hasMoved;};
     void setHasMoved(bool value){this->hasMoved = value;};
     void setNewPosition(int row, int col);
+    std::string toString();
 
     virtual vector<Move> getMoves(Board * board){return  {};};
     virtual string getImagePath(){return "";};

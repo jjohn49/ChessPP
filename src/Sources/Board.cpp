@@ -60,6 +60,14 @@ void Board::movePiece(Move move) {
 
 }
 
+void Board::setPieceAt(int row, int col, std::shared_ptr<Piece> pieceDragging) {
+    board[row][col] = pieceDragging;
+}
+
+void Board::setPieceAt(pair<int, int> position, std::shared_ptr<Piece> pieceDragging) {
+    setPieceAt(position.first, position.second, pieceDragging);
+}
+
 
 
 

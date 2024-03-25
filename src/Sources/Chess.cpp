@@ -32,6 +32,7 @@ void Chess::play() {
     Move move = Move(1,1,6,1,board.getPieceAt(1,1).get());
     board.movePiece(Move(1,1,6,1,board.getPieceAt(1,1).get()));
     std::cout<< move.toString();
+    std::cout << board.getPieceAt(6,1).get()->toString();
     board.print();
     onExecute();
 }
@@ -117,7 +118,7 @@ bool Chess::onExecute() {
             onEvent(&Event);
 
         }
-        drawBoard();
+        //drawBoard();
     }
 
     onCleanup();
@@ -130,11 +131,18 @@ void Chess::onCleanup() {
 }
 
 void Chess::onEvent(SDL_Event *event) {
-
+    drawBoard();
     if(event->type == SDL_MOUSEBUTTONDOWN) {
+        if(pieceDragging == nullptr){
+            setPieceDragging(event);
+        }else{
+            pieceDragging = nullptr;
+        }
 
-    }else if(event->type ==SDL_MOUSEBUTTONUP){
-
+    }else if(event->type == SDL_MOUSEMOTION){
+        if(pieceDragging != nullptr){
+            onPieceDraggingMoved(event);
+        }
     }
     else if(event->type == SDL_QUIT) {
         running = false;
@@ -144,7 +152,31 @@ void Chess::onEvent(SDL_Event *event) {
 void Chess::setPieceDragging(SDL_Event *event) {
     int x, y;
     SDL_GetMouseState(&y, &x);
-    std::pair<int,int> pos = std::make_pair(floor(x/100), floor(y/100));
-    pieceDragging = board.getPieceAt(pos).get();
+    std::pair<int,int> pos = std::make_pair(floor(x/100), floor((y-200)/100));
+    pieceDragging = board.getPieceAt(pos);
+    board.setPieceAt(pos, nullptr);
+}
+
+void Chess::onPieceDraggingMoved(SDL_Event * event) {
+    SDL_Rect rect, darea;
+    SDL_Texture * img = nullptr;
+    int w,h;
+
+    /* Get the Size of drawing surface */
+    SDL_RenderGetViewport(renderer, &darea);
+
+    int x, y;
+    SDL_GetMouseState(&x,&y);
+    img = IMG_LoadTexture(renderer, pieceDragging->getImagePath().c_str());
+    SDL_QueryTexture(img, NULL, NULL, &w, &h);
+
+    rect.w = darea.w/8;
+    rect.h = darea.h/8;
+    rect.x = x -50;
+    rect.y = y -50;
+    SDL_RenderCopy(renderer, img, NULL, &rect);
+
+    SDL_RenderPresent(renderer);
+    SDL_UpdateWindowSurface(screen);
 
 }
