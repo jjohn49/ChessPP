@@ -25,11 +25,14 @@ protected:
 
     void drawBoard();
     void onPieceDraggingMoved(SDL_Event * event);
+    void onPlacePieceDragging(SDL_Event * event);
     bool onInit();
     bool onExecute();
     void onEvent(SDL_Event * event);
     static void onCleanup();
     void setPieceDragging(SDL_Event * event);
+    bool canPieceMoveThere(std::pair<int,int> position);
+    int convertYAxisToRow(int row);
 
 public:
     Chess();

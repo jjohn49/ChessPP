@@ -28,12 +28,12 @@ Chess::Chess() {
 }
 
 void Chess::play() {
-    board.print();
-    Move move = Move(1,1,6,1,board.getPieceAt(1,1).get());
-    board.movePiece(Move(1,1,6,1,board.getPieceAt(1,1).get()));
-    std::cout<< move.toString();
-    std::cout << board.getPieceAt(6,1).get()->toString();
-    board.print();
+    //board.print();
+    //Move move = Move(1,1,6,1,board.getPieceAt(1,1).get());
+    //board.movePiece(Move(1,1,6,1,board.getPieceAt(1,1).get()));
+    //std::cout<< move.toString();
+    //std::cout << board.getPieceAt(6,1).get()->toString();
+    //board.print();
     onExecute();
 }
 
@@ -46,7 +46,7 @@ void Chess::drawBoard() {
     SDL_RenderGetViewport(renderer, &darea);
     bool blackStart = false;
 
-    for (int row = 7; row >= 0; row--) {
+    for (int row = 0; row < 8; row++) {
         blackStart = !blackStart;
         for (int column = 0; column < 8; column++) {
 
@@ -69,7 +69,7 @@ void Chess::drawBoard() {
             rect.w = 100;
             rect.h = 100;
             rect.x = column * rect.w + 200;
-            rect.y = row * rect.h;
+            rect.y = 700 - row * rect.h;
 
             SDL_RenderFillRect(renderer, &rect);
 
@@ -114,13 +114,9 @@ bool Chess::onExecute() {
 
     while(this->running) {
         while(SDL_PollEvent(&Event)) {
-
             onEvent(&Event);
-
         }
-        //drawBoard();
     }
-
     onCleanup();
 
     return true;
@@ -136,7 +132,7 @@ void Chess::onEvent(SDL_Event *event) {
         if(pieceDragging == nullptr){
             setPieceDragging(event);
         }else{
-            pieceDragging = nullptr;
+            onPlacePieceDragging(event);
         }
 
     }else if(event->type == SDL_MOUSEMOTION){
@@ -152,8 +148,9 @@ void Chess::onEvent(SDL_Event *event) {
 void Chess::setPieceDragging(SDL_Event *event) {
     int x, y;
     SDL_GetMouseState(&y, &x);
-    std::pair<int,int> pos = std::make_pair(floor(x/100), floor((y-200)/100));
+    std::pair<int,int> pos = std::make_pair(convertYAxisToRow(x), floor((y-200)/100));
     pieceDragging = board.getPieceAt(pos);
+    vector<Move> moves{pieceDragging.get()->getMoves(&board)};
     board.setPieceAt(pos, nullptr);
 }
 
@@ -179,4 +176,37 @@ void Chess::onPieceDraggingMoved(SDL_Event * event) {
     SDL_RenderPresent(renderer);
     SDL_UpdateWindowSurface(screen);
 
+}
+
+void Chess::onPlacePieceDragging(SDL_Event *event) {
+    int x, y;
+    SDL_GetMouseState(&y,&x);
+    //TODO: Need to add valid move code here
+    std::pair<int,int> pos = std::make_pair(convertYAxisToRow(x), floor((y-200)/100));
+
+    if(canPieceMoveThere(pos)){
+        pieceDragging->setNewPosition(pos.first, pos.second);
+        pieceDragging->setHasMoved(true);
+        board.setPieceAt(pos,pieceDragging);
+
+    }else{
+        board.setPieceAt(pieceDragging->getPosition(), pieceDragging);
+    }
+
+    pieceDragging.reset();
+}
+
+bool Chess::canPieceMoveThere(std::pair<int, int> position) {
+    for(Move & m: pieceDragging->getMoves(&board)){
+        //TODO: Add Method to Check iof Move Creates Check
+        if(m.getNewPosition() == position){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int Chess::convertYAxisToRow(int value) {
+    return 7 - value/100;
 }

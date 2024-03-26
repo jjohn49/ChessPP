@@ -14,7 +14,7 @@ using namespace std;
 //Forward Declaration of Board
 class Board;
 
-class Piece {
+class Piece: public enable_shared_from_this<Piece> {
 public:
     enum Type{
         NoType,

@@ -18,19 +18,19 @@ class Move {
 protected:
     pair<int, int> oldPosition;
     pair<int, int> newPosition;
-    Piece * movingPiece;
+    std::shared_ptr<Piece> movingPiece;
     std::shared_ptr<Piece> pieceCaptured;
 
     bool isEnPessant;
 
 public:
     Move();
-    Move(int oldRow, int oldCol, int newRow, int newCol, Piece * movingPiece);
-    Move(pair<int,int> oldPosition, pair<int,int> newPosition, Piece * movingPiece);
+    Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr);
+    Move(pair<int,int> oldPosition, pair<int,int> newPosition, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr);
     pair<int,int> getOldPosition(){return oldPosition;};
     pair<int, int> getNewPosition(){return newPosition;};
 
-    Piece & getMovingPiece(){return *movingPiece;};
+    std::shared_ptr<Piece> getMovingPiece(){return movingPiece;};
     std::shared_ptr<Piece> getCapturedPiece(){return pieceCaptured;};
     bool getIsEnPessant(){return isEnPessant;};
     std::string toString();
