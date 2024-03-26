@@ -10,6 +10,7 @@
 #include <memory>
 #include "Piece.h"
 #include "Pawn.h"
+#include "King.h"
 #include "Move.h"
 
 using namespace std;
@@ -19,6 +20,7 @@ class Board {
 protected:
     vector<vector<shared_ptr<Piece>>> board;
     vector<Pawn> pawns;
+    vector<King> kings;
 public:
 
     Board();
@@ -30,6 +32,11 @@ public:
     void setPieceAt(pair<int,int> position, std::shared_ptr<Piece> pieceDragging);
 
     void movePiece(Move move);
+
+    std::pair<int,int> getColorsKingPosition(Piece::Color color);
+
+    bool isColorInCheck(Piece::Color color);
+    std::vector<Move> getAllMovesForColor(Piece::Color color);
 
     void print();
 };
