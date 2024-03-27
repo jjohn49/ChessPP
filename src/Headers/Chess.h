@@ -33,7 +33,7 @@ protected:
     void onEvent(SDL_Event * event);
     static void onCleanup();
     void setPieceDragging(SDL_Event * event);
-    bool canPieceMoveThere(std::pair<int,int> position);
+    bool canPieceMoveThere(Move attemptedMove);
     int convertYAxisToRow(int row);
     bool isInCheck(std::pair<int,int> position);
 

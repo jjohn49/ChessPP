@@ -190,10 +190,10 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
     //TODO: Need to add valid move code here
     std::pair<int,int> pos = std::make_pair(convertYAxisToRow(x), floor((y-200)/100));
 
-    if(canPieceMoveThere(pos)){
-        pieceDragging->setNewPosition(pos.first, pos.second);
-        pieceDragging->setHasMoved(true);
-        board.setPieceAt(pos,pieceDragging);
+    Move attemptedMove = Move(pieceDragging->getPosition(), pos, pieceDragging, board.getPieceAt(pos));
+
+    if(canPieceMoveThere(attemptedMove)){
+        board.movePiece(attemptedMove);
         colorsTurn = (colorsTurn==Piece::White)? Piece::Black : Piece::White;
     }else{
         board.setPieceAt(pieceDragging->getPosition(), pieceDragging);
@@ -202,11 +202,11 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
     pieceDragging.reset();
 }
 
-bool Chess::canPieceMoveThere(std::pair<int, int> position) {
+bool Chess::canPieceMoveThere(Move attemptedMove) {
     for(Move & m: pieceDragging->getMoves(&board)){
         //TODO: Add Method to Check if Move Creates Check
 
-        if(m.getNewPosition() == position && !isInCheck(position)){
+        if(m.getNewPosition() == attemptedMove.getNewPosition() && !isInCheck(attemptedMove.getNewPosition())){
             return true;
         }
     }

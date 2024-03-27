@@ -65,18 +65,11 @@ void Board::print() {
 
 }
 
-void Board::movePiece(Move move) {
-    int oldRow = move.getOldPosition().first;
-    int oldCol = move.getOldPosition().second;
-
-    int newRow = move.getNewPosition().first;
-    int newCol = move.getNewPosition().second;
-
-    board[newRow][newCol] = board[oldRow][oldCol];
-    board[oldRow][oldCol].reset();
-
-    board[newRow][newCol]->setNewPosition(newRow, newCol);
-
+void Board::movePiece(Move & move) {
+    shared_ptr<Piece> pieceMoved = move.getMovingPiece();
+    pieceMoved->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
+    pieceMoved->setHasMoved(true);
+    setPieceAt(move.getNewPosition(),pieceMoved);
 }
 
 void Board::setPieceAt(int row, int col, std::shared_ptr<Piece> pieceDragging) {

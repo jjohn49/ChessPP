@@ -31,7 +31,7 @@ public:
     void setPieceAt(int row, int col, std::shared_ptr<Piece> pieceDragging);
     void setPieceAt(pair<int,int> position, std::shared_ptr<Piece> pieceDragging);
 
-    void movePiece(Move move);
+    void movePiece(Move & move);
 
     std::pair<int,int> getColorsKingPosition(Piece::Color color);
 
