@@ -26,7 +26,7 @@ Chess::Chess() {
     isWhitesTurn = true;
     pieceDragging = nullptr;
     colorsTurn = Piece::White;
-    moves = {};
+    moveHistory = {};
 }
 
 void Chess::play() {
@@ -194,6 +194,7 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
 
     if(canPieceMoveThere(attemptedMove)){
         board.movePiece(attemptedMove);
+        moveHistory.push_back(attemptedMove);
         colorsTurn = (colorsTurn==Piece::White)? Piece::Black : Piece::White;
     }else{
         board.setPieceAt(pieceDragging->getPosition(), pieceDragging);
