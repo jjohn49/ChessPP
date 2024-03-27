@@ -72,6 +72,10 @@ void Board::movePiece(Move & move) {
     pieceMoved->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
     pieceMoved->setHasMoved(true);
     setPieceAt(move.getNewPosition(),pieceMoved);
+
+    if(move.getIsEnPessant()){
+        setPieceAt(move.getOldPosition().first, move.getNewPosition().second, nullptr);
+    }
     moveHistory.push_back(move);
 }
 
@@ -111,6 +115,14 @@ bool Board::isColorInCheck(Piece::Color color) {
     }
 
     return false;
+}
+
+Move Board::getLastMove() {
+    return moveHistory.back();
+}
+
+bool Board::isFirstMove() {
+    return moveHistory.empty();
 }
 
 

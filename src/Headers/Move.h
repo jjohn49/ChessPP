@@ -25,8 +25,8 @@ protected:
 
 public:
     Move();
-    Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr);
-    Move(pair<int,int> oldPosition, pair<int,int> newPosition, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr);
+    Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false);
+    Move(pair<int,int> oldPosition, pair<int,int> newPosition, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false);
     pair<int,int> getOldPosition(){return oldPosition;};
     pair<int, int> getNewPosition(){return newPosition;};
 
@@ -34,6 +34,7 @@ public:
     std::shared_ptr<Piece> getCapturedPiece(){return pieceCaptured;};
     bool getIsEnPessant(){return isEnPessant;};
     std::string toString();
+    void setIsEnPessant(bool value);
 };
 
 

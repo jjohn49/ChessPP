@@ -154,7 +154,7 @@ void Chess::setPieceDragging(SDL_Event *event) {
     std::shared_ptr<Piece> pieceChosen = board.getPieceAt(pos);
     if(pieceChosen != nullptr && pieceChosen->getColor() == colorsTurn){
         pieceDragging = pieceChosen;
-        vector<Move> moves{pieceDragging.get()->getMoves(&board)};
+        //vector<Move> moves{pieceDragging.get()->getMoves(&board)};
         board.setPieceAt(pos, nullptr);
     }
 }
@@ -201,11 +201,12 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
     pieceDragging.reset();
 }
 
-bool Chess::canPieceMoveThere(Move attemptedMove) {
+bool Chess::canPieceMoveThere(Move & attemptedMove) {
     for(Move & m: pieceDragging->getMoves(&board)){
         //TODO: Add Method to Check if Move Creates Check
 
         if(m.getNewPosition() == attemptedMove.getNewPosition() && !isInCheck(attemptedMove.getNewPosition())){
+            attemptedMove = m;
             return true;
         }
     }

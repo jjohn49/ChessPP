@@ -32,9 +32,31 @@ vector<Move> Pawn::getMoves(Board *board) {
         }
     }
 
+    if(!board->isFirstMove() && getEnPessantMove(board)){
+        pawnMoves.push_back(getEnPessantMove(board).value());
+    }
+
     return pawnMoves;
 }
 
 string Pawn::getImagePath() {
     return (this->getColor() == White)? "../assets/PNGs/No shadow/2x/w_pawn_2x_ns.png" : "../assets/PNGs/No shadow/2x/b_pawn_2x_ns.png";
+}
+
+optional<Move> Pawn::getEnPessantMove(Board *board) {
+
+    int colorDirection = (getColor()==Piece::Color::White)? 1:-1;
+
+    Move lastMove = board->getLastMove();
+
+    if(lastMove.getMovingPiece()->getType() == Type::Pawn && abs(lastMove.getOldPosition().first - lastMove.getNewPosition().first) == 2 && lastMove.getMovingPiece()->getColor() != getColor()){
+        //something
+        if(lastMove.getNewPosition().first == getPosition().first){
+            int colDiff = getPosition().second - lastMove.getNewPosition().second;
+            return Move(getPosition(), make_pair(row + colorDirection, col - colDiff), shared_from_this(), lastMove.getMovingPiece(),
+                        true);
+        }
+    }
+
+    return nullopt;
 }
