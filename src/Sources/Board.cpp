@@ -7,24 +7,38 @@
 
 Board::Board() {
     pawns = {
-            Pawn(1,0,Piece::White),Pawn(1,1,Piece::White),Pawn(1,2,Piece::White),Pawn(1,3,Piece::White),Pawn(1,4,Piece::White),Pawn(1,5,Piece::White),Pawn(1,6,Piece::White),Pawn(1,7,Piece::White),
-            Pawn(6,0,Piece::Black),Pawn(6,1,Piece::Black),Pawn(6,2,Piece::Black),Pawn(6,3,Piece::Black),Pawn(6,4,Piece::Black),Pawn(6,5,Piece::Black),Pawn(6,6,Piece::Black),Pawn(6,7,Piece::Black),
+            make_shared<Pawn>(Pawn(1,0,Piece::White)),
+            make_shared<Pawn>(Pawn(1,1,Piece::White)),
+            make_shared<Pawn>(Pawn(1,2,Piece::White)),
+            make_shared<Pawn>(Pawn(1,3,Piece::White)),
+            make_shared<Pawn>(Pawn(1,4,Piece::White)),
+            make_shared<Pawn>(Pawn(1,5,Piece::White)),
+            make_shared<Pawn>(Pawn(1,6,Piece::White)),
+            make_shared<Pawn>(Pawn(1,7,Piece::White)),
+            make_shared<Pawn>(Pawn(6,0,Piece::Black)),
+            make_shared<Pawn>(Pawn(6,1,Piece::Black)),
+            make_shared<Pawn>(Pawn(6,2,Piece::Black)),
+            make_shared<Pawn>(Pawn(6,3,Piece::Black)),
+            make_shared<Pawn>(Pawn(6,4,Piece::Black)),
+            make_shared<Pawn>(Pawn(6,5,Piece::Black)),
+            make_shared<Pawn>(Pawn(6,6,Piece::Black)),
+            make_shared<Pawn>(Pawn(6,7,Piece::Black)),
     };
 
     kings = {
-            King(Piece::White),
-            King(Piece::Black),
+            make_shared<King>(King(Piece::White)),
+            make_shared<King>(King(Piece::Black)),
     };
 
     board = {
-            {nullptr, nullptr, nullptr, make_shared<King>(kings[0]), nullptr, nullptr, nullptr, nullptr},
-            {make_shared<Pawn>(pawns[0]), make_shared<Pawn>(pawns[1]), make_shared<Pawn>(pawns[2]), make_shared<Pawn>(pawns[3]), make_shared<Pawn>(pawns[4]), make_shared<Pawn>(pawns[5]), make_shared<Pawn>(pawns[6]), make_shared<Pawn>(pawns[7])},
+            {nullptr, nullptr, nullptr, kings[0], nullptr, nullptr, nullptr, nullptr},
+            {pawns[0], pawns[1], pawns[2], pawns[3], pawns[4], pawns[5], pawns[6], pawns[7]},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
-            {make_shared<Pawn>(pawns[8]), make_shared<Pawn>(pawns[9]), make_shared<Pawn>(pawns[10]), make_shared<Pawn>(pawns[11]), make_shared<Pawn>(pawns[12]), make_shared<Pawn>(pawns[13]), make_shared<Pawn>(pawns[14]), make_shared<Pawn>(pawns[15])},
-            {nullptr, nullptr, nullptr, make_shared<King>(kings[1]), nullptr, nullptr, nullptr, nullptr}
+            {pawns[8], pawns[9], pawns[10], pawns[11], pawns[12], pawns[13], pawns[14], pawns[15]},
+            {nullptr, nullptr, nullptr, kings[1], nullptr, nullptr, nullptr, nullptr}
     };
 }
 
@@ -74,7 +88,7 @@ void Board::setPieceAt(pair<int, int> position, std::shared_ptr<Piece> pieceDrag
 }
 
 std::pair<int,int> Board::getColorsKingPosition(Piece::Color color) {
-    return (color == Piece::White)? kings[0].getPosition() : kings[1].getPosition();
+    return (color == Piece::White)? kings[0]->getPosition() : kings[1]->getPosition();
 }
 
 std::vector<Move> Board::getAllMovesForColor(Piece::Color color) {

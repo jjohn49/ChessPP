@@ -12,7 +12,22 @@ vector<Move> King::getMoves(Board *board) {
     vector<Move> moves{};
 
     //TODO: Make All the Iterations of a King Move
-    
+    int vals[] = {-1,0,1};
+
+    for(int x: vals){
+        for(int y: vals){
+            int newRow = row + x;
+            int newCol = col + y;
+            if((x==0 && y==0) || (newRow <0) || (newRow>7) || (newCol <0) || (newCol>7)){
+                continue;
+            }
+
+            if(board->getPieceAt(newRow, newCol) == nullptr || board->getPieceAt(newRow, newCol)->getColor() != getColor())
+            {
+                moves.push_back(Move(getPosition(), make_pair(newRow, newCol), shared_from_this(), board->getPieceAt(newRow,newCol)));
+            }
+        }
+    }
     return moves;
 }
 

@@ -19,8 +19,8 @@ class Board {
 
 protected:
     vector<vector<shared_ptr<Piece>>> board;
-    vector<Pawn> pawns;
-    vector<King> kings;
+    vector<shared_ptr<Pawn>> pawns;
+    vector<shared_ptr<King>> kings;
 public:
 
     Board();

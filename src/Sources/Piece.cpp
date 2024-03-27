@@ -12,6 +12,7 @@ Piece::Piece(int row, int col, Piece::Color color, Piece::Type type) {
     this->col = col;
     this->color = color;
     this->type = type;
+    this->hasMoved = false;
 }
 
 Piece::Piece(): Piece(-1,-1,NoColor,NoType){}
