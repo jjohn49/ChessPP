@@ -3,12 +3,17 @@
 //
 
 #include "../Headers/King.h"
+#include "../Headers/Board.h"
 
 King::King(): Piece() {}
 King::King(Color color): Piece((color==White)? 0: 7, 3, color, Piece::Type::King) {}
 
 vector<Move> King::getMoves(Board *board) {
-    return Piece::getMoves(board);
+    vector<Move> moves{};
+
+    //TODO: Make All the Iterations of a King Move
+    
+    return moves;
 }
 
 string King::getImagePath() {

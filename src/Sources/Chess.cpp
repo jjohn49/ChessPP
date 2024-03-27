@@ -193,7 +193,6 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
         pieceDragging->setNewPosition(pos.first, pos.second);
         pieceDragging->setHasMoved(true);
         board.setPieceAt(pos,pieceDragging);
-
         colorsTurn = (colorsTurn==Piece::White)? Piece::Black : Piece::White;
     }else{
         board.setPieceAt(pieceDragging->getPosition(), pieceDragging);
@@ -205,7 +204,7 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
 bool Chess::canPieceMoveThere(std::pair<int, int> position) {
     for(Move & m: pieceDragging->getMoves(&board)){
         //TODO: Add Method to Check iof Move Creates Check
-        if(m.getNewPosition() == position){
+        if(m.getNewPosition() == position && !isInCheck(position)){
             return true;
         }
     }
@@ -215,4 +214,10 @@ bool Chess::canPieceMoveThere(std::pair<int, int> position) {
 
 int Chess::convertYAxisToRow(int value) {
     return 7 - value/100;
+}
+
+bool Chess::isInCheck(std::pair<int,int> position) {
+    Board copyBoard = board;
+    copyBoard.setPieceAt(position, pieceDragging);
+    return copyBoard.isColorInCheck(colorsTurn);
 }

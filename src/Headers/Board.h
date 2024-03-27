@@ -38,6 +38,7 @@ public:
     bool isColorInCheck(Piece::Color color);
     std::vector<Move> getAllMovesForColor(Piece::Color color);
 
+
     void print();
 };
 

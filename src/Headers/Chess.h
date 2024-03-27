@@ -34,6 +34,7 @@ protected:
     void setPieceDragging(SDL_Event * event);
     bool canPieceMoveThere(std::pair<int,int> position);
     int convertYAxisToRow(int row);
+    bool isInCheck(std::pair<int,int> position);
 
 public:
     Chess();
