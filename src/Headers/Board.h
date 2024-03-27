@@ -21,6 +21,8 @@ protected:
     vector<vector<shared_ptr<Piece>>> board;
     vector<shared_ptr<Pawn>> pawns;
     vector<shared_ptr<King>> kings;
+    vector<Move> moveHistory;
+
 public:
 
     Board();

@@ -23,7 +23,6 @@ protected:
     bool isWhitesTurn;
     std::shared_ptr<Piece> pieceDragging;
     Piece::Color colorsTurn;
-    std::vector<Move> moveHistory;
 
     void drawBoard();
     void onPieceDraggingMoved(SDL_Event * event);
