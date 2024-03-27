@@ -99,7 +99,7 @@ bool Board::isColorInCheck(Piece::Color color) {
             return true;
         }
     }
-    
+
     return false;
 }
 

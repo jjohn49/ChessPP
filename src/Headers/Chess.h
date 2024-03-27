@@ -22,6 +22,7 @@ protected:
     SDL_Renderer * renderer;
     bool isWhitesTurn;
     std::shared_ptr<Piece> pieceDragging;
+    Piece::Color colorsTurn;
 
     void drawBoard();
     void onPieceDraggingMoved(SDL_Event * event);

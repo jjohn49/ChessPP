@@ -25,6 +25,7 @@ Chess::Chess() {
     renderer = nullptr;
     isWhitesTurn = true;
     pieceDragging = nullptr;
+    colorsTurn = Piece::White;
 }
 
 void Chess::play() {
@@ -149,9 +150,13 @@ void Chess::setPieceDragging(SDL_Event *event) {
     int x, y;
     SDL_GetMouseState(&y, &x);
     std::pair<int,int> pos = std::make_pair(convertYAxisToRow(x), floor((y-200)/100));
-    pieceDragging = board.getPieceAt(pos);
-    vector<Move> moves{pieceDragging.get()->getMoves(&board)};
-    board.setPieceAt(pos, nullptr);
+
+    std::shared_ptr<Piece> pieceChosen = board.getPieceAt(pos);
+    if(pieceChosen != nullptr && pieceChosen->getColor() == colorsTurn){
+        pieceDragging = pieceChosen;
+        vector<Move> moves{pieceDragging.get()->getMoves(&board)};
+        board.setPieceAt(pos, nullptr);
+    }
 }
 
 void Chess::onPieceDraggingMoved(SDL_Event * event) {
@@ -189,6 +194,7 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
         pieceDragging->setHasMoved(true);
         board.setPieceAt(pos,pieceDragging);
 
+        colorsTurn = (colorsTurn==Piece::White)? Piece::Black : Piece::White;
     }else{
         board.setPieceAt(pieceDragging->getPosition(), pieceDragging);
     }
