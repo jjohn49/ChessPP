@@ -40,6 +40,8 @@ Board::Board() {
             {pawns[8], pawns[9], pawns[10], pawns[11], pawns[12], pawns[13], pawns[14], pawns[15]},
             {nullptr, nullptr, nullptr, kings[1], nullptr, nullptr, nullptr, nullptr}
     };
+
+    moveHistory = {};
 }
 
 shared_ptr<Piece> Board::getPieceAt(int row, int col) {
@@ -70,6 +72,7 @@ void Board::movePiece(Move & move) {
     pieceMoved->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
     pieceMoved->setHasMoved(true);
     setPieceAt(move.getNewPosition(),pieceMoved);
+    moveHistory.push_back(move);
 }
 
 void Board::setPieceAt(int row, int col, std::shared_ptr<Piece> pieceDragging) {
