@@ -45,7 +45,8 @@ public:
     Move getLastMove();
     bool isFirstMove();
     shared_ptr<Rook> getRook(int val);
-
+    bool isPositionInOppMoves(pair<int,int> position, Piece::Color oppColor);
+    bool isPositionsInOppMoves(vector<pair<int,int>> positions, Piece::Color oppColor);
     void print();
 };
 

@@ -84,6 +84,7 @@ void Board::movePiece(Move & move) {
         setPieceAt(move.getOldPosition().first, move.getNewPosition().second, nullptr);
     }
     moveHistory.push_back(move);
+
 }
 
 void Board::setPieceAt(int row, int col, std::shared_ptr<Piece> pieceDragging) {
@@ -134,6 +135,29 @@ bool Board::isFirstMove() {
 
 shared_ptr<Rook> Board::getRook(int val) {
     return rooks[val];
+}
+
+bool Board::isPositionInOppMoves(pair<int, int> position, Piece::Color oppColor) {
+    for(Move & m: getAllMovesForColor(oppColor)){
+        if(position == m.getNewPosition()){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Board::isPositionsInOppMoves(vector<pair<int, int>> positions, Piece::Color oppColor) {
+    bool ret = false;
+
+    for(Move & m: getAllMovesForColor(oppColor)){
+        for(pair<int,int> & p: positions){
+            if(p == m.getNewPosition()){
+                return true;
+            }
+        }
+    }
+    return ret;
 }
 
 

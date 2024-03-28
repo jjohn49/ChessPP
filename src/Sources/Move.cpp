@@ -6,10 +6,10 @@
 #include <sstream>
 
 Move::Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece,
-           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant, Move * castleMove): Move(std::make_pair(oldRow, oldCol), std::make_pair(newRow, newCol), movingPiece, pieceCaptured, isEnPessant, castleMove){}
+           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant): Move(std::make_pair(oldRow, oldCol), std::make_pair(newRow, newCol), movingPiece, pieceCaptured, isEnPessant){}
 
 Move::Move(pair<int, int> oldPosition, pair<int, int> newPosition, std::shared_ptr<Piece> movingPiece,
-           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant, Move * castleMove){
+           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant){
     this->oldPosition = oldPosition;
     this->newPosition = newPosition;
     this->movingPiece = movingPiece;
@@ -28,6 +28,10 @@ std::string Move::toString(){
 
 void Move::setIsEnPessant(bool value) {
     this->isEnPessant = value;
+}
+
+CastleMove Move::getCastleMove() {
+    return castleMove;
 }
 
 

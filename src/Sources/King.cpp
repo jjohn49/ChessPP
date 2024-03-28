@@ -28,6 +28,11 @@ vector<Move> King::getMoves(Board *board) {
             }
         }
     }
+
+    auto castleMoves = getCastlingMoves(board);
+
+    moves.insert(moves.end(),castleMoves.begin(), castleMoves.end());
+
     return moves;
 }
 
@@ -40,15 +45,17 @@ vector<Move> King::getCastlingMoves(Board *board) {
     if(!getHasMoved()){
         //King Side Rook
         if(!board->getRook(colorOffset)->getHasMoved()){
-            std::pair<int,int> squares[] = {
+
+            vector<pair<int,int>> squares = {
                     make_pair(row,col),
                     make_pair(row,col -1),
                     make_pair(row,col - 2)
             };
 
-            vector<Move> oppMoves = board->getAllMovesForColor(oppColor);
-
-            //TODO: Check if any of the opponents moves contains one of the squares
+            if(board->getPieceAt(squares[0])== nullptr && board->getPieceAt(squares[1])== nullptr && board->getPieceAt(squares[2])== nullptr && !board->isPositionsInOppMoves(squares,oppColor)){
+                Move castle = Move(row,0,row,2,board->getPieceAt(row,0), nullptr);
+                castleMoves.push_back(Move(getPosition(),squares[2],shared_from_this(), nullptr, false,&castle));
+            }
         }
 
         //Queen Side Rook
