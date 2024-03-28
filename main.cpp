@@ -1,10 +1,9 @@
 #include <iostream>
-#include "Header/Chess.h"
-#include "Header/Board.h"
+#include "./src/Headers/Chess.h"
 
 int main() {
     Chess chess{};
-    chess.drawBoard();
+    chess.play();
     return 0;
 }
 

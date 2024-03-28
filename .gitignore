@@ -55,3 +55,6 @@ bin/*
 test/test_runner
 
 _deps/*
+/cmake-build-release
+/cmake-build-release
+cmake-build-release/.cmake/api/v1/reply/cache-v2-b6e68fc4aec964efae18.json

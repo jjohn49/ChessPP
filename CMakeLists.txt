@@ -30,17 +30,31 @@ set(BUILD_SHARED_LIBS FALSE)
 
 FetchContent_MakeAvailable(SDL2_image)
 
-add_executable(ChessPP main.cpp Source/Chess.cpp Header/Chess.h Source/Pieces/Piece.cpp Header/Pieces/Piece.h Source/Pieces/Pawn.cpp Header/Pieces/Pawn.h Source/Move.cpp Header/Move.h Source/Pieces/Bishop.cpp Header/Pieces/Bishop.h
-        Source/Pieces/Rook.cpp
-        Header/Pieces/Rook.h
-        Source/Pieces/Queen.cpp
-        Header/Pieces/Queen.h
-        Source/Pieces/Knight.cpp
-        Header/Pieces/Knight.h
-        Source/Pieces/King.cpp
-        Header/Pieces/King.h
-        Source/Board.cpp
-        Header/Board.h)
+add_executable(ChessPP
+        main.cpp
+        src/Sources/Piece.cpp
+        src/Headers/Piece.h
+        src/Sources/Board.cpp
+        src/Headers/Board.h
+        src/Sources/Move.cpp
+        src/Headers/Move.h
+        src/Sources/Chess.cpp
+        src/Headers/Chess.h
+        src/Sources/Pawn.cpp
+        src/Headers/Pawn.h
+        src/Sources/King.cpp
+        src/Headers/King.h
+        src/Sources/Rook.cpp
+        src/Headers/Rook.h
+        src/Sources/Bishop.cpp
+        src/Headers/Bishop.h
+        src/Sources/Knight.cpp
+        src/Headers/Knight.h
+        src/Sources/Queen.cpp
+        src/Headers/Queen.h
+
+
+)
 
 target_link_libraries(ChessPP SDL2::SDL2main SDL2::SDL2-static SDL2_image::SDL2_image-static)
 
