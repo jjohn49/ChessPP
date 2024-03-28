@@ -205,6 +205,10 @@ bool Board::isPositionsInOppMoves(vector<pair<int, int>> positions, Piece::Color
     return ret;
 }
 
+bool Board::isPositionInBounds(pair<int, int> position) {
+    return position.first >= 0 && position.first <= 7 && position.second >= 0 && position.second <=7;
+}
+
 
 
 
