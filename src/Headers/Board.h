@@ -44,6 +44,7 @@ public:
 
     Move getLastMove();
     bool isFirstMove();
+    shared_ptr<Rook> getRook(int val);
 
     void print();
 };

@@ -132,6 +132,10 @@ bool Board::isFirstMove() {
     return moveHistory.empty();
 }
 
+shared_ptr<Rook> Board::getRook(int val) {
+    return rooks[val];
+}
+
 
 
 

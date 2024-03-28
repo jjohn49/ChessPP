@@ -14,6 +14,7 @@ public:
     King(Color color);
 
     vector<Move> getMoves(Board * board) override;
+    vector<Move>getCastlingMoves(Board * board);
     string getImagePath() override;
 
 };
