@@ -15,6 +15,7 @@
 #include "Rook.h"
 #include "Bishop.h"
 #include "Knight.h"
+#include "Queen.h"
 
 using namespace std;
 
@@ -27,6 +28,7 @@ protected:
     vector<shared_ptr<Rook>> rooks;
     vector<shared_ptr<Bishop>> bishops;
     vector<shared_ptr<Knight>> knights;
+    vector<shared_ptr<Queen>> queens;
     vector<Move> moveHistory;
 
 public:

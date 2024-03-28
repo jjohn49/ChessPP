@@ -13,8 +13,6 @@ using namespace std;
 //forward declare Piece
 class Piece;
 
-
-
 class Move {
 
 protected:
