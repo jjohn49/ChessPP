@@ -36,7 +36,7 @@ vector<Move> Knight::getMoves(Board * board) {
             }
         }
     }
-    
+
     return knightMoves;
 }
 string Knight::getImagePath() {

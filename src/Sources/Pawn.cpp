@@ -29,12 +29,20 @@ vector<Move> Pawn::getMoves(Board *board) {
     //Gets the take moves
     if(col > 0 && (0 < row && row < 7)){
         if(board->getPieceAt(row + (1*colorDirection), col - 1) != nullptr && board->getPieceAt(row + (1*colorDirection), col - 1)->getColor() != getColor()){
-            pawnMoves.push_back(Move(row,col,row + (1*colorDirection),col-1,shared_from_this(), board->getPieceAt(row + (1*colorDirection), col - 1)));
+            Move temp = Move(row,col,row + (1*colorDirection),col-1,shared_from_this(), board->getPieceAt(row + (1*colorDirection), col - 1));
+            if(temp.getNewPosition().first == 0 || temp.getNewPosition().first == 7){
+                temp.setIsPawnPromotion(true);
+            }
+            pawnMoves.push_back(temp);
         }
     }
     if(col < 7&& (0 < row && row < 7)){
         if(board->getPieceAt(row + (1*colorDirection), col + 1)!= nullptr && board->getPieceAt(row + (1*colorDirection), col + 1)->getColor() != getColor()){
-            pawnMoves.push_back(Move(row,col, row + (1*colorDirection), col + 1, shared_from_this(), board->getPieceAt(row + (1*colorDirection), col + 1)));
+            Move temp = Move(row,col, row + (1*colorDirection), col + 1, shared_from_this(), board->getPieceAt(row + (1*colorDirection), col + 1));
+            if(temp.getNewPosition().first == 0 || temp.getNewPosition().first == 7){
+                temp.setIsPawnPromotion(true);
+            }
+            pawnMoves.push_back(temp);
         }
     }
 

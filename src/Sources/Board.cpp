@@ -125,7 +125,8 @@ void Board::movePiece(Move & move) {
             rooks.push_back(make_shared<Rook>(Rook(move.getNewPosition(), move.getMovingPiece()->getColor())));
             setPieceAt(move.getNewPosition(), rooks.back());
         }else if (input == 3){
-            // add knight
+            knights.push_back(make_shared<Knight>(Knight(move.getNewPosition(), move.getMovingPiece()->getColor())));
+            setPieceAt(move.getNewPosition(), knights.back());
         }
     }
     moveHistory.push_back(move);
