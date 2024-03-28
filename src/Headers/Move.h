@@ -13,10 +13,7 @@ using namespace std;
 //forward declare Piece
 class Piece;
 
-struct CastleMove{
-    pair<int, int> oldPosition;
-    pair<int, int> newPosition;
-};
+
 
 class Move {
 
@@ -26,12 +23,13 @@ protected:
     std::shared_ptr<Piece> movingPiece;
     std::shared_ptr<Piece> pieceCaptured;
     bool isEnPessant;
-    CastleMove castleMove;
+    bool isQueenSideCastle;
+    bool isKingSideCastle;
 
 public:
     Move();
-    Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false);
-    Move(pair<int,int> oldPosition, pair<int,int> newPosition, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false);
+    Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false, bool isQueenSideCastle=false, bool isKingSideCastle = false);
+    Move(pair<int,int> oldPosition, pair<int,int> newPosition, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false, bool isQueenSideCastle=false, bool isKingSideCastle = false);
     pair<int,int> getOldPosition(){return oldPosition;};
     pair<int, int> getNewPosition(){return newPosition;};
 
@@ -40,7 +38,9 @@ public:
     bool getIsEnPessant(){return isEnPessant;};
     std::string toString();
     void setIsEnPessant(bool value);
-    CastleMove getCastleMove();
+    bool getIsQueenSideCastle();
+    bool getIsKingSideCastle();
+
 };
 
 

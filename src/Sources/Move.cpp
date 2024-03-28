@@ -6,16 +6,18 @@
 #include <sstream>
 
 Move::Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece,
-           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant): Move(std::make_pair(oldRow, oldCol), std::make_pair(newRow, newCol), movingPiece, pieceCaptured, isEnPessant){}
+           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant, bool isQueenSideCastle, bool isKingSideCastle): Move(std::make_pair(oldRow, oldCol), std::make_pair(newRow, newCol), movingPiece, pieceCaptured, isEnPessant, isQueenSideCastle, isKingSideCastle){}
 
 Move::Move(pair<int, int> oldPosition, pair<int, int> newPosition, std::shared_ptr<Piece> movingPiece,
-           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant){
+           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant, bool isQueenSideCastle, bool isKingSideCastle){
     this->oldPosition = oldPosition;
     this->newPosition = newPosition;
     this->movingPiece = movingPiece;
     this->pieceCaptured = pieceCaptured;
     this->isEnPessant = isEnPessant;
-    this->castleMove = castleMove;
+    this->isQueenSideCastle = isQueenSideCastle;
+    this->isKingSideCastle = isKingSideCastle;
+
 }
 
 Move::Move(): Move(-1,-1,-1,-1, nullptr) {}
@@ -30,8 +32,12 @@ void Move::setIsEnPessant(bool value) {
     this->isEnPessant = value;
 }
 
-CastleMove Move::getCastleMove() {
-    return castleMove;
+bool Move::getIsQueenSideCastle() {
+    return this->isQueenSideCastle;
+}
+
+bool Move::getIsKingSideCastle() {
+    return this->isKingSideCastle;
 }
 
 

@@ -53,8 +53,7 @@ vector<Move> King::getCastlingMoves(Board *board) {
             };
 
             if(board->getPieceAt(squares[0])== nullptr && board->getPieceAt(squares[1])== nullptr && board->getPieceAt(squares[2])== nullptr && !board->isPositionsInOppMoves(squares,oppColor)){
-                Move castle = Move(row,0,row,2,board->getPieceAt(row,0), nullptr);
-                castleMoves.push_back(Move(getPosition(),squares[2],shared_from_this(), nullptr, false,&castle));
+                castleMoves.push_back(Move(getPosition(), squares[2], shared_from_this(), nullptr, false, false, true));
             }
         }
 

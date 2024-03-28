@@ -82,6 +82,13 @@ void Board::movePiece(Move & move) {
 
     if(move.getIsEnPessant()){
         setPieceAt(move.getOldPosition().first, move.getNewPosition().second, nullptr);
+    }else if(move.getIsKingSideCastle()){
+        shared_ptr<Piece> rook = getPieceAt(move.getOldPosition().first, 0);
+        rook->setHasMoved(true);
+        rook->setNewPosition(move.getOldPosition().first, 2);
+        setPieceAt(move.getOldPosition().first, 2, rook);
+        setPieceAt(move.getOldPosition().first, 0, nullptr);
+
     }
     moveHistory.push_back(move);
 
