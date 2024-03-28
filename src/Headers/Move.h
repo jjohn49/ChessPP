@@ -25,11 +25,12 @@ protected:
     bool isEnPessant;
     bool isQueenSideCastle;
     bool isKingSideCastle;
+    bool isPawnPromotion;
 
 public:
     Move();
-    Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false, bool isQueenSideCastle=false, bool isKingSideCastle = false);
-    Move(pair<int,int> oldPosition, pair<int,int> newPosition, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false, bool isQueenSideCastle=false, bool isKingSideCastle = false);
+    Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false, bool isQueenSideCastle=false, bool isKingSideCastle = false, bool isPawnPromotion = false);
+    Move(pair<int,int> oldPosition, pair<int,int> newPosition, std::shared_ptr<Piece> movingPiece, std::shared_ptr<Piece> pieceCaptured = nullptr, bool isEnPessant = false, bool isQueenSideCastle=false, bool isKingSideCastle = false, bool isPawnPromotion = false);
     pair<int,int> getOldPosition(){return oldPosition;};
     pair<int, int> getNewPosition(){return newPosition;};
 
@@ -40,7 +41,8 @@ public:
     void setIsEnPessant(bool value);
     bool getIsQueenSideCastle();
     bool getIsKingSideCastle();
-
+    bool getIsPawnPromotion();
+    void setIsPawnPromotion(bool value);
 };
 
 

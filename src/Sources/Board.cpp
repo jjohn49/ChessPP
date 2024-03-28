@@ -95,6 +95,24 @@ void Board::movePiece(Move & move) {
         rook->setNewPosition(move.getOldPosition().first, 3);
         setPieceAt(move.getOldPosition().first, 3, rook);
         setPieceAt(move.getOldPosition().first, 0, nullptr);
+    }else if(move.getIsPawnPromotion()){
+        cout << "Pawn Needs to Be promoted: \n"
+            << "Type the number for the corrsponding pieces\n"
+               <<"(1) promote to Queen\n"
+                 <<"(2) promote to Rook\n"
+                 <<"(3) promote to Knight\n"
+                ;
+        int input;
+        cin >> input;
+
+        if(input == 1){
+            //add a queen
+        } else if (input == 2){
+            rooks.push_back(make_shared<Rook>(Rook(move.getNewPosition(), move.getMovingPiece()->getColor())));
+            setPieceAt(move.getNewPosition(), rooks.back());
+        }else if (input == 3){
+            // add knight
+        }
     }
     moveHistory.push_back(move);
 

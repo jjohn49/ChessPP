@@ -13,7 +13,13 @@ vector<Move> Pawn::getMoves(Board *board) {
 
     //Gets the non-take moves, including the double hop at the start
     if(board->getPieceAt(this->row + (1*colorDirection), this->col) == nullptr){
-        pawnMoves.push_back(Move(this->row,this->col, this->row + (1 * colorDirection), this->col, shared_from_this()));
+        Move temp = Move(this->row,this->col, this->row + (1 * colorDirection), this->col, shared_from_this());
+
+        //Only Promoted pawns can go on these rows
+        if(temp.getNewPosition().first == 0 || temp.getNewPosition().first == 7){
+            temp.setIsPawnPromotion(true);
+        }
+        pawnMoves.push_back(temp);
 
         if(!getHasMoved() && board->getPieceAt(this->row + (2*colorDirection), this->col) == nullptr){
             pawnMoves.push_back(Move(this->row,this->col, this->row + (2 * colorDirection), this->col, shared_from_this()));

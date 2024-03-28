@@ -6,10 +6,10 @@
 #include <sstream>
 
 Move::Move(int oldRow, int oldCol, int newRow, int newCol, std::shared_ptr<Piece> movingPiece,
-           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant, bool isQueenSideCastle, bool isKingSideCastle): Move(std::make_pair(oldRow, oldCol), std::make_pair(newRow, newCol), movingPiece, pieceCaptured, isEnPessant, isQueenSideCastle, isKingSideCastle){}
+           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant, bool isQueenSideCastle, bool isKingSideCastle, bool isPawnPromotion): Move(std::make_pair(oldRow, oldCol), std::make_pair(newRow, newCol), movingPiece, pieceCaptured, isEnPessant, isQueenSideCastle, isKingSideCastle, isPawnPromotion){}
 
 Move::Move(pair<int, int> oldPosition, pair<int, int> newPosition, std::shared_ptr<Piece> movingPiece,
-           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant, bool isQueenSideCastle, bool isKingSideCastle){
+           std::shared_ptr<Piece> pieceCaptured, bool isEnPessant, bool isQueenSideCastle, bool isKingSideCastle, bool isPawnPromotion){
     this->oldPosition = oldPosition;
     this->newPosition = newPosition;
     this->movingPiece = movingPiece;
@@ -17,7 +17,7 @@ Move::Move(pair<int, int> oldPosition, pair<int, int> newPosition, std::shared_p
     this->isEnPessant = isEnPessant;
     this->isQueenSideCastle = isQueenSideCastle;
     this->isKingSideCastle = isKingSideCastle;
-
+    this->isPawnPromotion = isPawnPromotion;
 }
 
 Move::Move(): Move(-1,-1,-1,-1, nullptr) {}
@@ -39,5 +39,9 @@ bool Move::getIsQueenSideCastle() {
 bool Move::getIsKingSideCastle() {
     return this->isKingSideCastle;
 }
+
+bool Move::getIsPawnPromotion() {return this->isPawnPromotion;}
+
+void Move::setIsPawnPromotion(bool value) {isPawnPromotion = value;}
 
 
