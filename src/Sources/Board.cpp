@@ -44,15 +44,22 @@ Board::Board() {
             make_shared<Bishop>(Bishop(7,5,Piece::Black)),
     };
 
+    knights = {
+            make_shared<Knight>(Knight(0,1,Piece::White)),
+            make_shared<Knight>(Knight(0,6,Piece::White)),
+            make_shared<Knight>(Knight(7,1,Piece::Black)),
+            make_shared<Knight>(Knight(7,6,Piece::Black)),
+    };
+
     board = {
-            {rooks[0], nullptr, bishops[0], nullptr, kings[0], bishops[1], nullptr, rooks[1]},
+            {rooks[0], knights[0], bishops[0], nullptr, kings[0], bishops[1], knights[1], rooks[1]},
             {pawns[0], pawns[1], pawns[2], pawns[3], pawns[4], pawns[5], pawns[6], pawns[7]},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {pawns[8], pawns[9], pawns[10], pawns[11], pawns[12], pawns[13], pawns[14], pawns[15]},
-            {rooks[2], nullptr, bishops[2], nullptr, kings[1], bishops[3], nullptr, rooks[3]}
+            {rooks[2], knights[2], bishops[2], nullptr, kings[1], bishops[3], knights[3], rooks[3]}
     };
 
     moveHistory = {};
