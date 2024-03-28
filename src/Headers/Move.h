@@ -20,7 +20,6 @@ protected:
     pair<int, int> newPosition;
     std::shared_ptr<Piece> movingPiece;
     std::shared_ptr<Piece> pieceCaptured;
-
     bool isEnPessant;
 
 public:

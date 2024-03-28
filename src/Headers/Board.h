@@ -12,6 +12,7 @@
 #include "Pawn.h"
 #include "King.h"
 #include "Move.h"
+#include "Rook.h"
 
 using namespace std;
 
@@ -21,6 +22,7 @@ protected:
     vector<vector<shared_ptr<Piece>>> board;
     vector<shared_ptr<Pawn>> pawns;
     vector<shared_ptr<King>> kings;
+    vector<shared_ptr<Rook>> rooks;
     vector<Move> moveHistory;
 
 public:

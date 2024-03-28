@@ -30,15 +30,22 @@ Board::Board() {
             make_shared<King>(King(Piece::Black)),
     };
 
+    rooks = {
+            make_shared<Rook>(Rook(0,0,Piece::White)),
+            make_shared<Rook>(Rook(0,7,Piece::White)),
+            make_shared<Rook>(Rook(7,0,Piece::Black)),
+            make_shared<Rook>(Rook(7,7,Piece::Black)),
+    };
+
     board = {
-            {nullptr, nullptr, nullptr, kings[0], nullptr, nullptr, nullptr, nullptr},
+            {rooks[0], nullptr, nullptr, kings[0], nullptr, nullptr, nullptr, rooks[1]},
             {pawns[0], pawns[1], pawns[2], pawns[3], pawns[4], pawns[5], pawns[6], pawns[7]},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
             {pawns[8], pawns[9], pawns[10], pawns[11], pawns[12], pawns[13], pawns[14], pawns[15]},
-            {nullptr, nullptr, nullptr, kings[1], nullptr, nullptr, nullptr, nullptr}
+            {rooks[2], nullptr, nullptr, kings[1], nullptr, nullptr, nullptr, rooks[3]}
     };
 
     moveHistory = {};
