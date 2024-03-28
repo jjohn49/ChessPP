@@ -6,7 +6,7 @@
 #include "../Headers/Board.h"
 
 King::King(): Piece() {}
-King::King(Color color): Piece((color==White)? 0: 7, 3, color, Piece::Type::King) {}
+King::King(Color color): Piece((color==White)? 0: 7, 4, color, Piece::Type::King) {}
 
 vector<Move> King::getMoves(Board *board) {
     vector<Move> moves{};
@@ -48,8 +48,8 @@ vector<Move> King::getCastlingMoves(Board *board) {
 
             vector<pair<int,int>> squares = {
                     make_pair(row,col),
-                    make_pair(row,col -1),
-                    make_pair(row,col - 2)
+                    make_pair(row,col + 1),
+                    make_pair(row,col + 2)
             };
 
             if(board->getPieceAt(squares[0])== nullptr && board->getPieceAt(squares[1])== nullptr && board->getPieceAt(squares[2])== nullptr && !board->isPositionsInOppMoves(squares,oppColor)){
@@ -59,7 +59,15 @@ vector<Move> King::getCastlingMoves(Board *board) {
 
         //Queen Side Rook
         if(!board->getRook(colorOffset + 1)->getHasMoved()){
+            vector<pair<int,int>> squares = {
+                    make_pair(row,col),
+                    make_pair(row,col -1),
+                    make_pair(row,col - 2)
+            };
 
+            if(board->getPieceAt(squares[0])== nullptr && board->getPieceAt(squares[1])== nullptr && board->getPieceAt(squares[2])== nullptr && !board->isPositionsInOppMoves(squares,oppColor)){
+                castleMoves.push_back(Move(getPosition(), squares[2], shared_from_this(), nullptr, false, true, false));
+            }
         }
     }
 
