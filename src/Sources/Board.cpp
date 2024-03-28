@@ -127,7 +127,8 @@ void Board::movePiece(Move & move) {
         cin >> input;
 
         if(input == 1){
-            //add a queen
+            queens.push_back(make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor())));
+            setPieceAt(move.getNewPosition(), queens.back());
         } else if (input == 2){
             rooks.push_back(make_shared<Rook>(Rook(move.getNewPosition(), move.getMovingPiece()->getColor())));
             setPieceAt(move.getNewPosition(), rooks.back());
