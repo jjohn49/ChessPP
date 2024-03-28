@@ -46,6 +46,8 @@ add_executable(ChessPP
         src/Headers/King.h
         src/Sources/Rook.cpp
         src/Headers/Rook.h
+        src/Sources/Bishop.cpp
+        src/Headers/Bishop.h
 
 
 )
