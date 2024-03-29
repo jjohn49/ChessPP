@@ -26,6 +26,7 @@ public:
     bool movePiece(Move & move);
     bool canPieceMoveThere(Move & attemptedMove);
     bool isInCheck(shared_ptr<Piece> pieceDragging, pair<int,int> position);
+    bool isCheckMated();
 };
 
 

@@ -37,6 +37,7 @@ protected:
     static void onCleanup();
     void setPieceDragging(SDL_Event * event);
     int convertYAxisToRow(int row);
+    bool isPositionInMoves(int row, int col, vector<Move> & moves);
 
 public:
     Chess();

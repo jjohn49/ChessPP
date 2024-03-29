@@ -43,11 +43,24 @@ void Chess::drawBoard() {
     SDL_RenderGetViewport(renderer, &darea);
     bool blackStart = true;
 
+    vector<Move> draggingMoves = {};
+
+    if(pieceDragging != nullptr){
+        for(Move & m: pieceDragging->getMoves(&board)){
+            if(!currentPlayer->isInCheck(pieceDragging,m.getNewPosition())){
+                draggingMoves.push_back(m);
+            }
+        }
+    }
+
     for (int row = 0; row < 8; row++) {
         for (int column = 0; column < 8; column++) {
 
+            if(isPositionInMoves(row,column,draggingMoves)){
+                SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0xFF);
+            }
             //Setting the tile square
-            if(blackStart){
+            else if(blackStart){
                 SDL_SetRenderDrawColor(renderer, 1, 55, 32, 0xFF);
             }else {
                 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0xFF);
@@ -100,11 +113,16 @@ bool Chess::onExecute() {
 
     SDL_Event Event;
 
+
+
     while(this->running) {
+        running = !currentPlayer->isCheckMated();
         while(SDL_PollEvent(&Event)) {
             onEvent(&Event);
         }
     }
+    std::string winner = (currentPlayer->getColor()==Piece::White)? "Black": "White";
+    std::cout << winner << " won" << std::endl;
     onCleanup();
 
     return true;
@@ -187,5 +205,16 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
 int Chess::convertYAxisToRow(int value) {
     return 7 - value/100;
 }
+
+bool Chess::isPositionInMoves(int row, int col, vector<Move> &moves) {
+    for(Move & m: moves){
+        if(m.getNewPosition() == make_pair(row,col)){
+            return true;
+        }
+    }
+
+    return false;
+}
+
 
 

@@ -65,6 +65,18 @@ bool Player::isInCheck(shared_ptr<Piece> pieceDragging, pair<int, int> position)
     return ret;
 }
 
+bool Player::isCheckMated() {
+    for(Move & m: board->getAllMovesForColor(getColor())){
+        if(!isInCheck(m.getMovingPiece(), m.getNewPosition())){
+            return false;
+        }
+    }
+
+    return true;
+
+
+}
+
 vector<Move> Player::getAllMoves() {
     return board->getAllMovesForColor(getColor());
 }
