@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Board.h"
 #include "Player.h"
+#include "Bot.h"
 #ifdef __linux__
     #include <SDL2/SDL.h>
 #elif __APPLE__
@@ -24,9 +25,9 @@ protected:
     SDL_Renderer * renderer;
     bool isWhitesTurn;
     std::shared_ptr<Piece> pieceDragging;
-    Player * currentPlayer;
-    Player whitePlayer;
-    Player blackPlayer;
+    shared_ptr<Player> currentPlayer;
+    shared_ptr<Player>  whitePlayer;
+    shared_ptr<Player>  blackPlayer;
 
 
 
@@ -45,6 +46,7 @@ protected:
 
 public:
     Chess();
+    Chess(bool useBot, BotDifficulty level = Easy, Piece::Color botColor = Piece::Black);
     void play();
 };
 

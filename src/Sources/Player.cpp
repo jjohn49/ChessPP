@@ -80,3 +80,15 @@ bool Player::isCheckMated() {
 vector<Move> Player::getAllMoves() {
     return board->getAllMovesForColor(getColor());
 }
+
+bool Player::isBot() {
+    return false;
+}
+
+void Player::move() {
+    std::cout<<"nothing";
+}
+
+Board * Player::getBoard() {
+    return board;
+}

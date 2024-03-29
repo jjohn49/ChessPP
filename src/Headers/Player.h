@@ -20,13 +20,17 @@ public:
     vector<shared_ptr<Piece>> getPiecesCaptured();
     void addPieceCaptured(shared_ptr<Piece> piece);
     Piece::Color getColor();
-
     vector<Move> getAllMoves();
 
-    bool movePiece(Move & move);
+    virtual bool movePiece(Move & move);
     bool canPieceMoveThere(Move & attemptedMove);
     bool isInCheck(shared_ptr<Piece> pieceDragging, pair<int,int> position);
     bool isCheckMated();
+    Board * getBoard();
+    virtual bool isBot();
+
+    //for the bot sub class
+    virtual void move();
 };
 
 

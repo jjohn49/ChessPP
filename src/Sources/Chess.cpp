@@ -25,9 +25,23 @@ Chess::Chess() {
     renderer = nullptr;
     isWhitesTurn = true;
     pieceDragging = nullptr;
-    whitePlayer = Player(Piece::White, &board);
-    blackPlayer = Player(Piece::Black, &board);
-    currentPlayer = &whitePlayer;
+    whitePlayer = make_shared<Player>(Player(Piece::White, &board));
+    blackPlayer = make_shared<Player>(Player(Piece::Black, &board));
+    currentPlayer = whitePlayer;
+}
+
+Chess::Chess(bool useBot, BotDifficulty level, Piece::Color botColor){
+    board = Board();
+    screen = nullptr;
+    running = true;
+    renderer = nullptr;
+    isWhitesTurn = true;
+    pieceDragging = nullptr;
+    if(useBot){
+        whitePlayer = (botColor==Piece::White)? make_shared<Bot>(Bot(level, botColor, &board)): make_shared<Player>(Player(Piece::White, &board));
+        blackPlayer = (botColor==Piece::Black)? make_shared<Bot>(Bot(level, botColor,&board)):make_shared<Player>(Player(Piece::Black, &board));
+    }
+    currentPlayer = whitePlayer;
 }
 
 void Chess::play() {
@@ -133,22 +147,31 @@ void Chess::onCleanup() {
 }
 
 void Chess::onEvent(SDL_Event *event) {
-    drawBoard();
-    if(event->type == SDL_MOUSEBUTTONDOWN) {
-        if(pieceDragging == nullptr){
-            setPieceDragging(event);
-        }else{
-            onPlacePieceDragging(event);
-        }
-
-    }else if(event->type == SDL_MOUSEMOTION){
-        if(pieceDragging != nullptr){
-            onPieceDraggingMoved(event);
-        }
-    }
-    else if(event->type == SDL_QUIT) {
+    if(event->type == SDL_QUIT) {
         running = false;
     }
+
+    drawBoard();
+
+    if(!currentPlayer->isBot()){
+        if(event->type == SDL_MOUSEBUTTONDOWN) {
+            if(pieceDragging == nullptr){
+                setPieceDragging(event);
+            }else{
+                onPlacePieceDragging(event);
+            }
+
+        }else if(event->type == SDL_MOUSEMOTION){
+            if(pieceDragging != nullptr){
+                onPieceDraggingMoved(event);
+            }
+        }
+
+    }else{
+        currentPlayer->move();
+        currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
+    }
+
 }
 
 void Chess::setPieceDragging(SDL_Event *event) {
@@ -196,7 +219,7 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
     Move attemptedMove = Move(pieceDragging->getPosition(), pos, pieceDragging, board.getPieceAt(pos));
 
     if(currentPlayer->movePiece(attemptedMove)){
-        currentPlayer = (currentPlayer->getColor()==Piece::White)? &blackPlayer:&whitePlayer;
+        currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
     }
 
     pieceDragging.reset();
