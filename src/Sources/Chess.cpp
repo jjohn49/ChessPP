@@ -216,5 +216,13 @@ bool Chess::isPositionInMoves(int row, int col, vector<Move> &moves) {
     return false;
 }
 
+void Chess::onWon() {
+
+}
+
+void Chess::onPawnPromotion() {
+
+}
+
 
 

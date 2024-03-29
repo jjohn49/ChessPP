@@ -109,7 +109,6 @@ void Board::movePiece(Move & move) {
         rook->setNewPosition(move.getOldPosition().first, 5);
         setPieceAt(move.getOldPosition().first, 5, rook);
         setPieceAt(move.getOldPosition().first, 7, nullptr);
-
     }else if(move.getIsQueenSideCastle()){
         shared_ptr<Piece> rook = getPieceAt(move.getOldPosition().first, 0);
         rook->setHasMoved(true);

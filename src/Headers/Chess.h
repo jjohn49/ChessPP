@@ -12,6 +12,7 @@
     #include <SDL2/SDL.h>
 #elif __APPLE__
     #include <SDL.h>
+
 #endif
 
 
@@ -28,12 +29,15 @@ protected:
     Player blackPlayer;
 
 
+
     void drawBoard();
     void onPieceDraggingMoved(SDL_Event * event);
     void onPlacePieceDragging(SDL_Event * event);
     bool onInit();
     bool onExecute();
     void onEvent(SDL_Event * event);
+    void onWon();
+    void onPawnPromotion();
     static void onCleanup();
     void setPieceDragging(SDL_Event * event);
     int convertYAxisToRow(int row);
