@@ -52,7 +52,8 @@ add_executable(ChessPP
         src/Headers/Knight.h
         src/Sources/Queen.cpp
         src/Headers/Queen.h
-
+        src/Sources/Player.cpp
+        src/Headers/Player.h
 
 )
 

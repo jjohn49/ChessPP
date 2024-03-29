@@ -25,16 +25,12 @@ Chess::Chess() {
     renderer = nullptr;
     isWhitesTurn = true;
     pieceDragging = nullptr;
-    colorsTurn = Piece::White;
+    whitePlayer = Player(Piece::White, &board);
+    blackPlayer = Player(Piece::Black, &board);
+    currentPlayer = &whitePlayer;
 }
 
 void Chess::play() {
-    //board.print();
-    //Move move = Move(1,1,6,1,board.getPieceAt(1,1).get());
-    //board.movePiece(Move(1,1,6,1,board.getPieceAt(1,1).get()));
-    //std::cout<< move.toString();
-    //std::cout << board.getPieceAt(6,1).get()->toString();
-    //board.print();
     onExecute();
 }
 
@@ -152,9 +148,8 @@ void Chess::setPieceDragging(SDL_Event *event) {
     std::pair<int,int> pos = std::make_pair(convertYAxisToRow(x), floor((y-200)/100));
 
     std::shared_ptr<Piece> pieceChosen = board.getPieceAt(pos);
-    if(pieceChosen != nullptr && pieceChosen->getColor() == colorsTurn){
+    if(pieceChosen != nullptr && pieceChosen->getColor() == currentPlayer->getColor()){
         pieceDragging = pieceChosen;
-        //vector<Move> moves{pieceDragging.get()->getMoves(&board)};
         board.setPieceAt(pos, nullptr);
     }
 }
@@ -191,39 +186,17 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
 
     Move attemptedMove = Move(pieceDragging->getPosition(), pos, pieceDragging, board.getPieceAt(pos));
 
-    if(canPieceMoveThere(attemptedMove)){
-        board.movePiece(attemptedMove);
-        colorsTurn = (colorsTurn==Piece::White)? Piece::Black : Piece::White;
-    }else{
-        board.setPieceAt(pieceDragging->getPosition(), pieceDragging);
+    if(currentPlayer->movePiece(attemptedMove)){
+        currentPlayer = (currentPlayer->getColor()==Piece::White)? &blackPlayer:&whitePlayer;
     }
 
     pieceDragging.reset();
 }
 
-bool Chess::canPieceMoveThere(Move & attemptedMove) {
-    for(Move & m: pieceDragging->getMoves(&board)){
-        //TODO: Add Method to Check if Move Creates Check
 
-        if(m.getNewPosition() == attemptedMove.getNewPosition() && !isInCheck(attemptedMove.getNewPosition())){
-            attemptedMove = m;
-            return true;
-        }
-    }
-    return false;
-}
 
 int Chess::convertYAxisToRow(int value) {
     return 7 - value/100;
 }
 
-bool Chess::isInCheck(std::pair<int,int> position) {
-    bool ret;
-    Board copyBoard = board;
-    copyBoard.setPieceAt(position, pieceDragging);
-    pair<int,int> oldPos = pieceDragging->getPosition();
-    pieceDragging->setNewPosition(position.first, position.second);
-    ret = copyBoard.isColorInCheck(colorsTurn);
-    pieceDragging->setNewPosition(oldPos.first,oldPos.second);
-    return ret;
-}
+

@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "Board.h"
+#include "Player.h"
 #ifdef __linux__
     #include <SDL2/SDL.h>
 #elif __APPLE__
@@ -22,7 +23,10 @@ protected:
     SDL_Renderer * renderer;
     bool isWhitesTurn;
     std::shared_ptr<Piece> pieceDragging;
-    Piece::Color colorsTurn;
+    Player * currentPlayer;
+    Player whitePlayer;
+    Player blackPlayer;
+
 
     void drawBoard();
     void onPieceDraggingMoved(SDL_Event * event);
@@ -32,9 +36,7 @@ protected:
     void onEvent(SDL_Event * event);
     static void onCleanup();
     void setPieceDragging(SDL_Event * event);
-    bool canPieceMoveThere(Move & attemptedMove);
     int convertYAxisToRow(int row);
-    bool isInCheck(std::pair<int,int> position);
 
 public:
     Chess();
