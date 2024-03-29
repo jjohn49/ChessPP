@@ -64,3 +64,7 @@ bool Player::isInCheck(shared_ptr<Piece> pieceDragging, pair<int, int> position)
     pieceDragging->setNewPosition(oldPos.first,oldPos.second);
     return ret;
 }
+
+vector<Move> Player::getAllMoves() {
+    return board->getAllMovesForColor(getColor());
+}

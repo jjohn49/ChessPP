@@ -41,26 +41,16 @@ void Chess::drawBoard() {
 
     /* Get the Size of drawing surface */
     SDL_RenderGetViewport(renderer, &darea);
-    bool blackStart = false;
+    bool blackStart = true;
 
     for (int row = 0; row < 8; row++) {
-        blackStart = !blackStart;
         for (int column = 0; column < 8; column++) {
 
             //Setting the tile square
             if(blackStart){
-                if(column % 2 ==0){
-                    SDL_SetRenderDrawColor(renderer, 1, 55, 32, 0xFF);
-                }else {
-                    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0xFF);
-                }
+                SDL_SetRenderDrawColor(renderer, 1, 55, 32, 0xFF);
             }else {
-                if(column % 2 ==0){
-                    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0xFF);
-                }else {
-                    SDL_SetRenderDrawColor(renderer, 1, 55, 32, 0xFF);
-
-                }
+                SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0xFF);
             }
 
             rect.w = 100;
@@ -76,8 +66,9 @@ void Chess::drawBoard() {
                 SDL_QueryTexture(img, NULL, NULL, &w, &h);
                 SDL_RenderCopy(renderer, img,NULL,&rect);
             }
+            blackStart = !blackStart;
         }
-
+        blackStart = !blackStart;
     }
     SDL_RenderPresent(renderer);
     SDL_UpdateWindowSurface(screen);
@@ -192,8 +183,6 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
 
     pieceDragging.reset();
 }
-
-
 
 int Chess::convertYAxisToRow(int value) {
     return 7 - value/100;

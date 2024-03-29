@@ -21,6 +21,8 @@ public:
     void addPieceCaptured(shared_ptr<Piece> piece);
     Piece::Color getColor();
 
+    vector<Move> getAllMoves();
+
     bool movePiece(Move & move);
     bool canPieceMoveThere(Move & attemptedMove);
     bool isInCheck(shared_ptr<Piece> pieceDragging, pair<int,int> position);
