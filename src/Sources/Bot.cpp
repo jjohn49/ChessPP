@@ -32,10 +32,15 @@ void Bot::move() {
 }
 
 Move Bot::getRandomMove() {
-    vector<Move> allMoves = this->getAllMoves();
+    vector<Move> moves{};
+    for(Move & m: this->getAllMoves()){
+        if(!isInCheck(m.getMovingPiece(), m.getNewPosition())){
+           moves.push_back(m);
+        }
+    }
 
     srand(time(0));
-    return allMoves[rand() % allMoves.size()];
+    return moves[rand() % moves.size()];
 }
 
 Move Bot::getEasyMove() {

@@ -131,7 +131,7 @@ bool Chess::onExecute() {
 
     while(this->running) {
         running = !currentPlayer->isCheckMated();
-        while(SDL_PollEvent(&Event)) {
+        while(running && SDL_PollEvent(&Event)) {
             onEvent(&Event);
         }
     }
@@ -166,11 +166,12 @@ void Chess::onEvent(SDL_Event *event) {
                 onPieceDraggingMoved(event);
             }
         }
-
     }else{
         currentPlayer->move();
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
+        std::cout<<"Hello";
     }
+
 
 }
 

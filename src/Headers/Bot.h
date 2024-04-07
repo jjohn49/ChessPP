@@ -27,6 +27,7 @@ public:
     Move getRandomMove();
     Move getEasyMove();
 
+
 };
 
 

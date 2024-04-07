@@ -73,8 +73,6 @@ bool Player::isCheckMated() {
     }
 
     return true;
-
-
 }
 
 vector<Move> Player::getAllMoves() {
