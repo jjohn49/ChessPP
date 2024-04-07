@@ -9,6 +9,7 @@
 #include "Board.h"
 #include "Player.h"
 #include "Bot.h"
+#include <unordered_map>
 #ifdef __linux__
     #include <SDL2/SDL.h>
 #elif __APPLE__
@@ -28,6 +29,7 @@ protected:
     shared_ptr<Player> currentPlayer;
     shared_ptr<Player>  whitePlayer;
     shared_ptr<Player>  blackPlayer;
+    unordered_map<Piece::Type, unordered_map<Piece::Color,SDL_Texture *>> pieceTextures;
 
 
 

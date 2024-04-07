@@ -28,6 +28,9 @@ Chess::Chess() {
     whitePlayer = make_shared<Player>(Player(Piece::White, &board));
     blackPlayer = make_shared<Player>(Player(Piece::Black, &board));
     currentPlayer = whitePlayer;
+
+
+
 }
 
 Chess::Chess(bool useBot, BotDifficulty level, Piece::Color botColor){
@@ -89,7 +92,7 @@ void Chess::drawBoard() {
 
             std::shared_ptr piece = board.getPieceAt(row,column);
             if(piece != nullptr){
-                img = IMG_LoadTexture(renderer, piece->getImagePath().c_str());
+                img = pieceTextures[piece->getType()][piece->getColor()];
                 SDL_QueryTexture(img, NULL, NULL, &w, &h);
                 SDL_RenderCopy(renderer, img,NULL,&rect);
             }
@@ -117,6 +120,26 @@ bool Chess::onInit() {
     if (renderer == nullptr){
         return false;
     }
+
+    //preload all textures
+    pieceTextures[Piece::Pawn] = {{Piece::White,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/w_pawn_2x_ns.png").c_str())},
+                                  {Piece::Black,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/b_pawn_2x_ns.png").c_str())}};
+
+    pieceTextures[Piece::Bishop] = {{Piece::White,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/w_bishop_2x_ns.png").c_str())},
+                                    {Piece::Black,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/b_bishop_2x_ns.png").c_str())}};
+
+    pieceTextures[Piece::Knight] = {{Piece::White,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/w_knight_2x_ns.png").c_str())},
+                                    {Piece::Black,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/b_knight_2x_ns.png").c_str())}};
+
+    pieceTextures[Piece::Rook] = {{Piece::White,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/w_rook_2x_ns.png").c_str())},
+                                  {Piece::Black,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/b_rook_2x_ns.png").c_str())}};
+
+    pieceTextures[Piece::Queen] = {{Piece::White,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/w_queen_2x_ns.png").c_str())},
+                                   {Piece::Black,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/b_queen_2x_ns.png").c_str())}};
+
+    pieceTextures[Piece::King] = {{Piece::White,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/w_king_2x_ns.png").c_str())},
+                                  {Piece::Black,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/b_king_2x_ns.png").c_str())}};
+
     return true;
 }
 
@@ -126,8 +149,6 @@ bool Chess::onExecute() {
     }
 
     SDL_Event Event;
-
-
 
     while(this->running) {
         running = !currentPlayer->isCheckMated();
@@ -197,7 +218,7 @@ void Chess::onPieceDraggingMoved(SDL_Event * event) {
 
     int x, y;
     SDL_GetMouseState(&x,&y);
-    img = IMG_LoadTexture(renderer, pieceDragging->getImagePath().c_str());
+    img = pieceTextures[pieceDragging->getType()][pieceDragging->getColor()];
     SDL_QueryTexture(img, NULL, NULL, &w, &h);
 
     rect.w = darea.w/8;
