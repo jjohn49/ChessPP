@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <optional>
+#include <memory>
 
 using namespace std;
 
@@ -18,8 +19,8 @@ class Move {
 protected:
     pair<int, int> oldPosition;
     pair<int, int> newPosition;
-    std::shared_ptr<Piece> movingPiece;
-    std::shared_ptr<Piece> pieceCaptured;
+    shared_ptr<Piece> movingPiece;
+    shared_ptr<Piece> pieceCaptured;
     bool isEnPessant;
     bool isQueenSideCastle;
     bool isKingSideCastle;

@@ -12,6 +12,7 @@
 #include <unordered_map>
 #ifdef __linux__
     #include <SDL2/SDL.h>
+    #include <SDL2/SDL_ttf.h>
 #elif __APPLE__
     #include <SDL.h>
 
@@ -24,6 +25,7 @@ protected:
     bool running;
     SDL_Window * screen;
     SDL_Renderer * renderer;
+    TTF_Font * font;
     bool isWhitesTurn;
     std::shared_ptr<Piece> pieceDragging;
     shared_ptr<Player> currentPlayer;
@@ -41,7 +43,7 @@ protected:
     void onEvent(SDL_Event * event);
     void onWon();
     void onPawnPromotion();
-    static void onCleanup();
+    void onCleanup();
     void setPieceDragging(SDL_Event * event);
     int convertYAxisToRow(int row);
     bool isPositionInMoves(int row, int col, vector<Move> & moves);

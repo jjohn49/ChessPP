@@ -9,6 +9,8 @@
 //OS Specific Imports
 #ifdef __linux__
     #include <SDL2/SDL_image.h>
+    #include <SDL2/SDL_ttf.h>
+    #include <unistd.h>
 #elif __APPLE__
     #include <SDL_image.h>
 #endif
@@ -109,6 +111,10 @@ bool Chess::onInit() {
         return false;
     }
 
+    if(TTF_Init()<0){
+        return false;
+    }
+
     screen = SDL_CreateWindow("ChessPP", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
 
     if(screen == nullptr){
@@ -120,6 +126,10 @@ bool Chess::onInit() {
     if (renderer == nullptr){
         return false;
     }
+
+    font = TTF_OpenFont("../assets/fonts/arial.ttf",25);
+
+
 
     //preload all textures
     pieceTextures[Piece::Pawn] = {{Piece::White,IMG_LoadTexture(renderer, string("../assets/PNGs/No shadow/2x/w_pawn_2x_ns.png").c_str())},
@@ -156,14 +166,27 @@ bool Chess::onExecute() {
             onEvent(&Event);
         }
     }
-    std::string winner = (currentPlayer->getColor()==Piece::White)? "Black": "White";
-    std::cout << winner << " won" << std::endl;
+
+    char * winner = const_cast<char *>((currentPlayer->getColor() == Piece::White) ? "Black Won" : "White Won");
+    SDL_Color color{255,255,255};
+    SDL_Surface * surface = TTF_RenderText_Solid(font, winner, color);
+    SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_RenderCopy(renderer,texture,NULL,NULL);
+    SDL_RenderPresent(renderer);
+
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
+
+    sleep(10);
+
     onCleanup();
 
     return true;
 }
 
 void Chess::onCleanup() {
+    TTF_CloseFont(this->font);
+    TTF_Quit();
     SDL_Quit();
 }
 

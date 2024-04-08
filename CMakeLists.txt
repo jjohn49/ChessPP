@@ -30,6 +30,15 @@ set(BUILD_SHARED_LIBS FALSE)
 
 FetchContent_MakeAvailable(SDL2_image)
 
+FetchContent_Declare(
+        SDL2_ttf
+        GIT_REPOSITORY https://github.com/libsdl-org/SDL_ttf.git
+        GIT_TAG release-2.22.0
+        GIT_SHALLOW TRUE
+        GIT_PROGRESS TRUE
+)
+FetchContent_MakeAvailable(SDL2_ttf)
+
 add_executable(ChessPP
         main.cpp
         src/Sources/Piece.cpp
@@ -58,7 +67,7 @@ add_executable(ChessPP
 
 )
 
-target_link_libraries(ChessPP SDL2::SDL2main SDL2::SDL2-static SDL2_image::SDL2_image-static)
+target_link_libraries(ChessPP SDL2::SDL2main SDL2::SDL2-static SDL2_image::SDL2_image-static SDL2_ttf::SDL2_ttf-static)
 
 
 
