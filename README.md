@@ -11,6 +11,12 @@ Chess created using C++ and the SDL2 Game Library!
 3. In the Root Directory run `cmake .`
 4. Enjoy!
 
+# Bots and Other Tips
+
+* In order to run bots, simply uncomment the other initializer in main.cpp.
+* To change the difficulty from Random to Easy, change the Bot Difficulty Enum from Random to Easy in the Chess Constructor.
+* To change the time duration, manually edit the timeLeft float variable, located in the constructor opf Player in Player.cpp.
+
 ## ChessPP follows all the rules of Chess
 Examples:
 
