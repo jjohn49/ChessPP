@@ -7,6 +7,7 @@
 
 
 
+
 Piece::Piece(int row, int col, Piece::Color color, Piece::Type type) {
     this->row = row;
     this->col = col;
@@ -23,7 +24,30 @@ void Piece::setNewPosition(int row, int col) {
 }
 
 std::string Piece::toString() {
-    std::ostringstream strout;
-    strout << color << type  << row << col;
-    return strout.str();
+    string ret;
+    switch(this->getType()){
+        case NoType:
+            ret = "NoType";
+            break;
+        case Pawn:
+            ret = "Pawn";
+            break;
+        case Bishop:
+            ret = "Bishop";
+            break;
+        case Knight:
+            ret = "Knight";
+            break;
+        case Rook:
+            ret = "Rook";
+            break;
+        case Queen:
+            ret = "Queen";
+            break;
+        case King:
+            ret = "King";
+            break;
+    }
+
+    return ret;
 };

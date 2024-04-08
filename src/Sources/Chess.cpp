@@ -12,7 +12,6 @@
     #include <SDL2/SDL_image.h>
 #elif __APPLE__
     #include <SDL_image.h>
-
 #endif
 
 

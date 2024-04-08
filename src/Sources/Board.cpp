@@ -128,14 +128,18 @@ void Board::movePiece(Move & move) {
         if(input == 1){
             queens.push_back(make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor())));
             setPieceAt(move.getNewPosition(), queens.back());
+            move.setPromotedToPiece(queens.back());
         } else if (input == 2){
             rooks.push_back(make_shared<Rook>(Rook(move.getNewPosition(), move.getMovingPiece()->getColor())));
             setPieceAt(move.getNewPosition(), rooks.back());
+            move.setPromotedToPiece(rooks.back());
         }else if (input == 3){
             knights.push_back(make_shared<Knight>(Knight(move.getNewPosition(), move.getMovingPiece()->getColor())));
             setPieceAt(move.getNewPosition(), knights.back());
+            move.setPromotedToPiece(knights.back());
         }
     }
+    cout << move.toString() <<endl;
     moveHistory.push_back(move);
 
 }
