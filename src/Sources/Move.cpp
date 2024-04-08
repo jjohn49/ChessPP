@@ -29,9 +29,7 @@ std::string Move::toString(){
 
     if(this->getMovingPiece()->getType() == Piece::Knight){
         ret+= 'N';
-    }
-
-    if(!this->getMovingPiece()->getType() == Piece::Pawn){
+    }else if(this->getMovingPiece()->getType() != Piece::Pawn){
         ret += this->getMovingPiece()->toString()[0];
     }
 

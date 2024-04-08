@@ -115,31 +115,9 @@ void Board::movePiece(Move & move) {
         rook->setNewPosition(move.getOldPosition().first, 3);
         setPieceAt(move.getOldPosition().first, 3, rook);
         setPieceAt(move.getOldPosition().first, 0, nullptr);
-    }else if(move.getIsPawnPromotion()){
-        cout << "Pawn Needs to Be promoted: \n"
-            << "Type the number for the corrsponding pieces\n"
-               <<"(1) promote to Queen\n"
-                 <<"(2) promote to Rook\n"
-                 <<"(3) promote to Knight\n"
-                ;
-        int input;
-        cin >> input;
-
-        if(input == 1){
-            queens.push_back(make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor())));
-            setPieceAt(move.getNewPosition(), queens.back());
-            move.setPromotedToPiece(queens.back());
-        } else if (input == 2){
-            rooks.push_back(make_shared<Rook>(Rook(move.getNewPosition(), move.getMovingPiece()->getColor())));
-            setPieceAt(move.getNewPosition(), rooks.back());
-            move.setPromotedToPiece(rooks.back());
-        }else if (input == 3){
-            knights.push_back(make_shared<Knight>(Knight(move.getNewPosition(), move.getMovingPiece()->getColor())));
-            setPieceAt(move.getNewPosition(), knights.back());
-            move.setPromotedToPiece(knights.back());
-        }
     }
-    cout << move.toString() <<endl;
+
+
     moveHistory.push_back(move);
 
 }
@@ -219,6 +197,22 @@ bool Board::isPositionsInOppMoves(vector<pair<int, int>> positions, Piece::Color
 
 bool Board::isPositionInBounds(pair<int, int> position) {
     return position.first >= 0 && position.first <= 7 && position.second >= 0 && position.second <=7;
+}
+
+shared_ptr<Piece> Board::addPiece(Piece::Type type, Piece::Color color, pair<int,int> position) {
+    if(type==Piece::Queen){
+        shared_ptr<Queen> queen = make_shared<Queen>(position, color);
+        queens.push_back(queen);
+        return queen;
+    }else if(type==Piece::Knight){
+        shared_ptr<Knight> knight = make_shared<Knight>(position,color);
+        knights.push_back(knight);
+        return knight;
+    }else{
+        shared_ptr<Rook> rook = make_shared<Rook>(position,color);
+        rooks.push_back(rook);
+        return rook;
+    }
 }
 
 

@@ -32,6 +32,7 @@ protected:
     shared_ptr<Player>  whitePlayer;
     shared_ptr<Player>  blackPlayer;
     unordered_map<Piece::Type, unordered_map<Piece::Color,SDL_Texture *>> pieceTextures;
+    bool showPawnPromotionScreen;
 
 
 
@@ -41,8 +42,9 @@ protected:
     bool onInit();
     bool onExecute();
     void onEvent(SDL_Event * event);
-    void onWon();
-    void onPawnPromotion();
+    void onPawnPromotion(Move & move);
+    void onPawnPromotionEvent(SDL_Event * event, int & input);
+    void onCheckMate();
     void onCleanup();
     void setPieceDragging(SDL_Event * event);
     int convertYAxisToRow(int row);
@@ -52,6 +54,8 @@ public:
     Chess();
     Chess(bool useBot, BotDifficulty level = Easy, Piece::Color botColor = Piece::Black);
     void play();
+
+
 };
 
 

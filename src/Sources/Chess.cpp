@@ -29,6 +29,7 @@ Chess::Chess() {
     whitePlayer = make_shared<Player>(Player(Piece::White, &board));
     blackPlayer = make_shared<Player>(Player(Piece::Black, &board));
     currentPlayer = whitePlayer;
+    showPawnPromotionScreen = false;
 
 
 
@@ -160,15 +161,24 @@ bool Chess::onExecute() {
     SDL_Event Event;
 
     while(this->running) {
-        running = !currentPlayer->isCheckMated();
-        while(running && SDL_PollEvent(&Event)) {
+        while(SDL_PollEvent(&Event)) {
             onEvent(&Event);
         }
     }
 
+    if(currentPlayer->isCheckMated()){
+        onCheckMate();
+    }
+
+    onCleanup();
+
+    return true;
+}
+
+void Chess::onCheckMate() {
+
     SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
     SDL_RenderClear( renderer );
-
     char * winner = const_cast<char *>((currentPlayer->getColor() == Piece::White) ? "Black Won" : "White Won");
     SDL_Color color{0,0,0};
     SDL_Surface * surface = TTF_RenderText_Solid(font, winner, color);
@@ -179,7 +189,7 @@ bool Chess::onExecute() {
     dest.y = 350;
     dest.w = surface->w;
     dest.h = surface->h;
-    SDL_RenderCopy(renderer,texture,NULL,&dest);
+    SDL_RenderCopy(renderer, texture, NULL, &dest);
     SDL_RenderPresent(renderer);
     SDL_UpdateWindowSurface(screen);
 
@@ -187,20 +197,18 @@ bool Chess::onExecute() {
     sleep(10);
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(surface);
-
-    onCleanup();
-
-    return true;
 }
 
 void Chess::onCleanup() {
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(screen);
     TTF_CloseFont(this->font);
     TTF_Quit();
     SDL_Quit();
 }
 
 void Chess::onEvent(SDL_Event *event) {
-    if(event->type == SDL_QUIT) {
+    if(event->type == SDL_QUIT || currentPlayer->isCheckMated()) {
         running = false;
     }
 
@@ -224,8 +232,6 @@ void Chess::onEvent(SDL_Event *event) {
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
         std::cout<<"Hello";
     }
-
-
 }
 
 void Chess::setPieceDragging(SDL_Event *event) {
@@ -274,6 +280,11 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
 
     if(currentPlayer->movePiece(attemptedMove)){
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
+
+        if(attemptedMove.getIsPawnPromotion()){
+            onPawnPromotion(attemptedMove);
+        }
+
     }
 
     pieceDragging.reset();
@@ -293,12 +304,78 @@ bool Chess::isPositionInMoves(int row, int col, vector<Move> &moves) {
     return false;
 }
 
-void Chess::onWon() {
+void Chess::onPawnPromotion(Move & move) {
+
+    char * arr[5] = {
+            const_cast<char *>("Pawn Needs to Be promoted:"),
+            const_cast<char *>("Type the number for the corrsponding pieces"),
+            const_cast<char *>("(1) promote to Queen"),
+            const_cast<char *>("(2) promote to Rook"),
+            const_cast<char *>("(3) promote to Knight")
+    };
+
+    SDL_Rect dest;
+    dest.x = 300;
+    dest.y = 150;
+    dest.w = 600;
+    dest.h = 500;
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xFF);
+    SDL_RenderFillRect(renderer,&dest);
+
+    dest.h = 90;
+    dest.w = 550;
+    for(auto x: arr){
+        SDL_Color color{255,255,255};
+        SDL_Surface * surface = TTF_RenderText_Solid(font, x, color);
+        SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
+        SDL_RenderCopy(renderer, texture, NULL, &dest);
+        SDL_DestroyTexture(texture);
+        SDL_FreeSurface(surface);
+
+        dest.y+=90;
+    }
+
+    SDL_RenderPresent(renderer);
+    SDL_UpdateWindowSurface(screen);
+
+    int input = 0;
+    SDL_Event Event;
+
+    while(input == 0){
+        while(SDL_PollEvent(&Event)){
+            onPawnPromotionEvent(&Event,input);
+        }
+    }
+
+    Piece::Color pawnColor = move.getMovingPiece()->getColor();
+
+    if(input == 1){
+        shared_ptr<Piece> newQueen = board.addPiece(Piece::Queen,pawnColor,move.getNewPosition());
+        board.setPieceAt(move.getNewPosition(), newQueen);
+        move.setPromotedToPiece(newQueen);
+    } else if (input == 2){
+        shared_ptr<Piece> newRook = board.addPiece(Piece::Rook,pawnColor,move.getNewPosition());
+        board.setPieceAt(move.getNewPosition(), newRook);
+        move.setPromotedToPiece(newRook);
+    }else if (input == 3){
+        shared_ptr<Piece> newKnight = board.addPiece(Piece::Knight,pawnColor,move.getNewPosition());
+        board.setPieceAt(move.getNewPosition(), newKnight);
+        move.setPromotedToPiece(newKnight);
+    }
 
 }
 
-void Chess::onPawnPromotion() {
-
+void Chess::onPawnPromotionEvent(SDL_Event *event, int & input) {
+    if(!currentPlayer->isBot()){
+        if(event->type == SDL_KEYDOWN){
+            int temp = event->key.keysym.sym - 48;
+            if(temp > 0 && temp <=3){
+                input = temp;
+            }
+        }
+    }else{
+        input = (rand() % 3) + 1;
+    }
 }
 
 

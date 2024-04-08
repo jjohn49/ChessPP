@@ -55,6 +55,7 @@ public:
     bool isPositionsInOppMoves(vector<pair<int,int>> positions, Piece::Color oppColor);
     void print();
     bool isPositionInBounds(pair<int,int> position);
+    shared_ptr<Piece> addPiece(Piece::Type type, Piece::Color color, pair<int,int> position);
 };
 
 
