@@ -16,7 +16,7 @@ Player::Player(Piece::Color color, Board * board) {
     this->color = color;
     this->board = board;
     this->piecesCaptured = {};
-    this->timeLeft = 10.00;
+    this->timeLeft = 600.00;
 }
 
 void Player::addPieceCaptured(shared_ptr<Piece> piece) {
