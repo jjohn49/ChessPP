@@ -14,6 +14,7 @@ class Player {
     Piece::Color color;
     Board * board;
     vector<shared_ptr<Piece>> piecesCaptured;
+    float timeLeft;
 public:
     Player();
     Player(Piece::Color color, Board * board);
@@ -28,6 +29,9 @@ public:
     bool isCheckMated();
     Board * getBoard();
     virtual bool isBot();
+
+    int getTime();
+    void setTime(float newTime);
 
     //for the bot sub class
     virtual void move();

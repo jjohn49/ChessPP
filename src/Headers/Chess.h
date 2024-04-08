@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Bot.h"
 #include <unordered_map>
+#include <chrono>
 #ifdef __linux__
     #include <SDL2/SDL.h>
     #include <SDL2/SDL_ttf.h>
@@ -26,17 +27,19 @@ protected:
     SDL_Window * screen;
     SDL_Renderer * renderer;
     TTF_Font * font;
-    bool isWhitesTurn;
     std::shared_ptr<Piece> pieceDragging;
     shared_ptr<Player> currentPlayer;
     shared_ptr<Player>  whitePlayer;
     shared_ptr<Player>  blackPlayer;
     unordered_map<Piece::Type, unordered_map<Piece::Color,SDL_Texture *>> pieceTextures;
-    bool showPawnPromotionScreen;
+    chrono::steady_clock::time_point currentTime;
+
 
 
 
     void drawBoard();
+    void drawTime();
+    void updateTime();
     void onPieceDraggingMoved(SDL_Event * event);
     void onPlacePieceDragging(SDL_Event * event);
     bool onInit();

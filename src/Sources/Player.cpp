@@ -8,6 +8,7 @@ Player::Player() {
     this->color = Piece::NoColor;
     this->board = nullptr;
     this->piecesCaptured = {};
+    this->timeLeft = 600.00;
 }
 
 
@@ -15,6 +16,7 @@ Player::Player(Piece::Color color, Board * board) {
     this->color = color;
     this->board = board;
     this->piecesCaptured = {};
+    this->timeLeft = 10.00;
 }
 
 void Player::addPieceCaptured(shared_ptr<Piece> piece) {
@@ -89,4 +91,12 @@ void Player::move() {
 
 Board * Player::getBoard() {
     return board;
+}
+
+int Player::getTime() {
+    return timeLeft;
+}
+
+void Player::setTime(float newTime) {
+    this->timeLeft = newTime;
 }

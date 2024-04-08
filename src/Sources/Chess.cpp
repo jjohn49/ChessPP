@@ -24,15 +24,11 @@ Chess::Chess() {
     screen = nullptr;
     running = true;
     renderer = nullptr;
-    isWhitesTurn = true;
     pieceDragging = nullptr;
     whitePlayer = make_shared<Player>(Player(Piece::White, &board));
     blackPlayer = make_shared<Player>(Player(Piece::Black, &board));
     currentPlayer = whitePlayer;
-    showPawnPromotionScreen = false;
-
-
-
+    this->currentTime = chrono::steady_clock::now();
 }
 
 Chess::Chess(bool useBot, BotDifficulty level, Piece::Color botColor){
@@ -40,17 +36,62 @@ Chess::Chess(bool useBot, BotDifficulty level, Piece::Color botColor){
     screen = nullptr;
     running = true;
     renderer = nullptr;
-    isWhitesTurn = true;
     pieceDragging = nullptr;
     if(useBot){
         whitePlayer = (botColor==Piece::White)? make_shared<Bot>(Bot(level, botColor, &board)): make_shared<Player>(Player(Piece::White, &board));
         blackPlayer = (botColor==Piece::Black)? make_shared<Bot>(Bot(level, botColor,&board)):make_shared<Player>(Player(Piece::Black, &board));
     }
     currentPlayer = whitePlayer;
+
 }
 
 void Chess::play() {
     onExecute();
+}
+
+void Chess::drawTime() {
+    SDL_Rect dest;
+    dest.x = 0;
+    dest.y = 350;
+    dest.w = 200;
+    dest.h = 200;
+
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xFF);
+    SDL_RenderFillRect(renderer,&dest);
+
+    dest.h = 100;
+    dest.w = 200;
+
+    SDL_Color color{255,255,255};
+    SDL_Surface * surface = TTF_RenderText_Solid(font, to_string(whitePlayer->getTime()).c_str(), color);
+    SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_RenderCopy(renderer, texture, NULL, &dest);
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
+
+
+    dest.x = 1000;
+    dest.y = 350;
+    dest.w = 200;
+    dest.h = 200;
+
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xFF);
+    SDL_RenderFillRect(renderer,&dest);
+
+    dest.h = 100;
+    dest.w = 200;
+
+    surface = TTF_RenderText_Solid(font, to_string(blackPlayer->getTime()).c_str(), color);
+    texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_RenderCopy(renderer, texture, NULL, &dest);
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
+
+    dest.y+=90;
+
+
+    SDL_RenderPresent(renderer);
+    SDL_UpdateWindowSurface(screen);
 }
 
 void Chess::drawBoard() {
@@ -61,6 +102,8 @@ void Chess::drawBoard() {
     /* Get the Size of drawing surface */
     SDL_RenderGetViewport(renderer, &darea);
     bool blackStart = true;
+
+    this->drawTime();
 
     vector<Move> draggingMoves = {};
 
@@ -166,7 +209,9 @@ bool Chess::onExecute() {
         }
     }
 
-    if(currentPlayer->isCheckMated()){
+    updateTime();
+
+    if(currentPlayer->isCheckMated()|| currentPlayer->getTime()  <= 0){
         onCheckMate();
     }
 
@@ -208,7 +253,8 @@ void Chess::onCleanup() {
 }
 
 void Chess::onEvent(SDL_Event *event) {
-    if(event->type == SDL_QUIT || currentPlayer->isCheckMated()) {
+
+    if(event->type == SDL_QUIT || currentPlayer->isCheckMated() || currentPlayer->getTime() - chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - currentTime).count() <= 0) {
         running = false;
     }
 
@@ -279,11 +325,12 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
     Move attemptedMove = Move(pieceDragging->getPosition(), pos, pieceDragging, board.getPieceAt(pos));
 
     if(currentPlayer->movePiece(attemptedMove)){
-        currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
-
         if(attemptedMove.getIsPawnPromotion()){
             onPawnPromotion(attemptedMove);
         }
+
+        updateTime();
+        currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
 
     }
 
@@ -376,6 +423,13 @@ void Chess::onPawnPromotionEvent(SDL_Event *event, int & input) {
     }else{
         input = (rand() % 3) + 1;
     }
+}
+
+void Chess::updateTime() {
+    chrono::steady_clock::time_point end = chrono::steady_clock::now();
+    float seconds = chrono::duration_cast<chrono::milliseconds>(end - currentTime).count() / 1000.00;
+    currentPlayer->setTime(currentPlayer->getTime() - seconds);
+    currentTime = chrono::steady_clock::now();
 }
 
 
