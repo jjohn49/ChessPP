@@ -5,14 +5,14 @@
 #include "../Headers/Chess.h"
 #include <cmath>
 #include <algorithm>
+#include <unistd.h>
 
 //OS Specific Imports
 #ifdef __linux__
     #include <SDL2/SDL_image.h>
-    #include <SDL2/SDL_ttf.h>
-    #include <unistd.h>
 #elif __APPLE__
     #include <SDL_image.h>
+
 #endif
 
 
@@ -167,17 +167,27 @@ bool Chess::onExecute() {
         }
     }
 
+    SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
+    SDL_RenderClear( renderer );
+
     char * winner = const_cast<char *>((currentPlayer->getColor() == Piece::White) ? "Black Won" : "White Won");
-    SDL_Color color{255,255,255};
+    SDL_Color color{0,0,0};
     SDL_Surface * surface = TTF_RenderText_Solid(font, winner, color);
     SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_RenderCopy(renderer,texture,NULL,NULL);
-    SDL_RenderPresent(renderer);
 
-    SDL_DestroyTexture(texture);
-    SDL_FreeSurface(surface);
+    SDL_Rect dest;
+    dest.x = 550;
+    dest.y = 350;
+    dest.w = surface->w;
+    dest.h = surface->h;
+    SDL_RenderCopy(renderer,texture,NULL,&dest);
+    SDL_RenderPresent(renderer);
+    SDL_UpdateWindowSurface(screen);
+
 
     sleep(10);
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
 
     onCleanup();
 

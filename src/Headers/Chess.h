@@ -15,7 +15,7 @@
     #include <SDL2/SDL_ttf.h>
 #elif __APPLE__
     #include <SDL.h>
-
+    #include <SDL_ttf.h>
 #endif
 
 
