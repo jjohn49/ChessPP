@@ -42,7 +42,7 @@ Chess::Chess(bool useBot, BotDifficulty level, Piece::Color botColor){
         blackPlayer = (botColor==Piece::Black)? make_shared<Bot>(Bot(level, botColor,&board)):make_shared<Player>(Player(Piece::Black, &board));
     }
     currentPlayer = whitePlayer;
-
+    currentTime = chrono::steady_clock::now();
 }
 
 void Chess::play() {
@@ -209,7 +209,7 @@ bool Chess::onExecute() {
         }
     }
 
-    updateTime();
+    //updateTime();
 
     if(currentPlayer->isCheckMated()|| currentPlayer->getTime()  <= 0){
         onCheckMate();
@@ -256,6 +256,7 @@ void Chess::onEvent(SDL_Event *event) {
 
     if(event->type == SDL_QUIT || currentPlayer->isCheckMated() || currentPlayer->getTime() - chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - currentTime).count() <= 0) {
         running = false;
+        return;
     }
 
     drawBoard();
@@ -274,7 +275,13 @@ void Chess::onEvent(SDL_Event *event) {
             }
         }
     }else{
-        currentPlayer->move();
+        //Some reason with Bots is Checkmated does not work all the time
+        if (!currentPlayer->move()){
+            running = false;
+            currentPlayer->setTime(-100);
+            return;
+        }
+        updateTime();
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
         std::cout<<"Hello";
     }

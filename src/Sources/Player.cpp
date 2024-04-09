@@ -85,8 +85,9 @@ bool Player::isBot() {
     return false;
 }
 
-void Player::move() {
-    std::cout<<"nothing";
+bool Player::move() {
+    //std::cout<<"nothing";
+    return false;
 }
 
 Board * Player::getBoard() {

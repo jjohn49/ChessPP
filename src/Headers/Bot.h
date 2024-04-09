@@ -22,10 +22,10 @@ public:
     Bot();
     Bot(BotDifficulty level, Piece::Color color, Board * board);
     bool isBot() override;
-
-    void move() override;
+    bool move() override;
     Move getRandomMove();
     Move getEasyMove();
+    Move getIntermediateMove();
 
 
 };

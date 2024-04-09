@@ -34,7 +34,7 @@ public:
     void setTime(float newTime);
 
     //for the bot sub class
-    virtual void move();
+    virtual bool move();
 };
 
 
