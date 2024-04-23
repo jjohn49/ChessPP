@@ -27,7 +27,7 @@ Chess::Chess() {
     pieceDragging = nullptr;
     whitePlayer = make_shared<Player>(Player(Piece::White, &board));
     blackPlayer = make_shared<Player>(Player(Piece::Black, &board));
-    currentPlayer = whitePlayer;
+    this->currentPlayer = whitePlayer;
     this->currentTime = chrono::steady_clock::now();
 }
 
@@ -283,7 +283,6 @@ void Chess::onEvent(SDL_Event *event) {
         }
         updateTime();
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
-        std::cout<<"Hello";
     }
 }
 

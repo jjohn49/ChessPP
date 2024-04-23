@@ -5,6 +5,8 @@
 #include "../Headers/Board.h"
 #include "../Headers/Pawn.h"
 
+#include <unordered_map>
+
 Board::Board() {
     pawns = {
             make_shared<Pawn>(Pawn(1,0,Piece::White)),
@@ -214,6 +216,35 @@ shared_ptr<Piece> Board::addPiece(Piece::Type type, Piece::Color color, pair<int
         return rook;
     }
 }
+
+int Board::evaluateMove(Move move) {
+
+    int totalEvaluation = 0;
+
+    Piece::Color oppColor = (move.getMovingPiece()->getColor()==Piece::White)? Piece::Black : Piece::White;
+
+    unordered_map<Piece::Type, int> pointsPerPiece = {
+            {Piece::Pawn,10},
+            {Piece::Knight,30},
+            {Piece::Bishop,30},
+            {Piece::Rook,50},
+            {Piece::Queen,90},
+            {Piece::King,900},
+    };
+
+    auto x = move.getCapturedPiece();
+
+    if(move.getCapturedPiece() != nullptr){
+        totalEvaluation += pointsPerPiece[x->getType()];
+    }
+
+    if(move.getIsPawnPromotion() && !isPositionInOppMoves(move.getNewPosition(),oppColor)){
+        totalEvaluation += 90;
+    }
+
+    return totalEvaluation;
+}
+
 
 
 
