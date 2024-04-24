@@ -30,7 +30,7 @@ public:
     Move getIntermediateMove();
     Move getMinMaxMove(int depth);
     Move getHardMove();
-    int minMaxAlgo(Move move, int depth, int alpha, int beta, bool maximizing);
+    int minMaxAlgo(Board board, Move & move, int depth, int alpha, int beta, bool maximizing);
 };
 
 

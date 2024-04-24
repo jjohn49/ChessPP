@@ -217,11 +217,9 @@ shared_ptr<Piece> Board::addPiece(Piece::Type type, Piece::Color color, pair<int
     }
 }
 
-int Board::evaluateMove(Move move) {
+int Board::evaluate() {
 
     int totalEvaluation = 0;
-
-    Piece::Color oppColor = (move.getMovingPiece()->getColor()==Piece::White)? Piece::Black : Piece::White;
 
     unordered_map<Piece::Type, int> pointsPerPiece = {
             {Piece::Pawn,10},
@@ -232,14 +230,11 @@ int Board::evaluateMove(Move move) {
             {Piece::King,900},
     };
 
-    auto x = move.getCapturedPiece();
-
-    if(move.getCapturedPiece() != nullptr){
-        totalEvaluation += pointsPerPiece[x->getType()];
-    }
-
-    if(move.getIsPawnPromotion() && !isPositionInOppMoves(move.getNewPosition(),oppColor)){
-        totalEvaluation += 90;
+    for(auto & x: board){
+        for(auto & y: x){
+            if(y != nullptr)
+                totalEvaluation += pointsPerPiece[y->getType()] * (y->getColor() == Piece::White)? 1: -1;
+        }
     }
 
     return totalEvaluation;

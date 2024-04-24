@@ -78,7 +78,13 @@ bool Player::isCheckMated() {
 }
 
 vector<Move> Player::getAllMoves() {
-    return board->getAllMovesForColor(getColor());
+    vector<Move> ret = {};
+    for(Move & move: board->getAllMovesForColor(getColor())){
+        if(!isInCheck(move.getMovingPiece(),move.getNewPosition())){
+            ret.push_back(move);
+        }
+    }
+    return ret;
 }
 
 bool Player::isBot() {
