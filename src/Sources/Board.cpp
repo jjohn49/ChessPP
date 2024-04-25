@@ -217,27 +217,40 @@ shared_ptr<Piece> Board::addPiece(Piece::Type type, Piece::Color color, pair<int
     }
 }
 
-int Board::evaluate() {
+float Board::evaluate() {
 
-    int totalEvaluation = 0;
+    float totalEvaluation = 0;
 
     unordered_map<Piece::Type, int> pointsPerPiece = {
-            {Piece::Pawn,10},
-            {Piece::Knight,30},
-            {Piece::Bishop,30},
-            {Piece::Rook,50},
-            {Piece::Queen,90},
-            {Piece::King,900},
+            {Piece::Pawn,1},
+            {Piece::Knight,3},
+            {Piece::Bishop,3},
+            {Piece::Rook,5},
+            {Piece::Queen,9},
+            {Piece::King,20},
     };
 
-    for(auto & x: board){
-        for(auto & y: x){
-            if(y != nullptr)
-                totalEvaluation += pointsPerPiece[y->getType()] * (y->getColor() == Piece::White)? 1: -1;
+
+    for(int x = 0; x < 8; x++){
+        for(int y= 0; y < 8; y++){
+            shared_ptr<Piece> cur = getPieceAt(x,y);
+            if(cur != nullptr){
+                if(cur->getColor()==Piece::Black){
+                    totalEvaluation -= ((cur->getEvalBoard()[invertRow(x)][y] *0.1) + pointsPerPiece[cur->getType()]);
+                }else{
+                    totalEvaluation += ((cur->getEvalBoard()[x][y] *0.1) + pointsPerPiece[cur->getType()]);
+                }
+            }
         }
     }
 
+    //cout << totalEvaluation << endl;
+
     return totalEvaluation;
+}
+
+int Board::invertRow(int row) {
+    return 7 - row;
 }
 
 

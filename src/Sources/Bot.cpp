@@ -36,6 +36,8 @@ bool Bot::move() {
     }
 
     this->getBoard()->setPieceAt(move.getOldPosition(), nullptr);
+
+    cout <<"Board evaluated at: "<< getBoard()->evaluate() << endl;
     return this->movePiece(move);
 }
 
@@ -51,72 +53,82 @@ Move Bot::getSuperEasyMove() {
 }
 
 Move Bot::getEasyMove() {
-    return getMinMaxMove(0);
+    return getMinMaxMove(1);
 }
 
 Move Bot::getIntermediateMove() {
-    return getMinMaxMove(2);
-}
-
-Move Bot::getHardMove() {
     return getMinMaxMove(3);
 }
 
-int Bot::minMaxAlgo(Board board, Move & move, int depth, int alpha, int beta, bool maximizing) {
+Move Bot::getHardMove() {
+    return getMinMaxMove(5);
+}
+
+float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float beta, bool maximizing) {
 
     if(depth == 0){
         return board.evaluate();
     }
 
     board.setPieceAt(move.getNewPosition(), move.getMovingPiece());
+    board.setPieceAt(move.getOldPosition(), nullptr);
     move.getMovingPiece()->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
 
-    int val;
+    if(move.getIsPawnPromotion()){
+        std::shared_ptr<Piece> tempQueen = make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
+        board.setPieceAt(move.getNewPosition(),tempQueen);
+    }
+
     if(maximizing){
-        val = -100000;
-        for(Move & m : getBoard()->getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
-            int mEval = minMaxAlgo(board, m,depth-1, alpha, beta, false);
-            val = max(val, mEval);
-            if(val > beta){
-                break;
+        for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
+            if(m.getIsEnPessant()){
+                continue;
+            }
+
+            float mEval = minMaxAlgo(board, m,depth-1, alpha, beta, false);
+            if(mEval >= beta){
+                move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+                return beta;
             }
             alpha = max(alpha, mEval);
         }
+        move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+        return alpha;
     }else{
-        val = 1000000;
-        for(Move & m : getBoard()->getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
-            int mEval = minMaxAlgo(board, m,depth-1, alpha, beta, true);
-            val = min(val, mEval);
-            if(val < alpha){
-                break;
+        for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
+            if(m.getIsEnPessant()){
+                continue;
             }
-            beta = min(beta,val);
+            float mEval = minMaxAlgo(board, m,depth-1, alpha, beta, true);
+            if(mEval <= alpha){
+                move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+                return alpha;
+            }
+            beta = min(beta,mEval);
         }
+        move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+        return beta;
     }
-
-    move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
-
-    return val;
 }
 
 Move Bot::getMinMaxMove(int depth) {
-    unordered_map<int, vector<Move>> pointsPerMove;
+    unordered_map<float, vector<Move>> pointsPerMove;
 
     for(Move & m : getAllMoves()){
-        int val = minMaxAlgo(*getBoard(),m,depth,-100000,1000000,(getColor()==Piece::White));
+        float val = minMaxAlgo(*getBoard(),m,depth,-100000,1000000, true);
         pointsPerMove[val].push_back(m);
     }
 
-    vector<int> keys = {};
+    vector<float> keys = {};
 
     for(auto kv: pointsPerMove){
         keys.push_back(kv.first);
     }
 
     if(getColor()==Piece::White){
-        sort(keys.begin(),keys.end(), greater<int>());
+        sort(keys.begin(),keys.end(), greater<float>());
     }else {
-        sort(keys.begin(), keys.end(), less<int>());
+        sort(keys.begin(), keys.end(), less<float>());
     }
 
     vector<Move> bestMoves = pointsPerMove[keys[0]];

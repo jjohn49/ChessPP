@@ -254,7 +254,7 @@ void Chess::onCleanup() {
 
 void Chess::onEvent(SDL_Event *event) {
 
-    if(event->type == SDL_QUIT || currentPlayer->isCheckMated() || currentPlayer->getTime() - chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - currentTime).count() <= 0) {
+    if(event->type == SDL_QUIT || currentPlayer->isCheckMated() /*|| currentPlayer->getTime() - chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - currentTime).count() <= 0*/) {
         running = false;
         return;
     }
