@@ -103,8 +103,6 @@ void Chess::drawBoard() {
     SDL_RenderGetViewport(renderer, &darea);
     bool blackStart = true;
 
-    this->drawTime();
-
     vector<Move> draggingMoves = {};
 
     if(pieceDragging != nullptr){
@@ -204,6 +202,8 @@ bool Chess::onExecute() {
     SDL_Event Event;
 
     while(this->running) {
+        //drawBoard();
+        updateTime();
         while(SDL_PollEvent(&Event)) {
             onEvent(&Event);
         }
@@ -281,7 +281,8 @@ void Chess::onEvent(SDL_Event *event) {
             currentPlayer->setTime(-100);
             return;
         }
-        updateTime();
+        drawBoard();
+//        updateTime();
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
     }
 }
@@ -335,7 +336,7 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
             onPawnPromotion(attemptedMove);
         }
 
-        updateTime();
+        //updateTime();
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
 
     }
@@ -433,9 +434,11 @@ void Chess::onPawnPromotionEvent(SDL_Event *event, int & input) {
 
 void Chess::updateTime() {
     chrono::steady_clock::time_point end = chrono::steady_clock::now();
-    float seconds = chrono::duration_cast<chrono::milliseconds>(end - currentTime).count() / 1000.00;
+    float seconds = chrono::duration_cast<chrono::milliseconds>(end - currentTime).count() /100;
+    //std::cout << seconds << endl;
     currentPlayer->setTime(currentPlayer->getTime() - seconds);
     currentTime = chrono::steady_clock::now();
+    drawTime();
 }
 
 
