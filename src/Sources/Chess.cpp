@@ -27,7 +27,7 @@ Chess::Chess() {
     pieceDragging = nullptr;
     whitePlayer = make_shared<Player>(Player(Piece::White, &board));
     blackPlayer = make_shared<Player>(Player(Piece::Black, &board));
-    currentPlayer = whitePlayer;
+    this->currentPlayer = whitePlayer;
     this->currentTime = chrono::steady_clock::now();
 }
 
@@ -42,7 +42,7 @@ Chess::Chess(bool useBot, BotDifficulty level, Piece::Color botColor){
         blackPlayer = (botColor==Piece::Black)? make_shared<Bot>(Bot(level, botColor,&board)):make_shared<Player>(Player(Piece::Black, &board));
     }
     currentPlayer = whitePlayer;
-
+    currentTime = chrono::steady_clock::now();
 }
 
 void Chess::play() {
@@ -102,8 +102,6 @@ void Chess::drawBoard() {
     /* Get the Size of drawing surface */
     SDL_RenderGetViewport(renderer, &darea);
     bool blackStart = true;
-
-    this->drawTime();
 
     vector<Move> draggingMoves = {};
 
@@ -204,12 +202,14 @@ bool Chess::onExecute() {
     SDL_Event Event;
 
     while(this->running) {
+        //drawBoard();
+        updateTime();
         while(SDL_PollEvent(&Event)) {
             onEvent(&Event);
         }
     }
 
-    updateTime();
+    //updateTime();
 
     if(currentPlayer->isCheckMated()|| currentPlayer->getTime()  <= 0){
         onCheckMate();
@@ -254,8 +254,9 @@ void Chess::onCleanup() {
 
 void Chess::onEvent(SDL_Event *event) {
 
-    if(event->type == SDL_QUIT || currentPlayer->isCheckMated() || currentPlayer->getTime() - chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - currentTime).count() <= 0) {
+    if(event->type == SDL_QUIT || currentPlayer->isCheckMated() /*|| currentPlayer->getTime() - chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - currentTime).count() <= 0*/) {
         running = false;
+        return;
     }
 
     drawBoard();
@@ -274,9 +275,15 @@ void Chess::onEvent(SDL_Event *event) {
             }
         }
     }else{
-        currentPlayer->move();
+        //Some reason with Bots is Checkmated does not work all the time
+        if (!currentPlayer->move()){
+            running = false;
+            currentPlayer->setTime(-100);
+            return;
+        }
+        drawBoard();
+//        updateTime();
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
-        std::cout<<"Hello";
     }
 }
 
@@ -329,7 +336,7 @@ void Chess::onPlacePieceDragging(SDL_Event *event) {
             onPawnPromotion(attemptedMove);
         }
 
-        updateTime();
+        //updateTime();
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;
 
     }
@@ -427,9 +434,11 @@ void Chess::onPawnPromotionEvent(SDL_Event *event, int & input) {
 
 void Chess::updateTime() {
     chrono::steady_clock::time_point end = chrono::steady_clock::now();
-    float seconds = chrono::duration_cast<chrono::milliseconds>(end - currentTime).count() / 1000.00;
+    float seconds = chrono::duration_cast<chrono::milliseconds>(end - currentTime).count() /100;
+    //std::cout << seconds << endl;
     currentPlayer->setTime(currentPlayer->getTime() - seconds);
     currentTime = chrono::steady_clock::now();
+    drawTime();
 }
 
 

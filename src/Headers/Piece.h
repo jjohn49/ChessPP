@@ -54,6 +54,9 @@ public:
 
     virtual vector<Move> getMoves(Board * board){return  {};};
     virtual string getImagePath(){return "";};
+    virtual vector<vector<float>> getEvalBoard(){
+        return{{}};
+    };
 
 
 };

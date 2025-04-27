@@ -5,7 +5,18 @@
 #include "../Headers/Rook.h"
 #include "../Headers/Board.h"
 
-Rook::Rook(int row, int col, Piece::Color color): Piece(row,col,color,Type::Rook){}
+Rook::Rook(int row, int col, Piece::Color color): Piece(row,col,color,Type::Rook){
+    this->evalBoard = {
+            {0  ,0  ,0  ,0.5,0.5,0  ,0  ,0  },
+            {-0.5,0 ,0 ,0 ,0  ,0  ,0   ,-0.5},
+            {-0.5,0 ,0 ,0 ,0  ,0  ,0   ,-0.5},
+            {-0.5,0 ,0 ,0 ,0  ,0  ,0   ,-0.5},
+            {-0.5,0 ,0 ,0 ,0  ,0  ,0   ,-0.5},
+            {-0.5,0 ,0 ,0 ,0  ,0  ,0   ,-0.5},
+            {.5 ,1  ,1  ,1  ,1  ,1  ,1  ,0.5},
+            {0  ,0  ,0  ,0  ,0  ,0  ,0  ,0  },
+    };
+}
 
 Rook::Rook(std::pair<int, int> position, Piece::Color color): Rook(position.first, position.second,color) {}
 
@@ -71,6 +82,10 @@ vector<Move> Rook::getMoves(Board * board){
 
 string Rook::getImagePath() {
     return (getColor()==White)? "../assets/PNGs/No shadow/2x/w_rook_2x_ns.png" : "../assets/PNGs/No shadow/2x/b_rook_2x_ns.png";
+}
+
+vector<vector<float>> Rook::getEvalBoard() {
+    return this->evalBoard;
 }
 
 

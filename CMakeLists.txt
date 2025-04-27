@@ -37,7 +37,7 @@ add_executable(ChessPP
         src/Sources/Player.cpp
         src/Headers/Player.h
         src/Sources/Bot.cpp
-
+        src/Headers/Bot.h
 )
 
 target_link_libraries(ChessPP SDL2::SDL2 SDL2_image::SDL2_image SDL2_ttf::SDL2_ttf)

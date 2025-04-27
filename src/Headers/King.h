@@ -8,7 +8,7 @@
 #include "Piece.h"
 
 class King: public Piece{
-
+    vector<vector<float>> evalBoard;
 public:
     King();
     King(Color color);
@@ -16,6 +16,8 @@ public:
     vector<Move> getMoves(Board * board) override;
     vector<Move>getCastlingMoves(Board * board);
     string getImagePath() override;
+
+    vector<vector<float>> getEvalBoard() override;
 
 };
 

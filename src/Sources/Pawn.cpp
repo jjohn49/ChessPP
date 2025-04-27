@@ -5,7 +5,18 @@
 #include "../Headers/Pawn.h"
 #include "../Headers/Board.h"
 
-Pawn::Pawn(int row, int col, Piece::Color color): Piece(row, col, color, Piece::Type::Pawn) {}
+Pawn::Pawn(int row, int col, Piece::Color color): Piece(row, col, color, Piece::Type::Pawn) {
+    this->evalBoard = {
+            {0,0,0,0,0,0,0,0},
+            {0.5,1,1,-2,-2,1,1,0.5},
+            {0.5,-0.5,-1,0,0,-1,-0.5,0.5},
+            {0,0,0,2,2,0,0,0},
+            {0.5,0.5,1,2.5,2.5,1,0.5,0.5},
+            {1,1,2,2,3,2,2,1,1},
+            {5,5,5,5,5,5,5,5},
+            {0,0,0,0,0,0,0,0}
+    };
+};
 
 vector<Move> Pawn::getMoves(Board *board) {
     int colorDirection = (this->getColor() == White)? 1: -1;
@@ -73,4 +84,8 @@ optional<Move> Pawn::getEnPessantMove(Board *board) {
     }
 
     return nullopt;
+}
+
+vector<vector<float>> Pawn::getEvalBoard() {
+    return this->evalBoard;
 }
