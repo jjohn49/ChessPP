@@ -103,7 +103,7 @@ void Chess::drawBoard() {
     SDL_RenderGetViewport(renderer, &darea);
     bool blackStart = true;
 
-    this->drawTime();
+    //this->drawTime();
 
     vector<Move> draggingMoves = {};
 
