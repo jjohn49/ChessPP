@@ -1,43 +1,16 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.5)
+
 project(ChessPP)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include(FetchContent)
-Set(FETCHCONTENT_QUIET FALSE)
+set(CMAKE_OSX_ARCHITECTURES arm64)
 
-FetchContent_Declare(
-        SDL2
-        GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
-        GIT_TAG release-2.26.3
-        GIT_SHALLOW TRUE
-        GIT_PROGRESS TRUE
-)
-FetchContent_MakeAvailable(SDL2)
+enable_language(OBJC)
 
-FetchContent_Declare(
-        SDL2_image
-        GIT_REPOSITORY https://github.com/libsdl-org/SDL_image.git
-        GIT_TAG release-2.6.3
-        GIT_SHALLOW TRUE
-        GIT_PROGRESS TRUE
-)
-
-# START ADDITION
-set(SDL2IMAGE_INSTALL OFF)
-set(BUILD_SHARED_LIBS FALSE)
-# END ADDITION
-
-FetchContent_MakeAvailable(SDL2_image)
-
-FetchContent_Declare(
-        SDL2_ttf
-        GIT_REPOSITORY https://github.com/libsdl-org/SDL_ttf.git
-        GIT_TAG release-2.22.0
-        GIT_SHALLOW TRUE
-        GIT_PROGRESS TRUE
-)
-FetchContent_MakeAvailable(SDL2_ttf)
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_ttf REQUIRED)
 
 add_executable(ChessPP
         main.cpp
@@ -67,7 +40,7 @@ add_executable(ChessPP
 
 )
 
-target_link_libraries(ChessPP SDL2::SDL2main SDL2::SDL2-static SDL2_image::SDL2_image-static SDL2_ttf::SDL2_ttf-static)
+target_link_libraries(ChessPP SDL2::SDL2 SDL2_image::SDL2_image SDL2_ttf::SDL2_ttf)
 
 
 
