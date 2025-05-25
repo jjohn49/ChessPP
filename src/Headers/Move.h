@@ -44,6 +44,7 @@ public:
     bool getIsPawnPromotion();
     void setIsPawnPromotion(bool value);
     void setPromotedToPiece(shared_ptr<Piece> piece);
+    void setMovingPiece(shared_ptr<Piece> piece);
 };
 
 

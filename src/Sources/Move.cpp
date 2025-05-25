@@ -79,6 +79,10 @@ void Move::setPromotedToPiece(shared_ptr<Piece> piece) {
     this->promotedToPiece = piece;
 }
 
+void Move::setMovingPiece(shared_ptr<Piece> piece) {
+    this->movingPiece = piece;
+}
+
 
 
 

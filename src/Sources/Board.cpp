@@ -95,6 +95,21 @@ void Board::print() {
 
 }
 
+string Board::toString() {
+
+    for(int r = 0; r < 8; r++){
+        for(int c = 0; c < 8; c++){
+            if(this->getPieceAt(r,c)){
+                cout << "x";
+            }else{
+                cout<<"_";
+            }
+        }
+        cout << endl;
+    }
+
+}
+
 void Board::movePiece(Move & move) {
     shared_ptr<Piece> pieceMoved = move.getMovingPiece();
     pieceMoved->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);

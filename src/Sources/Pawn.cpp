@@ -27,7 +27,7 @@ vector<Move> Pawn::getMoves(Board *board) {
         Move temp = Move(this->row,this->col, this->row + (1 * colorDirection), this->col, shared_from_this());
 
         //Only Promoted pawns can go on these rows
-        if(temp.getNewPosition().first == 0 || temp.getNewPosition().first == 7){
+        if((temp.getNewPosition().first == 0 && this->color == Black) || (temp.getNewPosition().first == 7 && this->color == White)){
             temp.setIsPawnPromotion(true);
         }
         pawnMoves.push_back(temp);

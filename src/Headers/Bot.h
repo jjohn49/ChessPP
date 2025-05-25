@@ -33,8 +33,8 @@ public:
     vector<Move> getAllMovesSorted();
     vector<Move> sortMoves(vector<Move> moves);
     Move getHardMove();
-    float minMaxAlgo(Board board, Move & move, int depth, float alpha, float beta, bool maximizing);
-    float negaMaxAlgo(Board board, Move & move, int depth, float alpha, float beta);
+    static float minMaxAlgo(Board board, Move & move, int depth, float alpha, float beta, bool maximizing);
+    static float negaMaxAlgo(Board board, Move & move, int depth, float alpha, float beta);
 };
 
 

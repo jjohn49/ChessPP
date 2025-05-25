@@ -7,6 +7,8 @@
 #include <time.h>
 #include "../Headers/Board.h"
 #include <unordered_map>
+#include <algorithm>
+#include <future>
 
 
 
@@ -62,8 +64,8 @@ Move Bot::getIntermediateMove() {
 }
 
 Move Bot::getHardMove() {
-    //return getMinMaxMove(4);
-    return getNegaMaxMove(4);
+    return getMinMaxMove(4);
+    //return getNegaMaxMove(4);
 }
 
 vector<Move> Bot::getAllMovesSorted() {
@@ -122,12 +124,16 @@ vector<Move> Bot::getAllMovesSorted() {
 
 float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float beta, bool maximizing) {
 
+    Board copyBoard = board.deepCopy();
+
     if(depth == 0){
         return board.evaluate();
     }
 
     board.setPieceAt(move.getNewPosition(), move.getMovingPiece());
     board.setPieceAt(move.getOldPosition(), nullptr);
+    bool tempHasMoved = move.getMovingPiece()->getHasMoved();
+    move.getMovingPiece()->setHasMoved(true);
     move.getMovingPiece()->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
 
     if(move.getIsPawnPromotion()){
@@ -157,6 +163,7 @@ float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float be
         }
     }
     move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+    move.getMovingPiece()->setHasMoved(tempHasMoved);
     return maximizing? alpha : beta;
 }
 
@@ -206,11 +213,26 @@ float Bot::negaMaxAlgo(Board board, Move &move, int depth, float alpha, float be
 
 Move Bot::getMinMaxMove(int depth) {
     unordered_map<float, vector<Move>> pointsPerMove;
+    vector<pair<Move, future<float>>> futures{};
+
 
     for(Move & m : getAllMovesSorted()){
-        float val = minMaxAlgo(*getBoard(),m,depth,-100000,1000000, true);
-        pointsPerMove[val].push_back(m);
+        //float val = minMaxAlgo(*getBoard(),m,depth,-100000,1000000, true);
+        Board copyBoard = this->getBoard()->deepCopy();
+        Move copyMove = m;
+        copyMove.setMovingPiece(copyBoard.getPieceAt(m.getOldPosition()));
+
+        futures.push_back(make_pair(m ,std::async(launch::async, [copyBoard, &copyMove, depth]{
+            return minMaxAlgo(copyBoard, copyMove,depth, -100000, 100000, true);
+        })));
     }
+
+    for(pair<Move, future<float>> & f: futures){
+        float val = f.second.get();
+        pointsPerMove[val].push_back(f.first);
+    }
+
+
 
     vector<float> keys = {};
 

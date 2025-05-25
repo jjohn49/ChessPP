@@ -58,6 +58,7 @@ public:
     shared_ptr<Piece> addPiece(Piece::Type type, Piece::Color color, pair<int,int> position);
     float evaluate();
     int invertRow(int row);
+    string toString();
 
     Board deepCopy();
 
