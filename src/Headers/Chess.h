@@ -23,8 +23,10 @@
 
 
 class Chess {
-protected:
+public:
     Board board;
+protected:
+
     bool running;
     SDL_Window * screen;
     SDL_Renderer * renderer;

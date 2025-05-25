@@ -59,6 +59,8 @@ public:
     float evaluate();
     int invertRow(int row);
 
+    Board deepCopy();
+
 };
 
 

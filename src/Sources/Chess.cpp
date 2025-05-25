@@ -28,7 +28,7 @@ Chess::Chess() {
     whitePlayer = make_shared<Player>(Player(Piece::White, &board));
     blackPlayer = make_shared<Player>(Player(Piece::Black, &board));
     this->currentPlayer = whitePlayer;
-    this->currentTime = chrono::steady_clock::now();
+    //this->currentTime = chrono::steady_clock::now();
 }
 
 Chess::Chess(bool useBot, BotDifficulty level, Piece::Color botColor){
@@ -42,7 +42,7 @@ Chess::Chess(bool useBot, BotDifficulty level, Piece::Color botColor){
         blackPlayer = (botColor==Piece::Black)? make_shared<Bot>(Bot(level, botColor,&board)):make_shared<Player>(Player(Piece::Black, &board));
     }
     currentPlayer = whitePlayer;
-    currentTime = chrono::steady_clock::now();
+    //currentTime = chrono::steady_clock::now();
 }
 
 void Chess::play() {
@@ -203,7 +203,7 @@ bool Chess::onExecute() {
 
     while(this->running) {
         //drawBoard();
-        updateTime();
+        //updateTime();
         while(SDL_PollEvent(&Event)) {
             onEvent(&Event);
         }
@@ -434,11 +434,11 @@ void Chess::onPawnPromotionEvent(SDL_Event *event, int & input) {
 
 void Chess::updateTime() {
     chrono::steady_clock::time_point end = chrono::steady_clock::now();
-    float seconds = chrono::duration_cast<chrono::milliseconds>(end - currentTime).count() /100;
+    //float seconds = chrono::duration_cast<chrono::milliseconds>(end - currentTime).count() /100;
     //std::cout << seconds << endl;
-    currentPlayer->setTime(currentPlayer->getTime() - seconds);
-    currentTime = chrono::steady_clock::now();
-    drawTime();
+    //currentPlayer->setTime(currentPlayer->getTime() - seconds);
+    //currentTime = chrono::steady_clock::now();
+    //drawTime();
 }
 
 

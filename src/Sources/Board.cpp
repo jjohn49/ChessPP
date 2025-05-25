@@ -69,8 +69,6 @@ Board::Board() {
             {rooks[2], knights[2], bishops[2], queens[1], kings[1], bishops[3], knights[3], rooks[3]}
     };
 
-
-
     moveHistory = {};
 }
 
@@ -150,12 +148,19 @@ std::vector<Move> Board::getAllMovesForColor(Piece::Color color) {
 }
 
 bool Board::isColorInCheck(Piece::Color color) {
-    vector<Move> oppMoves = (color == Piece::White)? getAllMovesForColor(Piece::Black): getAllMovesForColor(Piece::White);
     std::pair<int,int> kingsPosition = getColorsKingPosition(color);
 
-    for(Move & move : oppMoves){
-        if(kingsPosition == move.getNewPosition()){
-            return true;
+    vector<Move> colorMoves{};
+    for(auto & row: board){
+        for(shared_ptr<Piece> & p: row){
+            if(p != nullptr && p->getColor() == color){
+                auto pMoves = p->getMoves(this);
+                for(auto & m: pMoves){
+                    if(m.getNewPosition() == kingsPosition){
+                        return true;
+                    }
+                }
+            }
         }
     }
 
@@ -251,6 +256,88 @@ float Board::evaluate() {
 
 int Board::invertRow(int row) {
     return 7 - row;
+}
+
+Board Board::deepCopy() {
+    Board copyBoard = Board();
+
+    copyBoard.board = {
+            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
+            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
+            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
+            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
+            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
+            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
+            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
+            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr}
+    };
+
+    copyBoard.pawns = {};
+    copyBoard.rooks = {};
+    copyBoard.knights = {};
+    copyBoard.bishops = {};
+    copyBoard.kings = {};
+    copyBoard.queens = {};
+
+    for(auto p: pawns){
+        auto pPos = p->getPosition();
+        shared_ptr<Pawn> copyPawn = nullptr;
+        if(this->getPieceAt(pPos.first, pPos.second) == p) {
+            copyPawn = std::make_shared<Pawn>(*p);
+            copyBoard.pawns.push_back(copyPawn);
+            copyBoard.setPieceAt(pPos, copyPawn);
+        }
+    }
+
+    for(auto r: rooks){
+        auto rPos = r->getPosition();
+        shared_ptr<Rook> copyRook = nullptr;
+        if(this->getPieceAt(rPos.first, rPos.second) == r) {
+            copyRook = std::make_shared<Rook>(*r);
+            copyBoard.rooks.push_back(copyRook);
+            copyBoard.setPieceAt(rPos, copyRook);
+        }
+    }
+
+    for(auto k: knights){
+        auto kPos = k->getPosition();
+        shared_ptr<Knight> copyKnight = nullptr;
+        if(this->getPieceAt(kPos.first, kPos.second) == k) {
+            copyKnight = std::make_shared<Knight>(*k);
+            copyBoard.knights.push_back(copyKnight);
+            copyBoard.setPieceAt(kPos, copyKnight);
+        }
+    }
+
+    for(auto b: bishops){
+        auto bPos = b->getPosition();
+        if(this->getPieceAt(bPos.first,bPos.second) == b){
+            shared_ptr<Bishop> copyBishop = make_shared<Bishop>(*b);
+            copyBoard.bishops.push_back(copyBishop);
+            copyBoard.setPieceAt(bPos.first,bPos.second,copyBishop);
+        }
+    }
+
+    for(auto q: queens){
+        auto qPos = q->getPosition();
+        if(this->getPieceAt(qPos.first,qPos.second) == q){
+            shared_ptr<Queen> copyQueen = make_shared<Queen>(*q);
+            copyBoard.queens.push_back(copyQueen);
+            copyBoard.setPieceAt(qPos.first,qPos.second,copyQueen);
+        }
+    }
+
+    for(auto k: kings){
+        auto kPos = k->getPosition();
+        shared_ptr<King> copyKing = nullptr;
+        if(this->getPieceAt(kPos.first, kPos.second) == k) {
+            copyKing = std::make_shared<King>(*k);
+            copyBoard.kings.push_back(copyKing);
+            copyBoard.setPieceAt(kPos, copyKing);
+        }
+    }
+
+    return copyBoard;
 }
 
 

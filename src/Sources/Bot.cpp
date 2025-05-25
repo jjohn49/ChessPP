@@ -57,12 +57,13 @@ Move Bot::getEasyMove() {
 }
 
 Move Bot::getIntermediateMove() {
+    //return getMinMaxMove(2);
     return getNegaMaxMove(2);
 }
 
 Move Bot::getHardMove() {
-    return getMinMaxMove(4);
-    //return getNegaMaxMove(4);
+    //return getMinMaxMove(4);
+    return getNegaMaxMove(4);
 }
 
 vector<Move> Bot::getAllMovesSorted() {
@@ -134,36 +135,29 @@ float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float be
         board.setPieceAt(move.getNewPosition(),tempQueen);
     }
 
-    if(maximizing){
-        for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
-            if(m.getIsEnPessant()){
-                continue;
-            }
+    for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
+        if(m.getIsEnPessant()){
+            continue;
+        }
 
-            float mEval = minMaxAlgo(board, m,depth-1, alpha, beta, false);
-            if(mEval >= beta){
-                move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+        float mEval = minMaxAlgo(board, m,depth-1, alpha, beta, !maximizing);
+
+        if(maximizing) {
+            if (mEval >= beta) {
+                move.getMovingPiece()->setNewPosition(move.getOldPosition().first, move.getOldPosition().second);
                 return beta;
             }
             alpha = max(alpha, mEval);
-        }
-        move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
-        return alpha;
-    }else{
-        for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
-            if(m.getIsEnPessant()){
-                continue;
-            }
-            float mEval = minMaxAlgo(board, m,depth-1, alpha, beta, true);
+        }else{
             if(mEval <= alpha){
                 move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
                 return alpha;
             }
             beta = min(beta,mEval);
         }
-        move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
-        return beta;
     }
+    move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+    return maximizing? alpha : beta;
 }
 
 float Bot::negaMaxAlgo(Board board, Move &move, int depth, float alpha, float beta) {
@@ -192,7 +186,7 @@ float Bot::negaMaxAlgo(Board board, Move &move, int depth, float alpha, float be
 
 
     float val = -10000000;
-    for(Move & m : sortMoves(board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White))){
+    for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
         if(m.getIsEnPessant()){
             continue;
         }
