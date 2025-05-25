@@ -56,6 +56,9 @@ public:
     void print();
     bool isPositionInBounds(pair<int,int> position);
     shared_ptr<Piece> addPiece(Piece::Type type, Piece::Color color, pair<int,int> position);
+    float evaluate();
+    int invertRow(int row);
+
 };
 
 

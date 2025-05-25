@@ -6,7 +6,18 @@
 #include "../Headers/Board.h"
 
 King::King(): Piece() {}
-King::King(Color color): Piece((color==White)? 0: 7, 4, color, Piece::Type::King) {}
+King::King(Color color): Piece((color==White)? 0: 7, 4, color, Piece::Type::King) {
+    this->evalBoard = {
+            {2  ,3  ,1  ,0  ,0  ,1  ,3  ,2  },
+            {2  ,2  ,0  ,0  ,0  ,0  ,2  ,2  },
+            {-1 ,-2 ,-2 ,-2 ,-2 ,-2 ,-2 ,-1 },
+            {-2 ,-3 ,-3 ,-4 ,-4 ,-3 ,-3 ,-2 },
+            {-3 ,-4 ,-4 ,-5 ,-5 ,-4 ,-4 ,-3 },
+            {-3 ,-4 ,-4 ,-5 ,-5 ,-4 ,-4 ,-3 },
+            {-3 ,-4 ,-4 ,-5 ,-5 ,-4 ,-4 ,-3 },
+            {-3 ,-4 ,-4 ,-5 ,-5 ,-4 ,-4 ,-3 },
+    };
+}
 
 vector<Move> King::getMoves(Board *board) {
     vector<Move> moves{};
@@ -77,5 +88,9 @@ vector<Move> King::getCastlingMoves(Board *board) {
 
 string King::getImagePath() {
     return (getColor() == White)? "../assets/PNGs/No shadow/2x/w_king_2x_ns.png" : "../assets/PNGs/No shadow/2x/b_king_2x_ns.png";
+}
+
+vector<vector<float>> King::getEvalBoard() {
+    return this->evalBoard;
 }
 

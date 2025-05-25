@@ -8,8 +8,30 @@
 
 
 Queen::Queen():Piece() {}
-Queen::Queen(Piece::Color color): Piece((color==White)? 0: 7, 3, color, Type::Queen) {}
-Queen::Queen(int row, int col, Piece::Color color): Piece(row,col,color,Type::Queen) {}
+Queen::Queen(Piece::Color color): Piece((color==White)? 0: 7, 3, color, Type::Queen) {
+    this->evalBoard = {
+            {-2 ,-1 ,-1 ,-0.5,-0.5,-1 ,-1 ,-2 },
+            {-1 ,0  ,0.5,0  ,0  ,0  ,0 ,-1 },
+            {-1 ,0.5,0.5,0.5,0.5,0.5,0 ,-1 },
+            {0  ,0   ,0.5,0.5,0.5,0.5,0 ,-0.5},
+            {-0.5 ,0,0.5 ,0.5 ,0.5  ,0.5,0,-0.5 },
+            {-1 ,0  ,0.5 ,.5  ,.5  ,0.5,0 ,-1 },
+            {-1 ,0 ,0  ,0 ,0 ,0  ,0 ,-1 },
+            {-2 ,-1 ,-1 ,-0.5 ,-0.5 ,-1 ,-1 ,-2 },
+    };
+}
+Queen::Queen(int row, int col, Piece::Color color): Piece(row,col,color,Type::Queen) {
+    this->evalBoard = {
+            {-2 ,-1 ,-1 ,-0.5,-0.5,-1 ,-1 ,-2 },
+            {-1 ,0  ,0.5,0  ,0  ,0  ,0 ,-1 },
+            {-1 ,0.5,0.5,0.5,0.5,0.5,0 ,-1 },
+            {0  ,0   ,0.5,0.5,0.5,0.5,0 ,-0.5},
+            {-0.5 ,0,0.5 ,0.5 ,0.5  ,0.5,0,-0.5 },
+            {-1 ,0  ,0.5 ,.5  ,.5  ,0.5,0 ,-1 },
+            {-1 ,0 ,0  ,0 ,0 ,0  ,0 ,-1 },
+            {-2 ,-1 ,-1 ,-0.5 ,-0.5 ,-1 ,-1 ,-2 },
+    };
+}
 Queen::Queen(pair<int, int> position, Piece::Color color): Queen(position.first, position.second, color) {}
 
 vector<Move> Queen::getMoves(Board *board) {
@@ -148,4 +170,8 @@ vector<Move> Queen::getMoves(Board *board) {
 
 string  Queen::getImagePath() {
     return (getColor()==White)? "../assets/PNGs/No shadow/2x/w_queen_2x_ns.png":"../assets/PNGs/No shadow/2x/b_queen_2x_ns.png";
+}
+
+vector<vector<float>> Queen::getEvalBoard() {
+    return this->evalBoard;
 }

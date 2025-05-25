@@ -9,6 +9,7 @@
 
 enum BotDifficulty{
     Random,
+    SuperEasy,
     Easy,
     Intermediate,
     Hard,
@@ -22,12 +23,18 @@ public:
     Bot();
     Bot(BotDifficulty level, Piece::Color color, Board * board);
     bool isBot() override;
-
-    void move() override;
+    bool move() override;
     Move getRandomMove();
+    Move getSuperEasyMove();
     Move getEasyMove();
-
-
+    Move getIntermediateMove();
+    Move getMinMaxMove(int depth);
+    Move getNegaMaxMove(int depth);
+    vector<Move> getAllMovesSorted();
+    vector<Move> sortMoves(vector<Move> moves);
+    Move getHardMove();
+    float minMaxAlgo(Board board, Move & move, int depth, float alpha, float beta, bool maximizing);
+    float negaMaxAlgo(Board board, Move & move, int depth, float alpha, float beta);
 };
 
 

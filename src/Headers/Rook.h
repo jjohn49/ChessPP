@@ -10,6 +10,7 @@
 
 
 class Rook: public Piece{
+    vector<vector<float>> evalBoard;
 public:
     Rook();
     Rook(int row, int col, Color color);
@@ -17,6 +18,7 @@ public:
 
     vector<Move> getMoves(Board * board) override;
     string getImagePath() override;
+    vector<vector<float>> getEvalBoard() override;
 };
 
 

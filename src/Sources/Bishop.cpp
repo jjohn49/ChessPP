@@ -5,7 +5,18 @@
 #include "../Headers/Bishop.h"
 #include "../Headers/Board.h"
 
-Bishop::Bishop(int row, int col, Piece::Color color): Piece(row,col,color,Type::Bishop) {}
+Bishop::Bishop(int row, int col, Piece::Color color): Piece(row,col,color,Type::Bishop) {
+    this->evalBoard = {
+            {-2 ,-1 ,-1 ,-1 ,-1 ,-1 ,-1 ,-2 },
+            {-1 ,0.5 ,0  ,0 ,0 ,0  ,0.5 ,-1 },
+            {-1 ,1  ,1  ,1  ,1  ,1  ,1  ,-1 },
+            {-1 ,0  ,1  ,1  ,1  ,1  ,0  ,-1 },
+            {-1 ,0.5,0.5 ,1 ,1  ,0.5,0.5,-1 },
+            {-1 ,0  ,0.5 ,1  ,1  ,0.5,0 ,-1 },
+            {-1 ,0  ,0  ,0  ,0  ,0  ,0  ,-1 },
+            {-2 ,-1 ,-1 ,-1 ,-1 ,-1 ,-1 ,-2 },
+    };
+}
 
 Bishop::Bishop(pair<int, int> position, Piece::Color color): Bishop(position.first, position.second, color) {}
 
@@ -84,4 +95,8 @@ vector<Move> Bishop::getMoves(Board *board) {
 
 string Bishop::getImagePath() {
     return (getColor() == White)? "../assets/PNGs/No shadow/2x/w_bishop_2x_ns.png":"../assets/PNGs/No shadow/2x/b_bishop_2x_ns.png";
+}
+
+vector<vector<float>> Bishop::getEvalBoard() {
+    return this->evalBoard;
 }
