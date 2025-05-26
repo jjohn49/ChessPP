@@ -125,6 +125,7 @@ vector<Move> Bot::getAllMovesSorted() {
 float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float beta, bool maximizing) {
 
     Board copyBoard = board.deepCopy();
+    Piece beforePiece = *move.getMovingPiece().get();
 
     if(depth == 0){
         return board.evaluate();
@@ -136,6 +137,8 @@ float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float be
     move.getMovingPiece()->setHasMoved(true);
     move.getMovingPiece()->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
 
+    Piece afterPiece = *move.getMovingPiece().get();
+
     if(move.getIsPawnPromotion()){
         std::shared_ptr<Piece> tempQueen = make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
         board.setPieceAt(move.getNewPosition(),tempQueen);
@@ -143,6 +146,7 @@ float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float be
 
     for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
         if(m.getIsEnPessant()){
+            move.getMovingPiece()->setNewPosition(move.getOldPosition().first, move.getOldPosition().second);
             continue;
         }
 
@@ -151,12 +155,14 @@ float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float be
         if(maximizing) {
             if (mEval >= beta) {
                 move.getMovingPiece()->setNewPosition(move.getOldPosition().first, move.getOldPosition().second);
+                move.getMovingPiece()->setHasMoved(tempHasMoved);
                 return beta;
             }
             alpha = max(alpha, mEval);
         }else{
             if(mEval <= alpha){
                 move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+                move.getMovingPiece()->setHasMoved(tempHasMoved);
                 return alpha;
             }
             beta = min(beta,mEval);

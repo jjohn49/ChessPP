@@ -6,6 +6,7 @@
 #include "../Headers/Pawn.h"
 
 #include <unordered_map>
+#include <string>
 
 Board::Board() {
     pawns = {
@@ -96,18 +97,46 @@ void Board::print() {
 }
 
 string Board::toString() {
-
+    string ret = "";
     for(int r = 0; r < 8; r++){
         for(int c = 0; c < 8; c++){
+            char chr;
             if(this->getPieceAt(r,c)){
-                cout << "x";
+                switch (this->getPieceAt(r,c)->getType()) {
+                    case Piece::Pawn:
+                        chr = 'p';
+                        break;
+                    case Piece::Knight:
+                        chr = 'n';
+                        break;
+                    case Piece::Bishop:
+                        chr = 'b';
+                        break;
+                    case Piece::Rook:
+                        chr = 'r';
+                        break;
+                    case Piece::Queen:
+                        chr = 'q';
+                        break;
+                    case Piece::King:
+                        chr = 'k';
+                        break;
+                    default:
+                        chr = '_';
+                        break;
+                }
+                if(this->getPieceAt(r,c)->getColor() == Piece::White){
+                    chr = std::toupper(chr);
+                }
             }else{
-                cout<<"_";
+                chr = '_';
             }
+            ret += chr;
         }
-        cout << endl;
+        ret += '\n';
     }
 
+    return ret;
 }
 
 void Board::movePiece(Move & move) {
