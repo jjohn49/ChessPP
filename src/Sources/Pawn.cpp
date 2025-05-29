@@ -19,6 +19,11 @@ Pawn::Pawn(int row, int col, Piece::Color color): Piece(row, col, color, Piece::
 };
 
 vector<Move> Pawn::getMoves(Board *board) {
+
+    if(this->row == 0 || this->row == 7){
+        return {};
+    }
+
     int colorDirection = (this->getColor() == White)? 1: -1;
     vector<Move> pawnMoves{};
 
