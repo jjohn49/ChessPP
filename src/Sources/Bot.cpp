@@ -40,6 +40,8 @@ bool Bot::move() {
     this->getBoard()->setPieceAt(move.getOldPosition(), nullptr);
 
     cout <<"Board evaluated at: "<< getBoard()->evaluate() << endl;
+
+
     return this->movePiece(move);
 }
 
@@ -64,7 +66,7 @@ Move Bot::getIntermediateMove() {
 }
 
 Move Bot::getHardMove() {
-    return getMinMaxMove(4);
+    return getMinMaxMove(5);
     //return getNegaMaxMove(4);
 }
 
@@ -122,29 +124,105 @@ vector<Move> Bot::getAllMovesSorted() {
     return ret;
 }
 
+float Bot::maxAlphaBeta(Board board, Move &move, int depth, float alpha, float beta) {
+    if(depth == 0){
+        return board.evaluate();
+    }
+
+    int bestVal = -1000000000000;
+
+    Board copyBoard = board.deepCopy();
+    shared_ptr<Piece> movingPiece = copyBoard.getPieceAt(move.getOldPosition());
+
+    copyBoard.setPieceAt(move.getNewPosition(), movingPiece);
+    copyBoard.setPieceAt(move.getOldPosition(), nullptr);
+    movingPiece->setHasMoved(true);
+    movingPiece->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
+
+    if(move.getIsPawnPromotion()){
+        std::shared_ptr<Piece> tempQueen = make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
+        copyBoard.setPieceAt(move.getNewPosition(),tempQueen);
+    }
+
+    for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
+
+        float score = minAlphaBeta(copyBoard, m, depth -1, alpha, beta);
+
+        if(score > bestVal){
+            bestVal = alpha;
+            if(score >alpha){
+                alpha = score;
+            }
+        }
+
+        if(score <= beta){
+            return score;
+        }
+
+        return bestVal;
+    }
+
+}
+
+float Bot::minAlphaBeta(Board board, Move &move, int depth, float alpha, float beta) {
+    if(depth == 0){
+        return board.evaluate();
+    }
+
+    int bestVal = 1000000000000;
+
+    Board copyBoard = board.deepCopy();
+    shared_ptr<Piece> movingPiece = make_shared<Piece>(*move.getMovingPiece());
+
+    copyBoard.setPieceAt(move.getNewPosition(), movingPiece);
+    copyBoard.setPieceAt(move.getOldPosition(), nullptr);
+    bool tempHasMoved = movingPiece->getHasMoved();
+    movingPiece->setHasMoved(true);
+    movingPiece->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
+
+    if(move.getIsPawnPromotion()){
+        std::shared_ptr<Piece> tempQueen = make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
+        copyBoard.setPieceAt(move.getNewPosition(),tempQueen);
+    }
+
+    for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
+
+        float score = maxAlphaBeta(copyBoard, m, depth -1, alpha, beta);
+
+        if(score < bestVal){
+            bestVal = score;
+            if(score < beta){
+                beta = score;
+            }
+        }
+
+        if(score <= alpha){
+            return score;
+        }
+
+        return bestVal;
+    }
+}
+
+/**Deprecated */
 float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float beta, bool maximizing) {
-
-    Piece beforePiece = *move.getMovingPiece().get();
-
-    shared_ptr<Piece> movingPiece = move.getMovingPiece();
 
     if(depth == 0){
         return board.evaluate();
     }
 
-    board.setPieceAt(move.getNewPosition(), movingPiece);
-    board.setPieceAt(move.getOldPosition(), nullptr);
-    bool tempHasMoved = move.getMovingPiece()->getHasMoved();
+    Board copyBoard = board.deepCopy();
+    shared_ptr<Piece> movingPiece = copyBoard.getPieceAt(move.getOldPosition());
+
+    copyBoard.setPieceAt(move.getNewPosition(), movingPiece);
+    copyBoard.setPieceAt(move.getOldPosition(), nullptr);
+    bool tempHasMoved = movingPiece->getHasMoved();
     movingPiece->setHasMoved(true);
     movingPiece->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
 
-    Board copyBoard = board.deepCopy();
-
-    Piece afterPiece = *movingPiece;
-
     if(move.getIsPawnPromotion()){
         std::shared_ptr<Piece> tempQueen = make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
-        board.setPieceAt(move.getNewPosition(),tempQueen);
+        copyBoard.setPieceAt(move.getNewPosition(),tempQueen);
     }
 
     for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
@@ -156,6 +234,7 @@ float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float be
         float mEval = minMaxAlgo(board, m,depth-1, alpha, beta, !maximizing);
 
         if(maximizing) {
+
             if (mEval >= beta) {
                 movingPiece->setNewPosition(move.getOldPosition().first, move.getOldPosition().second);
                 movingPiece->setHasMoved(tempHasMoved);
@@ -177,7 +256,7 @@ float Bot::minMaxAlgo(Board board, Move & move, int depth, float alpha, float be
 }
 
 float Bot::negaMaxAlgo(Board board, Move &move, int depth, float alpha, float beta) {
-    if(depth==0){
+    if (depth == 0) {
         return board.evaluate();
     }
 
@@ -185,38 +264,40 @@ float Bot::negaMaxAlgo(Board board, Move &move, int depth, float alpha, float be
     board.setPieceAt(move.getOldPosition(), nullptr);
     move.getMovingPiece()->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
 
-    if(move.getIsPawnPromotion()){
-        std::shared_ptr<Piece> tempQueen = make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
-        board.setPieceAt(move.getNewPosition(),tempQueen);
-    }else if(move.getIsQueenSideCastle()){
-        int row = (move.getMovingPiece()->getColor()==Piece::White)? 0 : 7;
+    if (move.getIsPawnPromotion()) {
+        std::shared_ptr<Piece> tempQueen = make_shared<Queen>(
+                Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
+        board.setPieceAt(move.getNewPosition(), tempQueen);
+    } else if (move.getIsQueenSideCastle()) {
+        int row = (move.getMovingPiece()->getColor() == Piece::White) ? 0 : 7;
         std::shared_ptr<Piece> tempRook = make_shared<Rook>(row, 3, move.getMovingPiece()->getColor());
-        board.setPieceAt(move.getNewPosition(),tempRook);
-        board.setPieceAt(row,7, nullptr);
-    }else if(move.getIsKingSideCastle()){
-        int row = (move.getMovingPiece()->getColor()==Piece::White)? 0 : 7;
+        board.setPieceAt(move.getNewPosition(), tempRook);
+        board.setPieceAt(row, 7, nullptr);
+    } else if (move.getIsKingSideCastle()) {
+        int row = (move.getMovingPiece()->getColor() == Piece::White) ? 0 : 7;
         std::shared_ptr<Piece> tempRook = make_shared<Rook>(row, 5, move.getMovingPiece()->getColor());
-        board.setPieceAt(move.getNewPosition(),tempRook);
-        board.setPieceAt(row,0, nullptr);
+        board.setPieceAt(move.getNewPosition(), tempRook);
+        board.setPieceAt(row, 0, nullptr);
     }
 
 
     float val = -10000000;
-    for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
-        if(m.getIsEnPessant()){
+    for (Move &m: board.getAllMovesForColor(
+            (move.getMovingPiece()->getColor() == Piece::White) ? Piece::Black : Piece::White)) {
+        if (m.getIsEnPessant()) {
             continue;
         }
 
-        float mEval = -negaMaxAlgo(board,m,depth-1,-beta,-alpha);
-        val = max(mEval,val);
+        float mEval = -negaMaxAlgo(board, m, depth - 1, -beta, -alpha);
+        val = max(mEval, val);
         alpha = max(alpha, val);
-        if(alpha >= beta){
-            move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+        if (alpha >= beta) {
+            move.getMovingPiece()->setNewPosition(move.getOldPosition().first, move.getOldPosition().second);
             return beta;
         }
 
     }
-    move.getMovingPiece()->setNewPosition(move.getOldPosition().first,move.getOldPosition().second);
+    move.getMovingPiece()->setNewPosition(move.getOldPosition().first, move.getOldPosition().second);
     return val;
 }
 
@@ -231,17 +312,20 @@ Move Bot::getMinMaxMove(int depth) {
         Move copyMove = m;
         copyMove.setMovingPiece(copyBoard.getPieceAt(m.getOldPosition()));
 
-        futures.push_back(make_pair(m ,std::async(launch::async, [copyBoard, &copyMove, depth]{
-            return minMaxAlgo(copyBoard, copyMove,depth, -100000, 100000, true);
+        futures.push_back(make_pair(m ,std::async( std::launch::async, [copyBoard, &copyMove, depth]{
+            return minAlphaBeta(copyBoard, copyMove,depth, -100000, 100000);
         })));
     }
 
     for(pair<Move, future<float>> & f: futures){
-        float val = f.second.get();
-        pointsPerMove[val].push_back(f.first);
+
+        try {
+            float val = f.second.get();
+            pointsPerMove.at(val).push_back(f.first);
+        }catch (const out_of_range & e){
+            cout << e.what() << endl;
+        }
     }
-
-
 
     vector<float> keys = {};
 
@@ -255,7 +339,7 @@ Move Bot::getMinMaxMove(int depth) {
         sort(keys.begin(), keys.end(), less<float>());
     }
 
-    vector<Move> bestMoves = pointsPerMove[keys[0]];
+    vector<Move> bestMoves = pointsPerMove.at(keys.at(0));
 
     return bestMoves[rand()%bestMoves.size()];
 }

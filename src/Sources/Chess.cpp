@@ -281,6 +281,7 @@ void Chess::onEvent(SDL_Event *event) {
             currentPlayer->setTime(-100);
             return;
         }
+        board.print();
         drawBoard();
 //        updateTime();
         currentPlayer = (currentPlayer->getColor()==Piece::White)? blackPlayer:whitePlayer;

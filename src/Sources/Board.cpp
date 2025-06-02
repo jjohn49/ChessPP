@@ -7,6 +7,7 @@
 
 #include <unordered_map>
 #include <string>
+#include <utility>
 
 Board::Board() {
     pawns = {
@@ -74,7 +75,11 @@ Board::Board() {
 }
 
 shared_ptr<Piece> Board::getPieceAt(int row, int col) {
-    return board[row][col];
+    try {
+        return board.at(row).at(col);
+    } catch(out_of_range & e) {
+        cout << "Error trying to get a piece at position " << row << "," << col << endl;
+    }
 }
 
 shared_ptr<Piece> Board::getPieceAt(pair<int, int> position) {
@@ -83,16 +88,7 @@ shared_ptr<Piece> Board::getPieceAt(pair<int, int> position) {
 
 void Board::print() {
 
-    for(int r = 0; r < 8; r++){
-        for(int c = 0; c < 8; c++){
-            if(this->getPieceAt(r,c)){
-                cout << "x";
-            }else{
-                cout<<"_";
-            }
-        }
-        cout << endl;
-    }
+    cout << this->toString();
 
 }
 
@@ -167,7 +163,10 @@ void Board::movePiece(Move & move) {
 }
 
 void Board::setPieceAt(int row, int col, std::shared_ptr<Piece> pieceDragging) {
-    board[row][col] = pieceDragging;
+    if(row < 0 || row > 7 || col < 0 || col > 7){
+        cout << "Out of bounds";
+    }
+    board.at(row).at(col) = std::move(pieceDragging);
 }
 
 void Board::setPieceAt(pair<int, int> position, std::shared_ptr<Piece> pieceDragging) {
@@ -175,11 +174,12 @@ void Board::setPieceAt(pair<int, int> position, std::shared_ptr<Piece> pieceDrag
 }
 
 std::pair<int,int> Board::getColorsKingPosition(Piece::Color color) {
-    return (color == Piece::White)? kings[0]->getPosition() : kings[1]->getPosition();
+    return (color == Piece::White)? kings.at(0)->getPosition() : kings.at(1)->getPosition();
 }
 
 std::vector<Move> Board::getAllMovesForColor(Piece::Color color) {
     vector<Move> colorMoves{};
+
     for(auto & row: board){
         for(shared_ptr<Piece> & p: row){
             if(p != nullptr && p->getColor() == color){
@@ -220,7 +220,7 @@ bool Board::isFirstMove() {
 }
 
 shared_ptr<Rook> Board::getRook(int val) {
-    return rooks[val];
+    return rooks.at(val);
 }
 
 bool Board::isPositionInOppMoves(pair<int, int> position, Piece::Color oppColor) {
@@ -276,7 +276,7 @@ float Board::evaluate() {
             {Piece::Bishop,3},
             {Piece::Rook,5},
             {Piece::Queen,9},
-            {Piece::King,20},
+            {Piece::King,2000000},
     };
 
 
@@ -285,9 +285,9 @@ float Board::evaluate() {
             shared_ptr<Piece> cur = getPieceAt(x,y);
             if(cur != nullptr){
                 if(cur->getColor()==Piece::Black){
-                    totalEvaluation -= ((cur->getEvalBoard()[invertRow(x)][y] *0.1) + pointsPerPiece[cur->getType()]);
+                    totalEvaluation -= ((cur->getEvalBoard().at(invertRow(x)).at(y) * 0.1) + pointsPerPiece.at(cur->getType()));
                 }else{
-                    totalEvaluation += ((cur->getEvalBoard()[x][y] *0.1) + pointsPerPiece[cur->getType()]);
+                    totalEvaluation += ((cur->getEvalBoard().at(x).at(y) * 0.1) + pointsPerPiece.at(cur->getType()));
                 }
             }
         }

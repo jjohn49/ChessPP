@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.24)
 project(ChessPP)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER /usr/bin/clang++)
 
 #find_library(SDL2_LIBRARY NAME SDL2 REQUIRED)
 find_package(SDL2)
