@@ -36,8 +36,8 @@ public:
     static float minMaxAlgo(Board board, Move & move, int depth, float alpha, float beta, bool maximizing);
     static float negaMaxAlgo(Board board, Move & move, int depth, float alpha, float beta);
 
-    static float maxAlphaBeta(Board board, Move & move, int depth, float alpha, float beta);
-    static float minAlphaBeta(Board board, Move & move, int depth, float alpha, float beta);
+    static double maxAlphaBeta(Board board, Move & move, int depth, double alpha, double beta);
+    static double minAlphaBeta(Board board, Move & move, int depth, double alpha, double beta);
 };
 
 

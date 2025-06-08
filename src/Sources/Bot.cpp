@@ -39,8 +39,6 @@ bool Bot::move() {
 
     this->getBoard()->setPieceAt(move.getOldPosition(), nullptr);
 
-    cout <<"Board evaluated at: "<< getBoard()->evaluate() << endl;
-
 
     return this->movePiece(move);
 }
@@ -66,7 +64,7 @@ Move Bot::getIntermediateMove() {
 }
 
 Move Bot::getHardMove() {
-    return getMinMaxMove(5);
+    return getMinMaxMove(4);
     //return getNegaMaxMove(4);
 }
 
@@ -86,6 +84,9 @@ vector<Move> Bot::getAllMovesSorted() {
 
     for(Move & m: moves){
         float total = 0;
+
+
+
         if(m.getIsPawnPromotion()){
             total += 9;
         }
@@ -124,83 +125,143 @@ vector<Move> Bot::getAllMovesSorted() {
     return ret;
 }
 
-float Bot::maxAlphaBeta(Board board, Move &move, int depth, float alpha, float beta) {
-    if(depth == 0){
-        return board.evaluate();
-    }
+double Bot::maxAlphaBeta(Board board, Move &move, int depth, double alpha, double beta) {
+    try{
+        if(depth == 0){
+            return board.evaluate();
+        }
 
-    int bestVal = -1000000000000;
+        double bestVal = -1000000000000;
 
-    Board copyBoard = board.deepCopy();
-    shared_ptr<Piece> movingPiece = copyBoard.getPieceAt(move.getOldPosition());
+        Board copyBoard;
+        shared_ptr<Piece> movingPiece;
 
-    copyBoard.setPieceAt(move.getNewPosition(), movingPiece);
-    copyBoard.setPieceAt(move.getOldPosition(), nullptr);
-    movingPiece->setHasMoved(true);
-    movingPiece->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
+        try {
+            copyBoard = board.deepCopy();
+            movingPiece = copyBoard.getPieceAt(move.getOldPosition());
 
-    if(move.getIsPawnPromotion()){
-        std::shared_ptr<Piece> tempQueen = make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
-        copyBoard.setPieceAt(move.getNewPosition(),tempQueen);
-    }
+            copyBoard.setPieceAt(move.getNewPosition(), movingPiece);
+            copyBoard.setPieceAt(move.getOldPosition(), nullptr);
+            movingPiece->setHasMoved(true);
+            movingPiece->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
+        }catch (...){
+            cerr << "Error when creating copy boards" << endl;
+            rethrow_exception(current_exception());
+        }
 
-    for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
+        try {
 
-        float score = minAlphaBeta(copyBoard, m, depth -1, alpha, beta);
+            if (move.getIsPawnPromotion()) {
+                std::shared_ptr<Piece> tempQueen = make_shared<Queen>(
+                        Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
+                copyBoard.setPieceAt(move.getNewPosition(), tempQueen);
+            }
 
-        if(score > bestVal){
-            bestVal = alpha;
-            if(score >alpha){
-                alpha = score;
+        }catch (...){
+            cerr << "Error during pawn promotion to queen" << endl;
+            rethrow_exception(current_exception());
+        }
+
+        for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
+            try {
+                double score = minAlphaBeta(copyBoard, m, depth - 1, alpha, beta);
+
+                if (score > bestVal) {
+                    bestVal = alpha;
+                    if (score > alpha) {
+                        alpha = score;
+                    }
+                }
+
+                if (score >= beta) {
+                    return score;
+                }
+            }catch (...){
+                cerr << "Error during loop in minMaxAlpha" << endl;
+                cerr << "Move is : " << m.toString();
+                rethrow_exception(current_exception());
             }
         }
-
-        if(score <= beta){
-            return score;
-        }
-
         return bestVal;
+    }catch (...){
+        exception_ptr ex = current_exception();
+        std::cerr << "Error in minAlphaBeta for depth: " << depth << ", alpha: " << alpha << ", beta: " << beta << "\n"
+                  << "Board: \n" << board.toString() << "\n"
+                  << "Move: " << move.toString() << endl;
+        rethrow_exception(ex);
     }
-
 }
 
-float Bot::minAlphaBeta(Board board, Move &move, int depth, float alpha, float beta) {
-    if(depth == 0){
-        return board.evaluate();
-    }
+double Bot::minAlphaBeta(Board board, Move &move, int depth, double alpha, double beta) {
+    try {
+        if (depth == 0) {
+            return board.evaluate();
+        }
 
-    int bestVal = 1000000000000;
+        int bestVal = 1000000000000;
 
-    Board copyBoard = board.deepCopy();
-    shared_ptr<Piece> movingPiece = make_shared<Piece>(*move.getMovingPiece());
+        Board copyBoard;
+        shared_ptr<Piece> movingPiece = nullptr;
 
-    copyBoard.setPieceAt(move.getNewPosition(), movingPiece);
-    copyBoard.setPieceAt(move.getOldPosition(), nullptr);
-    bool tempHasMoved = movingPiece->getHasMoved();
-    movingPiece->setHasMoved(true);
-    movingPiece->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
+        try {
+            copyBoard = board.deepCopy();
+            movingPiece = copyBoard.getPieceAt(move.getOldPosition().first, move.getOldPosition().second);
 
-    if(move.getIsPawnPromotion()){
-        std::shared_ptr<Piece> tempQueen = make_shared<Queen>(Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
-        copyBoard.setPieceAt(move.getNewPosition(),tempQueen);
-    }
+            if(movingPiece == nullptr){
+                cerr << "Moving piece that is suppose to be at " << move.getOldPosition().first << "," << move.getOldPosition().second << " was found to be null" << endl;
+                throw exception();
+            }
 
-    for(Move & m : board.getAllMovesForColor((move.getMovingPiece()->getColor()==Piece::White)? Piece::Black: Piece::White)){
+            copyBoard.setPieceAt(move.getNewPosition(), movingPiece);
+            copyBoard.setPieceAt(move.getOldPosition(), nullptr);
+            movingPiece->setHasMoved(true);
+            movingPiece->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
+        }catch (...){
+            cerr << "Error when creating copy boards" << endl;
+            rethrow_exception(current_exception());
+        }
 
-        float score = maxAlphaBeta(copyBoard, m, depth -1, alpha, beta);
+        try {
 
-        if(score < bestVal){
-            bestVal = score;
-            if(score < beta){
-                beta = score;
+            if (move.getIsPawnPromotion()) {
+                std::shared_ptr<Piece> tempQueen = make_shared<Queen>(
+                        Queen(move.getNewPosition(), move.getMovingPiece()->getColor()));
+                copyBoard.setPieceAt(move.getNewPosition(), tempQueen);
+            }
+
+        }catch (...){
+            cerr << "Error during pawn promotion to queen" << endl;
+            rethrow_exception(current_exception());
+        }
+
+        for (Move &m: copyBoard.getAllMovesForColor(
+                (move.getMovingPiece()->getColor() == Piece::White) ? Piece::Black : Piece::White)) {
+            try{
+                double score = maxAlphaBeta(copyBoard, m, depth - 1, alpha, beta);
+
+                if (score < bestVal) {
+                    bestVal = score;
+                    if (score < beta) {
+                        beta = score;
+                    }
+                }
+
+                if (score <= alpha) {
+                    return score;
+                }
+            }catch (...){
+                cerr << "Error during loop in minMaxAlpha" << endl;
+                cerr << "Move is : " << m.toString();
+                rethrow_exception(current_exception());
             }
         }
-
-        if(score <= alpha){
-            return score;
-        }
-
         return bestVal;
+    }catch (...){
+        exception_ptr ex = current_exception();
+        std::cerr << "Error in minAlphaBeta for depth: " << depth << ", alpha: " << alpha << ", beta: " << beta << "\n"
+        << "Board: \n" << board.toString() << "\n"
+        << "Move: " << move.toString() << endl;
+        rethrow_exception(ex);
     }
 }
 
@@ -302,29 +363,24 @@ float Bot::negaMaxAlgo(Board board, Move &move, int depth, float alpha, float be
 }
 
 Move Bot::getMinMaxMove(int depth) {
-    unordered_map<float, vector<Move>> pointsPerMove;
-    vector<pair<Move, future<float>>> futures{};
-
+    unordered_map<double, vector<Move>> pointsPerMove;
+    vector<pair<Move, future<double>>> futures{};
 
     for(Move & m : getAllMovesSorted()){
-        //float val = minMaxAlgo(*getBoard(),m,depth,-100000,1000000, true);
         Board copyBoard = this->getBoard()->deepCopy();
         Move copyMove = m;
-        copyMove.setMovingPiece(copyBoard.getPieceAt(m.getOldPosition()));
 
-        futures.push_back(make_pair(m ,std::async( std::launch::async, [copyBoard, &copyMove, depth]{
-            return minAlphaBeta(copyBoard, copyMove,depth, -100000, 100000);
+        futures.push_back(make_pair(m, std::async(std::launch::async, [copyBoard, &copyMove, depth] {
+            double score = maxAlphaBeta(copyBoard, copyMove, depth, -100000000000000, 1000000000000000);
+            return double(-1) * score;
         })));
+
     }
 
-    for(pair<Move, future<float>> & f: futures){
+    for(pair<Move, future<double>> & f: futures){
 
-        try {
-            float val = f.second.get();
-            pointsPerMove.at(val).push_back(f.first);
-        }catch (const out_of_range & e){
-            cout << e.what() << endl;
-        }
+        float val = f.second.get();
+        pointsPerMove[val].push_back(f.first);
     }
 
     vector<float> keys = {};

@@ -77,8 +77,9 @@ Board::Board() {
 shared_ptr<Piece> Board::getPieceAt(int row, int col) {
     try {
         return board.at(row).at(col);
-    } catch(out_of_range & e) {
-        cout << "Error trying to get a piece at position " << row << "," << col << endl;
+    } catch(...) {
+        cerr << "Error trying to get a piece at position " << row << "," << col << endl;
+        rethrow_exception(current_exception());
     }
 }
 
@@ -178,17 +179,29 @@ std::pair<int,int> Board::getColorsKingPosition(Piece::Color color) {
 }
 
 std::vector<Move> Board::getAllMovesForColor(Piece::Color color) {
-    vector<Move> colorMoves{};
+    try{
+        vector<Move> colorMoves{};
 
-    for(auto & row: board){
-        for(shared_ptr<Piece> & p: row){
-            if(p != nullptr && p->getColor() == color){
-                auto pMoves = p->getMoves(this);
-                colorMoves.insert(colorMoves.end(),pMoves.begin(),pMoves.end());
+        for(auto & row: board){
+            for(shared_ptr<Piece> & p: row){
+                if(p != nullptr && p->getColor() == color){
+                    try {
+                        auto pMoves = p->getMoves(this);
+                        colorMoves.insert(colorMoves.end(), pMoves.begin(), pMoves.end());
+                    }catch (...){
+                        cerr << "Error getting moves for Piece: " << p.get()->toString() << endl;
+                        rethrow_exception(current_exception());
+                    }
+                }
             }
         }
+        return colorMoves;
+    }catch (...){
+        exception_ptr ex = current_exception();
+        std::cerr << "Error getting all moves for color" << endl;
+        std::rethrow_exception(ex);
+
     }
-    return colorMoves;
 }
 
 bool Board::isColorInCheck(Piece::Color color) {
@@ -266,28 +279,27 @@ shared_ptr<Piece> Board::addPiece(Piece::Type type, Piece::Color color, pair<int
     }
 }
 
-float Board::evaluate() {
+double Board::evaluate() {
 
-    float totalEvaluation = 0;
+    double totalEvaluation = 0;
 
-    unordered_map<Piece::Type, int> pointsPerPiece = {
+    unordered_map<Piece::Type, double> pointsPerPiece = {
             {Piece::Pawn,1},
             {Piece::Knight,3},
             {Piece::Bishop,3},
             {Piece::Rook,5},
             {Piece::Queen,9},
-            {Piece::King,2000000},
+            {Piece::King,20},
     };
-
 
     for(int x = 0; x < 8; x++){
         for(int y= 0; y < 8; y++){
             shared_ptr<Piece> cur = getPieceAt(x,y);
             if(cur != nullptr){
                 if(cur->getColor()==Piece::Black){
-                    totalEvaluation -= ((cur->getEvalBoard().at(invertRow(x)).at(y) * 0.1) + pointsPerPiece.at(cur->getType()));
+                    totalEvaluation -= (cur->getEvalBoard().at(invertRow(x)).at(y) + pointsPerPiece.at(cur->getType()));
                 }else{
-                    totalEvaluation += ((cur->getEvalBoard().at(x).at(y) * 0.1) + pointsPerPiece.at(cur->getType()));
+                    totalEvaluation += (cur->getEvalBoard().at(x).at(y) + pointsPerPiece.at(cur->getType()));
                 }
             }
         }
@@ -303,85 +315,92 @@ int Board::invertRow(int row) {
 }
 
 Board Board::deepCopy() {
-    Board copyBoard = Board();
+    try {
+        Board copyBoard = Board();
 
-    copyBoard.board = {
-            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
-            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
-            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
-            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
-            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
-            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
-            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr},
-            {nullptr, nullptr,nullptr, nullptr,nullptr, nullptr,nullptr, nullptr}
-    };
+        copyBoard.board = {
+                {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
+                {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
+                {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
+                {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
+                {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
+                {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
+                {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr},
+                {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}
+        };
 
-    copyBoard.pawns = {};
-    copyBoard.rooks = {};
-    copyBoard.knights = {};
-    copyBoard.bishops = {};
-    copyBoard.kings = {};
-    copyBoard.queens = {};
+        copyBoard.pawns = {};
+        copyBoard.rooks = {};
+        copyBoard.knights = {};
+        copyBoard.bishops = {};
+        copyBoard.kings = {};
+        copyBoard.queens = {};
 
-    for(auto p: pawns){
-        auto pPos = p->getPosition();
-        shared_ptr<Pawn> copyPawn = nullptr;
-        if(this->getPieceAt(pPos.first, pPos.second) == p) {
-            copyPawn = std::make_shared<Pawn>(*p);
-            copyBoard.pawns.push_back(copyPawn);
-            copyBoard.setPieceAt(pPos, copyPawn);
+        for(auto p: pawns){
+            auto pPos = p->getPosition();
+            shared_ptr<Pawn> copyPawn = nullptr;
+            if(this->getPieceAt(pPos.first, pPos.second) == p) {
+                copyPawn = std::make_shared<Pawn>(*p);
+                copyBoard.pawns.push_back(copyPawn);
+                copyBoard.setPieceAt(pPos, copyPawn);
+            }
         }
-    }
 
-    for(auto r: rooks){
-        auto rPos = r->getPosition();
-        shared_ptr<Rook> copyRook = nullptr;
-        if(this->getPieceAt(rPos.first, rPos.second) == r) {
-            copyRook = std::make_shared<Rook>(*r);
-            copyBoard.rooks.push_back(copyRook);
-            copyBoard.setPieceAt(rPos, copyRook);
+        for(auto r: rooks){
+            auto rPos = r->getPosition();
+            shared_ptr<Rook> copyRook = nullptr;
+            if(this->getPieceAt(rPos.first, rPos.second) == r) {
+                copyRook = std::make_shared<Rook>(*r);
+                copyBoard.rooks.push_back(copyRook);
+                copyBoard.setPieceAt(rPos, copyRook);
+            }
         }
-    }
 
-    for(auto k: knights){
-        auto kPos = k->getPosition();
-        shared_ptr<Knight> copyKnight = nullptr;
-        if(this->getPieceAt(kPos.first, kPos.second) == k) {
-            copyKnight = std::make_shared<Knight>(*k);
-            copyBoard.knights.push_back(copyKnight);
-            copyBoard.setPieceAt(kPos, copyKnight);
+        for(auto k: knights){
+            auto kPos = k->getPosition();
+            shared_ptr<Knight> copyKnight = nullptr;
+            if(this->getPieceAt(kPos.first, kPos.second) == k) {
+                copyKnight = std::make_shared<Knight>(*k);
+                copyBoard.knights.push_back(copyKnight);
+                copyBoard.setPieceAt(kPos, copyKnight);
+            }
         }
-    }
 
-    for(auto b: bishops){
-        auto bPos = b->getPosition();
-        if(this->getPieceAt(bPos.first,bPos.second) == b){
-            shared_ptr<Bishop> copyBishop = make_shared<Bishop>(*b);
-            copyBoard.bishops.push_back(copyBishop);
-            copyBoard.setPieceAt(bPos.first,bPos.second,copyBishop);
+        for(auto b: bishops){
+            auto bPos = b->getPosition();
+            if(this->getPieceAt(bPos.first,bPos.second) == b){
+                shared_ptr<Bishop> copyBishop = make_shared<Bishop>(*b);
+                copyBoard.bishops.push_back(copyBishop);
+                copyBoard.setPieceAt(bPos.first,bPos.second,copyBishop);
+            }
         }
-    }
 
-    for(auto q: queens){
-        auto qPos = q->getPosition();
-        if(this->getPieceAt(qPos.first,qPos.second) == q){
-            shared_ptr<Queen> copyQueen = make_shared<Queen>(*q);
-            copyBoard.queens.push_back(copyQueen);
-            copyBoard.setPieceAt(qPos.first,qPos.second,copyQueen);
+        for(auto q: queens){
+            auto qPos = q->getPosition();
+            if(this->getPieceAt(qPos.first,qPos.second) == q){
+                shared_ptr<Queen> copyQueen = make_shared<Queen>(*q);
+                copyBoard.queens.push_back(copyQueen);
+                copyBoard.setPieceAt(qPos.first,qPos.second,copyQueen);
+            }
         }
-    }
 
-    for(auto k: kings){
-        auto kPos = k->getPosition();
-        shared_ptr<King> copyKing = nullptr;
-        if(this->getPieceAt(kPos.first, kPos.second) == k) {
-            copyKing = std::make_shared<King>(*k);
-            copyBoard.kings.push_back(copyKing);
-            copyBoard.setPieceAt(kPos, copyKing);
+        for(auto k: kings){
+            auto kPos = k->getPosition();
+            shared_ptr<King> copyKing = nullptr;
+            if(this->getPieceAt(kPos.first, kPos.second) == k) {
+                copyKing = std::make_shared<King>(*k);
+                copyBoard.kings.push_back(copyKing);
+                copyBoard.setPieceAt(kPos, copyKing);
+            }
         }
-    }
 
-    return copyBoard;
+        return copyBoard;
+    } catch(...){
+        std::exception_ptr ex = std::current_exception();
+        cerr << "Error creating a copy board of " << this->toString() << " . Received exception" << endl;
+        rethrow_exception(ex);
+
+    }
 }
 
 

@@ -37,6 +37,7 @@ bool Player::movePiece(Move &move) {
         if(move.getCapturedPiece() != nullptr){
             addPieceCaptured(move.getCapturedPiece());
         }
+        cout << "Board eval is: " << to_string(board->evaluate()) << endl;
         return true;
     }else{
         board->setPieceAt(move.getOldPosition(), move.getMovingPiece());
