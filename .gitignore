@@ -68,3 +68,6 @@ cmake-build-release/.cmake/api/v1/reply/cache-v2-b6e68fc4aec964efae18.json
 /cmake-build-release-system/.cmake/api
 /cmake-build-release-system/.cmake/api/v1
 /cmake-build-release-system/.cmake/api/v1/query
+
+#VSCODE
+.vscode
