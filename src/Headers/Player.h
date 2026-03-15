@@ -27,10 +27,11 @@ public:
     bool canPieceMoveThere(Move & attemptedMove);
     bool isInCheck(shared_ptr<Piece> pieceDragging, pair<int,int> position);
     bool isCheckMated();
+    bool isStalemated();
     Board * getBoard();
     virtual bool isBot();
 
-    int getTime();
+    float getTime();
     void setTime(float newTime);
 
     //for the bot sub class

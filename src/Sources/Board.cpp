@@ -95,7 +95,7 @@ void Board::print() {
 
 string Board::toString() {
     string ret = "";
-    for(int r = 0; r < 8; r++){
+    for(int r = 7; r >=0; r--){
         for(int c = 0; c < 8; c++){
             char chr;
             if(this->getPieceAt(r,c)){
@@ -141,6 +141,7 @@ void Board::movePiece(Move & move) {
     pieceMoved->setNewPosition(move.getNewPosition().first, move.getNewPosition().second);
     pieceMoved->setHasMoved(true);
     setPieceAt(move.getNewPosition(),pieceMoved);
+    setPieceAt(move.getOldPosition(), nullptr);
 
     if(move.getIsEnPessant()){
         setPieceAt(move.getOldPosition().first, move.getNewPosition().second, nullptr);
@@ -163,6 +164,108 @@ void Board::movePiece(Move & move) {
 
 }
 
+UndoInfo Board::makeSearchMove(Move & move) {
+    UndoInfo undo;
+    undo.oldPos = move.getOldPosition();
+    undo.newPos = move.getNewPosition();
+
+    shared_ptr<Piece> movingPiece = getPieceAt(undo.oldPos);
+    undo.capturedPiece = getPieceAt(undo.newPos);
+    undo.movingPieceHadMoved = movingPiece->getHasMoved();
+    undo.movingPieceOldPosition = movingPiece->getPosition();
+
+    // Move the piece
+    setPieceAt(undo.newPos, movingPiece);
+    setPieceAt(undo.oldPos, nullptr);
+    movingPiece->setHasMoved(true);
+    movingPiece->setNewPosition(undo.newPos.first, undo.newPos.second);
+
+    // Handle en passant
+    if(move.getIsEnPessant()) {
+        undo.wasEnPassant = true;
+        undo.enPassantCapturePos = {undo.oldPos.first, undo.newPos.second};
+        undo.enPassantCapturedPiece = getPieceAt(undo.enPassantCapturePos);
+        setPieceAt(undo.enPassantCapturePos, nullptr);
+    }
+
+    // Handle castling
+    if(move.getIsKingSideCastle()) {
+        undo.wasCastle = true;
+        int row = undo.oldPos.first;
+        undo.rookOldPos = {row, 7};
+        undo.rookNewPos = {row, 5};
+        undo.rookPiece = getPieceAt(undo.rookOldPos);
+        if(undo.rookPiece) {
+            undo.rookHadMoved = undo.rookPiece->getHasMoved();
+            setPieceAt(undo.rookNewPos, undo.rookPiece);
+            setPieceAt(undo.rookOldPos, nullptr);
+            undo.rookPiece->setHasMoved(true);
+            undo.rookPiece->setNewPosition(undo.rookNewPos.first, undo.rookNewPos.second);
+        }
+    } else if(move.getIsQueenSideCastle()) {
+        undo.wasCastle = true;
+        int row = undo.oldPos.first;
+        undo.rookOldPos = {row, 0};
+        undo.rookNewPos = {row, 3};
+        undo.rookPiece = getPieceAt(undo.rookOldPos);
+        if(undo.rookPiece) {
+            undo.rookHadMoved = undo.rookPiece->getHasMoved();
+            setPieceAt(undo.rookNewPos, undo.rookPiece);
+            setPieceAt(undo.rookOldPos, nullptr);
+            undo.rookPiece->setHasMoved(true);
+            undo.rookPiece->setNewPosition(undo.rookNewPos.first, undo.rookNewPos.second);
+        }
+    }
+
+    // Handle pawn promotion
+    if(move.getIsPawnPromotion()) {
+        undo.wasPromotion = true;
+        undo.originalPawn = movingPiece;
+        shared_ptr<Queen> promotedQueen = make_shared<Queen>(undo.newPos, movingPiece->getColor());
+        undo.promotedQueen = promotedQueen;
+        setPieceAt(undo.newPos, promotedQueen);
+        queens.push_back(promotedQueen);
+    }
+
+    return undo;
+}
+
+void Board::unmakeSearchMove(UndoInfo & undo) {
+    // Undo pawn promotion
+    if(undo.wasPromotion) {
+        setPieceAt(undo.newPos, undo.originalPawn);
+        // Remove the promoted queen from the queens list
+        for(auto it = queens.begin(); it != queens.end(); ++it) {
+            if(*it == undo.promotedQueen) {
+                queens.erase(it);
+                break;
+            }
+        }
+    }
+
+    // Get the moving piece (may be the original pawn if promotion was undone)
+    shared_ptr<Piece> movingPiece = getPieceAt(undo.newPos);
+
+    // Restore the moving piece to its original position
+    setPieceAt(undo.oldPos, movingPiece);
+    setPieceAt(undo.newPos, undo.capturedPiece);
+    movingPiece->setHasMoved(undo.movingPieceHadMoved);
+    movingPiece->setNewPosition(undo.movingPieceOldPosition.first, undo.movingPieceOldPosition.second);
+
+    // Undo castling
+    if(undo.wasCastle && undo.rookPiece) {
+        setPieceAt(undo.rookOldPos, undo.rookPiece);
+        setPieceAt(undo.rookNewPos, nullptr);
+        undo.rookPiece->setHasMoved(undo.rookHadMoved);
+        undo.rookPiece->setNewPosition(undo.rookOldPos.first, undo.rookOldPos.second);
+    }
+
+    // Undo en passant
+    if(undo.wasEnPassant) {
+        setPieceAt(undo.enPassantCapturePos, undo.enPassantCapturedPiece);
+    }
+}
+
 void Board::setPieceAt(int row, int col, std::shared_ptr<Piece> pieceDragging) {
     if(row < 0 || row > 7 || col < 0 || col > 7){
         cout << "Out of bounds";
@@ -175,7 +278,20 @@ void Board::setPieceAt(pair<int, int> position, std::shared_ptr<Piece> pieceDrag
 }
 
 std::pair<int,int> Board::getColorsKingPosition(Piece::Color color) {
-    return (color == Piece::White)? kings.at(0)->getPosition() : kings.at(1)->getPosition();
+    int idx = (color == Piece::White) ? 0 : 1;
+    if(idx >= (int)kings.size() || kings[idx] == nullptr){
+        // King not found — search the board directly
+        for(int r = 0; r < 8; r++){
+            for(int c = 0; c < 8; c++){
+                auto p = getPieceAt(r, c);
+                if(p != nullptr && p->getType() == Piece::King && p->getColor() == color){
+                    return p->getPosition();
+                }
+            }
+        }
+        return {-1, -1};
+    }
+    return kings[idx]->getPosition();
 }
 
 std::vector<Move> Board::getAllMovesForColor(Piece::Color color) {
@@ -206,21 +322,23 @@ std::vector<Move> Board::getAllMovesForColor(Piece::Color color) {
 
 bool Board::isColorInCheck(Piece::Color color) {
     std::pair<int,int> kingsPosition = getColorsKingPosition(color);
+    if(kingsPosition.first < 0) return false;
 
-    vector<Move> colorMoves{};
+    generatingAttacks = true;
     for(auto & row: board){
         for(shared_ptr<Piece> & p: row){
-            if(p != nullptr && p->getColor() == color){
+            if(p != nullptr && p->getColor() != color){
                 auto pMoves = p->getMoves(this);
                 for(auto & m: pMoves){
                     if(m.getNewPosition() == kingsPosition){
+                        generatingAttacks = false;
                         return true;
                     }
                 }
             }
         }
     }
-
+    generatingAttacks = false;
     return false;
 }
 
@@ -233,30 +351,22 @@ bool Board::isFirstMove() {
 }
 
 shared_ptr<Rook> Board::getRook(int val) {
+    if(val < 0 || val >= (int)rooks.size()) return nullptr;
     return rooks.at(val);
 }
 
-bool Board::isPositionInOppMoves(pair<int, int> position, Piece::Color oppColor) {
-    for(Move & m: getAllMovesForColor(oppColor)){
-        if(position == m.getNewPosition()){
-            return true;
-        }
-    }
-
-    return false;
-}
-
 bool Board::isPositionsInOppMoves(vector<pair<int, int>> positions, Piece::Color oppColor) {
-    bool ret = false;
-
+    generatingAttacks = true;
     for(Move & m: getAllMovesForColor(oppColor)){
         for(pair<int,int> & p: positions){
             if(p == m.getNewPosition()){
+                generatingAttacks = false;
                 return true;
             }
         }
     }
-    return ret;
+    generatingAttacks = false;
+    return false;
 }
 
 bool Board::isPositionInBounds(pair<int, int> position) {
@@ -283,13 +393,15 @@ double Board::evaluate() {
 
     double totalEvaluation = 0;
 
-    unordered_map<Piece::Type, double> pointsPerPiece = {
-            {Piece::Pawn,1},
-            {Piece::Knight,3},
-            {Piece::Bishop,3},
-            {Piece::Rook,5},
-            {Piece::Queen,9},
-            {Piece::King,20},
+    // Indexed by Piece::Type enum: NoType=0, Pawn=1, Bishop=2, Knight=3, Rook=4, Queen=5, King=6
+    static constexpr double pieceValues[7] = {
+        0,      // NoType
+        1,      // Pawn
+        3,      // Bishop
+        3,      // Knight
+        5,      // Rook
+        9,      // Queen
+        20000,  // King
     };
 
     for(int x = 0; x < 8; x++){
@@ -297,15 +409,13 @@ double Board::evaluate() {
             shared_ptr<Piece> cur = getPieceAt(x,y);
             if(cur != nullptr){
                 if(cur->getColor()==Piece::Black){
-                    totalEvaluation -= (cur->getEvalBoard().at(invertRow(x)).at(y) + pointsPerPiece.at(cur->getType()));
+                    totalEvaluation -= ((cur->getEvalBoard().at(invertRow(x)).at(y)*.1) + pieceValues[cur->getType()]);
                 }else{
-                    totalEvaluation += (cur->getEvalBoard().at(x).at(y) + pointsPerPiece.at(cur->getType()));
+                    totalEvaluation += ((cur->getEvalBoard().at(x).at(y) * .1) + pieceValues[cur->getType()]);
                 }
             }
         }
     }
-
-    //cout << totalEvaluation << endl;
 
     return totalEvaluation;
 }
@@ -399,13 +509,8 @@ Board Board::deepCopy() {
         std::exception_ptr ex = std::current_exception();
         cerr << "Error creating a copy board of " << this->toString() << " . Received exception" << endl;
         rethrow_exception(ex);
-
     }
 }
-
-
-
-
 
 
 

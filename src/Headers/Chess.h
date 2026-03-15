@@ -11,6 +11,7 @@
 #include "Bot.h"
 #include <unordered_map>
 #include <chrono>
+#include <future>
 #ifdef __linux__
     #include <SDL2/SDL.h>
     #include <SDL2/SDL_ttf.h>
@@ -21,6 +22,16 @@
     
 #endif
 
+
+enum TimeControl {
+	Bullet = 60,
+	Blitz = 180,
+	FiveMin = 300,
+	Rapid = 600,
+	TwentyMin = 1200,
+	Classical = 1800,
+	NoTimer = -1
+};
 
 class Chess {
 public:
@@ -37,6 +48,11 @@ protected:
     shared_ptr<Player>  blackPlayer;
     unordered_map<Piece::Type, unordered_map<Piece::Color,SDL_Texture *>> pieceTextures;
     chrono::steady_clock::time_point currentTime;
+    TimeControl timeControl;
+    bool useClock;
+    bool botThinking;
+    std::future<bool> botFuture;
+    bool boardFlipped;
 
 
 
@@ -52,14 +68,18 @@ protected:
     void onPawnPromotion(Move & move);
     void onPawnPromotionEvent(SDL_Event * event, int & input);
     void onCheckMate();
+    void onStalemate();
     void onCleanup();
+    void showMenu();
+    void drawMenuScreen(const std::vector<std::string> & lines, const std::string & title, int hoveredButton = -1);
+    int menuSelectFromScreen(const std::vector<std::string> & labels, const std::string & title, int optionCount);
     void setPieceDragging(SDL_Event * event);
     int convertYAxisToRow(int row);
     bool isPositionInMoves(int row, int col, vector<Move> & moves);
 
 public:
     Chess();
-    Chess(bool useBot, BotDifficulty level = Easy, Piece::Color botColor = Piece::Black);
+    Chess(bool useBot, BotDifficulty level = Easy, Piece::Color botColor = Piece::Black, TimeControl tc = NoTimer);
     void play();
 
 

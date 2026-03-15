@@ -8,7 +8,7 @@ Player::Player() {
     this->color = Piece::NoColor;
     this->board = nullptr;
     this->piecesCaptured = {};
-    this->timeLeft = 600.00;
+    this->timeLeft = -1.0f;
 }
 
 
@@ -16,7 +16,7 @@ Player::Player(Piece::Color color, Board * board) {
     this->color = color;
     this->board = board;
     this->piecesCaptured = {};
-    this->timeLeft = 600.00;
+    this->timeLeft = -1.0f;
 }
 
 void Player::addPieceCaptured(shared_ptr<Piece> piece) {
@@ -58,23 +58,50 @@ bool Player::canPieceMoveThere(Move &attemptedMove) {
 }
 
 bool Player::isInCheck(shared_ptr<Piece> pieceDragging, pair<int, int> position) {
-    bool ret;
-    Board copyBoard = *board;
-    copyBoard.setPieceAt(position, pieceDragging);
-    pair<int,int> oldPos = pieceDragging->getPosition();
-    pieceDragging->setNewPosition(position.first, position.second);
-    ret = copyBoard.isColorInCheck(getColor());
-    pieceDragging->setNewPosition(oldPos.first,oldPos.second);
-    return ret;
+    Board copyBoard = board->deepCopy();
+
+    // The piece may have been removed from the board grid (e.g. during dragging).
+    // Look it up on the copy; if not found, temporarily place the original on the copy
+    // so we can simulate the move.
+    shared_ptr<Piece> copyPiece = copyBoard.getPieceAt(pieceDragging->getPosition());
+    if(copyPiece == nullptr || copyPiece->getType() != pieceDragging->getType()
+       || copyPiece->getColor() != pieceDragging->getColor()) {
+        // Piece not on the copy board — use the original directly on the copy
+        copyBoard.setPieceAt(position, pieceDragging);
+        pair<int,int> oldPos = pieceDragging->getPosition();
+        pieceDragging->setNewPosition(position.first, position.second);
+        bool ret = copyBoard.isColorInCheck(getColor());
+        pieceDragging->setNewPosition(oldPos.first, oldPos.second);
+        return ret;
+    }
+
+    copyBoard.setPieceAt(position, copyPiece);
+    copyBoard.setPieceAt(pieceDragging->getPosition(), nullptr);
+    copyPiece->setNewPosition(position.first, position.second);
+    return copyBoard.isColorInCheck(getColor());
 }
 
 bool Player::isCheckMated() {
+    // Must be in check AND have no legal moves
+    if(!board->isColorInCheck(getColor())) return false;
+
     for(Move & m: board->getAllMovesForColor(getColor())){
         if(!isInCheck(m.getMovingPiece(), m.getNewPosition())){
             return false;
         }
     }
+    return true;
+}
 
+bool Player::isStalemated() {
+    // Not in check but no legal moves = stalemate (draw)
+    if(board->isColorInCheck(getColor())) return false;
+
+    for(Move & m: board->getAllMovesForColor(getColor())){
+        if(!isInCheck(m.getMovingPiece(), m.getNewPosition())){
+            return false;
+        }
+    }
     return true;
 }
 
@@ -101,7 +128,7 @@ Board * Player::getBoard() {
     return board;
 }
 
-int Player::getTime() {
+float Player::getTime() {
     return timeLeft;
 }
 

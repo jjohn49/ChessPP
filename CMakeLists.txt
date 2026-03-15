@@ -86,9 +86,29 @@ add_executable(ChessPP
         src/Headers/Player.h
         src/Sources/Bot.cpp
         src/Headers/Bot.h
+        src/Headers/GPUEvaluator.h
 )
 
-
+# GPU batch evaluator: Metal on macOS, CPU fallback otherwise
+if(APPLE)
+    find_library(METAL_FRAMEWORK Metal)
+    find_library(FOUNDATION_FRAMEWORK Foundation)
+    if(METAL_FRAMEWORK AND FOUNDATION_FRAMEWORK)
+        target_sources(ChessPP PRIVATE src/Sources/MetalEvaluator.mm)
+        target_sources(ChessPP PRIVATE src/Sources/CPUEvaluator.cpp)
+        target_link_libraries(ChessPP ${METAL_FRAMEWORK} ${FOUNDATION_FRAMEWORK})
+        target_compile_definitions(ChessPP PRIVATE USE_METAL=1)
+        message(STATUS "GPU Evaluator: Metal (macOS)")
+    else()
+        target_sources(ChessPP PRIVATE src/Sources/CPUEvaluator.cpp)
+        target_compile_definitions(ChessPP PRIVATE USE_CPU_EVAL=1)
+        message(STATUS "GPU Evaluator: CPU fallback (Metal not found)")
+    endif()
+else()
+    target_sources(ChessPP PRIVATE src/Sources/CPUEvaluator.cpp)
+    target_compile_definitions(ChessPP PRIVATE USE_CPU_EVAL=1)
+    message(STATUS "GPU Evaluator: CPU fallback (non-Apple)")
+endif()
 
 include_directories(ChessPP ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIR} ${SDL2TTF_INCLUDE_DIR})
 target_link_libraries(ChessPP ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARY} ${SDL2TTF_LIBRARY})
@@ -96,9 +116,32 @@ target_link_libraries(ChessPP ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARY} ${SDL2TTF_
 
 #target_link_libraries(ChessPP SDL2::SDL2main SDL2::SDL2-static SDL2_image::SDL2_image-static SDL2_ttf::SDL2_ttf-static)
 
+# --- Unit Tests (no SDL dependency) ---
+set(CHESS_CORE_SOURCES
+        src/Sources/Piece.cpp
+        src/Sources/Board.cpp
+        src/Sources/Move.cpp
+        src/Sources/Pawn.cpp
+        src/Sources/King.cpp
+        src/Sources/Rook.cpp
+        src/Sources/Bishop.cpp
+        src/Sources/Knight.cpp
+        src/Sources/Queen.cpp
+        src/Sources/Player.cpp
+        src/Sources/Bot.cpp
+)
 
+add_executable(ChessPPTests
+        tests/test_main.cpp
+        tests/test_board.cpp
+        tests/test_pieces.cpp
+        tests/test_bot.cpp
+        ${CHESS_CORE_SOURCES}
+)
 
-
+target_include_directories(ChessPPTests PRIVATE ${CMAKE_SOURCE_DIR})
+enable_testing()
+add_test(NAME ChessPPTests COMMAND ChessPPTests)
 
 
 
