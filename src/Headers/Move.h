@@ -43,6 +43,7 @@ public:
     bool getIsKingSideCastle();
     bool getIsPawnPromotion();
     void setIsPawnPromotion(bool value);
+    std::shared_ptr<Piece> getPromotedToPiece(){return promotedToPiece;};
     void setPromotedToPiece(shared_ptr<Piece> piece);
     void setMovingPiece(shared_ptr<Piece> piece);
 };

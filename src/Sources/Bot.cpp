@@ -48,16 +48,18 @@ Move Bot::getSuperEasyMove() {
 	return getAllMoves()[0];
 }
 
+// Depths are kept modest because quiescence search resolves captures past the
+// horizon, so even a shallow search no longer hangs material in a 1-move tactic.
 Move Bot::getEasyMove() {
-	return getMinMaxMove(1);
+	return getMinMaxMove(2);
 }
 
 Move Bot::getIntermediateMove() {
-	return getNegaMaxMove(2);
+	return getMinMaxMove(3);
 }
 
 Move Bot::getHardMove() {
-	return getMinMaxMove(5);
+	return getMinMaxMove(4);
 }
 
 // Sorts moves by heuristic value (captures, promotions, castling, positional).
@@ -115,170 +117,113 @@ vector<Move> Bot::getAllMovesSorted() {
 	return ret;
 }
 
-// Maximizer half of alpha-beta search.
-// Uses make/unmake to avoid deepCopy at every node.
-// Returns nullopt if the move leaves own king in check (illegal).
-optional<double> Bot::maxAlphaBeta(Board & board, Move move, int depth, double alpha, double beta) {
-	try {
-		if (move.getCapturedPiece() != nullptr && move.getCapturedPiece()->getType() == Piece::King) {
-			return 1000000000000;
-		}
+// Search score bounds. evaluate() magnitudes are small (tens of points), so these
+// sentinels sit far above any real evaluation. MATE is offset by ply so the engine
+// prefers faster mates and slower getting-mated.
+static constexpr double SEARCH_INF = 1e9;
+static constexpr double MATE_SCORE = 1e6;
 
-		if (depth == 0) {
-			return board.evaluate();
-		}
-
-		Piece::Color movingColor = move.getMovingPiece()->getColor();
-		UndoInfo undo = board.makeSearchMove(move);
-
-		if (board.isColorInCheck(movingColor)) {
-			board.unmakeSearchMove(undo);
-			return nullopt;
-		}
-
-		double bestVal = -1000000000000;
-		Piece::Color oppColor = (movingColor == Piece::White) ? Piece::Black : Piece::White;
-		vector<Move> oppMoves = board.getAllMovesForColor(oppColor);
-
-		for (Move & m : oppMoves) {
-			try {
-				if (m.getCapturedPiece() != nullptr && m.getCapturedPiece()->getType() == Piece::King) {
-					board.unmakeSearchMove(undo);
-					return 1000000000000;
-				}
-
-				optional<double> result = minAlphaBeta(board, m, depth - 1, alpha, beta);
-				if (!result) continue;
-				double score = result.value();
-
-				if (score > bestVal) {
-					bestVal = score;
-					if (score > alpha) {
-						alpha = score;
-					}
-				}
-
-				if (score >= beta) {
-					board.unmakeSearchMove(undo);
-					return score;
-				}
-			} catch (...) {
-				cerr << "Error during loop in maxAlphaBeta" << endl;
-				cerr << "Move is : " << m.toString();
-				board.unmakeSearchMove(undo);
-				rethrow_exception(current_exception());
-			}
-		}
-
-		board.unmakeSearchMove(undo);
-		return bestVal;
-	} catch (...) {
-		exception_ptr ex = current_exception();
-		std::cerr << "Error in maxAlphaBeta for depth: " << depth << ", alpha: " << alpha << ", beta: " << beta << "\n"
-		          << "Board: \n" << board.toString() << "\n"
-		          << "Move: " << move.toString() << endl;
-		rethrow_exception(ex);
-	}
+static inline Piece::Color oppositeColor(Piece::Color c) {
+	return (c == Piece::White) ? Piece::Black : Piece::White;
 }
 
-// Minimizer half of alpha-beta search.
-// Uses make/unmake to avoid deepCopy at every node.
-// Returns nullopt if the move leaves own king in check (illegal).
-optional<double> Bot::minAlphaBeta(Board & board, Move move, int depth, double alpha, double beta) {
-	try {
-		if (move.getCapturedPiece() != nullptr && move.getCapturedPiece()->getType() == Piece::King) {
-			return -1000000000000;
-		}
-
-		if (depth == 0) {
-			return board.evaluate();
-		}
-
-		Piece::Color movingColor = move.getMovingPiece()->getColor();
-		UndoInfo undo = board.makeSearchMove(move);
-
-		if (board.isColorInCheck(movingColor)) {
-			board.unmakeSearchMove(undo);
-			return nullopt;
-		}
-
-		double bestVal = 1000000000000;
-		Piece::Color oppColor = (movingColor == Piece::White) ? Piece::Black : Piece::White;
-		vector<Move> oppMoves = board.getAllMovesForColor(oppColor);
-
-		for (Move & m : oppMoves) {
-			try {
-				optional<double> result = maxAlphaBeta(board, m, depth - 1, alpha, beta);
-				if (!result) continue;
-				double score = result.value();
-
-				if (score < bestVal) {
-					bestVal = score;
-					if (score < beta) {
-						beta = score;
-					}
-				}
-
-				if (score <= alpha) {
-					board.unmakeSearchMove(undo);
-					return score;
-				}
-			} catch (...) {
-				cerr << "Error during loop in minAlphaBeta" << endl;
-				cerr << "Move is : " << m.toString();
-				board.unmakeSearchMove(undo);
-				rethrow_exception(current_exception());
-			}
-		}
-
-		board.unmakeSearchMove(undo);
-		return bestVal;
-	} catch (...) {
-		exception_ptr ex = current_exception();
-		std::cerr << "Error in minAlphaBeta for depth: " << depth << ", alpha: " << alpha << ", beta: " << beta << "\n"
-		          << "Board: \n" << board.toString() << "\n"
-		          << "Move: " << move.toString() << endl;
-		rethrow_exception(ex);
-	}
+// Static evaluation from the perspective of `toMove`.
+// evaluate() is white-positive, so negate when it's black to move.
+static inline double signedEval(Board & board, Piece::Color toMove) {
+	double e = board.evaluate();
+	return (toMove == Piece::White) ? e : -e;
 }
 
-// Negamax with alpha-beta pruning. Uses make/unmake to avoid deepCopy.
-// evaluate() is white-positive, so the result is negated for black.
-float Bot::negaMaxAlgo(Board & board, Move & move, int depth, float alpha, float beta) {
-	UndoInfo undo = board.makeSearchMove(move);
-
-	if (depth == 0) {
-		float eval = board.evaluate();
-		float result = (move.getMovingPiece()->getColor() == Piece::Black) ? -eval : eval;
-		board.unmakeSearchMove(undo);
-		return result;
+// Quiescence search: from a "quiet" stand-pat baseline, keep searching only
+// capture moves until no captures remain. This resolves recaptures past the
+// fixed-depth horizon, so the engine never leaves a piece hanging or misjudges
+// a trade just because the capture happened on the last ply.
+double Bot::quiesce(Board & board, Piece::Color toMove, double alpha, double beta) {
+	double standPat = signedEval(board, toMove);
+	if (standPat >= beta) {
+		return beta;
+	}
+	if (standPat > alpha) {
+		alpha = standPat;
 	}
 
-	float val = -10000000;
-	Piece::Color oppColor = (move.getMovingPiece()->getColor() == Piece::White) ? Piece::Black : Piece::White;
-	vector<Move> oppMoves = board.getAllMovesForColor(oppColor);
-
-	for (Move & m : oppMoves) {
-		if (m.getIsEnPessant()) {
+	vector<Move> moves = board.getAllMovesForColor(toMove);
+	for (Move & m : moves) {
+		// Only consider captures (getCapturedPiece is set for normal and en passant captures).
+		if (m.getCapturedPiece() == nullptr) {
 			continue;
 		}
 
-		float mEval = -negaMaxAlgo(board, m, depth - 1, -beta, -alpha);
-		val = max(mEval, val);
-		alpha = max(alpha, val);
-		if (alpha >= beta) {
+		UndoInfo undo = board.makeSearchMove(m);
+		if (board.isColorInCheck(toMove)) {
 			board.unmakeSearchMove(undo);
+			continue; // illegal: leaves own king in check
+		}
+
+		double score = -quiesce(board, oppositeColor(toMove), -beta, -alpha);
+		board.unmakeSearchMove(undo);
+
+		if (score >= beta) {
 			return beta;
+		}
+		if (score > alpha) {
+			alpha = score;
 		}
 	}
 
-	board.unmakeSearchMove(undo);
-	return val;
+	return alpha;
 }
 
-// Root-level alpha-beta search with parallel move evaluation.
-// Searches the first move serially to narrow the alpha/beta window,
-// then dispatches remaining moves in parallel via std::async.
+// Color-agnostic negamax with alpha-beta pruning. Returns the score from the
+// perspective of `toMove`. Uses make/unmake to avoid deepCopy at every node.
+// Illegal moves (leaving own king in check) are skipped; if no legal move
+// exists it's checkmate (in check) or stalemate.
+double Bot::negamax(Board & board, Piece::Color toMove, int depth, double alpha, double beta, int ply) {
+	if (depth == 0) {
+		return quiesce(board, toMove, alpha, beta);
+	}
+
+	double bestVal = -SEARCH_INF;
+	int legalMoves = 0;
+	vector<Move> moves = board.getAllMovesForColor(toMove);
+
+	for (Move & m : moves) {
+		UndoInfo undo = board.makeSearchMove(m);
+		if (board.isColorInCheck(toMove)) {
+			board.unmakeSearchMove(undo);
+			continue; // illegal: leaves own king in check
+		}
+		legalMoves++;
+
+		double score = -negamax(board, oppositeColor(toMove), depth - 1, -beta, -alpha, ply + 1);
+		board.unmakeSearchMove(undo);
+
+		if (score > bestVal) {
+			bestVal = score;
+		}
+		if (bestVal > alpha) {
+			alpha = bestVal;
+		}
+		if (alpha >= beta) {
+			break; // beta cutoff
+		}
+	}
+
+	if (legalMoves == 0) {
+		// No legal moves: checkmate (in check) is worst; stalemate is a draw.
+		if (board.isColorInCheck(toMove)) {
+			return -(MATE_SCORE - ply); // prefer mates that are further away when losing
+		}
+		return 0.0;
+	}
+
+	return bestVal;
+}
+
+// Root-level search with parallel move evaluation. Each legal candidate move is
+// scored via negamax on its own deepCopy in a separate thread, then the highest
+// scoring move (from the bot's own perspective) is chosen. Ties are broken
+// randomly so the bot doesn't play deterministically.
 Move Bot::getMinMaxMove(int depth) {
 	vector<Move> sortedMoves = getAllMovesSorted();
 
@@ -286,143 +231,49 @@ Move Bot::getMinMaxMove(int depth) {
 		return getAllMoves()[0];
 	}
 
-	bool isWhite = (getColor() == Piece::White);
-	double bestScore = isWhite ? -100000000000000.0 : 100000000000000.0;
-	vector<Move> bestMoves;
-	double alpha = -100000000000000.0;
-	double beta = 100000000000000.0;
+	Piece::Color me = getColor();
+	Piece::Color opp = oppositeColor(me);
 
-	// Search the first move serially to establish a good alpha/beta window
-	{
-		Move & firstMove = sortedMoves[0];
-		Board copyBoard = this->getBoard()->deepCopy();
-		optional<double> val = minAlphaBeta(copyBoard, firstMove, depth, alpha, beta);
-		if (val) {
-			bestScore = val.value();
-			bestMoves.push_back(firstMove);
-			if (isWhite) {
-				alpha = max(alpha, bestScore);
-			} else {
-				beta = min(beta, bestScore);
-			}
-		}
-	}
-
-	if (sortedMoves.size() <= 1) {
-		if (bestMoves.empty()) return sortedMoves[0];
-		return bestMoves[rand() % bestMoves.size()];
-	}
-
-	// Search remaining moves in parallel (each thread gets its own deepCopy)
+	// score is nullopt when the candidate move is illegal (leaves own king in check).
 	struct MoveResult {
 		int index;
 		optional<double> score;
 	};
 
-	double sharedAlpha = alpha;
-	double sharedBeta = beta;
-
 	vector<future<MoveResult>> futures;
-	futures.reserve(sortedMoves.size() - 1);
+	futures.reserve(sortedMoves.size());
 
-	for (int i = 1; i < (int)sortedMoves.size(); i++) {
+	for (int i = 0; i < (int)sortedMoves.size(); i++) {
 		Move m = sortedMoves[i];
 		Board * boardPtr = this->getBoard();
-		double localAlpha = sharedAlpha;
-		double localBeta = sharedBeta;
 
-		futures.push_back(std::async(std::launch::async, [boardPtr, m, depth, localAlpha, localBeta, i]() mutable -> MoveResult {
+		futures.push_back(std::async(std::launch::async, [boardPtr, m, depth, me, opp, i]() mutable -> MoveResult {
 			Board copyBoard = boardPtr->deepCopy();
-			optional<double> val = minAlphaBeta(copyBoard, m, depth, localAlpha, localBeta);
-			return {i, val};
+			UndoInfo undo = copyBoard.makeSearchMove(m);
+			if (copyBoard.isColorInCheck(me)) {
+				copyBoard.unmakeSearchMove(undo);
+				return {i, nullopt}; // illegal
+			}
+			// Score from the bot's perspective: negate the opponent's negamax value.
+			double score = -Bot::negamax(copyBoard, opp, depth - 1, -SEARCH_INF, SEARCH_INF, 1);
+			copyBoard.unmakeSearchMove(undo);
+			return {i, score};
 		}));
 	}
+
+	double bestScore = -SEARCH_INF;
+	vector<Move> bestMoves;
 
 	for (auto & f : futures) {
 		MoveResult result = f.get();
 		if (!result.score) continue;
 
 		double score = result.score.value();
-
-		if (isWhite) {
-			if (score > bestScore) {
-				bestScore = score;
-				bestMoves.clear();
-				bestMoves.push_back(sortedMoves[result.index]);
-			} else if (score == bestScore) {
-				bestMoves.push_back(sortedMoves[result.index]);
-			}
-		} else {
-			if (score < bestScore) {
-				bestScore = score;
-				bestMoves.clear();
-				bestMoves.push_back(sortedMoves[result.index]);
-			} else if (score == bestScore) {
-				bestMoves.push_back(sortedMoves[result.index]);
-			}
-		}
-	}
-
-	if (bestMoves.empty()) {
-		return sortedMoves[0];
-	}
-
-	return bestMoves[rand() % bestMoves.size()];
-}
-
-// Root-level negamax search with parallel move evaluation.
-// Searches the first move serially, then dispatches remaining in parallel.
-Move Bot::getNegaMaxMove(int depth) {
-	vector<Move> sortedMoves = getAllMovesSorted();
-
-	if (sortedMoves.empty()) {
-		return getAllMoves()[0];
-	}
-
-	float bestScore = -10000000;
-	vector<Move> bestMoves;
-
-	// Search first move serially to establish a baseline
-	{
-		Move & firstMove = sortedMoves[0];
-		Board copyBoard = getBoard()->deepCopy();
-		float val = -negaMaxAlgo(copyBoard, firstMove, depth, -1000000, 1000000);
-		bestScore = val;
-		bestMoves.push_back(firstMove);
-	}
-
-	if (sortedMoves.size() <= 1) {
-		return bestMoves[0];
-	}
-
-	// Search remaining moves in parallel (each thread gets its own deepCopy)
-	struct MoveResult {
-		int index;
-		float score;
-	};
-
-	vector<future<MoveResult>> futures;
-	futures.reserve(sortedMoves.size() - 1);
-
-	for (int i = 1; i < (int)sortedMoves.size(); i++) {
-		Move m = sortedMoves[i];
-		Board * boardPtr = getBoard();
-
-		futures.push_back(std::async(std::launch::async, [boardPtr, m, depth, i]() mutable -> MoveResult {
-			Board copyBoard = boardPtr->deepCopy();
-			float val = -negaMaxAlgo(copyBoard, m, depth, -1000000, 1000000);
-			return {i, val};
-		}));
-	}
-
-	for (auto & f : futures) {
-		MoveResult result = f.get();
-
-		if (result.score > bestScore) {
-			bestScore = result.score;
+		if (score > bestScore) {
+			bestScore = score;
 			bestMoves.clear();
 			bestMoves.push_back(sortedMoves[result.index]);
-		} else if (result.score == bestScore) {
+		} else if (score == bestScore) {
 			bestMoves.push_back(sortedMoves[result.index]);
 		}
 	}

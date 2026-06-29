@@ -4,6 +4,10 @@ project(ChessPP)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_COMPILER /usr/bin/clang++)
 
+# LAN multiplayer uses std::thread; link pthreads robustly (esp. on Linux).
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 #find_library(SDL2_LIBRARY NAME SDL2 REQUIRED)
 find_package(SDL2)
 
@@ -87,6 +91,12 @@ add_executable(ChessPP
         src/Sources/Bot.cpp
         src/Headers/Bot.h
         src/Headers/GPUEvaluator.h
+        src/Sources/NetProtocol.cpp
+        src/Headers/NetProtocol.h
+        src/Sources/RoomCode.cpp
+        src/Headers/RoomCode.h
+        src/Sources/NetSession.cpp
+        src/Headers/NetSession.h
 )
 
 # GPU batch evaluator: Metal on macOS, CPU fallback otherwise
@@ -111,7 +121,7 @@ else()
 endif()
 
 include_directories(ChessPP ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIR} ${SDL2TTF_INCLUDE_DIR})
-target_link_libraries(ChessPP ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARY} ${SDL2TTF_LIBRARY})
+target_link_libraries(ChessPP ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARY} ${SDL2TTF_LIBRARY} Threads::Threads)
 
 
 #target_link_libraries(ChessPP SDL2::SDL2main SDL2::SDL2-static SDL2_image::SDL2_image-static SDL2_ttf::SDL2_ttf-static)
@@ -129,6 +139,8 @@ set(CHESS_CORE_SOURCES
         src/Sources/Queen.cpp
         src/Sources/Player.cpp
         src/Sources/Bot.cpp
+        src/Sources/NetProtocol.cpp
+        src/Sources/RoomCode.cpp
 )
 
 add_executable(ChessPPTests
@@ -136,12 +148,24 @@ add_executable(ChessPPTests
         tests/test_board.cpp
         tests/test_pieces.cpp
         tests/test_bot.cpp
+        tests/test_network.cpp
+        tests/test_check.cpp
         ${CHESS_CORE_SOURCES}
 )
 
 target_include_directories(ChessPPTests PRIVATE ${CMAKE_SOURCE_DIR})
 enable_testing()
 add_test(NAME ChessPPTests COMMAND ChessPPTests)
+
+# --- Manual networking smoke test (real sockets/threads; build on demand) ---
+add_executable(NetSmoke EXCLUDE_FROM_ALL
+        tests/net_smoke.cpp
+        src/Sources/NetSession.cpp
+        src/Sources/NetProtocol.cpp
+        src/Sources/RoomCode.cpp
+)
+target_include_directories(NetSmoke PRIVATE ${CMAKE_SOURCE_DIR})
+target_link_libraries(NetSmoke Threads::Threads)
 
 
 

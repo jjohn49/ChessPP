@@ -34,19 +34,20 @@ public:
 	Move getIntermediateMove();
 	Move getHardMove();
 
-	// Root-level search dispatchers (parallel at root, sequential below)
+	// Root-level search dispatcher (parallel at root, sequential below)
 	Move getMinMaxMove(int depth);
-	Move getNegaMaxMove(int depth);
 
 	// Move ordering heuristic for better alpha-beta pruning
 	vector<Move> getAllMovesSorted();
 
-	// Alpha-beta search (maximizer/minimizer pair, uses make/unmake)
-	static optional<double> maxAlphaBeta(Board & board, Move move, int depth, double alpha, double beta);
-	static optional<double> minAlphaBeta(Board & board, Move move, int depth, double alpha, double beta);
+	// Color-agnostic negamax with alpha-beta. Returns the score from the
+	// perspective of `toMove` (positive = good for toMove). Uses make/unmake.
+	static double negamax(Board & board, Piece::Color toMove, int depth, double alpha, double beta, int ply);
 
-	// Negamax search (single function, uses make/unmake)
-	static float negaMaxAlgo(Board & board, Move & move, int depth, float alpha, float beta);
+	// Quiescence search: resolves outstanding captures past the search horizon
+	// so the engine never misjudges a hanging piece / recapture. Returns the
+	// score from the perspective of `toMove`.
+	static double quiesce(Board & board, Piece::Color toMove, double alpha, double beta);
 };
 
 #endif //CHESSPP_BOT_H

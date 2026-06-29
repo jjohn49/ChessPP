@@ -1,51 +1,113 @@
 # ChessPP
-Chess created using C++ and the SDL2 Game Library!
 
-<img width="806" alt="Screenshot 2024-03-28 at 4 19 13 PM" src="https://github.com/jjohn49/ChessPP/assets/98774069/8eeff2b9-ed20-45f3-b1da-608c91eb3252">
+A full-featured chess game written in C++ with SDL2 — play a friend on the same
+screen, play **online over your local network**, or take on an AI bot with
+selectable difficulty and chess clocks.
 
-# Installation
+<img width="806" alt="ChessPP board" src="https://github.com/jjohn49/ChessPP/assets/98774069/8eeff2b9-ed20-45f3-b1da-608c91eb3252">
 
-1. Download File from Release of Clone Repo
-2. Make sur you have cmake installed
-   - Can be found here: https://cmake.org/download/
-3. In the Root Directory run `cmake .`
-4. Enjoy!
+## Features
 
-# Bots and Other Tips
+- ♟️ **Complete chess rules** — legal move generation, check/checkmate/stalemate, castling, en passant, and pawn promotion.
+- 🖱️ **Drag-and-drop UI** — click to pick up a piece, legal destinations highlight, click to place. Promotion is chosen from an on-screen popup (no console needed).
+- 🤖 **AI bots** — six difficulty levels (Random → Expert) using alpha-beta / negamax search with quiescence, a multi-threaded root search, and a Metal GPU batch evaluator on macOS.
+- ⏱️ **Chess clocks** — Bullet, Blitz, 5 min, Rapid, 20 min, Classical, or no timer.
+- 🌐 **Online multiplayer over LAN** — host a game, share a short room code, and your friend joins from another machine on the same Wi-Fi. Includes a live "ghost" piece that mirrors your opponent's drag in real time, and automatic reconnect if the connection drops.
+- 🧭 **In-game menus** — everything (mode, difficulty, color, time control, host/join) is chosen from the start screen.
 
-* In order to run bots, simply uncomment the other initializer in main.cpp.
-* To change the difficulty from Random to Easy, change the Bot Difficulty Enum from Random to Easy in the Chess Constructor.
-* To change the time duration, manually edit the timeLeft float variable, located in the constructor opf Player in Player.cpp.
+## Requirements
 
-## ChessPP follows all the rules of Chess
-Examples:
+- A C++17 compiler (clang++ recommended) and **CMake ≥ 3.24**
+- **SDL2**, **SDL2_image**, and **SDL2_ttf**
+
+Install the SDL libraries:
+
+```bash
+# macOS (Homebrew)
+brew install sdl2 sdl2_image sdl2_ttf cmake
+
+# Debian / Ubuntu
+sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev cmake
+```
+
+On macOS the build also links the **Metal** and **Foundation** frameworks for GPU
+board evaluation (this is automatic; a CPU fallback is used everywhere else).
+
+## Build & Run
+
+The game loads its assets from `../assets`, so build and run from the `build/`
+directory:
+
+```bash
+mkdir -p build && cd build
+cmake ..
+make ChessPP
+./ChessPP
+```
+
+## How to Play
+
+When the game starts you'll step through a few menu screens (click a button or
+press the matching number key):
+
+1. **Game Mode** — *Play vs Human (Local)*, *Play vs Human (Online)*, or *Play vs Bot*.
+2. **Bot settings** (vs Bot only) — difficulty (Random, Super Easy, Easy, Intermediate, Hard, Expert) and which color you play.
+3. **Time Control** — No Timer, Bullet (1 min), Blitz (3 min), 5 Minutes, Rapid (10 min), 20 Minutes, or Classical (30 min).
+
+**Making a move:** click a piece to pick it up — its legal destinations light up
+red — then click a square to drop it. If a pawn reaches the last rank, a popup
+lets you promote to a Queen, Rook, or Knight. The game ends automatically on
+checkmate, stalemate, or flag-fall and shows the result.
+
+## Online Multiplayer (LAN)
+
+Both players must be on the **same local network** (e.g. the same Wi-Fi).
+
+**To host:**
+1. Choose *Play vs Human (Online)* → *Host Game*.
+2. Pick your color (White, Black, or Random) and a time control.
+3. A **room code** appears (e.g. `1FRD5EM`) along with your IP. Share the code.
+   - On macOS you may be asked to *allow incoming network connections* the first time — allow it.
+4. The game begins as soon as your opponent joins.
+
+**To join:**
+1. Choose *Play vs Human (Online)* → *Join Game*.
+2. Type the room code your host gave you (or an `IP:port` directly) and press Enter.
+
+Each player sees the board from their own side, moves are kept in sync, and you'll
+see your opponent's piece glide as they drag it. If the connection drops, the game
+shows *Reconnecting…* and re-syncs automatically; if it can't, it returns to the menu.
+
+## Rules Showcase
 
 ### 1. Knights Jumping Pieces
 
- 
-<img width="1197" alt="Screenshot 2024-04-08 at 7 02 20 PM" src="https://github.com/jjohn49/ChessPP/assets/98774069/fe510834-8878-47b9-9c98-e5cb79532f7a">
+<img width="1197" alt="Knight move" src="https://github.com/jjohn49/ChessPP/assets/98774069/fe510834-8878-47b9-9c98-e5cb79532f7a">
 
+### 2. En Passant
 
-### 2.En Pessant
-
-<img width="1196" alt="Screenshot 2024-04-08 at 7 02 52 PM" src="https://github.com/jjohn49/ChessPP/assets/98774069/aeb8894a-ec19-4a16-b4be-a7e3664caaa4">
-<img width="1198" alt="Screenshot 2024-04-08 at 7 03 15 PM" src="https://github.com/jjohn49/ChessPP/assets/98774069/e36cbbd0-a19b-4c62-a6ca-12ca4eb067ab">
+<img width="1196" alt="En passant before" src="https://github.com/jjohn49/ChessPP/assets/98774069/aeb8894a-ec19-4a16-b4be-a7e3664caaa4">
+<img width="1198" alt="En passant after" src="https://github.com/jjohn49/ChessPP/assets/98774069/e36cbbd0-a19b-4c62-a6ca-12ca4eb067ab">
 
 ### 3. Pawn Promotion
 
-<img width="1199" alt="Screenshot 2024-04-08 at 7 04 13 PM" src="https://github.com/jjohn49/ChessPP/assets/98774069/7cf99901-066c-45ed-81a7-f8f9484e1cb4">
-<img width="1202" alt="Screenshot 2024-04-08 at 7 04 26 PM" src="https://github.com/jjohn49/ChessPP/assets/98774069/2cd3a9c8-05a8-4451-8773-1bfe66e6d687">
+<img width="1199" alt="Promotion before" src="https://github.com/jjohn49/ChessPP/assets/98774069/7cf99901-066c-45ed-81a7-f8f9484e1cb4">
+<img width="1202" alt="Promotion after" src="https://github.com/jjohn49/ChessPP/assets/98774069/2cd3a9c8-05a8-4451-8773-1bfe66e6d687">
 
 ### 4. Castling
-<img width="1197" alt="Screenshot 2024-04-08 at 7 05 18 PM" src="https://github.com/jjohn49/ChessPP/assets/98774069/d2bf9aac-0508-4a1b-8e5e-f0c61df2d282">
 
-<img width="1200" alt="Screenshot 2024-04-08 at 7 05 31 PM" src="https://github.com/jjohn49/ChessPP/assets/98774069/37fc6a99-83ae-487d-a170-63282d3fc7e2">
+<img width="1197" alt="Castling before" src="https://github.com/jjohn49/ChessPP/assets/98774069/d2bf9aac-0508-4a1b-8e5e-f0c61df2d282">
+<img width="1200" alt="Castling after" src="https://github.com/jjohn49/ChessPP/assets/98774069/37fc6a99-83ae-487d-a170-63282d3fc7e2">
 
+## Tests
 
-## Notes for V1.2:
+Core logic (move rules, board state, the networking protocol, and check
+detection) has unit tests with no SDL dependency:
 
-* 1.~~The graphics can be a little bit finnacky, but it still works.~~ Major Graphic imporovements with new Release 1.2.
-* 2.~~In order to promote a pawn, you need to check the console and input the piece you would like.~~ V1.2 Brings a simple UI so you no longer have too use the terminal!
-* 3.~~The Game does not tell you when you are in check / check mate, however, it will not let you place a piece if you are checkmated or in check after said move.~~ Game will automatically end the game when a player is checkmated or runs out of time and displays who is the winner
-* ~~If you play a move that gets you out of check, the game will respond normally.~~ No Longer necessary
+```bash
+cd build
+make ChessPPTests && ./ChessPPTests
+```
 
+There is also a `NetSmoke` target (`make NetSmoke && ./NetSmoke`) that exercises
+the TCP networking layer over loopback.

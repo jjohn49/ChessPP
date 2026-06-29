@@ -57,21 +57,21 @@ TEST(Bot_MinMaxBlackReturnsValidMove) {
 	ASSERT_EQ(move.getMovingPiece()->getColor(), Piece::Black);
 }
 
-// --- NegaMax Search ---
+// --- Deeper search ---
 
-TEST(Bot_NegaMaxReturnsValidMove) {
+TEST(Bot_SearchDepth1ReturnsValidMove) {
 	Board board{};
 	Bot bot{Intermediate, Piece::White, &board};
-	Move move = bot.getNegaMaxMove(1);
+	Move move = bot.getMinMaxMove(1);
 
 	ASSERT_NOT_NULL(move.getMovingPiece());
 	ASSERT_EQ(move.getMovingPiece()->getColor(), Piece::White);
 }
 
-TEST(Bot_NegaMaxDepth2ReturnsValidMove) {
+TEST(Bot_SearchDepth2BlackReturnsValidMove) {
 	Board board{};
 	Bot bot{Intermediate, Piece::Black, &board};
-	Move move = bot.getNegaMaxMove(2);
+	Move move = bot.getMinMaxMove(2);
 
 	ASSERT_NOT_NULL(move.getMovingPiece());
 	ASSERT_EQ(move.getMovingPiece()->getColor(), Piece::Black);
@@ -91,12 +91,12 @@ TEST(Bot_MinMaxDoesNotCorruptBoard) {
 	ASSERT_EQ(before, after);
 }
 
-TEST(Bot_NegaMaxDoesNotCorruptBoard) {
+TEST(Bot_Depth3DoesNotCorruptBoard) {
 	Board board{};
 	string before = board.toString();
 
 	Bot bot{Intermediate, Piece::White, &board};
-	bot.getNegaMaxMove(2);
+	bot.getMinMaxMove(3);
 
 	string after = board.toString();
 	ASSERT_EQ(before, after);
@@ -122,6 +122,32 @@ TEST(Bot_CapturesHangingPiece) {
 
 	// The bot should capture the hanging rook (highest-value undefended piece)
 	ASSERT_NOT_NULL(move.getCapturedPiece());
+}
+
+// Regression: bot (black) used to answer 1.b4 with ...c5, hanging the pawn to bxc5.
+// Coordinates: row 0 = white back rank, row 1 = white pawns, row 6 = black pawns.
+// b2=(1,1), b4=(3,1), c7=(6,2), c5=(4,2).
+TEST(Bot_DoesNotHangPawnAfterB4) {
+	Board board{};
+
+	// Simulate white having played b2-b4.
+	auto whiteBPawn = board.getPieceAt(1, 1);
+	board.setPieceAt(1, 1, nullptr);
+	board.setPieceAt(3, 1, whiteBPawn);
+	whiteBPawn->setNewPosition(3, 1);
+	whiteBPawn->setHasMoved(true);
+
+	// Black to move at a realistic difficulty depth.
+	Bot bot{Hard, Piece::Black, &board};
+	Move move = bot.getMinMaxMove(4);
+
+	ASSERT_NOT_NULL(move.getMovingPiece());
+	ASSERT_EQ(move.getMovingPiece()->getColor(), Piece::Black);
+
+	// It must NOT push the c-pawn from c7 to c5 (which bxc5 wins for free).
+	bool isC7toC5 = move.getOldPosition() == make_pair(6, 2)
+	             && move.getNewPosition() == make_pair(4, 2);
+	ASSERT_TRUE(!isC7toC5);
 }
 
 // --- Difficulty levels produce valid moves ---

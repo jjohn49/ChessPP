@@ -279,19 +279,26 @@ void Board::setPieceAt(pair<int, int> position, std::shared_ptr<Piece> pieceDrag
 
 std::pair<int,int> Board::getColorsKingPosition(Piece::Color color) {
     int idx = (color == Piece::White) ? 0 : 1;
-    if(idx >= (int)kings.size() || kings[idx] == nullptr){
-        // King not found — search the board directly
-        for(int r = 0; r < 8; r++){
-            for(int c = 0; c < 8; c++){
-                auto p = getPieceAt(r, c);
-                if(p != nullptr && p->getType() == Piece::King && p->getColor() == color){
-                    return p->getPosition();
-                }
+    // Fast path: trust the kings cache only if that slot actually holds this
+    // color's king AND the king is on the grid where it claims to be. During
+    // interactive (drag) validation the moving king is lifted off the grid, so a
+    // deep-copied board drops it from this cache — leaving a missing or wrong-color
+    // entry here. Verify against the board rather than blindly indexing.
+    if(idx < (int)kings.size() && kings[idx] != nullptr
+       && kings[idx]->getColor() == color
+       && getPieceAt(kings[idx]->getPosition()) == kings[idx]){
+        return kings[idx]->getPosition();
+    }
+    // Authoritative fallback: scan the board grid for the king.
+    for(int r = 0; r < 8; r++){
+        for(int c = 0; c < 8; c++){
+            auto p = getPieceAt(r, c);
+            if(p != nullptr && p->getType() == Piece::King && p->getColor() == color){
+                return p->getPosition();
             }
         }
-        return {-1, -1};
     }
-    return kings[idx]->getPosition();
+    return {-1, -1};
 }
 
 std::vector<Move> Board::getAllMovesForColor(Piece::Color color) {
@@ -348,6 +355,57 @@ Move Board::getLastMove() {
 
 bool Board::isFirstMove() {
     return moveHistory.empty();
+}
+
+void Board::loadFromMoves(const std::vector<NetProtocol::NetMove> & moves) {
+    *this = Board();   // reset to the initial position, then replay
+    for(const NetProtocol::NetMove & nm : moves) {
+        std::pair<int,int> from{nm.fromRow, nm.fromCol};
+        std::pair<int,int> to{nm.toRow, nm.toCol};
+        shared_ptr<Piece> mover = getPieceAt(from);
+        if(mover == nullptr) continue;
+
+        // Re-derive special-move flags by matching the destination against the
+        // piece's generated moves (same mechanism as live play).
+        Move chosen(from, to, mover, getPieceAt(to));
+        for(Move & m : mover->getMoves(this)) {
+            if(m.getNewPosition() == to) { chosen = m; break; }
+        }
+        movePiece(chosen);
+
+        if(chosen.getIsPawnPromotion()) {
+            Piece::Type t = (nm.promo == 'R') ? Piece::Rook :
+                            (nm.promo == 'N') ? Piece::Knight : Piece::Queen;
+            shared_ptr<Piece> promoted = addPiece(t, mover->getColor(), to);
+            setPieceAt(to, promoted);
+            recordPromotion(promoted);
+        }
+    }
+}
+
+std::vector<NetProtocol::NetMove> Board::getMoveHistoryAsNetMoves() {
+    std::vector<NetProtocol::NetMove> out;
+    for(Move & m : moveHistory) {
+        NetProtocol::NetMove nm;
+        nm.fromRow = m.getOldPosition().first;
+        nm.fromCol = m.getOldPosition().second;
+        nm.toRow = m.getNewPosition().first;
+        nm.toCol = m.getNewPosition().second;
+        nm.promo = '-';
+        if(m.getIsPawnPromotion() && m.getPromotedToPiece() != nullptr) {
+            Piece::Type t = m.getPromotedToPiece()->getType();
+            nm.promo = (t == Piece::Rook) ? 'R' : (t == Piece::Knight) ? 'N' : 'Q';
+        }
+        out.push_back(nm);
+    }
+    return out;
+}
+
+void Board::recordPromotion(std::shared_ptr<Piece> promoted) {
+    if(!moveHistory.empty()) {
+        moveHistory.back().setIsPawnPromotion(true);
+        moveHistory.back().setPromotedToPiece(promoted);
+    }
 }
 
 shared_ptr<Rook> Board::getRook(int val) {

@@ -12,6 +12,11 @@
 #include <unordered_map>
 #include <chrono>
 #include <future>
+#include <memory>
+#include <optional>
+#include <vector>
+#include "NetSession.h"
+#include "NetProtocol.h"
 #ifdef __linux__
     #include <SDL2/SDL.h>
     #include <SDL2/SDL_ttf.h>
@@ -54,7 +59,18 @@ protected:
     std::future<bool> botFuture;
     bool boardFlipped;
 
-
+    // --- LAN multiplayer ---
+    bool isNetworkGame;
+    Piece::Color myColor;                 // local player's color (NoColor for offline games)
+    std::unique_ptr<NetSession> net;
+    bool reconnecting;
+    // Mirror of the opponent's in-progress drag, for the live "ghost" piece.
+    bool remoteDragging;
+    std::pair<int,int> remoteOrigin;      // canonical square the opponent lifted from
+    Piece::Type remotePieceType;
+    Piece::Color remotePieceColor;
+    float remoteCursorRowF;               // canonical board-space cursor (fractional)
+    float remoteCursorColF;
 
 
     void drawBoard();
@@ -76,6 +92,26 @@ protected:
     void setPieceDragging(SDL_Event * event);
     int convertYAxisToRow(int row);
     bool isPositionInMoves(int row, int col, vector<Move> & moves);
+
+    // --- LAN multiplayer ---
+    void setupNetworkGame();
+    void hostGameFlow();
+    void joinGameFlow();
+    void finishNetworkSetup(TimeControl tc);
+    bool waitingScreen(const std::string & code);
+    std::string textInputScreen(const std::string & title, const std::string & prompt);
+    void drawInfoScreen(const std::string & title, const std::vector<std::string> & lines);
+    std::optional<NetProtocol::Assign> awaitAssign(int timeoutMs);
+    void pollNetwork();
+    void handleNetLine(const std::string & line);
+    void applyRemoteMove(const NetProtocol::NetMove & nm);
+    void applyPromotion(Move & move, Piece::Type type);
+    void sendMoveMessage(Move & move);
+    void sendStateResync();
+    bool reconnectFlow();
+    void drawRemoteGhost();
+    static Piece::Type promoCharToType(char c);
+    static char promoTypeToChar(Piece::Type t);
 
 public:
     Chess();

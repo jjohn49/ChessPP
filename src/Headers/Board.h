@@ -16,6 +16,7 @@
 #include "Bishop.h"
 #include "Knight.h"
 #include "Queen.h"
+#include "NetProtocol.h"
 
 using namespace std;
 
@@ -91,6 +92,12 @@ public:
 	// Move history
 	Move getLastMove();
 	bool isFirstMove();
+
+	// Network resync: rebuild from an authoritative move list, read history out,
+	// and back-fill the chosen promotion piece on the last recorded move.
+	void loadFromMoves(const std::vector<NetProtocol::NetMove> & moves);
+	std::vector<NetProtocol::NetMove> getMoveHistoryAsNetMoves();
+	void recordPromotion(std::shared_ptr<Piece> promoted);
 
 	// Piece access helpers
 	shared_ptr<Rook> getRook(int val);
